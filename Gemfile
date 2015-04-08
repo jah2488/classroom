@@ -44,6 +44,9 @@ group :development, :test do
 end
 
 
+gem 'react-rails', '~> 0.13.0.0'
+gem 'irbtools', require: 'irbtools/binding'
+
 gem 'hirb'
 gem 'kaminari'
 gem 'puma'
@@ -62,3 +65,8 @@ end
 
 gem 'bootstrap-sass'
 gem 'simple_form'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-react'
+  gem 'rails-assets-datetimepicker'
+end

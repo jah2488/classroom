@@ -1,2 +1,133 @@
-    @import 'bootstrap-sprockets';
-    @import 'bootstrap';
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'datetimepicker';
+
+
+$border-gray: #acacac;
+$light-border-gray: #ececec;
+$background-gray: #f7f5f3;
+
+
+body {
+    background: #f5efe6;
+}
+
+.help-block {
+  font-variant:small-caps;
+  font-size:0.9em;
+  line-height:0;
+}
+
+header,
+footer {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Custom page header */
+header {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* Make the masthead heading the same height as the navigation */
+header h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
+}
+
+/* Custom page footer */
+footer {
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+}
+
+.container-narrow > hr {
+    margin: 30px 0;
+}
+
+#studencia, ul#student-list {
+    padding: 10px 40px;
+    background: $background-gray;
+    border-radius: 3px;
+    border: 1px solid $light-border-gray;
+
+    li, li {
+        background: #fafafa;
+        border: 1px $light-border-gray solid;
+        margin: 10px;
+        list-style: none;
+        border-radius: 4px;
+        overflow: hidden;
+
+        &:hover {
+          box-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+        }
+    }
+
+    .student-view, .assignment-view {
+        background: white;
+
+        .row .col  {
+            height: 50px;
+            border-right: 1px $border-gray dashed;
+            padding: 17px;
+        }
+    }
+
+    .entry .assignment-view .row .col:nth-child(even) {
+        padding: 10px;
+    }
+}
+.name {
+  margin-left: 10px;
+}
+.outlook {
+  background: black;
+  border: 2px $border-gray solid;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: inline;
+  float: left;
+  margin: 0 10px;
+  position: relative;
+  top: 0px;
+  left: 0;
+
+  &.good {
+    background: green;
+  }
+  &.ok {
+    background: orange;
+  }
+  &.bad {
+    background: red;
+  }
+}
+
+#form-container {
+  margin: 10px 0;
+}
+
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .container {
+        max-width: 730px;
+    }
+
+    /* Remove the padding we set earlier */
+    .header,
+    .marketing,
+    .footer {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    /* Space out the masthead */
+    .header {
+        margin-bottom: 30px;
+    }
+}

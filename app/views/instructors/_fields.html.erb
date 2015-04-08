@@ -1,0 +1,6 @@
+<div class="form-inputs">
+  <%= f.input :name, required: true  %>
+  <%= f.input :phone, required: true %>
+  <%= f.input :office_hours_start, as: :string, input_html: { class: 'datetimepicker' }, required: true %>
+  <%= f.input :office_hours_end, as: :string, input_html: { class: 'datetimepicker' }, required: true %>
+</div>

@@ -1,14 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Classroom</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><%= t('.title', title: local_assigns[:title]) %></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
+    <h1 class="text-muted"><%= t '.header-title' %></h1>
+    <nav>
+      <ul class='nav-pills pull-right'>
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#assignments">Assignments</a></li>
+        <li><a href="#students">Students</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<%= yield %>
+  <main>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-12'>
+          <div class='notices'>
+            <% flash.each do |key, value| %>
+              <%= display_flash(key, value) %>
+            <% end %>
+          </div>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer data-spy="affix" data-offset-top="0" data-offset-bottom="0">
+    <p>Made with &#x2665; by Justin Herrick for The Iron Yard <%= image_tag 'logo.svg', style: 'width:10px; height:auto; top: 1px; position:relative' %> </p>
+  </footer>
 
 </body>
 </html>
