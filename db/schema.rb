@@ -108,6 +108,8 @@ ActiveRecord::Schema.define(version: 20150406171318) do
   create_table "submissions", force: :cascade do |t|
     t.string   "link"
     t.text     "notes"
+    t.boolean  "completed"
+    t.boolean  "late"
     t.integer  "student_id"
     t.integer  "assignment_id"
     t.datetime "created_at",    null: false

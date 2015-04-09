@@ -1,0 +1,11 @@
+<article>
+  <header>
+    <h1><%= assignment.title %></h1>
+  </header>
+
+  <%= markdown assignment.info %>
+
+  <footer> <strong>Due: </strong> <%= time_ago_in_words assignment.due_date %>
+  </footer>
+</article>
+

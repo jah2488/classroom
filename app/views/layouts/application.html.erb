@@ -12,20 +12,25 @@
 </head>
 <body>
   <header>
-    <h1 class="text-muted"><%= t '.header-title' %></h1>
     <nav>
-      <ul class='nav-pills pull-right'>
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#assignments">Assignments</a></li>
-        <li><a href="#students">Students</a></li>
+      <ul class='nav nav-pills pull-right'>
+        <% if student_signed_in? %>
+          <li><%= link_to('Logout', destroy_student_session_path, :method => :delete) %></li>
+        <% else %>
+          <li><%= link_to('Student Signin', new_student_session_path) %></li>
+        <% end %>
+        <% if instructor_signed_in? %>
+          <li><%= link_to('Instructor Logout', destroy_instructor_session_path, :method => :delete) %>
+        <% end %>
       </ul>
     </nav>
+    <h1 class="text-muted"><%= t '.header-title' %></h1>
   </header>
 
   <main>
     <div class='container'>
       <div class='row'>
-        <div class='col-md-12'>
+        <div class='content col-md-12'>
           <div class='notices'>
             <% flash.each do |key, value| %>
               <%= display_flash(key, value) %>
@@ -38,7 +43,7 @@
   </main>
 
   <footer data-spy="affix" data-offset-top="0" data-offset-bottom="0">
-    <p>Made with &#x2665; by Justin Herrick for The Iron Yard <%= image_tag 'logo.svg', style: 'width:10px; height:auto; top: 1px; position:relative' %> </p>
+    <p>Made with &#x2665; by Justin Herrick for The Iron Yard <%= image_tag 'logo.svg', style: 'width:10px; height:auto; top: -1px; position:relative' %> </p>
   </footer>
 
 </body>

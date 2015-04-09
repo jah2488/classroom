@@ -7,9 +7,12 @@ $border-gray: #acacac;
 $light-border-gray: #ececec;
 $background-gray: #f7f5f3;
 
-
 body {
     background: #f5efe6;
+}
+
+.notices {
+  margin-top: 20px;
 }
 
 .help-block {
@@ -18,13 +21,10 @@ body {
   line-height:0;
 }
 
-header,
-footer {
-    padding-left: 15px;
+header, footer {
     padding-right: 15px;
 }
 
-/* Custom page header */
 header {
     border-bottom: 1px solid #e5e5e5;
 }
@@ -48,16 +48,32 @@ footer {
     margin: 30px 0;
 }
 
-#studencia, ul#student-list {
-    padding: 10px 40px;
-    background: $background-gray;
-    border-radius: 3px;
-    border: 1px solid $light-border-gray;
+.content {
+  background: white;
+  box-shadow: 1px 1px 1px $background-gray;
+  border: 1px solid $light-border-gray;
+  border-radius: 3px;
+  margin: 20px 0;
+  padding-bottom: 60px;
+}
+
+nav ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+nav ul li {
+  display: inline;
+}
+
+ul.list {
+    padding-left:0;
 
     li, li {
         background: #fafafa;
+        padding: 10px;
+        margin: 10px 0;
         border: 1px $light-border-gray solid;
-        margin: 10px;
         list-style: none;
         border-radius: 4px;
         overflow: hidden;

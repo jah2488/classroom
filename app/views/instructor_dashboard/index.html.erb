@@ -1,28 +1,47 @@
 <div class='row'>
-  <div class='col-md-9'>
-    <div class='row'>
-      <h2><%= t('.assignments') %></h2>
-      <% assignments.each do |assignment| %>
-        <p><%= assignment %></p>
-      <% end.empty? and begin %>
-        <p> No Assignments </p>
-      <% end %>
-    </div>
-    <div class='row'>
-      <h2><%= t('.students') %></h2>
-      <% students.each do |student| %>
-        <p><%= student %></p>
-      <% end.empty? and begin %>
-        <p> No Students </p>
-      <% end %>
-    </div>
-  </div>
-  <div class='col-md-3'>
+  <div class='col-md-12'>
+    <h1>Instructor Dashboard</h1>
     <nav>
       <ul>
         <li><%= link_to t('.new-cohort'), new_cohort_path, class: 'btn btn-default' %></li>
         <li><%= link_to t('.new-assignment'), new_assignment_path, class: 'btn btn-default' %></li>
       </ul>
     </nav>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='row'>
+      <div class='col-md-12'>
+        <section>
+          <header>
+            <h2><%= t('.assignments') %></h2>
+          </header>
+          <ul class='list'>
+            <% assignments.each do |assignment| %>
+              <li><%= link_to assignment, assignment %></li>
+            <% end.empty? and begin %>
+              <p> No Assignments </p>
+            <% end %>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <section>
+          <header>
+            <h2><%= t('.students') %></h2>
+          </header>
+          <ul class='list'>
+            <% students.each do |student| %>
+              <li><%= link_to student, student %></li>
+            <% end.empty? and begin %>
+              <p> No Students </p>
+            <% end %>
+          </ul>
+        </section>
+      </div>
+    </div>
   </div>
 </div>

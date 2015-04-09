@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def markdown(source)
+    Kramdown::Document.new(source).to_html.html_safe
+  end
+
   def display_flash(key, msg)
     display_class = key == 'notice' ? 'success' : 'warning'
     content_tag :div, msg, class: "alert alert-#{display_class} flash #{key} alert-dismissible", role: "alert" do

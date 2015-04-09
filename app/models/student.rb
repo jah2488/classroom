@@ -20,6 +20,10 @@ class Student < ActiveRecord::Base
     checkins.where(absent: true).count
   end
 
+  def completed_assignments
+    submissions.where(completed: true)
+  end
+
   def to_s
     "#{name} | tardies: #{tardies} | absences: #{absences} | submissions: #{submissions.count}"
   end

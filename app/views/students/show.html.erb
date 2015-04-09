@@ -1,0 +1,19 @@
+<%= link_to 'Back', url_for(:back), class: 'btn btn-primary' %>
+<h1><%= student.name %></h1>
+<section>
+  <h3>Progress Info</h3>
+  <ul>
+    <li>Tardies: <%= student.tardies %></li>
+    <li>Absences: <%= student.absences %></li>
+    <li>Completed Assignments / Submissions / Total Assignments: <%= student.completed_assignments.count %>/<%= student.submissions.count %>/<%= student.cohort.assignments.count %></li>
+  </ul>
+</section>
+<section>
+  <h3>Contact Info</h3>
+  <ul>
+    <li>Github: <%= link_to student.github, "https://github.com/#{student.github}" %></li>
+    <li>Phone: <%= link_to student.phone, "tel://#{student.phone}" %></li>
+    <li>Blog: <%= link_to student.blog, student.blog %></li>
+    <li>Bio: <%= student.bio %></li>
+  </ul>
+</section>

@@ -8,6 +8,11 @@
 //
 //
 
-jQuery(function() {
+var ready = function() {
   jQuery('.datetimepicker').datetimepicker();
-});
+};
+
+
+jQuery(document).ready(ready);
+jQuery(document).on('page:load', ready)
+
