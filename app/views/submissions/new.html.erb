@@ -1,0 +1,14 @@
+<div class='col-lg-4 col-lg-offset-4'>
+  <h1>New Submission</h1>
+
+  <%= simple_form_for(submission) do |f| %>
+    <div class='form-inputs'>
+      <%= f.association :assignment, hint: "Which assignment is this submission for?" %>
+      <%= f.input :link, required: true, hint: "Link to where I can find the assignment. (Usually a Github Repo or a blog post)" %>
+      <%= f.input :notes, hint: 'Tell me what worked and didn\'t work with this assignment.'%>
+    </div>
+    <div class='form-actions'>
+      <%= f.button :submit, 'Submit Homework' %>
+    </div>
+  <% end %>
+</div>

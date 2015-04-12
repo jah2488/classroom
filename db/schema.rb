@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406171318) do
+ActiveRecord::Schema.define(version: 20150411231046) do
 
   create_table "assignments", force: :cascade do |t|
     t.string   "title"
@@ -30,8 +30,10 @@ ActiveRecord::Schema.define(version: 20150406171318) do
     t.boolean  "absent",     default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "day_id"
   end
 
+  add_index "checkins", ["day_id"], name: "index_checkins_on_day_id"
   add_index "checkins", ["student_id"], name: "index_checkins_on_student_id"
 
   create_table "cohorts", force: :cascade do |t|
@@ -40,9 +42,21 @@ ActiveRecord::Schema.define(version: 20150406171318) do
     t.integer  "instructor_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "cohorts", ["instructor_id"], name: "index_cohorts_on_instructor_id"
+
+  create_table "days", force: :cascade do |t|
+    t.time     "start_time"
+    t.integer  "cohort_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "override_code", default: "a60e", null: false
+  end
+
+  add_index "days", ["cohort_id"], name: "index_days_on_cohort_id"
 
   create_table "instructors", force: :cascade do |t|
     t.string   "name"

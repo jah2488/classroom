@@ -1,11 +1,34 @@
-<h1><%= t('.title') %> </h1>
+<%= render partial: 'instructor_dashboard/nav', locals: { cohort: cohort } %>
 
-<%= simple_form_for(cohort) do |f| %>
-  <div class='form-inputs'>
-    <%= f.input :name %>
-    <%= f.input :location, hint: t('.location-hint') %>
-  </div>
-  <div class='form-actions'>
-    <%= f.button :submit %>
-  </div>
-<% end %>
+<div class='col-lg-4 col-lg-offset-4'>
+  <h1><%= t('.title') %> </h1>
+  <%= simple_form_for(cohort) do |f| %>
+    <div class='form-inputs'>
+      <%= f.input :name %>
+      <%= f.input :location, hint: t('.location-hint') %>
+      <div class='form-group'>
+        <div class='row'>
+          <div class='col-lg-9'>
+            <%= f.input :latitude, hint: 'Latitude of classroom for checkin verification purposes' %>
+          </div>
+          <div class='col-lg-3'>
+            <label class="float optional control-label" for="cohort_latitude">Auto Fill</label>
+            <a class='fillLatLong btn btn-info'>Get Loc</a>
+          </div>
+        </div>
+        <div class='row'>
+         <div class='col-lg-9'>
+           <%= f.input :longitude, hint: 'Longitude of classroom for checkin verification purposes' %>
+         </div>
+         <div class='col-lg-3'>
+           <label class="float optional control-label" for="cohort_longitude">Auto Fill</label>
+           <a class='fillLatLong btn btn-info'>Get Loc</a>
+         </div>
+        </div>
+      </div>
+    </div>
+    <div class='form-actions'>
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+</div>

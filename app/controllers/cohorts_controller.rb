@@ -5,6 +5,12 @@ class CohortsController < ApplicationController
     }
   end
 
+  def show
+    render locals: {
+      cohort: Cohort.find(params.fetch(:id))
+    }
+  end
+
   def create
     cohort = Cohort.new(cohort_params)
     cohort.instructor = current_instructor

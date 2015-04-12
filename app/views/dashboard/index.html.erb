@@ -1,2 +1,55 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<h1>Student Dashboard</h1>
+<%= link_to 'SUBMIT HOMEWORK', new_submission_path,  class:'btn btn-primary btn-lg '%>
+
+<div class='row'>
+
+  <div class='col-lg-8'>
+    <p class='muted'>Assignments</p>
+    <section class='assignments'>
+      <h3> Assignments</h3>
+      <% assignments.each do |assignment| %>
+        <div class='assignment'>
+          <p><%= assignment %> <%= assignment.completed_by?(current_student) %></p>
+          <ol>
+          <% assignment.submissions_for(current_student).each do |submission| %>
+            <li><%= submission.link %> late: <%= !!submission.late %> complete: <%= !!submission.completed %> </li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </section>
+
+    <p class='muted'>Notes</p>
+    <section class='checkin'>
+      <a class='btn btn-primary'>READ</a>
+    </section>
+  </div>
+
+  <div class='col-lg-3'>
+    <p class='muted'>Attendance</p>
+    <section class='checkin'>
+      <div>
+        <% if current_day.present?(current_student) %>
+          <a class='btn btn-primary btn-lg full-width'>
+            <%= current_day.checkin_for(current_student).checkin_status.upcase %>
+          </a>
+        <% else %>
+          <%= react_component('Checkin', { tardies: current_student.tardies, absences: current_student.absences }) %>
+        <% end %>
+      </div>
+      <a class="btn btn-default btn-sm" data-toggle="collapse" href="#attendance-info" aria-expanded="false" aria-controls="collapseExample"> What is this?</a>
+      <div id='attendance-info' class='collapse' style='margin-top:10px;'>
+        <div class='well'>
+          <p class='muted'>You <strong>must</strong> checkin every day to be considered present for that class.</p>
+          <p class='muted'>Checkin needs to occur before <%= current_day.late_time %> to not be considered tardy.</p>
+        </div>
+      </div>
+    </section>
+    <p class='muted'>Messages</p>
+    <section class='checkin'>
+      <a class='btn btn-primary'>READ</a>
+      <%= react_component('LikeButton') %>
+    </section>
+  </div>
+
+</div>

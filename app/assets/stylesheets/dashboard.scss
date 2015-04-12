@@ -1,3 +1,35 @@
 // Place all the styles related to the dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+section {
+  border: 1px solid #c3c3c3;
+  border-radius: 3px;
+  padding: 20px;
+  width: 100%;
+}
+
+p.muted {
+  margin: 0;
+  color: #ACACAC;
+  font-variant:small-caps;
+  text-transform:lowercase;
+  position:relative;
+  top: 2px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.errors {
+  color: red;
+}
+
+.stats {
+  margin: 10px 0;
+  .tardies {
+    padding-right: 4px;
+  }
+}

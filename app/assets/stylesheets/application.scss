@@ -1,59 +1,43 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'datetimepicker';
+@import 'dashboard';
 
 
 $border-gray: #acacac;
 $light-border-gray: #ececec;
 $background-gray: #f7f5f3;
 
-body {
-    background: #f5efe6;
-}
+$primary: #9AA5D3;
 
 .notices {
   margin-top: 20px;
 }
 
 .help-block {
-  font-variant:small-caps;
   font-size:0.9em;
-  line-height:0;
 }
 
 header, footer {
     padding-right: 15px;
+    padding-left: 15px;
 }
 
 header {
-    border-bottom: 1px solid #e5e5e5;
-}
-
-/* Make the masthead heading the same height as the navigation */
-header h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
-}
-
-/* Custom page footer */
-footer {
-    padding-top: 19px;
-    color: #777;
-    border-top: 1px solid #e5e5e5;
-}
-
-.container-narrow > hr {
-    margin: 30px 0;
+    border-bottom: 5px solid darken($primary, 5%);
+    background: $primary;
+    color: white;
+    height: 80px;
+    padding-top: 20px;
+    a {
+      color: white;
+    }
+    h1 {
+      display:inline;
+    }
 }
 
 .content {
-  background: white;
-  box-shadow: 1px 1px 1px $background-gray;
-  border: 1px solid $light-border-gray;
-  border-radius: 3px;
-  margin: 20px 0;
   padding-bottom: 60px;
 }
 
@@ -97,6 +81,7 @@ ul.list {
         padding: 10px;
     }
 }
+
 .name {
   margin-left: 10px;
 }
@@ -110,40 +95,29 @@ ul.list {
   float: left;
   margin: 0 10px;
   position: relative;
-  top: 0px;
+  top: 0;
   left: 0;
 
-  &.good {
-    background: green;
-  }
-  &.ok {
-    background: orange;
-  }
-  &.bad {
-    background: red;
-  }
-}
-
-#form-container {
-  margin: 10px 0;
+  &.good { background: green;  }
+  &.ok   { background: orange; }
+  &.bad  { background: red;    }
 }
 
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-    .container {
-        max-width: 730px;
-    }
 
-    /* Remove the padding we set earlier */
-    .header,
-    .marketing,
-    .footer {
-        padding-left: 0;
-        padding-right: 0;
-    }
-    /* Space out the masthead */
-    .header {
-        margin-bottom: 30px;
-    }
+/* Ahhh bootstrap overrides */
+.btn-primary {
+  background: $primary;
+  border-color: darken($primary, 5%);
+  &:hover {
+    background: darken($primary, 15%);
+    border-color: darken($primary, 20%);
+  }
+}
+
+.nav li a.danger {
+  &:hover {
+    color: white;
+    background: #D84669;
+  }
 }

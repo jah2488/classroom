@@ -12,25 +12,39 @@
 </head>
 <body>
   <header>
-    <nav>
-      <ul class='nav nav-pills pull-right'>
-        <% if student_signed_in? %>
-          <li><%= link_to('Logout', destroy_student_session_path, :method => :delete) %></li>
-        <% else %>
-          <li><%= link_to('Student Signin', new_student_session_path) %></li>
-        <% end %>
-        <% if instructor_signed_in? %>
-          <li><%= link_to('Instructor Logout', destroy_instructor_session_path, :method => :delete) %>
-        <% end %>
-      </ul>
-    </nav>
-    <h1 class="text-muted"><%= t '.header-title' %></h1>
+    <div class='row'>
+      <div class='col-lg-6'>
+        <h1><%= link_to t('.header-title'), root_path %></h1>
+      </div>
+      <div class='col-lg-6'>
+        <nav>
+          <ul class='nav nav-pills pull-right'>
+            <% if student_signed_in? %>
+              <li><%= link_to('Dashboard', dashboard_path) %></li>
+              <li><%= link_to('Logout', destroy_student_session_path, class: 'danger', method: :delete) %></li>
+            <% else %>
+              <li><%= link_to('Student Signin', new_student_session_path) %></li>
+            <% end %>
+            <% if instructor_signed_in? %>
+              <li><%= link_to('Instructor Dashboard', instructor_dash_path) %></li>
+              <li><%= link_to('Instructor Logout', destroy_instructor_session_path, class: 'danger', method: :delete) %>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </div>
   </header>
+  <% if current_student || current_instructor %>
+    <script>
+      _loggedIn = true;
+    </script>
+  <% end %>
+  <span class='hidden' id='loc-data' data-location=<%= distance_from_current_cohort %>>;)</span>
 
   <main>
-    <div class='container'>
+    <div class='container-fluid'>
       <div class='row'>
-        <div class='content col-md-12'>
+        <div class='content col-lg-12'>
           <div class='notices'>
             <% flash.each do |key, value| %>
               <%= display_flash(key, value) %>
@@ -41,10 +55,6 @@
       </div>
     </div>
   </main>
-
-  <footer data-spy="affix" data-offset-top="0" data-offset-bottom="0">
-    <p>Made with &#x2665; by Justin Herrick for The Iron Yard <%= image_tag 'logo.svg', style: 'width:10px; height:auto; top: -1px; position:relative' %> </p>
-  </footer>
 
 </body>
 </html>

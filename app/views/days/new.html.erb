@@ -1,0 +1,13 @@
+<div class='col-lg-4 col-lg-offset-4'>
+  <h1>New Day</h1>
+
+  <%= simple_form_for(day, html: { class: 'form-inline' }) do |f| %>
+    <div class='form-inputs'>
+      <%= f.input :start_time, required: true, html5: true, input_html: { step: 900, value: '09:00:00' }, hint: "When does class start? Students will be considered late if they do not checkin within 15 minutes of this time." %>
+      <%= f.input :override_code, required: true, input_html: { value: SecureRandom.hex(2) }, hint: "This code allows students to check-in when not on campus." %>
+    </div>
+    <div class='form-actions'>
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+</div>

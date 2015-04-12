@@ -11,4 +11,11 @@ module ApplicationHelper
       end) + content_tag(:span, msg)
     end
   end
+
+  def distance_from_current_cohort
+    return unless current_student || current_instructor
+    cohort = current_instructor.current_cohort if current_instructor
+    cohort = current_student.cohort            if current_student
+    "#{cohort.latitude},#{cohort.longitude}"
+  end
 end

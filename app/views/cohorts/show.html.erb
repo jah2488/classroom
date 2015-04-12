@@ -1,0 +1,9 @@
+<%= render partial: 'instructor_dashboard/nav', locals: { cohort: cohort } %>
+
+<div class='col-lg-8 col-lg-offset-4'>
+  <h1><%= cohort.name.titleize %></h1>
+  <p>Location: <%= cohort.location %></p>
+  <p>Instructor: <%= link_to cohort.instructor.name, cohort.instructor %></p>
+  <p>Latitude: <%= cohort.latitude %></p>
+  <p>Longitude: <%= cohort.longitude %></p>
+</div>

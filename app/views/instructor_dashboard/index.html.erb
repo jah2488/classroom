@@ -1,18 +1,8 @@
-<div class='row'>
-  <div class='col-md-12'>
-    <h1>Instructor Dashboard</h1>
-    <nav>
-      <ul>
-        <li><%= link_to t('.new-cohort'), new_cohort_path, class: 'btn btn-default' %></li>
-        <li><%= link_to t('.new-assignment'), new_assignment_path, class: 'btn btn-default' %></li>
-      </ul>
-    </nav>
-  </div>
-</div>
+<%= render partial: 'instructor_dashboard/nav', locals: { cohort: cohort } %>
 <div class='row'>
   <div class='col-md-12'>
     <div class='row'>
-      <div class='col-md-12'>
+      <div class='col-md-6'>
         <section>
           <header>
             <h2><%= t('.assignments') %></h2>
@@ -26,9 +16,41 @@
           </ul>
         </section>
       </div>
+      <div class='col-md-6'>
+        <section>
+          <header>
+            <h2><%= t('.attendance') %></h2>
+          </header>
+          <h4>Current Day: <%= current_day.created_on %></h4>
+          <p class='muted'>Start:</p> <%= current_day.starts_at %>
+          <p class='muted'>Override:</p> <pre><code><%= current_day.override_code%></code></pre>
+          <p>Students in Attendance</p>
+          <ul class='list'>
+            <% current_day.checkins.each do |checkin| %>
+              <li><%= checkin.checkin_status %> <%= link_to checkin.student, checkin.student %></li>
+            <% end.empty? and begin %>
+              <p> No Students </p>
+            <% end %>
+          </ul>
+        </section>
+      </div>
     </div>
     <div class='row'>
-      <div class='col-md-12'>
+      <div class='col-md-6'>
+        <section>
+          <header>
+            <h2><%= t('.submissions') %></h2>
+          </header>
+          <ul class='list'>
+            <% assignments.each do |assignment| %>
+              <li><%= link_to assignment, assignment %></li>
+            <% end.empty? and begin %>
+              <p> No Assignments </p>
+            <% end %>
+          </ul>
+        </section>
+      </div>
+      <div class='col-md-6'>
         <section>
           <header>
             <h2><%= t('.students') %></h2>

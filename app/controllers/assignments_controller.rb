@@ -17,6 +17,7 @@ class AssignmentsController < ApplicationController
     if assignment.save
       redirect_to instructor_dash_path, notice: 'Assignment successfully created'
     else
+      render :new
     end
   end
 
