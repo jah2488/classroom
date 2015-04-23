@@ -3,15 +3,16 @@ class CheckinsController < ApplicationController
     # Hardcoded business rules :(
     # -- In a controller of all places too. Ugh.
     #
-    # Probably need a Day model that is created on the instructor's side for each 'day of class'.
-    # Then each checkin belongs to a particular day, which belongs to a particular cohort.
-    # Will make the schedule a lot more flexible and avoid some nasty logic and the need for cron jobs.
     checkin = Checkin.new
     checkin.student = current_student
     day             = Day.current_for(current_student.cohort)
     checkin.day     = day
     checkin.late    = true if Time.zone.now > day.start_time
-    if checkin.save
+    provided_code   = params.fetch(:override_code)
+    distance        = params.fetch(:distance)
+    if distance.to_i > 1.0 && provided_code != day.override_code
+      render json: 'Code Invalid', status: :unauthorized
+    elsif checkin.save
       render json: [
         checkin.created_at.strftime("%I:%M%p"),
         checkin,

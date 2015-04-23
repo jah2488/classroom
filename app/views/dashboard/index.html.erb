@@ -3,20 +3,32 @@
 
 <div class='row'>
 
-  <div class='col-lg-8'>
+  <div class='col-md-8'>
     <p class='muted'>Assignments</p>
     <section class='assignments'>
-      <h3> Assignments</h3>
-      <% assignments.each do |assignment| %>
-        <div class='assignment'>
-          <p><%= assignment %> <%= assignment.completed_by?(current_student) %></p>
-          <ol>
-          <% assignment.submissions_for(current_student).each do |submission| %>
-            <li><%= submission.link %> late: <%= !!submission.late %> complete: <%= !!submission.completed %> </li>
-          <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <header><h3> Assignments</h3></header>
+      <ul class='list'>
+        <% assignments.each do |assignment| %>
+          <li>
+            <div class='assignment'>
+              <div class='row'>
+                <div class='col-md-8'><h4><%= assignment.title.titleize %></h4></div>
+                <div class='col-md-2'><h5><%= due_in(assignment) %></h5></div>
+                <div class='col-md-2'>
+                  <%= status_for(assignment, current_student) %>
+                </div>
+              </div>
+              <div class='row'>
+                <ul>
+                <% assignment.submissions_for(current_student).each do |submission| %>
+                  <li><%= submission.link %> late: <%= !!submission.late %> complete: <%= !!submission.completed %> </li>
+                <% end %>
+                </ul>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
     </section>
 
     <p class='muted'>Notes</p>
@@ -25,7 +37,7 @@
     </section>
   </div>
 
-  <div class='col-lg-3'>
+  <div class='col-md-4'>
     <p class='muted'>Attendance</p>
     <section class='checkin'>
       <div>

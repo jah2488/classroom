@@ -8,7 +8,13 @@ $border-gray: #acacac;
 $light-border-gray: #ececec;
 $background-gray: #f7f5f3;
 
+$red: #d39aa5;
+$orange: #d3ac9a;
+$yellow: #d3c89a;
+$teal: #9ad3c8;
+
 $primary: #9AA5D3;
+$complementary: $yellow;
 
 .notices {
   margin-top: 20px;
@@ -82,15 +88,12 @@ ul.list {
     }
 }
 
-.name {
-  margin-left: 10px;
-}
 .outlook {
-  background: black;
+  background: transparent;
   border: 2px $border-gray solid;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   display: inline;
   float: left;
   margin: 0 10px;
@@ -98,9 +101,9 @@ ul.list {
   top: 0;
   left: 0;
 
-  &.good { background: green;  }
-  &.ok   { background: orange; }
-  &.bad  { background: red;    }
+  &.good { background: $teal;  }
+  &.ok   { background: $yellow; }
+  &.bad  { background: $red;    }
 }
 
 
@@ -113,6 +116,11 @@ ul.list {
     background: darken($primary, 15%);
     border-color: darken($primary, 20%);
   }
+}
+
+span.label {
+  margin-top: 10px;
+  display: inline-block;
 }
 
 .nav li a.danger {

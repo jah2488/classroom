@@ -14,6 +14,17 @@ class Assignment < ActiveRecord::Base
     submissions_for(student).where(completed: true).count > 0
   end
 
+  def incomplete_by?(student)
+    submissions = Arel::Table.new(:submissions)
+    student_submissions = submissions_for(student)
+    student_submissions.where(submissions[:completed].eq(false).or(submissions[:completed].eq(nil))).count > 0 &&
+    student_submissions.where(submissions[:completed].eq(true)).count == 0
+  end
+
+  def late?
+    Time.now > due_date
+  end
+
   def to_s
     "Title: #{title} | Due: #{due_date}"
   end
