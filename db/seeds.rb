@@ -24,13 +24,15 @@ cohort = Cohort.create!({
 assignments = []
 students    = []
 
-5.times do |n|
-  assignments << Assignment.create({
-    cohort_id: cohort.id,
-    title: 'work on making',
-    info: 'do the thing blah blah blah',
-    due_date: Date.today + Array(1..5).sample
-  })
+10.times.each_slice(4).with_index do |nums, index|
+  nums.each_with_index do |n, i|
+    assignments << Assignment.create({
+      cohort_id: cohort.id,
+      title: "Week #{i}, Day #{n}",
+      info: 'do the thing blah blah blah',
+      due_date: Date.today + (i + 2) + n
+    })
+  end
 end
 
 15.times do |n|

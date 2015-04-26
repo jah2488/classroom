@@ -1,2 +1,28 @@
-<h1>Students#edit</h1>
-<p>Find me in app/views/students/edit.html.erb</p>
+<%= link_to 'Back', url_for(:back), class: 'btn btn-primary' %>
+<h1><%= student.name %></h1>
+
+<p class='muted'>Progress Info</p>
+<section>
+  <ul>
+    <li>Tardies: <%= student.tardies %></li>
+    <li>Absences: <%= student.absences %></li>
+    <li>Completed Assignments / Submissions / Total Assignments: <%= student.completed_assignments.count %>/<%= student.submissions.count %>/<%= student.cohort.assignments.count %></li>
+  </ul>
+</section>
+
+<p class='muted'>Contact Info</p>
+<section>
+  <%= simple_form_for(student) do |f| %>
+    <div class='form-inputs'>
+      <%= f.input :github, placeholder: 'jah2488' %>
+      <%= f.input :phone %>
+      <%= f.input :blog, as: :url %>
+      <%= f.input :bio, as: :text %>
+    </div>
+    <div class='form-actions'>
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+  <ul>
+  </ul>
+</section>

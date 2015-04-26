@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     get 'dashboard' => 'dashboard#index'
     resources :submissions
     resources :checkins
+    get 'profile/:id' => 'students#show', as: 'profile'
+    get 'profile/:id/edit' => 'students#edit', as: 'edit_profile'
+    resources :students
   end
 
   authenticate :instructor do

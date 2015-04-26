@@ -1,2 +1,15 @@
-<h1>Submissions#show</h1>
-<p>Find me in app/views/submissions/show.html.erb</p>
+<article>
+  <header>
+    <h1><%= submission.student.name %>'s Submission for <%= submission.assignment.title %></h1>
+  </header>
+
+  <%= markdown submission.notes %>
+  <h4><%= submission.completed ? 'Completed' : 'Not Complete' %></h4>
+  <h4><%= submission.late ? 'Late' : 'Not Late' %></h4>
+
+  <footer>
+    <strong>Due: </strong> <%= distance_of_time_in_words_to_now submission.assignment.due_date %>
+    <strong>Turned in At: </strong> <%= distance_of_time_in_words_to_now submission.created_at %>
+  </footer>
+</article>
+

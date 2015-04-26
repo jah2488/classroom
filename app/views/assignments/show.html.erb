@@ -1,11 +1,20 @@
+<%= render partial: 'dashboard/nav' %>
 <article>
   <header>
-    <h1><%= assignment.title %></h1>
+    <div class='row'>
+      <div class='col-sm-6'>
+        <h1><%= assignment.title %></h1>
+      </div>
+      <div class='col-sm-6'>
+        <h1><strong>Due: </strong> <%= time_ago_in_words assignment.due_date %></h1>
+      </div>
+    </div>
   </header>
 
   <%= markdown assignment.info %>
 
-  <footer> <strong>Due: </strong> <%= time_ago_in_words assignment.due_date %>
+  <footer>
+    <%= link_to 'SUBMIT HOMEWORK', new_submission_path,  class:'btn btn-default' %>
   </footer>
 </article>
 

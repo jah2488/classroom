@@ -16,13 +16,12 @@ class CohortsController < ApplicationController
     cohort.instructor = current_instructor
     if cohort.save
       redirect_to instructor_dash_path, notice: I18n.t('.created', resource: I18n.t('.cohort'))
-    else
     end
   end
 
   private
 
   def cohort_params
-    params.require(:cohort).permit(:name, :location)
+    params.require(:cohort).permit(:name, :location, :latitude, :longitude)
   end
 end

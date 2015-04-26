@@ -3,8 +3,9 @@ class CreateSubmissions < ActiveRecord::Migration
     create_table :submissions do |t|
       t.string :link
       t.text :notes
-      t.boolean :completed
-      t.boolean :late
+      t.integer :state, default: 1, null: false
+      t.boolean :completed, default: false
+      t.boolean :late,      default: false
       t.belongs_to :student, index: true
       t.belongs_to :assignment, index: true
 

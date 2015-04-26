@@ -21,6 +21,19 @@ class AssignmentsController < ApplicationController
     end
   end
 
+  def edit
+    render locals: {
+      assignment: Assignment.find(params[:id])
+    }
+  end
+
+  def update
+    assignment = Assignment.find(params[:id])
+    if assignment.update(assignment_params)
+      redirect_to assignment, notice: 'Assignment updated'
+    end
+  end
+
   private
 
   def assignment_params

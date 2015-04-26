@@ -7,8 +7,8 @@
 //
 //= require location
 //= require react
-//= require components
 //= require react_ujs
+//= require components
 //
 //= require datetimepicker
 //= require_tree .
@@ -24,10 +24,17 @@ var ready = function() {
       Location.getCurrentPosition();
   }
 
+  jQuery('textarea').on('keyup', function (e) {
+    var elem = jQuery(this);
+    elem.css('height', elem[0].scrollHeight);
+  });
 
   jQuery('.fillLatLong').on('click', function (e) {
-      if (Location.lat === undefined || Location.long === undefined) {
-          navigator.geolocation.getCurrentPosition(function (loc) {
+      if (Location.lat !== undefined && Location.long !== undefined) {
+         jQuery('#cohort_latitude').val(Location.lat);
+         jQuery('#cohort_longitude').val(Location.long);
+      } else {
+        navigator.geolocation.getCurrentPosition(function (loc) {
               Location.lat = loc.coords.latitude;
               Location.long = loc.coords.longitude;
               jQuery('#cohort_latitude').val(Location.lat);

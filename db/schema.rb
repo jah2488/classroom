@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20150411231046) do
     t.integer  "cohort_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.string   "override_code", default: "a60e", null: false
+    t.string   "override_code", default: "cfb0", null: false
   end
 
   add_index "days", ["cohort_id"], name: "index_days_on_cohort_id"
@@ -122,12 +122,13 @@ ActiveRecord::Schema.define(version: 20150411231046) do
   create_table "submissions", force: :cascade do |t|
     t.string   "link"
     t.text     "notes"
-    t.boolean  "completed"
-    t.boolean  "late"
+    t.integer  "state",         default: 1,     null: false
+    t.boolean  "completed",     default: false
+    t.boolean  "late",          default: false
     t.integer  "student_id"
     t.integer  "assignment_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "submissions", ["assignment_id"], name: "index_submissions_on_assignment_id"

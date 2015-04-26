@@ -27,7 +27,7 @@ var TooFar = React.createClass({
                   </button>
                   You are too far from campus to check in without today's code. Please provide today's override code to check in.
                 </div>
-                <div onClick={this.dismiss} className='errors'>{this.state.error}</div>
+                <ErrorField error={this.state.error}/>
                 <div className='form-group'>
                   <input type='text' onChange={this.handleChange} className='form-control' id='override_code' placeholder='Override Code' name='override_code' />
                 </div>
@@ -39,6 +39,21 @@ var TooFar = React.createClass({
   }
 });
 
+var ErrorField = React.createClass({
+    getInitialState: function() {
+        return { visible: true };
+    },
+    dismiss: function() {
+        this.setState({ visible: !this.state.visible });
+    },
+    render: function () {
+        if(this.state.visible) {
+            return (<div onClick={this.dismiss} className='errors'>{this.props.error}</div>);
+        } else {
+            return (<span onClick={this.dismiss} className='errors'>x</span>);
+        }
+    }
+});
 
 var Checkin = React.createClass({
     getInitialState: function() {
@@ -47,6 +62,8 @@ var Checkin = React.createClass({
               Location.getCurrentDistanceFromCohort(loc.coords.latitude, loc.coords.longitude);
               this.setState({ distance: Math.round(Location.toMiles(Location.distance) * 1000) / 1000 });
             }.bind(this));
+        } else {
+          this.setState({ distance: Math.round(Location.toMiles(Location.distance) * 1000) / 1000 });
         }
         return {
             created_at: false,
@@ -62,7 +79,7 @@ var Checkin = React.createClass({
             url: '/checkins',
             data: {
               override_code: this.state.override_code,
-              distance: Location.distance
+              distance: this.state.distance
             }
         }).done(function (response) {
             var createdAt = response[0];
@@ -79,10 +96,6 @@ var Checkin = React.createClass({
             jQuery('#override_code').val('').focus();
         }.bind(this));
     },
-    dismiss: function() {
-        this.setState({ error: null });
-    },
-
     render: function() {
         var status = this.state.checkin ? this.state.checkin.late ? 'LATE' : 'ONTIME' : '';
         var text = this.state.created_at ? 'CHECKED IN ' + status + ' AT ' + this.state.created_at : 'CHECK IN';
@@ -91,9 +104,14 @@ var Checkin = React.createClass({
           checkinButton = (
               <div>
                  <TooFar/>
-                 <span onClick={this.dismiss} className='errors'>{this.state.error}</span>
+                 <ErrorField error={this.state.error} />
                  <a onClick={this.handleClick} className='btn btn-primary btn-lg full-width'>{text}</a>
               </div>
+          );
+        } else {
+          text = 'Loading location...';
+          checkinButton = (
+             <a className='btn btn-primary btn-lg full-width'>{text}</a>
           );
         }
         return (

@@ -3,7 +3,7 @@
 
 <div class='row'>
 
-  <div class='col-md-8'>
+  <div class='col-sm-8 col-md-8'>
     <p class='muted'>Assignments</p>
     <section class='assignments'>
       <header><h3> Assignments</h3></header>
@@ -12,18 +12,18 @@
           <li>
             <div class='assignment'>
               <div class='row'>
-                <div class='col-md-8'><h4><%= assignment.title.titleize %></h4></div>
-                <div class='col-md-2'><h5><%= due_in(assignment) %></h5></div>
-                <div class='col-md-2'>
-                  <%= status_for(assignment, current_student) %>
-                </div>
+                <div class='col-sm-7'><h4><%= link_to assignment.title.titleize, assignment %></h4></div>
+                <div class='col-sm-3'><h5><%= due_in(assignment) %></h5></div>
+                <div class='col-xs-2'><%= status_for(assignment, current_student) %></div>
               </div>
               <div class='row'>
-                <ul>
-                <% assignment.submissions_for(current_student).each do |submission| %>
-                  <li><%= submission.link %> late: <%= !!submission.late %> complete: <%= !!submission.completed %> </li>
-                <% end %>
-                </ul>
+                <div class='col-sm-12'>
+                  <ul>
+                  <% assignment.submissions_for(current_student).each do |submission| %>
+                    <li>Submitted <%= time_ago_in_words submission.created_at %> ago  <%= link_to submission.link %></li>
+                  <% end %>
+                  </ul>
+                </div>
               </div>
             </div>
           </li>
@@ -31,20 +31,17 @@
       </ul>
     </section>
 
-    <p class='muted'>Notes</p>
-    <section class='checkin'>
-      <a class='btn btn-primary'>READ</a>
-    </section>
   </div>
 
-  <div class='col-md-4'>
+  <div class='col-sm-4 col-md-4'>
     <p class='muted'>Attendance</p>
     <section class='checkin'>
       <div>
-        <% if current_day.present?(current_student) %>
+        <% if current_day.has_checkin_for?(current_student) %>
           <a class='btn btn-primary btn-lg full-width'>
             <%= current_day.checkin_for(current_student).checkin_status.upcase %>
           </a>
+          <%= react_component('Attendance', { tardies: current_student.tardies, absences: current_student.absences }) %>
         <% else %>
           <%= react_component('Checkin', { tardies: current_student.tardies, absences: current_student.absences }) %>
         <% end %>
@@ -57,10 +54,15 @@
         </div>
       </div>
     </section>
+
     <p class='muted'>Messages</p>
     <section class='checkin'>
       <a class='btn btn-primary'>READ</a>
-      <%= react_component('LikeButton') %>
+    </section>
+
+    <p class='muted'>Notes</p>
+    <section class='checkin'>
+      <a class='btn btn-primary'>READ</a>
     </section>
   </div>
 

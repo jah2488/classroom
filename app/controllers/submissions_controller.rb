@@ -6,6 +6,9 @@ class SubmissionsController < ApplicationController
   end
 
   def show
+    render locals: {
+      submission: Submission.find(params[:id])
+    }
   end
 
   def create

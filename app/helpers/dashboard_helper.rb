@@ -9,8 +9,17 @@ module DashboardHelper
   end
 
   def status_for(assignment, student)
-    return content_tag(:span, 'Completed', class: 'label label-success') if assignment.completed_by?(student)
-    return content_tag(:span, 'Incomplete', class: 'label label-warning') if assignment.incomplete_by?(student)
-    return content_tag(:span, 'Late', class: 'label label-danger') if assignment.late?
+    case
+    when assignment.completed_by?(student)            then as_label('Completed',  :success)
+    when assignment.incomplete_by?(student)           then as_label('Incomplete', :warning)
+    when assignment.late?                             then as_label('Late',       :danger)
+    when assignment.submissions_for(student).present? then as_label('Pending')
+    else
+    end
+  end
+
+  private
+  def as_label(msg, severity = :default)
+    content_tag(:span, msg, class: "label label-#{severity}")
   end
 end

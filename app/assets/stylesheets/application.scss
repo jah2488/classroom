@@ -106,7 +106,9 @@ ul.list {
   &.bad  { background: $red;    }
 }
 
-
+textarea.form-control {
+  padding-bottom: 20px;
+}
 
 /* Ahhh bootstrap overrides */
 .btn-primary {
