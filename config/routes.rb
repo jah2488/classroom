@@ -25,5 +25,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'welcome#index'
+  root 'dashboard#index'
 end

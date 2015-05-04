@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.0'
 
-gem 'sqlite3'
+gem 'pg'
 gem 'puma'
 gem 'rails_12factor'
 gem 'figaro'

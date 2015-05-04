@@ -9,7 +9,7 @@ var TooFar = React.createClass({
         }.bind(this));
     }
     return {
-        distance: Location.distance
+        distance: 0.0// Location.distance // Disabling distance :(
     };
   },
   handleChange: function(event) {
