@@ -18,4 +18,9 @@ module ApplicationHelper
     cohort = current_student.cohort            if current_student
     "#{cohort.latitude},#{cohort.longitude}"
   end
+
+  def avatar_url(user)
+    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
+    "http://gravatar.com/avatar/#{gravatar_id}.png?"
+  end
 end

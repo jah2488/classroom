@@ -12,7 +12,7 @@
           <li>
             <div class='assignment'>
               <div class='row'>
-                <div class='col-sm-7'><h4><%= link_to assignment.title.titleize, assignment %></h4></div>
+                <div class='col-sm-7'><h4><%= link_to assignment.title.titleize, student_assignment_path(assignment) %></h4></div>
                 <div class='col-sm-3'><h5><%= due_in(assignment) %></h5></div>
                 <div class='col-xs-2'><%= status_for(assignment, current_student) %></div>
               </div>
@@ -55,6 +55,7 @@
       </div>
     </section>
 
+    <!--
     <p class='muted'>Messages</p>
     <section class='checkin'>
       <a class='btn btn-primary'>READ</a>
@@ -63,7 +64,7 @@
     <p class='muted'>Notes</p>
     <section class='checkin'>
       <a class='btn btn-primary'>READ</a>
-    </section>
+    </section> -->
   </div>
 
 </div>

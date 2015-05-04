@@ -11,6 +11,13 @@ class SubmissionsController < ApplicationController
     }
   end
 
+  def mark_complete
+    submission = Submission.find(params[:id])
+    submission.completed = true
+    submission.save!
+    redirect_to :back
+  end
+
   def create
     assignment = Assignment.find(submission_params.fetch(:assignment_id))
     submission = Submission.new(submission_params)

@@ -1,15 +1,36 @@
 <article>
   <header>
     <h1><%= submission.student.name %>'s Submission for <%= submission.assignment.title %></h1>
+    <p><strong>Due: </strong> <%= due_in(submission.assignment) %>
+       <strong>Turned In: </strong> <%= distance_of_time_in_words_to_now submission.created_at %></p>
   </header>
 
-  <%= markdown submission.notes %>
-  <h4><%= submission.completed ? 'Completed' : 'Not Complete' %></h4>
-  <h4><%= submission.late ? 'Late' : 'Not Late' %></h4>
+  <p class='muted'>Submission</p>
+  <section>
+    <%= link_to submission.link %>
+  </section>
+
+
+  <p class='muted'>Feedback</p>
+  <section>
+    <%= markdown submission.notes %>
+  </section>
+
+  <p class='muted'>Status</p>
+  <section>
+    <h4><%= submission.completed ? 'Completed' : 'Not Complete' %></h4>
+    <h4><%= submission.late ? 'Late' : 'Not Late' %></h4>
+  </section>
+
+
 
   <footer>
-    <strong>Due: </strong> <%= distance_of_time_in_words_to_now submission.assignment.due_date %>
-    <strong>Turned in At: </strong> <%= distance_of_time_in_words_to_now submission.created_at %>
+    <h1></h1>
+  <% if current_instructor %>
+    <%= link_to 'Mark as Complete', mark_submission_complete_path(submission), method: :PATCH, class: 'btn btn-default' %>
+    <%= link_to 'Mark as Unfinished', '#', class: 'btn btn-default' %>
+    <%= link_to 'Mark as Something', '#', class: 'btn btn-default' %>
+  <% end %>
   </footer>
 </article>
 

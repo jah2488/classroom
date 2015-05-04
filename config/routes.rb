@@ -9,11 +9,13 @@ Rails.application.routes.draw do
     resources :checkins
     get 'profile/:id' => 'students#show', as: 'profile'
     get 'profile/:id/edit' => 'students#edit', as: 'edit_profile'
+    get 'assignments/:id' => 'assignments#show', as: 'student_assignment'
     resources :students
   end
 
   authenticate :instructor do
     resources :instructors, only: [:show, :edit, :update]
+    patch 'submissions/:id/complete' => 'submissions#mark_complete', as: 'mark_submission_complete'
     scope 'instructor' do
       get 'dashboard' => 'instructor_dashboard#index', as: 'instructor_dash'
       resources :cohorts

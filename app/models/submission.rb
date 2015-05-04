@@ -8,10 +8,10 @@ class Submission < ActiveRecord::Base
   GRADED = 3
 
   def self.ungraded_for(cohort)
-    includes(:ratings, :assignment)
-      .where(completed: nil,
-            ratings: { submission_id: nil }, #Not sure if ratings will be used this way in future
-            assignments: { cohort_id: cohort.id}).order('assignments.due_date DESC')
+      Submission.includes(:assignment)
+        .where(completed: false).where("assignments.cohort_id = ?", cohort.id)
+        .references(:assignment)
+        .order('assignments.due_date DESC')
   end
 
   def to_s
