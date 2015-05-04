@@ -12,9 +12,9 @@ class CheckinsController < ApplicationController
       checkin         = Checkin.new
       checkin.student = current_student
       checkin.day     = day
-      checkin.late    = true if Time.zone.now > day.start_time
-      provided_code   = params.fetch(:override_code)
-      distance        = params.fetch(:distance)
+      checkin.late    = true if Time.zone.now > day.late_time
+      provided_code   = params.fetch(:override_code, 'none')
+      distance        = params.fetch(:distance, 0)
       if distance.to_i > 1.0 && provided_code != day.override_code
         render json: 'Code Invalid', status: :unauthorized
       elsif checkin.save

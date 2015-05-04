@@ -15,8 +15,12 @@ class Day < ActiveRecord::Base
     start_time.strftime("%I:%M%p")
   end
 
+  def late_at
+    late_time.strftime("%I:%M%p")
+  end
+
   def late_time
-    (start_time + 15.minutes).strftime("%I:%M%p")
+    (start_time + 15.minutes)
   end
 
   def created_on
