@@ -8,9 +8,6 @@ class Student < ActiveRecord::Base
   has_many :checkins
 
   validates_presence_of :cohort
-  validates_uniqueness_of :name
-  validates_uniqueness_of :github
-  validates_uniqueness_of :phone, scope: :name
 
   def tardies
     checkins.where(late: true).count
