@@ -38,7 +38,10 @@
             <p>Students in Attendance</p>
             <ul class='list'>
               <% current_day.checkins.each do |checkin| %>
-                <li><%= checkin.checkin_status %> <%= link_to checkin.student, checkin.student %></li>
+                <li>
+                  <p><%= checkin.checkin_status %></p>
+                  <p><%= link_to (checkin.student.name || checkin.student.email), checkin.student %></p>
+                </li>
               <% end.empty? and begin %>
                 <p> No Students </p>
               <% end %>

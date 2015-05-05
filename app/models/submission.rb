@@ -15,6 +15,6 @@ class Submission < ActiveRecord::Base
   end
 
   def to_s
-    "#{(student.name || student.email)} - #{link[0..15]}"
+    "#{(student.name || student.email)} - #{link[0..35]}"
   end
 end
