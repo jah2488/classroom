@@ -22,6 +22,6 @@ class Student < ActiveRecord::Base
   end
 
   def to_s
-    "#{name} | tardies: #{tardies} | absences: #{absences} | submissions: #{submissions.count}"
+    "#{(name || email)} | tardies: #{tardies} | absences: #{absences} | submissions: #{submissions.count}"
   end
 end
