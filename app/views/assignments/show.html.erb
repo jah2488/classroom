@@ -1,20 +1,21 @@
-<%= render partial: 'dashboard/nav' %>
-<article>
-  <header>
-    <div class='row'>
-      <div class='col-sm-6'>
-        <h1><%= assignment.title %></h1>
+<div class='col-sm-8 col-sm-offset-2'>
+  <%= render partial: 'dashboard/nav' %>
+  <article>
+    <header>
+      <div class='row'>
+        <div class='col-sm-6'>
+          <h1><%= assignment.title %></h1>
+        </div>
+        <div class='col-sm-6'>
+          <h1><strong>Due: </strong> <%= time_ago_in_words assignment.due_date %></h1>
+        </div>
       </div>
-      <div class='col-sm-6'>
-        <h1><strong>Due: </strong> <%= time_ago_in_words assignment.due_date %></h1>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <%= markdown assignment.info %>
+    <%= markdown assignment.info %>
 
-  <footer>
-    <%= link_to 'SUBMIT HOMEWORK', new_submission_path,  class:'btn btn-default' %>
-  </footer>
-</article>
-
+    <footer>
+      <%= link_to 'SUBMIT HOMEWORK', new_submission_path,  class:'btn btn-default' %>
+    </footer>
+  </article>
+</div>
