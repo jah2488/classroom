@@ -15,6 +15,8 @@
 
 var _loggedIn = false;
 
+Location.distance = 0.1;
+
 var ready = function() {
   jQuery('.datetimepicker').datetimepicker();
 

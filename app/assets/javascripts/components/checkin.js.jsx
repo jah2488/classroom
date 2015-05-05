@@ -69,7 +69,7 @@ var Checkin = React.createClass({
             created_at: false,
             tardies: this.props.tardies,
             absences: this.props.absences,
-            distance: null,
+            distance: 0.0,// Location.distance // Disabling distance :(
             override_code: null
         };
     },
