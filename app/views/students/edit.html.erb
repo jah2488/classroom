@@ -14,7 +14,8 @@
 <section>
   <%= simple_form_for(student) do |f| %>
     <div class='form-inputs'>
-      <%= f.input :github, placeholder: 'jah2488' %>
+      <%= f.input :name %>
+      <%= f.input :github, hint: 'Not the full url just your profile name' %>
       <%= f.input :phone %>
       <%= f.input :blog, as: :url %>
       <%= f.input :bio, as: :text %>
