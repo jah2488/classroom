@@ -12,7 +12,10 @@ class CheckinsController < ApplicationController
       checkin         = Checkin.new
       checkin.student = current_student
       checkin.day     = day
-      checkin.late    = true if Time.zone.now > day.late_time
+      now  = Time.zone.now
+      late = day.late_time.to_time
+      late_time = DateTime.new(now.year, now.month, now.day, late.hour, late.min, late.sec, late.zone)
+      checkin.late    = true if now > late_time
       provided_code   = params.fetch(:override_code, 'none')
       distance        = params.fetch(:distance, 0)
       if distance.to_i > 1.0 && provided_code != day.override_code
