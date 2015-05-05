@@ -16,6 +16,7 @@ module ApplicationHelper
     return unless current_student || current_instructor
     cohort = current_instructor.current_cohort if current_instructor
     cohort = current_student.cohort            if current_student
+    return unless cohort
     "#{cohort.latitude},#{cohort.longitude}"
   end
 

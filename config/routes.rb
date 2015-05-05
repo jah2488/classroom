@@ -25,5 +25,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'dashboard#index'
+  authenticate :student do
+    root 'dashboard#index'
+  end
 end

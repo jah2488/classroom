@@ -4,7 +4,11 @@ class Day < ActiveRecord::Base
   has_many :students, through: :checkins
 
   def self.current_for(cohort)
-    where(cohort_id: cohort.id).last || Day.new(created_at: Time.now, start_time: Time.now)
+    where(cohort_id: cohort.id).last
+  end
+
+  def unaccounted_for_students
+    cohort.students - students
   end
 
   def has_checkin_for?(student)

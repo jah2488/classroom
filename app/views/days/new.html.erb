@@ -7,6 +7,7 @@
       <%= f.input :override_code, required: true, input_html: { value: SecureRandom.hex(2) }, hint: "This code allows students to check-in when not on campus." %>
     </div>
     <div class='form-actions'>
+      <p class='muted'>Creating a new day will cause all students who have not checked in to be marked as absent</p>
       <%= f.button :submit %>
     </div>
   <% end %>
