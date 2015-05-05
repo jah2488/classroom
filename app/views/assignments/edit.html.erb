@@ -5,7 +5,7 @@
   <div class='form-inputs'>
     <%= f.input :title, required: true %>
     <%= f.input :info, hint: 'put markdown in me', required: true %>
-    <%= f.input :due_date, as: :string, input_html: { class: 'datetimepicker', value: (Time.zone.tomorrow + 8.hours) }, required: true %>
+    <%= f.input :due_date, as: :string, input_html: { class: 'datetimepicker', value: assignment.due_date || (Time.zone.tomorrow + 8.hours) }, required: true %>
   </div>
   <div class='form-actions'>
     <%= f.button :submit %>
