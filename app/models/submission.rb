@@ -15,6 +15,6 @@ class Submission < ActiveRecord::Base
   end
 
   def to_s
-    "[#{student.name.titleize}] - #{link}"
+    "[#{(student.name || student.email)}] - #{link}"
   end
 end
