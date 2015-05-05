@@ -3,7 +3,7 @@ class InstructorDashboardController < ApplicationController
     cohort        = current_instructor.current_cohort
     if cohort
       students    = cohort.students
-      assignments = cohort.assignments
+      assignments = cohort.assignments.order('due_date ASC')
       submissions = Submission.ungraded_for(cohort)
       #get submissions for current_cohort
       # only return ungraded submissions sorted by assignment due date
