@@ -27,8 +27,8 @@
   <footer>
     <h1></h1>
   <% if current_instructor %>
-    <%= link_to 'Mark as Complete', mark_submission_complete_path(submission), method: :PATCH, class: 'btn btn-default' %>
-    <%= link_to 'Mark as Unfinished', '#', class: 'btn btn-default' %>
+    <%= link_to 'Mark as Complete', mark_submission_complete_path(submission), method: :PATCH, class: 'btn btn-primary' %>
+    <%= link_to 'Mark as Unfinished', mark_submission_unfinished_path(submission), method: :PATCH, class: 'btn btn-default' %>
     <%= link_to 'Mark as Something', '#', class: 'btn btn-default' %>
   <% end %>
   </footer>

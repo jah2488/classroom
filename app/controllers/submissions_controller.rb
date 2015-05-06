@@ -14,6 +14,15 @@ class SubmissionsController < ApplicationController
   def mark_complete
     submission = Submission.find(params[:id])
     submission.completed = true
+    submission.state = Submission::GRADED
+    submission.save!
+    redirect_to :back
+  end
+
+  def mark_unfinished
+    submission = Submission.find(params[:id])
+    submission.completed = false
+    submission.state = Submission::GRADED
     submission.save!
     redirect_to :back
   end
