@@ -26,16 +26,16 @@ class SubmissionsController < ApplicationController
   end
 
   def mark_complete
-    grade_submission(completed: true)
+    grade_submission(true)
   end
 
   def mark_unfinished
-    grade_submission(completed: false)
+    grade_submission(false)
   end
 
   private
 
-  def grade_submission(completed:)
+  def grade_submission(completed)
     submission = Submission.find(params[:id])
     submission.completed = completed
     submission.state = Submission::GRADED
@@ -43,7 +43,7 @@ class SubmissionsController < ApplicationController
 
     rating = Rating.new
     rating.submission = submission
-    rating.notes = params.fetch('notes')
+    rating.notes = params.fetch('notes', '')
     rating.save!
 
     render json: {}, status: 200
