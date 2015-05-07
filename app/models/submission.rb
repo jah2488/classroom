@@ -16,7 +16,11 @@ class Submission < ActiveRecord::Base
         .order('assignments.due_date DESC')
   end
 
+  def graded?
+    state == GRADED
+  end
+
   def to_s
-    "#{(student.name || student.email)} - #{link[0..35]}"
+    "#{(student.name || student.email)} - #{link[0..45]}"
   end
 end

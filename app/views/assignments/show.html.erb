@@ -19,7 +19,19 @@
     <%= markdown assignment.info %>
 
     <footer>
-      <%= link_to 'SUBMIT HOMEWORK', new_submission_path,  class:'btn btn-default' %>
+      <div class='row'>
+        <div class='col-sm-12'>
+          <%= link_to 'SUBMIT HOMEWORK', new_submission_path(assignment: assignment.id),  class:'btn btn-default' %>
+        </div>
+      </div>
     </footer>
   </article>
+  <% if current_instructor %>
+    <p class='muted'>Submissions</p>
+    <section>
+      <% assignment.submissions.each do |submission| %>
+        <p><%= 'graded' if submission.graded? %> <%= link_to submission, submission %></p>
+      <% end %>
+    </section>
+  <% end %>
 </div>

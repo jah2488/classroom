@@ -12,7 +12,7 @@
           <ul class='list'>
             <% submissions.group_by(&:assignment).each do |assignment, submissions| %>
               <li>
-                <%= link_to assignment, assignment%>
+                <%= link_to assignment, assignment %>
                 <ul class='submissions'>
                   <% submissions.each do |submission| %>
                     <li> <%= link_to submission, submission %> </li>

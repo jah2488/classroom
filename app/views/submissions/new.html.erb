@@ -3,7 +3,7 @@
 
   <%= simple_form_for(submission) do |f| %>
     <div class='form-inputs'>
-      <%= f.association :assignment, hint: "Which assignment is this submission for?" %>
+      <%= f.association :assignment, hint: "Which assignment is this submission for?", selected: params.fetch(:assignment, nil) %>
       <%= f.input :link, required: true, hint: "Link to where I can find the assignment. (Usually a Github Repo or a blog post)" %>
       <%= f.input :notes, hint: 'Tell me what worked and didn\'t work with this assignment.'%>
     </div>

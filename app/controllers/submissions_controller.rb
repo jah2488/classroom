@@ -11,22 +11,6 @@ class SubmissionsController < ApplicationController
     }
   end
 
-  def mark_complete
-    submission = Submission.find(params[:id])
-    submission.completed = true
-    submission.state = Submission::GRADED
-    submission.save!
-    redirect_to :back
-  end
-
-  def mark_unfinished
-    submission = Submission.find(params[:id])
-    submission.completed = false
-    submission.state = Submission::GRADED
-    submission.save!
-    redirect_to :back
-  end
-
   def create
     assignment = Assignment.find(submission_params.fetch(:assignment_id))
     submission = Submission.new(submission_params)
@@ -41,7 +25,29 @@ class SubmissionsController < ApplicationController
     end
   end
 
+  def mark_complete
+    grade_submission(completed: true)
+  end
+
+  def mark_unfinished
+    grade_submission(completed: false)
+  end
+
   private
+
+  def grade_submission(completed:)
+    submission = Submission.find(params[:id])
+    submission.completed = completed
+    submission.state = Submission::GRADED
+    submission.save!
+
+    rating = Rating.new
+    rating.submission = submission
+    rating.notes = params.fetch('notes')
+    rating.save!
+
+    render json: {}, status: 200
+  end
 
   def submission_params
     params.require(:submission).permit(:assignment_id, :link, :notes)

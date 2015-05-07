@@ -8,6 +8,13 @@ module DashboardHelper
     end
   end
 
+  def feedback_label(submission)
+    ratings = submission.ratings.count
+    if ratings > 0
+      as_label("Feedback")
+    end
+  end
+
   def status_for(assignment, student)
     case
     when assignment.completed_by?(student)            then as_label('Completed',  :success)

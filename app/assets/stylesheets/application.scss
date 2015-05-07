@@ -2,6 +2,7 @@
 @import 'bootstrap';
 @import 'datetimepicker';
 @import 'dashboard';
+@import 'submissions';
 
 
 $border-gray: #acacac;
@@ -120,7 +121,7 @@ textarea.form-control {
   }
 }
 
-span.label {
+.assignment .grade span.label {
   margin-top: 10px;
   display: inline-block;
 }

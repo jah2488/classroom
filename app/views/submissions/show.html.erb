@@ -1,3 +1,4 @@
+<%= render partial: 'dashboard/nav' %>
 <article>
   <header>
     <h1><%= submission.student.name %>'s Submission for <%= submission.assignment.title %></h1>
@@ -11,26 +12,27 @@
   </section>
 
 
-  <p class='muted'>Feedback</p>
+  <p class='muted'>Student Notes</p>
   <section>
     <%= markdown submission.notes %>
   </section>
 
   <p class='muted'>Status</p>
   <section>
-    <h4><%= submission.completed ? 'Completed' : 'Not Complete' %></h4>
-    <h4><%= submission.late ? 'Late' : 'Not Late' %></h4>
+    <h4><%= submission.completed ? 'Completed' : 'Not Complete' %> <%= submission.late ? 'Late' : 'Not Late' %></h4>
+    <% submission.ratings.each_with_index do |rating, index| %>
+      <p class='muted'>Feedback on Submission added <%= distance_of_time_in_words_to_now rating.created_at %> ago</p>
+      <section><%= markdown rating.notes %></section>
+    <% end %>
   </section>
 
 
 
   <footer>
     <h1></h1>
-  <% if current_instructor %>
-    <%= link_to 'Mark as Complete', mark_submission_complete_path(submission), method: :PATCH, class: 'btn btn-primary' %>
-    <%= link_to 'Mark as Unfinished', mark_submission_unfinished_path(submission), method: :PATCH, class: 'btn btn-default' %>
-    <%= link_to 'Mark as Something', '#', class: 'btn btn-default' %>
-  <% end %>
+    <% if current_instructor %>
+      <%= react_component('GradeSubmissionForm', { submissionID: submission.id }) %>
+    <% end %>
   </footer>
 </article>
 
