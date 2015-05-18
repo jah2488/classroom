@@ -3,7 +3,7 @@ class Assignment < ActiveRecord::Base
   has_many :submissions
 
   def self.for(student)
-    where(cohort_id: student.cohort_id).order('due_date ASC')
+    where(cohort_id: student.cohort_id).order('due_date ASC').partition { |assignment| !assignment.late? }.flatten
   end
 
   def submissions_for(student)
