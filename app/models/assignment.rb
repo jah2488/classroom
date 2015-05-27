@@ -2,8 +2,24 @@ class Assignment < ActiveRecord::Base
   belongs_to :cohort
   has_many :submissions
 
+  def self.due_soon(student)
+    self.for(student).partition { |assignment| !assignment.late? }.flatten
+  end
+
   def self.for(student)
-    where(cohort_id: student.cohort_id).order('due_date ASC').partition { |assignment| !assignment.late? }.flatten
+    where(cohort_id: student.cohort_id).order('due_date ASC')
+  end
+
+  def self.late_for(student)
+    self.for(student).select(&:late?) - student.submissions.flat_map(&:assignment)
+  end
+
+  def self.incomplete_for(student)
+    self.for(student).reject { |x| x.completed_by?(student) }
+  end
+
+  def self.complete_for(student)
+    self.for(student).select { |x| x.completed_by?(student) }
   end
 
   def submissions_for(student)

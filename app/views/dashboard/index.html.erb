@@ -32,7 +32,15 @@
   <div class='col-md-pull-4 col-md-8'>
     <p class='muted'>Assignments</p>
     <section class='assignments'>
-      <header><h3> Assignments</h3></header>
+      <header>
+        <h3> Assignments</h3>
+      </header>
+      <div class='filters'>
+        <%= link_to "View All", params.merge(filter: :all), class: 'btn btn-primary' %>
+        <%= link_to "View Incomplete", params.merge(filter: :incomplete), class: 'btn btn-default' %>
+        <%= link_to "View Complete", params.merge(filter: :complete), class: 'btn btn-default' %>
+        <%= link_to "View Late", params.merge(filter: :late), class: 'btn btn-default' %>
+      </div>
       <ul class='list'>
         <% assignments.each do |assignment| %>
           <li>
@@ -49,7 +57,7 @@
                     <li>
                       <div class='submission'>
                         <div class='row'>
-                          <div class='col-sm-10'>Submitted <%= time_ago_in_words submission.created_at %> ago  <%= link_to "View Submission #{' And Feedback' if submission.ratings.present?}", submission %></div>
+                          <div class='col-sm-10'>Submitted <%= time_ago_in_words submission.created_at %> ago  <%= link_to "View Submission #{' And Feedback' if has_feedback?(submission)}", submission %></div>
                           <div class='col-sm-2'> <%= feedback_label(submission) %></div>
                         </div>
                       </div>

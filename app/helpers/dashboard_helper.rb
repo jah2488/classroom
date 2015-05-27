@@ -8,9 +8,12 @@ module DashboardHelper
     end
   end
 
+  def has_feedback?(submission)
+    submission.ratings.count > 0 && submission.ratings.first.notes.length > 1
+  end
+
   def feedback_label(submission)
-    ratings = submission.ratings.count
-    if ratings > 0
+    if has_feedback?(submission)
       as_label("Feedback")
     end
   end
@@ -26,6 +29,7 @@ module DashboardHelper
   end
 
   private
+
   def as_label(msg, severity = :default)
     content_tag(:span, msg, class: "label label-#{severity}")
   end
