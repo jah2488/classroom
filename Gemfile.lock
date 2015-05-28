@@ -187,6 +187,7 @@ GEM
     rails-assets-datetimepicker (2.4.3)
       rails-assets-jquery (>= 1.7.2)
     rails-assets-jquery (2.1.4)
+    rails-assets-marked (0.3.3)
     rails-assets-react (0.13.2)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
@@ -315,6 +316,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.2.0)
   rails-assets-datetimepicker!
+  rails-assets-marked!
   rails-assets-react!
   rails_12factor
   react-rails (~> 1.0)

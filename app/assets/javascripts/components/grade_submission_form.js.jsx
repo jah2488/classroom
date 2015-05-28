@@ -1,4 +1,4 @@
-/* global React, jQuery */
+/* global React, jQuery, marked */
 
 var Link = React.createClass({
   classes: function () {
@@ -34,6 +34,9 @@ var GradeSubmissionForm = React.createClass({
     handleChange: function (event) {
         this.setState({ ratingNotes: event.target.value });
     },
+    toMarkdown: function () {
+        return { __html: marked(this.state.ratingNotes) };
+    },
     render: function () {
         if (this.state.sent) {
             return (
@@ -50,9 +53,12 @@ var GradeSubmissionForm = React.createClass({
         } else {
             return (
                 <div>
+                    <p className='muted'>Preview</p>
+                    <section dangerouslySetInnerHTML={ this.toMarkdown() }/>
+
                     <p className='muted'>Submission Grade Notes</p>
                     <section>
-                        <textarea onKeyUp={this.handleChange} className="text required form-control" name="feedback[notes]" id="feedback_notes" />
+                        <textarea onKeyDown={this.handleChange} className="text required form-control" name="feedback[notes]" id="feedback_notes" />
                         <p className="help-block">Put markdown in me</p>
                         <div className='actions'>
                             <a className="btn btn-primary" rel="nofollow" onClick={this.handleClick.bind(this, 'complete')}>Mark as Complete</a>

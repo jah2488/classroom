@@ -5,6 +5,8 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //
+//= require marked
+//
 //= require location
 //= require react
 //= require react_ujs
