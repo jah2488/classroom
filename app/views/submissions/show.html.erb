@@ -8,7 +8,7 @@
 
   <p class='muted'>Submission</p>
   <section>
-    <%= link_to submission.link, submission.link %>
+    <p><%= link_to submission.link, submission.link %></p>
   </section>
 
 
@@ -28,12 +28,12 @@
     <% end %>
   </section>
 
-
-
   <footer>
     <h1></h1>
     <% if current_instructor %>
-      <%= react_component('GradeSubmissionForm', { submissionID: submission.id, nextforStudent: next_submission_url_for_student(submission), nextForAssignment: next_submission_url_for_assignment(submission)}) %>
+      <%= react_component('GradeSubmissionForm', { submissionID: submission.id,
+                                                   nextForStudent: next_submission_url_for_student(submission),
+                                                   nextForAssignment: next_submission_url_for_assignment(submission)}) %>
     <% end %>
   </footer>
 </article>

@@ -1,3 +1,4 @@
+require 'open-uri'
 module SubmissionsHelper
   def next_submission_url_for_student(submission)
     next_submission_url_for(submission, :student)
