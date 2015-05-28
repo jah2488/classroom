@@ -12,7 +12,9 @@
           <ul class='list'>
             <% submissions.group_by(&:assignment).each do |assignment, submissions| %>
               <li>
-                <%= link_to assignment, assignment %>
+                <div class='assignment'>
+                  <%= link_to(assignment.title.titleize, assignment) %> <span style='float: right;'><%= due_in(assignment) %></span>
+                </div>
                 <ul class='submissions'>
                   <% submissions.each do |submission| %>
                     <li> <%= link_to submission, submission %> </li>

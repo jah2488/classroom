@@ -21,8 +21,10 @@
   <section>
     <h4><%= submission.completed ? 'Completed' : 'Not Complete' %> <%= submission.late ? 'Late' : 'Not Late' %></h4>
     <% submission.ratings.each_with_index do |rating, index| %>
-      <p class='muted'>Feedback on Submission added <%= distance_of_time_in_words_to_now rating.created_at %> ago</p>
-      <section><%= markdown rating.notes %></section>
+      <% if rating.notes.length > 1 %>
+        <p class='muted'>Feedback on Submission added <%= distance_of_time_in_words_to_now rating.created_at %> ago</p>
+        <section><%= markdown rating.notes %></section>
+      <% end %>
     <% end %>
   </section>
 
@@ -31,7 +33,7 @@
   <footer>
     <h1></h1>
     <% if current_instructor %>
-      <%= react_component('GradeSubmissionForm', { submissionID: submission.id }) %>
+      <%= react_component('GradeSubmissionForm', { submissionID: submission.id, nextforStudent: next_submission_url_for_student(submission), nextForAssignment: next_submission_url_for_assignment(submission)}) %>
     <% end %>
   </footer>
 </article>

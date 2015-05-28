@@ -4,6 +4,7 @@ class Submission < ActiveRecord::Base
   has_many :ratings
 
   PENDING = 1
+  # wat ^ aren't these the same?
   IN_PROGRESS = 2
   # wat ^ aren't these the same?
   GRADED = 3

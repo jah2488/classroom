@@ -24,7 +24,6 @@ module DashboardHelper
     when assignment.incomplete_by?(student)           then as_label('Incomplete', :warning)
     when assignment.submissions_for(student).present? then as_label('Pending')
     when assignment.late?                             then as_label('Late',       :danger)
-    else
     end
   end
 

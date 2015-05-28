@@ -1,5 +1,19 @@
 /* global React, jQuery */
 
+var Link = React.createClass({
+  classes: function () {
+    var defaults = 'btn btn-default btn-large';
+    if (this.props.url) {
+        return defaults;
+    } else {
+        return defaults + ' disabled';
+    }
+  },
+  render: function () {
+      return ( <a className={this.classes()} href={this.props.url}>{this.props.text}</a>);
+  }
+});
+
 var GradeSubmissionForm = React.createClass({
     getInitialState: function () {
         return {
@@ -9,7 +23,6 @@ var GradeSubmissionForm = React.createClass({
         };
     },
     handleClick: function(action) {
-        console.log(action, ' clicked');
         jQuery.ajax({
             method: 'PATCH',
             url: '/submissions/' + this.state.submissionID + '/' + action,
@@ -24,7 +37,15 @@ var GradeSubmissionForm = React.createClass({
     render: function () {
         if (this.state.sent) {
             return (
-                <a className='btn btn-default btn-large' href='/instructor/dashboard'>Feedback Sent. Return to Dashboard</a>
+                <div className='actions'>
+                    <div className="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" className="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Success!</strong> Feedback Sent.
+                    </div>
+                    <Link url='/instructor/dashboard' text="Return to Dashboard"/>
+                    <Link url={this.props.nextForStudent} text="Next Submission For Student"/>
+                    <Link url={this.props.nextForAssignment} text="Next Submission For Assignment"/>
+                </div>
             );
         } else {
             return (
