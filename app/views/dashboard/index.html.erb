@@ -33,7 +33,7 @@
     <p class='muted'>Assignments</p>
     <section class='assignments'>
       <header>
-        <h3> Assignments</h3>
+        <h3>Assignments (<%= assignments.count %>)</h3>
       </header>
       <div class='filters'>
         <%= link_to "View All", params.merge(filter: :all), class: 'btn btn-primary' %>

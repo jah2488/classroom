@@ -4,10 +4,10 @@
     <div class='row'>
 
       <div class='col-md-6'>
-        <p class='muted'>Submissions</p>
+        <p class='muted'>Submissions </p>
         <section>
           <header>
-            <h2><%= t('.submissions') %></h2>
+            <h2><%= t('.submissions') %> (<%= submissions.count %>)</h2>
           </header>
           <ul class='list'>
             <% submissions.group_by(&:assignment).each do |assignment, submissions| %>
@@ -16,17 +16,20 @@
                   <%= link_to(assignment.title.titleize, assignment) %> <span style='float: right;'><%= due_in(assignment) %></span>
                 </div>
                 <ul class='submissions'>
-                  <% submissions.each do |submission| %>
-                    <li>
-                      <div class='row'>
-                        <div class='col-md-10 col-sm-10 col-xs-8'>
-                          <%= link_to submission, submission %>
+                  <% submissions.group_by(&:student).each do |student, submission| %>
+                    <%= link_to(student.name, student) %>
+                    <% submission.each do |submission| %>
+                      <li>
+                        <div class='row'>
+                          <div class='col-md-10 col-sm-10 col-xs-8'>
+                            <%= link_to submission, submission %>
+                          </div>
+                          <div class='col-md-2 col-sm-2 col-xs-4'>
+                            <%= react_component('MarkAsComplete', { submissionID: submission.id }) %>
+                          </div>
                         </div>
-                        <div class='col-md-2 col-sm-2 col-xs-4'>
-                          <%= react_component('MarkAsComplete', { submissionID: submission.id }) %>
-                        </div>
-                      </div>
-                    </li>
+                      </li>
+                    <% end %>
                   <% end %>
                 </ul>
               </li>

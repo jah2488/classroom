@@ -4,9 +4,11 @@
 <p class='muted'>Progress Info</p>
 <section>
   <ul>
-    <li>Tardies: <%= student.tardies %></li>
-    <li>Absences: <%= student.absences %></li>
-    <li>Completed Assignments / Submissions / Total Assignments: <%= student.completed_assignments.count %>/<%= student.submissions.count %>/<%= student.cohort.assignments.count %></li>
+    <li>Tardies: <strong><%= student.tardies %></strong></li>
+    <li>Absences: <strong><%= student.absences %></strong></li>
+    <li>Total Assignments: <strong><%= student.cohort.assignments.count %></strong></li>
+    <li>Completed Assignments: <strong><%= student.completed_assignments.group_by(&:assignment).count %></strong></li>
+    <li>Total Submissions: <strong><%= student.submissions.count %></strong></li>
   </ul>
 </section>
 
@@ -20,3 +22,20 @@
   </ul>
   <%= link_to 'Edit', edit_profile_path(student),  class:'btn btn-default' %>
 </section>
+
+<p class='muted'>Submissions</p>
+<section>
+  <% student.submissions.group_by(&:assignment).each do |assignment, submissions| %>
+    <ul>
+      <li>
+        <%= assignment.title %>
+        <ul>
+          <% submissions.each do |submission| %>
+            <li><%= submission.label %> <%= link_to submission, submission %></li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+  <% end %>
+</section>
+

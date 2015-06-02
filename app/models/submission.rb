@@ -21,6 +21,10 @@ class Submission < ActiveRecord::Base
     state == GRADED
   end
 
+  def label
+    completed ? 'Completed' : 'Incomplete'
+  end
+
   def to_s
     "#{(student.name || student.email)} - #{link[0..45]}"
   end
