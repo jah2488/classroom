@@ -28,13 +28,11 @@
     <% end %>
   </section>
 
-  <footer>
-    <h1></h1>
-    <% if current_instructor %>
-      <%= react_component('GradeSubmissionForm', { submissionID: submission.id,
-                                                   nextForStudent: next_submission_url_for_student(submission),
-                                                   nextForAssignment: next_submission_url_for_assignment(submission)}) %>
-    <% end %>
-  </footer>
+  <h1></h1>
+  <% if current_instructor %>
+    <%= react_component('GradeSubmissionForm', { submissionID: submission.id,
+                                                 nextForStudent: next_submission_url_for_student(submission),
+                                                 nextForAssignment: next_submission_url_for_assignment(submission)}) %>
+  <% end %>
 </article>
 

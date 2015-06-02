@@ -26,16 +26,11 @@ var GradeSubmissionForm = React.createClass({
         jQuery.ajax({
             method: 'PATCH',
             url: '/submissions/' + this.state.submissionID + '/' + action,
-            data: { notes: this.state.ratingNotes }
+            data: { notes: this.refs.textarea.state.text}
         }).done(function (response) {
-            this.setState({ ratingNotes: '', sent: true });
+            this.refs.textarea.text = '';
+            this.setState({ sent: true });
         }.bind(this));
-    },
-    handleChange: function (event) {
-        this.setState({ ratingNotes: event.target.value });
-    },
-    toMarkdown: function () {
-        return { __html: marked(this.state.ratingNotes) };
     },
     render: function () {
         if (this.state.sent) {
@@ -52,21 +47,25 @@ var GradeSubmissionForm = React.createClass({
             );
         } else {
             return (
-                <div>
-                    <p className='muted'>Preview</p>
-                    <section dangerouslySetInnerHTML={ this.toMarkdown() }/>
-
-                    <p className='muted'>Submission Grade Notes</p>
-                    <section>
-                        <textarea onKeyDown={this.handleChange} className="text required form-control" name="feedback[notes]" id="feedback_notes" />
-                        <p className="help-block">Put markdown in me</p>
-                        <div className='actions'>
+                <section>
+                    <div className='row'>
+                        <MarkdownField ref='textarea' title='Submission Feedback' />
+                    </div>
+                    <div className='row'>
+                        <div className='actions col-sm-12'>
                             <a className="btn btn-primary" rel="nofollow" onClick={this.handleClick.bind(this, 'complete')}>Mark as Complete</a>
                             <a className="btn btn-default" rel="nofollow" onClick={this.handleClick.bind(this, 'unfinished')}>Mark as Unfinished</a>
                         </div>
-                    </section>
-                </div>
+                    </div>
+                </section>
             );
         }
     }
 });
+//                    <p className='muted'>Preview</p>
+//                    <section dangerouslySetInnerHTML={ this.toMarkdown() }/>
+//
+//                    <p className='muted'>Submission Grade Notes</p>
+//                    <section>
+//                        <textarea onKeyDown={this.handleChange} className="text required form-control" name="feedback[notes]" id="feedback_notes" />
+//
