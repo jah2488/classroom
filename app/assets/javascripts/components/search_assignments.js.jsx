@@ -25,8 +25,8 @@ var SearchAssignments = React.createClass({
     },
 
     render: function () {
-        return (<span>
-                    <input className='form-control autocomplete-form' onKeyUp={this.handleChange} type='search' placeholder='go to assignment'/>
+        return (<span className='autocomplete-form'>
+                    <input className='form-control autocomplete-input' onKeyUp={this.handleChange} type='search' placeholder='go to assignment'/>
                     <div className='results'>
                         {this.results()}
                     </div>

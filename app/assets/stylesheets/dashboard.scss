@@ -43,6 +43,11 @@ p.muted {
 .autocomplete-form {
   display: inline-block;
   width: 150px;
+  position:absolute;
+}
+.autocomplete-input {
+  margin-left: 4px;
+  height: 33px;
 }
 
 .results {
@@ -50,8 +55,8 @@ p.muted {
   border: 1px solid lightgray;
   border-top: none;
   display:inline-block;
-  position: relative;
-  left: 425px;
+  position: absolute;
+  z-index: 100000000;
 }
 
 a.autocomplete {
