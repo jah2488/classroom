@@ -24,10 +24,6 @@
         </div>
       </div>
     </section>
-    <!-- <p class='muted'>Messages</p>
-    <section class='checkin'> <a class='btn btn-primary'>READ</a> </section>
-    <p class='muted'>Notes</p> <section class='checkin'> <a class='btn btn-primary'>READ</a>
-    </section> -->
   </div>
   <div class='col-md-pull-4 col-md-8'>
     <p class='muted'>Assignments</p>
@@ -36,10 +32,11 @@
         <h3>Assignments (<%= assignments.count %>)</h3>
       </header>
       <div class='filters'>
-        <%= link_to "View All", params.merge(filter: :all), class: 'btn btn-primary' %>
+        <%= link_to "View All",        params.merge(filter: :all),        class: 'btn btn-primary' %>
         <%= link_to "View Incomplete", params.merge(filter: :incomplete), class: 'btn btn-default' %>
-        <%= link_to "View Complete", params.merge(filter: :complete), class: 'btn btn-default' %>
-        <%= link_to "View Late", params.merge(filter: :late), class: 'btn btn-default' %>
+        <%= link_to "View Complete",   params.merge(filter: :complete),   class: 'btn btn-default' %>
+        <%= link_to "View Late",       params.merge(filter: :late),       class: 'btn btn-default' %>
+        <%= react_component('SearchAssignments', {}, tag: 'span' ) %>
       </div>
       <ul class='list'>
         <% assignments.each do |assignment| %>
@@ -71,9 +68,5 @@
         <% end %>
       </ul>
     </section>
-
   </div>
-
-
-
 </div>

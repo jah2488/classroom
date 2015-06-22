@@ -38,3 +38,33 @@ p.muted {
     padding-right: 4px;
   }
 }
+
+
+.autocomplete-form {
+  display: inline-block;
+  width: 150px;
+}
+
+.results {
+  background:white;
+  border: 1px solid lightgray;
+  border-top: none;
+  display:inline-block;
+  position: relative;
+  left: 425px;
+}
+
+a.autocomplete {
+  &.id-1 p {
+    background: lighten(#D1C05E, 10%);
+  }
+  text-decoration: none;
+  p {
+    padding: 5px 10px;
+    margin: 0;
+    border-bottom: 1px solid lightgray;
+    &:hover {
+      background: lighten(#D1C05E, 30%);
+    }
+  }
+}

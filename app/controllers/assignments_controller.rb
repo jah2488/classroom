@@ -11,6 +11,10 @@ class AssignmentsController < ApplicationController
     }
   end
 
+  def search
+    render json: Assignment.search(params[:query])
+  end
+
   def create
     assignment = Assignment.new(assignment_params)
     assignment.cohort = current_instructor.current_cohort

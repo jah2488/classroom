@@ -2,6 +2,10 @@ class Assignment < ActiveRecord::Base
   belongs_to :cohort
   has_many :submissions
 
+  def self.search(query)
+    where(arel_table[:title].matches("%#{query}%"))
+  end
+
   def self.due_soon(student)
     self.for(student).partition { |assignment| !assignment.late? }.flatten
   end
