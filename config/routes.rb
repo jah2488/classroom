@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     get 'profile/:id' => 'students#show', as: 'profile'
     get 'profile/:id/edit' => 'students#edit', as: 'edit_profile'
     get 'assignments/:id' => 'assignments#show', as: 'student_assignment'
+
     get 'assignments/search/:query' => 'assignments#search'
+
     resources :students
   end
 

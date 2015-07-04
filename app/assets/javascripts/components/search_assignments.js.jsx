@@ -1,7 +1,10 @@
 /* global React, jQuery */
 var Result = React.createClass({
     render: function () {
-        return (<a className={'id-' + this.props.id + ' autocomplete'} href={'/assignments/' + this.props.id}><p>{this.text()}</p></a>);
+        return (
+            <a className={'id-' + this.props.id + ' autocomplete'} href={'/assignments/' + this.props.id}>
+                <p>{this.text()}</p>
+            </a>);
     },
 
     text: function () {
@@ -34,18 +37,20 @@ var SearchAssignments = React.createClass({
     },
 
     handleChange: function (event) {
-        if (event.keyCode === 13) {
-            var topResult = this.state.records[0];
-            if (topResult) {
-                window.location.href = '/assignments/' + topResult.id;
-            }
-        } else if (event.target.value.trim().length > 0) {
-            var searchQuery = event.target.value.trim();
+        var searchQuery = event.target.value.trim();
+
+        if (searchQuery.length > 1) {
+
             var URL = '/assignments/search/' + searchQuery;
+
             this.setState({ loading: true, query: searchQuery });
+
             jQuery.getJSON(URL, function (data) {
+
                 this.setState({ loading: false, records: data });
+
             }.bind(this));
+
         } else {
             this.setState({ records: [] });
         }
@@ -54,12 +59,10 @@ var SearchAssignments = React.createClass({
     results: function () {
         var records = this.state.records;
         var query = this.state.query;
-        var i = 0;
         return (
             <div>
                 {records.map(function (row) {
-                    i += 1;
-                    return <Result key={i} id={row.id} query={query} title={row.title} />;
+                    return <Result id={row.id} query={query} title={row.title} />;
                 })}
             </div>
         );
