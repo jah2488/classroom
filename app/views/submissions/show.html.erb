@@ -1,7 +1,7 @@
 <%= render partial: 'dashboard/nav' %>
 <article>
   <header>
-    <h1><%= submission.student.name %>'s Submission for <%= submission.assignment.title %></h1>
+    <h1><%= link_to submission.student.name, submission.student %>'s Submission for <%= link_to submission.assignment.title, submission.assignment %></h1>
     <p><strong>Due: </strong> <%= due_in(submission.assignment) %>
        <strong>Turned In: </strong> <%= distance_of_time_in_words_to_now submission.created_at %></p>
   </header>
