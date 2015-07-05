@@ -47,17 +47,13 @@ var GradeSubmissionForm = React.createClass({
         if (this.state.sent) {
             return (
                 <div className='actions'>
-                    <div className="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" className="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <strong>Success!</strong> Feedback Sent.
-                    </div>
+                    <Notification type='success' message='Success! Feedback Sent.' />
                     <Nav/>
                </div>
             );
         } else {
             return (
                 <section>
-                            <Nav/>
                     <div className='row'>
                         <MarkdownField ref='textarea' title='Submission Feedback' />
                     </div>
@@ -65,6 +61,11 @@ var GradeSubmissionForm = React.createClass({
                         <div className='actions col-sm-12'>
                             <a className="btn btn-primary" rel="nofollow" onClick={this.handleClick.bind(this, 'complete')}>Mark as Complete</a>
                             <a className="btn btn-default" rel="nofollow" onClick={this.handleClick.bind(this, 'unfinished')}>Mark as Unfinished</a>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='actions col-sm-12'>
+                            <Nav/>
                         </div>
                     </div>
                 </section>
