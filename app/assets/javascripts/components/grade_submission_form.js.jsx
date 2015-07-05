@@ -1,19 +1,28 @@
 /* global React, jQuery, marked */
 
 var Link = React.createClass({
-  classes: function () {
-    var defaults = 'btn btn-default btn-large';
-    if (this.props.url) {
-        return defaults;
-    } else {
-        return defaults + ' disabled';
-    }
-  },
   render: function () {
       return ( <a className={this.classes()} href={this.props.url}>{this.props.text}</a>);
+  },
+
+  classes: function () {
+    var defaults = 'btn btn-default btn-large';
+    if (this.props.url) { return defaults; }
+    return defaults + ' disabled';
   }
 });
 
+var Nav = React.createClass({
+    render: function () {
+        return (
+            <div>
+                <Link url='/instructor/dashboard' text="Return to Dashboard"/>
+                <Link url={this.props.nextForStudent} text="Next Submission For Student"/>
+                <Link url={this.props.nextForAssignment} text="Next Submission For Assignment"/>
+            </div>
+        );
+    }
+});
 var GradeSubmissionForm = React.createClass({
     getInitialState: function () {
         return {
@@ -22,6 +31,7 @@ var GradeSubmissionForm = React.createClass({
             sent: false
         };
     },
+
     handleClick: function(action) {
         jQuery.ajax({
             method: 'PATCH',
@@ -32,6 +42,7 @@ var GradeSubmissionForm = React.createClass({
             this.setState({ sent: true });
         }.bind(this));
     },
+
     render: function () {
         if (this.state.sent) {
             return (
@@ -40,14 +51,13 @@ var GradeSubmissionForm = React.createClass({
                         <button type="button" className="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <strong>Success!</strong> Feedback Sent.
                     </div>
-                    <Link url='/instructor/dashboard' text="Return to Dashboard"/>
-                    <Link url={this.props.nextForStudent} text="Next Submission For Student"/>
-                    <Link url={this.props.nextForAssignment} text="Next Submission For Assignment"/>
-                </div>
+                    <Nav/>
+               </div>
             );
         } else {
             return (
                 <section>
+                            <Nav/>
                     <div className='row'>
                         <MarkdownField ref='textarea' title='Submission Feedback' />
                     </div>
