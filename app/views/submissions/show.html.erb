@@ -10,9 +10,9 @@
 
   <p class='muted'>Status</p>
   <section>
-    <h4><%= submission.completed ? 'Completed' : 'Not Complete' %> <%= submission.late ? 'Late' : 'Not Late' %></h4>
+    <h4><%= submission.status %></h4>
     <% submission.ratings.each_with_index do |rating, index| %>
-      <% if rating.notes.length > 1 %>
+      <% if rating.has_feedback? %>
         <p class='muted'>Feedback on Submission added <%= distance_of_time_in_words_to_now rating.created_at %> ago</p>
         <section><%= markdown rating.notes %></section>
       <% end %>

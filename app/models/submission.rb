@@ -25,6 +25,14 @@ class Submission < ActiveRecord::Base
     completed ? 'Completed' : 'Incomplete'
   end
 
+  def on_time
+    late ? 'Late' : 'On Time'
+  end
+
+  def status
+    "#{label} #{on_time}"
+  end
+
   def to_s
     "#{(student.name || student.email)} - #{link[0..45]}"
   end
