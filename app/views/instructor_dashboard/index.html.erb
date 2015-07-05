@@ -73,6 +73,10 @@
           <header>
             <h2><%= t('.assignments') %></h2>
           </header>
+          <div class='filters'>
+            <%= link_to "no op",      params.merge(filter: :all),      class: 'btn btn-primary' %>
+            <%= react_component('SearchAssignments', {}, tag: 'span' ) %>
+          </div>
           <ul class='list'>
             <% assignments.each do |assignment| %>
               <li><%= link_to(assignment.title.titleize, assignment) %>
