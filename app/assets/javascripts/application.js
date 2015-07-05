@@ -6,13 +6,14 @@
 //= require turbolinks
 //
 //= require marked
+//= require moment
+//= require datetimepicker
 //
 //= require location
 //= require react
 //= require react_ujs
 //= require components
 //
-//= require datetimepicker
 //= require_tree .
 
 var _loggedIn = false;

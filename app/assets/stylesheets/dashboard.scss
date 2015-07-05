@@ -2,38 +2,42 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$section-border: #c3c3c3;
+$muted-color: #acacac;
+
 section {
-  border: 1px solid #c3c3c3;
+  border: 1px solid $section-border;
   border-radius: 3px;
   padding: 20px;
   width: 100%;
 }
 
 .filters {
-  margin: 8px 0px;
+  margin: 8px 0;
 }
 
-p.muted {
+.muted {
+  color: $muted-color;
+  font-variant: small-caps;
   margin: 0;
-  color: #ACACAC;
-  font-variant:small-caps;
-  text-transform:lowercase;
-  position:relative;
+  position: relative;
+  text-transform: lowercase;
   top: 2px;
 }
 
 .full-width {
-  width: 100%;
   font-size: 14px;
   margin-bottom: 10px;
+  width: 100%;
 }
 
 .errors {
-  color: red;
+  color: #ff0000;
 }
 
 .stats {
   margin: 10px 0;
+
   .tardies {
     padding-right: 4px;
   }
@@ -42,34 +46,45 @@ p.muted {
 
 .autocomplete-form {
   display: inline-block;
+  position: absolute;
   width: 150px;
-  position:absolute;
 }
 .autocomplete-input {
-  margin-left: 4px;
   height: 33px;
+  margin-left: 4px;
 }
 
 .results {
-  background:white;
-  border: 1px solid lightgray;
-  border-top: none;
-  display:inline-block;
+  background: #fff;
+  border: 1px solid $section-border;
+  border-top: 0;
+  display: inline-block;
+  left: 4px;
+  min-width: 150px;
   position: absolute;
+  top: 33px;
   z-index: 100000000;
 }
 
-a.autocomplete {
-  &.id-1 p {
-    background: lighten(#D1C05E, 10%);
-  }
+$auto-yellow: #d1c05e;
+$active-yellow: lighten($auto-yellow, 10%);
+$highlight-yellow: lighten($auto-yellow, 30%);
+
+.autocomplete {
+
   text-decoration: none;
+
+  &.active p {
+    background: $active-yellow;
+  }
+
   p {
-    padding: 5px 10px;
+    border-bottom: 1px solid $section-border;
     margin: 0;
-    border-bottom: 1px solid lightgray;
+    padding: 5px 10px;
+
     &:hover {
-      background: lighten(#D1C05E, 30%);
+      background: $highlight-yellow;
     }
   }
 }

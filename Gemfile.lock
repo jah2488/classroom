@@ -188,6 +188,7 @@ GEM
       rails-assets-jquery (>= 1.7.2)
     rails-assets-jquery (2.1.4)
     rails-assets-marked (0.3.3)
+    rails-assets-moment (2.10.3)
     rails-assets-react (0.13.2)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
@@ -317,6 +318,7 @@ DEPENDENCIES
   rails (= 4.2.0)
   rails-assets-datetimepicker!
   rails-assets-marked!
+  rails-assets-moment!
   rails-assets-react!
   rails_12factor
   react-rails (~> 1.0)
