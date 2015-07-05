@@ -2,8 +2,8 @@
 <article>
   <header>
     <h1><%= link_to submission.student.name, submission.student %>'s Submission for <%= link_to submission.assignment.title, submission.assignment %></h1>
-    <p><strong>Due: </strong> <%= due_in(submission.assignment) %>
-       <strong>Turned In: </strong> <%= distance_of_time_in_words_to_now submission.created_at %></p>
+    <p><strong>Due: </strong> <%= react_time submission.assignment.due_date %>
+    <strong>Turned In: </strong> <%= react_time submission.created_at %></p>
   </header>
 
   <p class='muted'>Submission</p>

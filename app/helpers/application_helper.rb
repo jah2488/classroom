@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def react_time(time, opts = {})
+    react_component('TimeField', { time: time }.merge(opts), tag: 'span')
+  end
+
   def markdown(source)
     Kramdown::Document.new(source).to_html.html_safe
   end
