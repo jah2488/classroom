@@ -1,4 +1,4 @@
-/* global React, jQuery, marked */
+/* global React, jQuery */
 
 var MarkdownField = React.createClass({
     getInitialState: function () {
@@ -8,9 +8,6 @@ var MarkdownField = React.createClass({
     },
     handleChange: function (event) {
         this.setState({ text: event.target.value });
-    },
-    toMarkdown: function () {
-        return { __html: marked(this.state.text) };
     },
     render: function () {
         return (
@@ -24,7 +21,9 @@ var MarkdownField = React.createClass({
                 </div>
                 <div className='col-sm-6'>
                     <p className='muted'>Preview</p>
-                    <section className='md-preview' style={{minHeight: '142px'}} dangerouslySetInnerHTML={ this.toMarkdown() }/>
+                    <section className='md-preview' style={{minHeight: '142px'}}>
+                      <Markdown text={this.state.text}/>
+                    </section>
                 </div>
             </div>
         );

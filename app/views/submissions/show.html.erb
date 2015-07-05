@@ -6,16 +6,7 @@
     <strong>Turned In: </strong> <%= react_time submission.created_at %></p>
   </header>
 
-  <p class='muted'>Submission</p>
-  <section>
-    <p><%= link_to submission.link, submission.link %></p>
-  </section>
-
-
-  <p class='muted'>Student Notes</p>
-  <section>
-    <%= markdown submission.notes %>
-  </section>
+  <%= react_component('Submission', submission: submission) %>
 
   <p class='muted'>Status</p>
   <section>
