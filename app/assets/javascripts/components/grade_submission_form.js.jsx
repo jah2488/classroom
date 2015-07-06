@@ -48,7 +48,7 @@ var GradeSubmissionForm = React.createClass({
             return (
                 <div className='actions'>
                     <Notification type='success' message='Success! Feedback Sent.' />
-                    <Nav/>
+                    <Nav nextForStudent={this.props.nextForStudent} nextForAssignment={this.props.nextForAssignment} />
                </div>
             );
         } else {
@@ -65,7 +65,7 @@ var GradeSubmissionForm = React.createClass({
                     </div>
                     <div className='row'>
                         <div className='actions col-sm-12'>
-                            <Nav/>
+                            <Nav nextForStudent={this.props.nextForStudent} nextForAssignment={this.props.nextForAssignment} />
                         </div>
                     </div>
                 </section>
