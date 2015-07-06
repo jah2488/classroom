@@ -1,5 +1,10 @@
 module ApplicationHelper
 
+  def can_edit?(resource)
+    true if current_instructor
+    resource.respond_to?(:student) && resource.student == current_student
+  end
+
   def react_time(time, opts = {})
     react_component('TimeField', { time: time }.merge(opts), tag: 'span')
   end
@@ -9,7 +14,7 @@ module ApplicationHelper
   end
 
   def display_flash(key, msg)
-    display_class = key == 'notice' ? 'success' : 'warning'
+    display_class = ((key == 'notice') ? 'success' : 'warning')
     content_tag :div, msg, class: "alert alert-#{display_class} flash #{key} alert-dismissible", role: "alert" do
       (content_tag :button, type: 'button', class: 'close', :'data-dismiss' => 'alert', :'aria-label' => 'Close' do
         content_tag :span, raw('&times;'), :'aria-hidden' => true

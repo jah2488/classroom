@@ -73,10 +73,3 @@ var GradeSubmissionForm = React.createClass({
         }
     }
 });
-//                    <p className='muted'>Preview</p>
-//                    <section dangerouslySetInnerHTML={ this.toMarkdown() }/>
-//
-//                    <p className='muted'>Submission Grade Notes</p>
-//                    <section>
-//                        <textarea onKeyDown={this.handleChange} className="text required form-control" name="feedback[notes]" id="feedback_notes" />
-//

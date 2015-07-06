@@ -6,7 +6,11 @@
     <strong>Turned In: </strong> <%= react_time submission.created_at %></p>
   </header>
 
-  <%= react_component('Submission', submission: submission) %>
+  <% if can_edit?(submission) %>
+    <%= react_component('EditSubmission', submission: submission) %>
+  <% else %>
+    <%= react_component('Submission', submission: submission) %>
+  <% end %>
 
   <p class='muted'>Status</p>
   <section>

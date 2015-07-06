@@ -25,7 +25,6 @@ var TimeField = React.createClass({
   },
 
   render: function () {
-    console.log('rendered!');
     var momentTime = moment(this.props.time);
     return (
       <time onMouseOver={this.mouseOver} onMouseOut={this.mouseOut} dateTime={this.props.time}>{this.timestamp(momentTime)}</time>

@@ -25,6 +25,15 @@ class SubmissionsController < ApplicationController
     end
   end
 
+  def update
+    submission = Submission.find(params[:id])
+    if submission.update(submission_params)
+      render json: submission
+    else
+      render json: submission.errors, status: :unprocessible_entity
+    end
+  end
+
   def mark_complete
     grade_submission(true)
   end
