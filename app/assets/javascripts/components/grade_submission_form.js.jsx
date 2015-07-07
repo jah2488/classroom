@@ -23,6 +23,7 @@ var Nav = React.createClass({
         );
     }
 });
+
 var GradeSubmissionForm = React.createClass({
     getInitialState: function () {
         return {
@@ -37,6 +38,17 @@ var GradeSubmissionForm = React.createClass({
             method: 'PATCH',
             url: '/submissions/' + this.state.submissionID + '/' + action,
             data: { notes: this.refs.textarea.state.text}
+        }).done(function (response) {
+            this.refs.textarea.text = '';
+            this.setState({ sent: true });
+        }.bind(this));
+    },
+
+    handleSend: function () {
+        jQuery.ajax({
+            method: 'POST',
+            url: '/ratings/',
+            data: { rating: { submission_id: this.props.submissionID, notes: this.refs.textarea.state.text } }
         }).done(function (response) {
             this.refs.textarea.text = '';
             this.setState({ sent: true });
@@ -61,6 +73,7 @@ var GradeSubmissionForm = React.createClass({
                         <div className='actions col-sm-12'>
                             <a className="btn btn-primary" rel="nofollow" onClick={this.handleClick.bind(this, 'complete')}>Mark as Complete</a>
                             <a className="btn btn-default" rel="nofollow" onClick={this.handleClick.bind(this, 'unfinished')}>Mark as Unfinished</a>
+                            <a className="btn btn-default" rel="nofollow" onClick={this.handleSend}>Send Feedback</a>
                         </div>
                     </div>
                     <div className='row'>
