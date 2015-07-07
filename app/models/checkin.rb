@@ -24,4 +24,10 @@ class Checkin < ActiveRecord::Base
     end
   end
 
+  def as_hash
+    self.attributes
+      .merge({ student: student.attributes})
+      .merge({checkin_status: checkin_status})
+  end
+
 end
