@@ -2,6 +2,10 @@ class Assignment < ActiveRecord::Base
   belongs_to :cohort
   has_many :submissions
 
+  def self.by_week(records)
+    records.group_by { |assignment| assignment.due_date.beginning_of_week}
+  end
+
   def self.current_for(student)
     self.for(student).reject(&:late?).first
   end

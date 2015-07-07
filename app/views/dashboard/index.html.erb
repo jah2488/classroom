@@ -1,6 +1,18 @@
 <h1>Student Dashboard</h1>
-<%= link_to 'SUBMIT HOMEWORK', new_submission_path,  class:'btn btn-primary btn-lg '%>
-<%= link_to 'CURRENT ASSIGNMENT', current_assignment_path,  class:'btn btn-default btn-lg '%>
+<div class='row'>
+  <div class='visible-xs visible-sm col-md-2'>
+    <%= link_to 'SUBMIT HOMEWORK', new_submission_path,  class:'full-width btn btn-primary btn-md'%>
+  </div>
+  <div class='hidden-xs hidden-sm col-md-2'>
+    <%= link_to 'SUBMIT HOMEWORK', new_submission_path,  class:'btn btn-primary btn-md'%>
+  </div>
+  <div class='visible-xs visible-sm col-md-2'>
+    <%= link_to 'CURRENT ASSIGNMENT', current_assignment_path,  class:'full-width btn btn-default btn-md'%>
+  </div>
+  <div class='hidden-xs hidden-sm col-md-2'>
+    <%= link_to 'CURRENT ASSIGNMENT', current_assignment_path,  class:'btn btn-default btn-md'%>
+  </div>
+</div>
 
 <div class='row'>
   <div class='col-md-push-8 col-md-4'>
@@ -12,6 +24,6 @@
     </div>
   </div>
   <div class='col-md-pull-4 col-md-8'>
-    <%= render partial: 'assignments', locals: { assignments: assignments } %>
+    <%= render partial: 'assignments', locals: { weekly_assignments: assignments } %>
   </div>
 </div>
