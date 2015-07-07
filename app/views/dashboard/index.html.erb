@@ -2,73 +2,37 @@
 <%= link_to 'SUBMIT HOMEWORK', new_submission_path,  class:'btn btn-primary btn-lg '%>
 
 <div class='row'>
-
   <div class='col-md-push-8 col-md-4'>
-    <p class='muted'>Attendance</p>
-    <section class='checkin'>
-      <div>
-        <% if current_day.has_checkin_for?(current_student) %>
-          <a class='btn btn-primary btn-lg full-width'>
-            <%= current_day.checkin_for(current_student).checkin_status.upcase %>
-          </a>
-          <%= react_component('Attendance', { tardies: current_student.tardies, absences: current_student.absences }) %>
-        <% else %>
-          <%= react_component('Checkin', { tardies: current_student.tardies, absences: current_student.absences }) %>
-        <% end %>
-      </div>
-      <a class="btn btn-default btn-sm" data-toggle="collapse" href="#attendance-info" aria-expanded="false" aria-controls="collapseExample"> What is this?</a>
-      <div id='attendance-info' class='collapse' style='margin-top:10px;'>
-        <div class='well'>
-          <p class='muted'>You <strong>must</strong> checkin every day to be considered present for that class.</p>
-          <p class='muted'>Checkin needs to occur before <%= current_day.late_at %> to not be considered tardy.</p>
+    <div class='row'>
+      <%= render partial: 'attendance', locals: { current_day: current_day } %>
+    </div>
+    <div class='row'>
+      <p class='muted'>Adjustments</p>
+      <section>
+        <table class='table table-hover'>
+          <thead>
+            <tr>
+              <th>State</th><th>Checkin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% current_student.marked_checkins.each do |checkin| %>
+              <%= react_component('Adjustment', { adjustment: checkin.adjustment, checkin: checkin, checkin_status: checkin.checkin_status}, tag: 'tr') %>
+            <% end %>
+          </tbody>
+        </table>
+        <a class="btn btn-default btn-sm" data-toggle="collapse" href="#adjustment-info" aria-expanded="false" aria-controls="collapseExample"> What is this?</a>
+        <div id='adjustment-info' class='collapse' style='margin-top:10px;'>
+          <div class='well'>
+            <p class='muted'>If you forgot to checkin on a certain day, you can file and adjustment for review to remove that tardy or absence.</p>
+            <p class='muted'>Note: You only get <strong>5</strong> adjustment reviews a cohort.</p>
+          </div>
         </div>
-      </div>
-    </section>
+
+      </section>
+    </div>
   </div>
   <div class='col-md-pull-4 col-md-8'>
-    <p class='muted'>Assignments</p>
-    <section class='assignments'>
-      <header>
-        <h3>Assignments (<%= assignments.count %>)</h3>
-      </header>
-      <div class='filters'>
-        <%= link_to "View All",        params.merge(filter: :all),        class: 'btn btn-primary' %>
-        <%= link_to "View Incomplete", params.merge(filter: :incomplete), class: 'btn btn-default' %>
-        <%= link_to "View Complete",   params.merge(filter: :complete),   class: 'btn btn-default' %>
-        <%= link_to "View Late",       params.merge(filter: :late),       class: 'btn btn-default' %>
-        <%= react_component('SearchAssignments', {}, tag: 'span' ) %>
-      </div>
-      <ul class='list'>
-        <% assignments.each do |assignment| %>
-          <li>
-            <div class='assignment'>
-              <div class='row'>
-                <div class='col-sm-7'><h4><%= link_to assignment.title.titleize, student_assignment_path(assignment) %></h4></div>
-                <div class='col-sm-3'><h5><%= react_time(assignment.due_date) %></h5></div>
-                <div class='grade col-xs-2'><%= status_for(assignment, current_student) %></div>
-              </div>
-              <div class='row'>
-                <div class='col-sm-12'>
-                  <ul>
-                  <% assignment.submissions_for(current_student).each do |submission| %>
-                    <li>
-                      <div class='submission'>
-                        <div class='row'>
-                          <div class='col-sm-10'>
-                            Submitted <%= react_time submission.created_at %> <%= link_to "View Submission #{' And Feedback' if has_feedback?(submission)}", submission %>
-                          </div>
-                          <div class='col-sm-2'> <%= feedback_label(submission) %></div>
-                        </div>
-                      </div>
-                  </li>
-                  <% end %>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    </section>
+    <%= render partial: 'assignments', locals: { assignments: assignments } %>
   </div>
 </div>

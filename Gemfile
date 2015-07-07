@@ -35,7 +35,7 @@ gem 'kramdown'
 group :test, :development do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
-  gem 'spring'
+  gem 'spring', '~> 1.3.6'
   gem 'irbtools', require: 'irbtools/binding'
 
   gem 'faker'

@@ -13,13 +13,15 @@ class InstructorDashboardController < ApplicationController
     students    = cohort.students
     assignments = cohort.assignments.order('due_date DESC')
     submissions = Submission.ungraded_for(cohort)
+    adjustments = students.flat_map(&:adjustments)
     render locals: {
       instructor: current_instructor,
       cohort: cohort,
       current_day: Day.current_for(cohort),
       assignments: assignments,
       submissions: submissions,
-      students: students
+      students: students,
+      adjustments: adjustments
     }
   end
 
