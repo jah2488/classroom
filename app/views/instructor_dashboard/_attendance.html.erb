@@ -1,0 +1,24 @@
+<p class='muted'>Attendance</p>
+<section>
+  <header>
+    <h2><%= t('.attendance') %></h2>
+  </header>
+  <% if current_day %>
+    <h4>Current Day: <%= current_day.created_on %></h4>
+    <p class='muted'>Start:</p> <%= current_day.starts_at %>
+    <p class='muted'>Override:</p> <pre><code><%= current_day.override_code%></code></pre>
+    <p>Students in Attendance</p>
+    <ul class='list'>
+      <% current_day.checkins.each do |checkin| %>
+        <li>
+          <p><%= checkin.checkin_status %> <%= link_to (checkin.student.name || checkin.student.email), checkin.student %></p>
+        </li>
+      <% end.empty? and begin %>
+        <p> No Students </p>
+      <% end %>
+    </ul>
+  <% else %>
+    No Current Day
+  <% end %>
+</section>
+
