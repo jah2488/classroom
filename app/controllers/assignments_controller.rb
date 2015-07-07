@@ -11,6 +11,10 @@ class AssignmentsController < ApplicationController
     }
   end
 
+  def current
+    redirect_to Assignment.current_for(current_student)
+  end
+
   def search
     render json: Assignment.search(params[:query])
   end

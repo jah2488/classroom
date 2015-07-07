@@ -12,7 +12,7 @@ class DashboardController < ApplicationController
     when 'incomplete' then Assignment.incomplete_for(current_student)
     when 'complete'   then Assignment.complete_for(current_student)
     when 'late'       then Assignment.late_for(current_student)
-    when 'all'        then Assignment.due_soon(current_student)
+    when 'all'        then Assignment.for(current_student)
     end
   end
 end

@@ -2,16 +2,16 @@ class Assignment < ActiveRecord::Base
   belongs_to :cohort
   has_many :submissions
 
+  def self.current_for(student)
+    self.for(student).reject(&:late?).first
+  end
+
   def self.search(query)
     where(arel_table[:title].matches("%#{query}%"))
   end
 
-  def self.due_soon(student)
-    self.for(student).partition { |assignment| !assignment.late? }.flatten
-  end
-
   def self.for(student)
-    where(cohort_id: student.cohort_id).order('due_date ASC')
+    where(cohort_id: student.cohort_id).order('due_date DESC')
   end
 
   def self.late_for(student)

@@ -1,5 +1,6 @@
 <h1>Student Dashboard</h1>
 <%= link_to 'SUBMIT HOMEWORK', new_submission_path,  class:'btn btn-primary btn-lg '%>
+<%= link_to 'CURRENT ASSIGNMENT', current_assignment_path,  class:'btn btn-default btn-lg '%>
 
 <div class='row'>
   <div class='col-md-push-8 col-md-4'>
@@ -7,29 +8,7 @@
       <%= render partial: 'attendance', locals: { current_day: current_day } %>
     </div>
     <div class='row'>
-      <p class='muted'>Adjustments</p>
-      <section>
-        <table class='table table-hover'>
-          <thead>
-            <tr>
-              <th>State</th><th>Checkin</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% current_student.marked_checkins.each do |checkin| %>
-              <%= react_component('Adjustment', { adjustment: checkin.adjustment, checkin: checkin, checkin_status: checkin.checkin_status}, tag: 'tr') %>
-            <% end %>
-          </tbody>
-        </table>
-        <a class="btn btn-default btn-sm" data-toggle="collapse" href="#adjustment-info" aria-expanded="false" aria-controls="collapseExample"> What is this?</a>
-        <div id='adjustment-info' class='collapse' style='margin-top:10px;'>
-          <div class='well'>
-            <p class='muted'>If you forgot to checkin on a certain day, you can file and adjustment for review to remove that tardy or absence.</p>
-            <p class='muted'>Note: You only get <strong>5</strong> adjustment reviews a cohort.</p>
-          </div>
-        </div>
-
-      </section>
+      <%= render partial: 'adjustments', locals: { current_student: current_student } %>
     </div>
   </div>
   <div class='col-md-pull-4 col-md-8'>
