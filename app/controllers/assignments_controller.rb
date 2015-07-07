@@ -12,7 +12,7 @@ class AssignmentsController < ApplicationController
   end
 
   def current
-    redirect_to Assignment.current_for(current_student)
+    redirect_to student_assignment_path(Assignment.current_for(current_student))
   end
 
   def search
