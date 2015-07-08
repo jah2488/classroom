@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707030859) do
+ActiveRecord::Schema.define(version: 20150707213010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20150707030859) do
   end
 
   add_index "adjustments", ["checkin_id"], name: "index_adjustments_on_checkin_id", using: :btree
+
+  create_table "assignment_tags", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "assignment_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "assignment_tags", ["assignment_id"], name: "index_assignment_tags_on_assignment_id", using: :btree
+  add_index "assignment_tags", ["tag_id"], name: "index_assignment_tags_on_tag_id", using: :btree
 
   create_table "assignments", force: :cascade do |t|
     t.string   "title"
@@ -146,7 +156,15 @@ ActiveRecord::Schema.define(version: 20150707030859) do
   add_index "submissions", ["assignment_id"], name: "index_submissions_on_assignment_id", using: :btree
   add_index "submissions", ["student_id"], name: "index_submissions_on_student_id", using: :btree
 
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "adjustments", "checkins"
+  add_foreign_key "assignment_tags", "assignments"
+  add_foreign_key "assignment_tags", "tags"
   add_foreign_key "assignments", "cohorts"
   add_foreign_key "checkins", "days"
   add_foreign_key "checkins", "students"

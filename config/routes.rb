@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   authenticate :instructor do
     resources :instructors, only: [:show, :edit, :update]
     resources :ratings, only: [:create, :update]
+    resources :tags, only: :create
 
     patch 'submissions/:id/complete'   => 'submissions#mark_complete',   as: 'mark_submission_complete'
     patch 'submissions/:id/unfinished' => 'submissions#mark_unfinished', as: 'mark_submission_unfinished'
