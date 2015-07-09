@@ -82,7 +82,7 @@
       <div class='row'>
         <div class='col-xs-4'>
           <div class='logo-box clearfix'>
-            <% if debug %>
+            <% if local_assigns[:debug] %>
               <%= image_tag 'iron-yard-logo.svg', style: 'float: right;' %>
             <% else %>
               <%= wicked_pdf_image_tag 'iron-yard-logo.svg', style: 'float: right;' %>
