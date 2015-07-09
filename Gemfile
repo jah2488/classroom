@@ -20,17 +20,18 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'hirb'
-
 gem 'kaminari'
 
 gem 'paperclip', '~> 4.2'
 gem 'aws-sdk', '< 2.0'
 
 gem 'geocoder'
-
 gem 'simple_form'
-
 gem 'kramdown'
+
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary', group: :development
+gem 'wkhtmltopdf-heroku', group: :production
 
 group :test, :development do
   gem 'byebug'

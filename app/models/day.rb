@@ -3,8 +3,12 @@ class Day < ActiveRecord::Base
   has_many :checkins
   has_many :students, through: :checkins
 
+  def self.for(cohort)
+    where(cohort_id: cohort.id)
+  end
+
   def self.current_for(cohort)
-    where(cohort_id: cohort.id).last
+    self.for(cohort).last
   end
 
   def unaccounted_for_students
