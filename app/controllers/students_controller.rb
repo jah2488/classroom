@@ -20,6 +20,7 @@ class StudentsController < ApplicationController
     end
   end
 
+  #TODO: Move both report actions to a reports controller
   def reports
     render locals: {
       students: current_instructor.current_cohort.students
@@ -35,8 +36,8 @@ class StudentsController < ApplicationController
     else
       student = Student.find(report[:student])
     end
-    render pdf: 'assessment', show_as_html: debug, disposition: 'attachment', locals: {
-                 debug: debug,
+    render pdf: "#{student.name} assessment", show_as_html: debug, disposition: 'attachment', locals: {
+                 ebug: debug,
                  campus:                 report.fetch(:campus, current_instructor.current_cohort.location),
                  course:                 report.fetch(:course, current_instructor.current_cohort.name),
                  cohort:                 report.fetch(:cohort, current_instructor.current_cohort.name),
