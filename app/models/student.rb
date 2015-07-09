@@ -6,8 +6,15 @@ class Student < ActiveRecord::Base
   belongs_to :cohort
   has_many :submissions
   has_many :checkins
+  has_many :adjustments, through: :checkins
 
   validates_presence_of :cohort
+
+  def marked_checkins
+    c = Checkin.arel_table
+    checkins.where(c[:late].eq(true).or(
+                   c[:absent].eq(true)))
+  end
 
   def tardies
     checkins.where(late: true).count

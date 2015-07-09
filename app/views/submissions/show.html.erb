@@ -18,7 +18,13 @@
     <% submission.ratings.each_with_index do |rating, index| %>
       <% if rating.has_feedback? %>
         <p class='muted'>Feedback on Submission added <%= distance_of_time_in_words_to_now rating.created_at %> ago</p>
-        <section><%= markdown rating.notes %></section>
+        <section>
+        <% if current_instructor %>
+          <%= react_component('EditRating', rating: rating) %>
+        <% else %>
+          <%= react_md(rating.notes) %>
+        <% end %>
+        </section>
       <% end %>
     <% end %>
   </section>

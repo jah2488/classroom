@@ -1,0 +1,14 @@
+<p class='muted'>Students </p>
+<section>
+  <header>
+    <h2><%= t('.students') %></h2>
+  </header>
+  <ul class='list'>
+    <% students.each do |student| %>
+      <li><%= link_to student, student %></li>
+    <% end.empty? and begin %>
+      <p> No Students </p>
+    <% end %>
+  </ul>
+</section>
+

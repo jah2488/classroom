@@ -9,10 +9,10 @@ class DashboardController < ApplicationController
   private
   def filtered_assignments
     case params.fetch(:filter, 'all')
-    when 'incomplete' then Assignment.incomplete_for(current_student)
-    when 'complete'   then Assignment.complete_for(current_student)
-    when 'late'       then Assignment.late_for(current_student)
-    when 'all'        then Assignment.due_soon(current_student)
+    when 'incomplete' then Assignment.by_week(Assignment.incomplete_for(current_student))
+    when 'complete'   then Assignment.by_week(Assignment.complete_for(current_student))
+    when 'late'       then Assignment.by_week(Assignment.late_for(current_student))
+    when 'all'        then Assignment.by_week(Assignment.for(current_student))
     end
   end
 end

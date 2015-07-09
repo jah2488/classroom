@@ -1,0 +1,22 @@
+<p class='muted'>Adjustments </p>
+<section>
+  <header>
+    <h2><%= t('.adjustments') %></h2>
+  </header>
+  <table class='table table-hover'>
+    <thead>
+      <tr>
+        <th>State</th><th>Checkin</th><th>Student</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% adjustments.each do |adjustment| %>
+        <%= react_component('AdjustmentReview', { adjustment: adjustment,
+                                                  student_name: adjustment.checkin.student.name,
+                                                  checkin_status: adjustment.checkin.short_checkin_status},
+                            tag: :tr ) %>
+      <% end %>
+    </tbody>
+  </table>
+ </section>
+

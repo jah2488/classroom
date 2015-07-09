@@ -2,106 +2,20 @@
 <div class='row'>
   <div class='col-md-12'>
     <div class='row'>
-
       <div class='col-md-6'>
-        <p class='muted'>Submissions </p>
-        <section>
-          <header>
-            <h2><%= t('.submissions') %> (<%= submissions.count %>)</h2>
-          </header>
-          <ul class='list'>
-            <% submissions.group_by(&:assignment).each do |assignment, submissions| %>
-              <li>
-                <div class='assignment'>
-                  <%= link_to(assignment.title.titleize, assignment) %>
-                  <span style='float: right;'><%= react_time(assignment.due_date) %></span>
-                </div>
-                <ul class='submissions'>
-                  <% submissions.group_by(&:student).each do |student, submission| %>
-                    <%= link_to(student.name, student) %>
-                    <% submission.each do |submission| %>
-                      <li>
-                        <div class='row'>
-                          <div class='col-md-10 col-sm-10 col-xs-8'>
-                            <%= link_to submission, submission %>
-                          </div>
-                          <div class='col-md-2 col-sm-2 col-xs-4'>
-                            <%= react_component('MarkAsComplete', { submissionID: submission.id }) %>
-                          </div>
-                        </div>
-                      </li>
-                    <% end %>
-                  <% end %>
-                </ul>
-              </li>
-            <% end.empty? and begin %>
-              <p> No Submissions </p>
-            <% end %>
-          </ul>
-        </section>
-     </div>
+        <%= render partial: 'submissions', locals: { submissions: submissions } %>
+      </div>
       <div class='col-md-6'>
-        <p class='muted'>Attendance</p>
-        <section>
-          <header>
-            <h2><%= t('.attendance') %></h2>
-          </header>
-          <% if current_day %>
-            <h4>Current Day: <%= current_day.created_on %></h4>
-            <p class='muted'>Start:</p> <%= current_day.starts_at %>
-            <p class='muted'>Override:</p> <pre><code><%= current_day.override_code%></code></pre>
-            <p>Students in Attendance</p>
-            <ul class='list'>
-              <% current_day.checkins.each do |checkin| %>
-                <li>
-                  <p><%= checkin.checkin_status %> <%= link_to (checkin.student.name || checkin.student.email), checkin.student %></p>
-                </li>
-              <% end.empty? and begin %>
-                <p> No Students </p>
-              <% end %>
-            </ul>
-          <% else %>
-            No Current Day
-          <% end %>
-        </section>
+        <%= render partial: 'attendance',  locals: { current_day: current_day, cohort: cohort } %>
+        <%= render partial: 'adjustments', locals: { adjustments: adjustments } %>
       </div>
     </div>
     <div class='row'>
       <div class='col-md-6'>
-        <p class='muted'>Assignments</p>
-        <section>
-          <header>
-            <h2><%= t('.assignments') %></h2>
-          </header>
-          <div class='filters'>
-            <%= link_to "no op",      params.merge(filter: :all),      class: 'btn btn-primary' %>
-            <%= react_component('SearchAssignments', {}, tag: 'span' ) %>
-          </div>
-          <ul class='list'>
-            <% assignments.each do |assignment| %>
-              <li><%= link_to(assignment.title.titleize, assignment) %>
-              <span style='float: right;'><%= react_time(assignment.due_date) %></span></li>
-            <% end.empty? and begin %>
-              <p> No Assignments </p>
-            <% end %>
-          </ul>
-        </section>
-
+        <%= render partial: 'assignments', locals: { assignments: assignments } %>
       </div>
       <div class='col-md-6'>
-        <p class='muted'>Students </p>
-        <section>
-          <header>
-            <h2><%= t('.students') %></h2>
-          </header>
-          <ul class='list'>
-            <% students.each do |student| %>
-              <li><%= link_to student, student %></li>
-            <% end.empty? and begin %>
-              <p> No Students </p>
-            <% end %>
-          </ul>
-        </section>
+        <%= render partial: 'students', locals: { students: students } %>
       </div>
     </div>
   </div>

@@ -1,0 +1,28 @@
+<p class='muted'>Assignments</p>
+<section class='assignments'>
+  <header>
+    <h3>Assignments</h3>
+  </header>
+  <div class='filters'>
+    <%= link_to "View All",        params.merge(filter: :all),        class: 'btn btn-primary' %>
+    <%= link_to "View Incomplete", params.merge(filter: :incomplete), class: 'btn btn-default' %>
+    <%= link_to "View Complete",   params.merge(filter: :complete),   class: 'btn btn-default' %>
+    <%= link_to "View Late",       params.merge(filter: :late),       class: 'btn btn-default' %>
+    <%= react_component('SearchAssignments', {}, tag: 'span' ) %>
+  </div>
+  <ul class='list'>
+    <% weekly_assignments.each_with_index do |(week, assignments), index| %>
+      <li>
+        <h3>Week <%= ((index + 1) - weekly_assignments.count).abs + 1 %> (<%= react_time(week) %>)</h3>
+        <ul>
+          <% assignments.each do |assignment| %>
+            <li>
+              <%= render partial: 'assignment', locals: { assignment: assignment } %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+</section>
+

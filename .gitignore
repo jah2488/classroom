@@ -18,5 +18,8 @@
 
 *.swp
 
+.DS_Store
+
+/public/*.pdf
 # Ignore application configuration
 /config/application.yml

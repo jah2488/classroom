@@ -30,7 +30,7 @@ class SubmissionsController < ApplicationController
     if submission.update(submission_params)
       render json: submission
     else
-      render json: submission.errors, status: :unprocessible_entity
+      render json: submission.errors, status: :unprocessable_entity
     end
   end
 

@@ -1,0 +1,24 @@
+<p class='muted'>Adjustments</p>
+<section>
+  <table class='table table-hover'>
+    <thead>
+      <tr>
+        <th>State</th><th>Checkin</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% current_student.marked_checkins.each do |checkin| %>
+        <%= react_component('Adjustment', { adjustment: checkin.adjustment, checkin: checkin, checkin_status: checkin.checkin_status}, tag: 'tr') %>
+      <% end %>
+    </tbody>
+  </table>
+  <a class="btn btn-default btn-sm" data-toggle="collapse" href="#adjustment-info" aria-expanded="false" aria-controls="collapseExample"> What is this?</a>
+  <div id='adjustment-info' class='collapse' style='margin-top:10px;'>
+    <div class='well'>
+      <p class='muted'>If you forgot to checkin on a certain day, you can file and adjustment for review to remove that tardy or absence.</p>
+      <p class='muted'>Note: You only get <strong>5</strong> adjustment reviews a cohort.</p>
+    </div>
+  </div>
+
+</section>
+
