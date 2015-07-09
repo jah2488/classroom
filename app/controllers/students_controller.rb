@@ -35,7 +35,7 @@ class StudentsController < ApplicationController
     else
       student = Student.find(report[:student])
     end
-    render pdf: 'assessment', show_as_html: debug, locals: {
+    render pdf: 'assessment', show_as_html: debug, disposition: 'attachment', locals: {
                  debug: debug,
                  campus:                 report.fetch(:campus, current_instructor.current_cohort.location),
                  course:                 report.fetch(:course, current_instructor.current_cohort.name),

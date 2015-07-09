@@ -3,8 +3,7 @@
   <head>
     <meta charset='utf-8' />
     <%= wicked_pdf_stylesheet_link_tag "application" -%>
-    <link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
     <script>
         function getBinary(file) {
           var xhr = new XMLHttpRequest();
@@ -44,7 +43,7 @@
         }
         // When menu is clicked, load font file, encode it and inline to the doc <head>
         var loadFonts = function() {
-          var base64EncodedFont = base64Encode(getBinary("http://fonts.gstatic.com/s/patuaone/v6/yAXhog6uK3bd3OwBILv_SJBw1xU1rKptJj_0jans920.woff2"));
+          var base64EncodedFont = base64Encode(getBinary("https://fonts.gstatic.com/s/patuaone/v6/yAXhog6uK3bd3OwBILv_SJBw1xU1rKptJj_0jans920.woff2"));
           var fontCode = "@font-face { font-family: 'Patua One'; src: url('data:application/font-woff;base64," + base64EncodedFont + "') format('woff'); font-style: normal; font-weight: normal }";
           var styleElement = document.createElement("style");
           styleElement.type = "text/css";
