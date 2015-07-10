@@ -14,7 +14,7 @@ $orange: #d3ac9a;
 $yellow: #d3c89a;
 $teal: #9ad3c8;
 
-$primary: #9AA5D3;
+$primary: #00B5A4; //#9AA5D3;
 $complementary: $yellow;
 
 .notices {
@@ -112,8 +112,14 @@ textarea.form-control {
 }
 
 /* Ahhh bootstrap overrides */
+.btn.btn-default {
+  padding-left: 18px;
+  padding-right: 18px;
+}
 .btn-primary {
   background: $primary;
+  padding-left: 18px;
+  padding-right: 18px;
   border-color: darken($primary, 5%);
   &:hover {
     background: darken($primary, 15%);
