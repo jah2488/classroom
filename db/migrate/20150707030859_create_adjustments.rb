@@ -2,7 +2,7 @@ class CreateAdjustments < ActiveRecord::Migration
   def change
     create_table :adjustments do |t|
       t.belongs_to :checkin, index: true
-      t.string :state, default: 'OPEN'
+      t.string :state, default: 'OPENED'
 
       t.timestamps null: false
     end

@@ -1,7 +1,7 @@
 class Adjustment < ActiveRecord::Base
   belongs_to :checkin
 
-  OPEN     = 'OPEN'
+  OPEN     = 'OPENED'
   CLOSED   = 'CLOSED'
   ADJUSTED = 'ADJUSTED'
 

@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20150707213010) do
 
   create_table "adjustments", force: :cascade do |t|
     t.integer  "checkin_id"
-    t.string   "state",      default: "OPEN"
+    t.string   "state",      default: "OPENED"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
