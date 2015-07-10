@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :instructors
 
   get 'students/reports/assessment' => 'students#report', as: 'student_assessment'
-  get 'reports' => 'students#reports'
+  get 'reports' => 'students#reports', as: :reports
 
   authenticate :student do
     get 'dashboard' => 'dashboard#index'

@@ -1,6 +1,8 @@
 <div class='col-md-offset-2 col-md-8'>
   <h1> Student Assessment Form </h1>
-  <%= simple_form_for 'report', url: '/students/reports/assessment', method: :get, html: { class: 'form' } do |f| %>
+  <%= link_to('Manual Report', reports_path(manual: true), class: 'btn btn-default') unless params[:manual].present? %>
+  <%= link_to('Automated Report', reports_path(), class: 'btn btn-default') if params[:manual].present? %>
+<%= simple_form_for 'report', url: '/students/reports/assessment', method: :get, html: { class: 'form' } do |f| %>
 
     <% if params[:manual].present? %>
       <%= f.input :student %>
