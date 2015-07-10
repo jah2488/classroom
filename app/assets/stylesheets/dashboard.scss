@@ -48,15 +48,16 @@ section {
   display: inline-block;
   position: absolute;
   width: 150px;
+  margin: 10px 0;
 }
 .autocomplete-input {
   height: 33px;
+  width: 130px;
   margin-left: 4px;
 }
 
 .results {
   background: #fff;
-  border: 1px solid $section-border;
   border-top: 0;
   display: inline-block;
   left: 4px;
