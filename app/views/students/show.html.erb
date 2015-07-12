@@ -1,41 +1,44 @@
-<%= link_to 'Back', url_for(:back), class: 'btn btn-primary' %>
-<h1><%= student.name %> <%= image_tag avatar_url(student) %> </h1>
+<div class='row'>
+  <div class='col-md-offset-3 col-md-6'>
+    <%= image_tag avatar_url(student), class: 'center-block' %>
+    <h1 class='text-center'><%= student.name %></h1>
+      <ul>
+        <li>Github: <%= link_to student.github, "https://github.com/#{student.github}" %></li>
+        <li>Phone: <%= link_to student.phone, "tel://#{student.phone}" %></li>
+        <li>Blog: <%= link_to student.blog, student.blog %></li>
+        <li>Bio: <%= student.bio %></li>
+      </ul>
+    <%= link_to 'Edit', edit_profile_path(student),  class: 'btn btn-primary' %>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-12'>
+    <p class='muted'>Progress Info</p>
+    <section>
+      <ul>
+        <li>Tardies: <strong><%= student.tardies %></strong></li>
+        <li>Absences: <strong><%= student.absences %></strong></li>
+        <li>Total Assignments: <strong><%= student.cohort.assignments.count %></strong></li>
+        <li>Completed Assignments: <strong><%= student.completed_assignments.group_by(&:assignment).count %></strong></li>
+        <li>Total Submissions: <strong><%= student.submissions.count %></strong></li>
+      </ul>
+    </section>
 
-<p class='muted'>Progress Info</p>
-<section>
-  <ul>
-    <li>Tardies: <strong><%= student.tardies %></strong></li>
-    <li>Absences: <strong><%= student.absences %></strong></li>
-    <li>Total Assignments: <strong><%= student.cohort.assignments.count %></strong></li>
-    <li>Completed Assignments: <strong><%= student.completed_assignments.group_by(&:assignment).count %></strong></li>
-    <li>Total Submissions: <strong><%= student.submissions.count %></strong></li>
-  </ul>
-</section>
 
-<p class='muted'>Contact Info</p>
-<section>
-  <ul>
-    <li>Github: <%= link_to student.github, "https://github.com/#{student.github}" %></li>
-    <li>Phone: <%= link_to student.phone, "tel://#{student.phone}" %></li>
-    <li>Blog: <%= link_to student.blog, student.blog %></li>
-    <li>Bio: <%= student.bio %></li>
-  </ul>
-  <%= link_to 'Edit', edit_profile_path(student),  class:'btn btn-default' %>
-</section>
-
-<p class='muted'>Submissions</p>
-<section>
-  <% student.submissions.group_by(&:assignment).each do |assignment, submissions| %>
-    <ul>
-      <li>
-        <%= assignment.title %>
+    <p class='muted'>Submissions</p>
+    <section>
+      <% student.submissions.group_by(&:assignment).each do |assignment, submissions| %>
         <ul>
-          <% submissions.each do |submission| %>
-            <li><%= submission.label %> <%= link_to submission, submission %></li>
-          <% end %>
+          <li>
+            <%= assignment.title %>
+            <ul>
+              <% submissions.each do |submission| %>
+                <li><%= submission.label %> <%= link_to submission, submission %></li>
+              <% end %>
+            </ul>
+          </li>
         </ul>
-      </li>
-    </ul>
-  <% end %>
-</section>
-
+      <% end %>
+    </section>
+  </div>
+</div>
