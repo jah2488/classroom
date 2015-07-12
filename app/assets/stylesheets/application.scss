@@ -34,8 +34,18 @@ header {
     border-bottom: 5px solid darken($primary, 5%);
     background: $primary;
     color: white;
-    height: 80px;
-    padding-top: 20px;
+    height: 50px;
+    padding-top: 1px;
+
+    h3 {
+      margin-top: 12px;
+    }
+
+    &.main-header {
+      height: 80px;
+      padding-top: 20px;
+    }
+
     a {
       color: white;
     }
@@ -58,7 +68,11 @@ nav ul li {
 }
 
 ul.list {
-    padding-left:0;
+    padding-left: 0;
+
+    ul {
+      padding: 0;
+    }
 
     li, li {
         background: #fafafa;

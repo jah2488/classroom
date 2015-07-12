@@ -1,20 +1,24 @@
-<p class='muted'>Attendance</p>
 <section class='checkin'>
-  <div>
-    <% if current_day.has_checkin_for?(current_student) %>
-      <a class='btn btn-primary btn-lg full-width'>
-        <%= current_day.checkin_for(current_student).checkin_status.upcase %>
-      </a>
-      <%= react_component('Attendance', { tardies: current_student.tardies, absences: current_student.absences }) %>
-    <% else %>
-      <%= react_component('Checkin', { tardies: current_student.tardies, absences: current_student.absences }) %>
-    <% end %>
-  </div>
-  <a class="btn btn-default btn-sm" data-toggle="collapse" href="#attendance-info" aria-expanded="false" aria-controls="collapseExample"> What is this?</a>
-  <div id='attendance-info' class='collapse' style='margin-top:10px;'>
-    <div class='well'>
-      <p class='muted'>You <strong>must</strong> checkin every day to be considered present for that class.</p>
-      <p class='muted'>Checkin needs to occur before <%= current_day.late_at %> to not be considered tardy.</p>
+  <header>
+    <h3>Attendance</h3>
+  </header>
+  <div class='col-md-12'>
+    <div>
+      <% if current_day.has_checkin_for?(current_student) %>
+        <a class='btn btn-primary btn-lg full-width'>
+          <%= current_day.checkin_for(current_student).checkin_status.upcase %>
+        </a>
+        <%= react_component('Attendance', { tardies: current_student.tardies, absences: current_student.absences }) %>
+      <% else %>
+        <%= react_component('Checkin', { tardies: current_student.tardies, absences: current_student.absences }) %>
+      <% end %>
+    </div>
+    <a class="btn btn-default btn-sm" data-toggle="collapse" href="#attendance-info" aria-expanded="false" aria-controls="collapseExample"> What is this?</a>
+    <div id='attendance-info' class='collapse' style='margin-top:10px;'>
+      <div class='well'>
+        <p class='muted'>You <strong>must</strong> checkin every day to be considered present for that class.</p>
+        <p class='muted'>Checkin needs to occur before <%= current_day.late_at %> to not be considered tardy.</p>
+      </div>
     </div>
   </div>
 </section>
