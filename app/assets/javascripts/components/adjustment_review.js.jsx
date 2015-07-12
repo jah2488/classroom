@@ -6,9 +6,9 @@ var AdjustmentReview = React.createClass({
     render: function () {
         return (
             <tr>
-                <td>{this.state.adjustment.state}</td>
-                <td>{this.props.checkin_status}</td>
-                <td>{this.props.student_name}</td>
+                <td className={this.align()}>{this.state.adjustment.state}</td>
+                <td className={this.align()}>{this.props.checkin_status}</td>
+                <td className={this.align()}>{this.props.student_name}</td>
                 <td className='actions'>
                     {this.actions()}
                 </td>
@@ -16,8 +16,14 @@ var AdjustmentReview = React.createClass({
         );
     },
 
+    align: function () {
+        if (this.state.adjustment.state === 'OPENED') {
+            return 'align-middle';
+        }
+    },
+
     actions: function () {
-        if (this.state.adjustment.state === 'OPEN') {
+        if (this.state.adjustment.state === 'OPENED') {
             return (<span>
                     <a className='btn btn-xs btn-success' onClick={this.handleClick.bind(this, 'adjust')}>Adjust</a>
                     <a className='btn btn-xs btn-danger' onClick={this.handleClick.bind(this, 'close')}>Close</a>

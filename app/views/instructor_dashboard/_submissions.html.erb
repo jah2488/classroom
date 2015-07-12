@@ -1,7 +1,6 @@
-<p class='muted'>Submissions </p>
 <section>
   <header>
-    <h2><%= t('.submissions') %> (<%= submissions.count %>)</h2>
+    <h3><%= t('.submissions') %> (<%= submissions.count %>)</h3>
   </header>
   <ul class='list'>
     <% submissions.group_by(&:assignment).each do |assignment, submissions| %>

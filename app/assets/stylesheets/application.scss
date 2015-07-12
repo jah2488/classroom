@@ -125,6 +125,13 @@ textarea.form-control {
   padding-bottom: 20px;
 }
 
+$section-border: #c3c3c3;
+
+p.muted ~ section {
+  border: 1px solid $section-border;
+  padding: 15px;
+}
+
 /* Ahhh bootstrap overrides */
 .btn.btn-default {
   padding-left: 18px;
@@ -139,6 +146,10 @@ textarea.form-control {
     background: darken($primary, 15%);
     border-color: darken($primary, 20%);
   }
+}
+
+table > tbody > tr > td.align-middle {
+  vertical-align: middle;
 }
 
 .assignment .grade span.label {

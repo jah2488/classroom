@@ -1,10 +1,10 @@
 <%= render partial: 'dashboard/nav' %>
 <article>
   <header>
-    <h1><%= link_to submission.student.name, submission.student %>'s Submission for <%= link_to submission.assignment.title, submission.assignment %></h1>
-    <p><strong>Due: </strong> <%= react_time submission.assignment.due_date %>
-    <strong>Turned In: </strong> <%= react_time submission.created_at %></p>
+    <h3><%= link_to submission.student.name, submission.student %>'s Submission for <%= link_to submission.assignment.title, submission.assignment %></h3>
   </header>
+  <p><strong>Due: </strong> <%= react_time submission.assignment.due_date %>
+  <strong>Turned In: </strong> <%= react_time submission.created_at %></p>
 
   <% if can_edit?(submission) %>
     <%= react_component('EditSubmission', submission: submission) %>

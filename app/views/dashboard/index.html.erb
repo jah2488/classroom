@@ -21,7 +21,7 @@
   </div>
   <div class='col-md-pull-4 col-md-8'>
     <div class='row'>
-      <%= render partial: 'assignments', locals: { weekly_assignments: assignments } %>
+      <%= render partial: 'assignments', locals: { weekly_assignments: assignments, weekly_assignments_count: assignments.count } %>
     </div>
   </div>
 </div>

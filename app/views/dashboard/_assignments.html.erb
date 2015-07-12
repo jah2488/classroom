@@ -11,18 +11,18 @@
       <%= link_to "View Incomplete", params.merge(filter: :incomplete), class: 'btn btn-default' %>
       <%= link_to "View Complete",   params.merge(filter: :complete),   class: 'btn btn-default' %>
       <%= link_to "View Late",       params.merge(filter: :late),       class: 'btn btn-default' %>
-      <div>
+      <span class='hidden-xs'>
         <%= react_component('SearchAssignments', {}, tag: 'span' ) %>
-      </div>
+      </span>
     </div>
     <ul class='list'>
       <% weekly_assignments.each_with_index do |(week, assignments), index| %>
         <li>
-          <h3>Week <%= ((index + 1) - weekly_assignments.count).abs + 1 %> (<%= react_time(week) %>)</h3>
+          <h3>Week <%= week_number(weekly_assignments_count, index) %> (<%= react_time(week) %>)</h3>
           <ul class='assignments'>
             <% assignments.each do |assignment| %>
               <li>
-                <%= render partial: 'assignment', locals: { assignment: assignment } %>
+                <%= render partial: 'assignment', locals: { assignment: assignment, submissions: assignment.submissions_for(current_student) } %>
               </li>
             <% end %>
           </ul>

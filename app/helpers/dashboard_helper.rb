@@ -1,9 +1,7 @@
 module DashboardHelper
 
-  def feedback_label(submission)
-    if has_feedback?(submission)
-      as_label("Feedback")
-    end
+  def week_number(total, index)
+    ((index + 1) - total).abs + 1
   end
 
   def status_for(assignment, student)
