@@ -22,6 +22,7 @@ Location.distance = 0.1;
 
 var ready = function() {
   jQuery('.datetimepicker').datetimepicker();
+  $.material.init();
 
 
   if(_loggedIn && (Location.distance === undefined || Location.distance === 0)) {

@@ -1,0 +1,19 @@
+<div class="error">
+    <div class="message">
+      <h1><strong>Error!</strong> Sorry, but the server is currently experiencing problems.</h1>
+    </div>
+</div>
+<div class='reason'>
+  <strong><%= @error.cause.inspect %></strong>
+  <pre><%= [@error.file_name, @error.line_number].join(':') %></pre>
+  <pre><%= @error.source_extract %></pre>
+</div>
+<%= link_to 'Create New Issue For This Error',
+            'https://github.com/jah2488/classroom/issues/new?' + {
+              title: @error.cause.inspect,
+              body: [
+                '`' + [@error.file_name, @error.line_number].join(':') + '`',
+                '```',
+                @error.source_extract,
+                '```'].join("\n")
+            }.to_query, class: 'btn btn-primary' %>
