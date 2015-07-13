@@ -2,7 +2,7 @@
   <div class='col-md-offset-3 col-md-6'>
     <div class='row'>
       <div class='col-md-12'>
-        <%= image_tag avatar_url(student), class: 'center-block' %>
+        <%= image_tag avatar_url(student), class: 'center-block circle' %>
       </div>
     </div>
     <div class='row'>
@@ -32,7 +32,7 @@
       </div>
     </div>
 
-    <%= link_to 'Edit', edit_profile_path(student),  class: 'btn btn-primary' %>
+    <%= link_to 'Edit', edit_profile_path(student),  class: 'btn btn-primary' if current_student == student%>
   </div>
 </div>
 <div class='row'>
