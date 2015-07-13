@@ -186,6 +186,8 @@ GEM
     rails-assets-datetimepicker (2.4.3)
       rails-assets-jquery (>= 1.7.2)
     rails-assets-jquery (2.1.4)
+    rails-assets-jquery-flot (0.8.3)
+      rails-assets-jquery (>= 1.2.6)
     rails-assets-marked (0.3.3)
     rails-assets-moment (2.10.3)
     rails-assets-react (0.13.2)
@@ -322,6 +324,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.2.0)
   rails-assets-datetimepicker!
+  rails-assets-jquery-flot!
   rails-assets-marked!
   rails-assets-moment!
   rails-assets-react!

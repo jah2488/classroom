@@ -1,44 +1,150 @@
 <div class='row'>
   <div class='col-md-offset-3 col-md-6'>
-    <%= image_tag avatar_url(student), class: 'center-block' %>
-    <h1 class='text-center'><%= student.name %></h1>
-      <ul>
-        <li>Github: <%= link_to student.github, "https://github.com/#{student.github}" %></li>
-        <li>Phone: <%= link_to student.phone, "tel://#{student.phone}" %></li>
-        <li>Blog: <%= link_to student.blog, student.blog %></li>
-        <li>Bio: <%= student.bio %></li>
-      </ul>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= image_tag avatar_url(student), class: 'center-block' %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <h1 class='text-center'><%= student.name %></h1>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        Bio: <%= student.bio %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-8'>
+        Github: <%= link_to student.github, "https://github.com/#{student.github}" %>
+      </div>
+      <div class='col-md-4'>
+        Phone: <%= link_to student.phone, "tel://#{student.phone}" %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-8'>
+        Twitter <%= link_to student.twitter, student.twitter %>
+      </div>
+      <div class='col-md-4'>
+        Blog: <%= link_to truncate(student.blog, length: 23), student.blog %>
+      </div>
+    </div>
+
     <%= link_to 'Edit', edit_profile_path(student),  class: 'btn btn-primary' %>
   </div>
 </div>
 <div class='row'>
+  <div class='col-md-6'>
+    <section>
+      <header>
+        <h3>Badges</h3>
+      </header>
+      <p class='muted'>Badges go here...</p>
+    </section>
+  </div>
+  <div class='col-md-6'>
+    <section>
+      <header>
+        <h3>Stats</h3>
+      </header>
+      <table class='table table-hover'>
+        <thead>
+        </thead>
+        <tbody>
+          <tr>
+            <td class='align-middle'>Tardies</td><td><h3><%= student.tardies %></h3></td>
+          </tr>
+          <tr>
+            <td class='align-middle'>Absences</td><td><h3><%= student.absences %></h3></td>
+          </tr>
+          <tr>
+            <td class='align-middle'>Completed Assignments</td><td><h3><%= student.complete_percentage * 100%>%</h3></td>
+          </tr>
+          <tr>
+            <td class='align-middle'>Past Due Assignments</td><td><h3><%= student.past_due_count %></h3></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>
+<div class='row'>
   <div class='col-md-12'>
-    <p class='muted'>Progress Info</p>
-    <section>
-      <ul>
-        <li>Tardies: <strong><%= student.tardies %></strong></li>
-        <li>Absences: <strong><%= student.absences %></strong></li>
-        <li>Total Assignments: <strong><%= student.cohort.assignments.count %></strong></li>
-        <li>Completed Assignments: <strong><%= student.completed_assignments.group_by(&:assignment).count %></strong></li>
-        <li>Total Submissions: <strong><%= student.submissions.count %></strong></li>
-      </ul>
-    </section>
+    <!-- <div id='placeholder' style='width: 100%; height: 400px'></div> -->
+    <script>
+     //   //TODO: Move out of here ASAP.
+     // var td = <%= student.checkins.map.with_index { |x, i| [i, x.late? ? 1 : 0] } %>
+     // var ad = <%= student.checkins.map.with_index { |x, i| [i, x.absent? ? 2: 0] } %>
+     // var baroptions = {
+     //         grid : {
+     //                 borderWidth: 1,
+     //                 borderColor: '#eee',
+     //                 show : true,
+     //                 hoverable : true,
+     //                 clickable : true
+     //         },
+     //         yaxis: {
+     //             tickColor: '#eee',
+     //             tickDecimals: 0,
+     //             font :{
+     //                 lineHeight: 13,
+     //                 style: "normal",
+     //                 color: "#9f9f9f",
+     //             },
+     //             shadowSize: 0
+     //         },
+     //         xaxis: {
+     //             tickColor: '#fff',
+     //             tickDecimals: 0,
+     //             font :{
+     //                 lineHeight: 13,
+     //                 style: "normal",
+     //                 color: "#9f9f9f"
+     //             },
+     //             shadowSize: 0,
+     //         },
+     //         legend:{
+     //             container: '.flc-bar',
+     //             backgroundOpacity: 0.5,
+     //             noColumns: 0,
+     //             backgroundColor: "white",
+     //             lineWidth: 0
+     //         }
+     // }
+     // var options = {
+     //     series: {
+     //         shadowSize: 0,
+     //           lines: {
+     //             show: false,
+     //             lineWidth: 0,
+     //           },
+     //     },
+     //     grid: {
+     //         borderWidth: 0,
+     //         labelMargin:10,
+     //         hoverable: true,
+     //         clickable: true,
+     //         mouseActiveRadius:6,
+     //     },
+     //     xaxis: {
+     //         tickDecimals: 0,
+     //         ticks: true
+     //     },
+     //     yaxis: {
+     //         tickDecimals: 0,
+     //         ticks: true
+     //     },
+     //     legend: {
+     //         show: true
+     //     }
+     // };
 
-
-    <p class='muted'>Submissions</p>
-    <section>
-      <% student.submissions.group_by(&:assignment).each do |assignment, submissions| %>
-        <ul>
-          <li>
-            <%= assignment.title %>
-            <ul>
-              <% submissions.each do |submission| %>
-                <li><%= submission.label %> <%= link_to submission, submission %></li>
-              <% end %>
-            </ul>
-          </li>
-        </ul>
-      <% end %>
-    </section>
+     // $.plot($('#placeholder'), [
+     //         {data: td, bars: { show: true, fill: 0.98, color: '#00BCD4'}, label: 'tardies' },
+     //         {data: ad, bars: { show: true, fill: 0.98, color: '#f1dd2c'}, label: 'absences'}
+     // ], baroptions);
+    </script>
   </div>
 </div>

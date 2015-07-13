@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707213010) do
+ActiveRecord::Schema.define(version: 20150713211204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "adjustments", force: :cascade do |t|
     t.integer  "checkin_id"
-    t.string   "state",      default: "OPENED"
+    t.string   "state",      default: "OPEN"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20150707213010) do
     t.integer  "submission_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.boolean  "read"
   end
 
   add_index "ratings", ["submission_id"], name: "index_ratings_on_submission_id", using: :btree
@@ -135,6 +136,7 @@ ActiveRecord::Schema.define(version: 20150707213010) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "twitter"
   end
 
   add_index "students", ["cohort_id"], name: "index_students_on_cohort_id", using: :btree

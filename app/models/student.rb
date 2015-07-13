@@ -28,6 +28,14 @@ class Student < ActiveRecord::Base
     submissions.where(completed: true)
   end
 
+  def complete_percentage
+    completed_assignments.group_by(&:assignment).count.to_f / cohort.assignments.count.to_f
+  end
+
+  def past_due_count
+    Assignment.late_for(self).count
+  end
+
   def to_s
     "#{(name || email)} | tardies: #{tardies} | absences: #{absences} | submissions: #{submissions.count}"
   end

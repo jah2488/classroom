@@ -8,6 +8,7 @@
 //= require marked
 //= require moment
 //= require datetimepicker
+//= require jquery-flot
 //
 //= require location
 //= require react
