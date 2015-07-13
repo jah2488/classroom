@@ -31,6 +31,7 @@ gem 'wkhtmltopdf-binary', group: :development
 gem 'wkhtmltopdf-heroku', group: :production
 
 gem 'mandrill_dm'
+gem 'exception_notification'
 
 group :test, :development do
   gem 'byebug'

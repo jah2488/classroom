@@ -1,3 +1,10 @@
+Rails.application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[CLASSROOM ERROR] ",
+    :sender_address => %{"notifier" <notifier@tiy-classroom.herokuapp.com>},
+    :exception_recipients => %w{justin@theironyard.com}
+}
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -55,6 +62,8 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   config.action_mailer.delivery_method = :mandrill
+  config.action_mailer.perform_deliveries = true
+
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
