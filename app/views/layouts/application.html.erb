@@ -27,6 +27,7 @@
             <ul class="dropdown-menu" style='left: -87px;' role="menu" aria-labelledby="dropdownMenu1">
             <% if student_signed_in? %>
               <li role="presentation"><%= link_to('Dashboard', dashboard_path) %></li>
+              <li role="presentation"><%= link_to('Cohort', my_cohort_path)%></li>
               <li role="presentation"><%= link_to('Profile', profile_path(current_student)) %></li>
               <li role="presentation" class="divider"></li>
               <li role="presentation"><%= link_to('Logout', destroy_student_session_path, class: 'danger', method: :delete) %></li>
@@ -47,6 +48,7 @@
           <ul class='nav nav-pills pull-right'>
             <% if student_signed_in? %>
               <li><%= link_to('Dashboard', dashboard_path) %></li>
+              <li><%= link_to('Cohort', my_cohort_path)%></li>
               <li><%= link_to('Profile', profile_path(current_student)) %></li>
               <li><%= link_to('Logout', destroy_student_session_path, class: 'danger', method: :delete) %></li>
             <% else %>

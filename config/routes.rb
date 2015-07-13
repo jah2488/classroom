@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   authenticate :student do
     get 'dashboard' => 'dashboard#index'
-    get 'my-cohort' => 'dashboard#cohort'
+    get 'my-cohort' => 'dashboard#cohort', as: 'my_cohort'
 
     resources :submissions
     resources :checkins
