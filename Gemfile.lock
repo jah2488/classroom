@@ -41,11 +41,6 @@ GEM
     autoprefixer-rails (5.1.7)
       execjs
       json
-    aws-sdk (1.63.0)
-      aws-sdk-v1 (= 1.63.0)
-    aws-sdk-v1 (1.63.0)
-      json (~> 1.4)
-      nokogiri (>= 1.4.4)
     bcrypt (3.1.10)
     binding.repl (3.0.0)
     binding_of_caller (0.7.2)
@@ -57,11 +52,7 @@ GEM
     byebug (4.0.4)
       columnize (= 0.9.0)
     cd (1.0.0)
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
     clipboard (1.0.6)
-    cocaine (0.5.7)
-      climate_control (>= 0.0.3, < 1.0)
     code (0.9.0)
       coderay (~> 1.1)
       method_source (~> 0.8, >= 0.8.2)
@@ -91,6 +82,7 @@ GEM
     erubis (2.7.0)
     every_day_irb (2.0.0)
       cd (~> 1.0)
+    excon (0.45.3)
     execjs (2.4.0)
     faker (1.4.3)
       i18n (~> 0.5)
@@ -147,6 +139,11 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mandrill-api (1.0.53)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
+    mandrill_dm (1.2.0)
+      mandrill-api (~> 1.0.53)
     method_locator (0.0.4)
     method_source (0.8.2)
     methodfinder (2.0.0)
@@ -160,11 +157,6 @@ GEM
     orm_adapter (0.5.0)
     os (0.9.6)
     paint (1.0.0)
-    paperclip (4.2.1)
-      activemodel (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      cocaine (~> 0.5.3)
-      mime-types
     pg (0.18.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -307,7 +299,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk (< 2.0)
   bootstrap-sass
   byebug
   devise
@@ -320,7 +311,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   kramdown
-  paperclip (~> 4.2)
+  mandrill_dm
   pg
   pry
   puma
