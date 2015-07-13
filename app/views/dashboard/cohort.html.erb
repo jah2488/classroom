@@ -1,0 +1,24 @@
+<div class='row'>
+  <div class='col-md-12'>
+    <h2><%= current_student.cohort.name %><br/><small><%= current_student.cohort.location %></h2>
+      <h4>On Day <%= current_student.cohort.days.count + 1 %></h4>
+  </div>
+<div class='row'>
+  <div class='col-md-offset-3 col-md-6'>
+    <h2>Students</h2>
+    <div class="list-group">
+      <% students.each do |student| %>
+        <div class="list-group-item">
+            <div class="row-picture">
+                <%= image_tag avatar_url(student), class: 'circle' %>
+            </div>
+            <div class="row-content">
+              <h4 class="list-group-item-heading"><%= link_to student.name, student %></h4>
+              <p class="list-group-item-text">Last Active <%= react_time(student.last_active_at) %></p>
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+      <% end %>
+    </div>
+  </div>
+</div>

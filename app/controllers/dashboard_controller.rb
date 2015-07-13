@@ -6,6 +6,12 @@ class DashboardController < ApplicationController
     }
   end
 
+  def cohort
+    render locals: {
+      students: current_student.cohort.students
+    }
+  end
+
   private
   def filtered_assignments
     case params.fetch(:filter, 'all')

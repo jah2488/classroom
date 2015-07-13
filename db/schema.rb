@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713211204) do
+ActiveRecord::Schema.define(version: 20150713222424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(version: 20150713211204) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "twitter"
+    t.datetime "last_active_at"
   end
 
   add_index "students", ["cohort_id"], name: "index_students_on_cohort_id", using: :btree
