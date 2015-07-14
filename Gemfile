@@ -33,6 +33,10 @@ gem 'wkhtmltopdf-heroku', group: :production
 gem 'mandrill_dm'
 gem 'exception_notification'
 
+gem 'refile', require: 'refile/rails'
+gem 'refile-mini_magick'
+gem 'refile-postgres'
+
 group :test, :development do
   gem 'byebug'
   gem 'pry'

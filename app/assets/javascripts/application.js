@@ -23,7 +23,8 @@ Location.distance = 0.1;
 
 var ready = function() {
   jQuery('.datetimepicker').datetimepicker();
-  $.material.init();
+  jQuery.material.init();
+  jQuery('[data-toggle="popover"]').popover();
 
 
   if(_loggedIn && (Location.distance === undefined || Location.distance === 0)) {

@@ -5,3 +5,44 @@
 .circle {
   border-radius: 100%;
 }
+
+.student-badge {
+  cursor: pointer;
+  height: auto;
+  width: 100px;
+}
+
+.tint {
+  background: #ccc;
+  display: inline-block;
+
+  img {
+    opacity: .10;
+    transition: opacity .2s ease, box-shadow .28s cubic-bezier(.4,0,.2,1);
+    &:hover {
+      opacity: .20;
+      transition: opacity .2s ease, box-shadow .28s cubic-bezier(.4,0,.2,1);
+    }
+    &:active {
+      opacity: .30;
+      transition: opacity .2s ease, box-shadow .28s cubic-bezier(.4,0,.2,1);
+    }
+  }
+}
+
+.badges {
+  padding-top: 20px;
+  span {
+    margin-bottom: 10px;
+  }
+}
+
+.popover {
+  padding: 0;
+}
+.popover-title {
+  background: darken(rgba(101, 101, 101, .9), 20%);
+  border: 0;
+  border-radius: 0;
+  font-weight: bold;
+}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713222424) do
+ActiveRecord::Schema.define(version: 20150714022853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(version: 20150713222424) do
   end
 
   add_index "assignments", ["cohort_id"], name: "index_assignments_on_cohort_id", using: :btree
+
+  create_table "badges", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "icon_image_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "checkins", force: :cascade do |t|
     t.integer  "student_id"
@@ -112,6 +120,12 @@ ActiveRecord::Schema.define(version: 20150713222424) do
   end
 
   add_index "ratings", ["submission_id"], name: "index_ratings_on_submission_id", using: :btree
+
+  create_table "refile_attachments", force: :cascade do |t|
+    t.string "namespace", null: false
+  end
+
+  add_index "refile_attachments", ["namespace"], name: "index_refile_attachments_on_namespace", using: :btree
 
   create_table "students", force: :cascade do |t|
     t.string   "name"

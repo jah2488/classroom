@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :instructors, only: [:show, :edit, :update]
     resources :ratings, only: [:create, :update]
     resources :tags, only: :create
+    resources :badges, except: :index
 
     patch 'submissions/:id/complete'   => 'submissions#mark_complete',   as: 'mark_submission_complete'
     patch 'submissions/:id/unfinished' => 'submissions#mark_unfinished', as: 'mark_submission_unfinished'
