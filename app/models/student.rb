@@ -29,7 +29,7 @@ class Student < ActiveRecord::Base
   end
 
   def complete_percentage
-    completed_assignments.group_by(&:assignment).count.to_f / cohort.assignments.count.to_f
+    (completed_assignments.group_by(&:assignment).count.to_f / cohort.assignments.count.to_f).round(1)
   end
 
   def past_due_count
