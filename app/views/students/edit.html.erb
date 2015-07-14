@@ -1,15 +1,6 @@
 <%= link_to 'Back', url_for(:back), class: 'btn btn-primary' %>
 <h1><%= student.name %></h1>
 
-<p class='muted'>Progress Info</p>
-<section>
-  <ul>
-    <li>Tardies: <%= student.tardies %></li>
-    <li>Absences: <%= student.absences %></li>
-    <li>Completed Assignments / Submissions / Total Assignments: <%= student.completed_assignments.count %>/<%= student.submissions.count %>/<%= student.cohort.assignments.count %></li>
-  </ul>
-</section>
-
 <p class='muted'>Contact Info</p>
 <section>
   <%= simple_form_for(student) do |f| %>
@@ -17,6 +8,7 @@
       <%= f.input :name %>
       <%= f.input :github, hint: 'Not the full url just your profile name' %>
       <%= f.input :phone %>
+      <%= f.input :twitter %>
       <%= f.input :blog, as: :url %>
       <%= f.input :bio, as: :text %>
     </div>
