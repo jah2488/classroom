@@ -4,8 +4,7 @@
     </div>
 </div>
 <div class='reason'>
-  <%= @error ||= StandardError.new %>
-  <% if @error.respond_to?(:cause) %>
+  <% if @error && @error.respond_to?(:cause) && @error.respond_to?(:file_name) %>
     <strong><%= @error.cause.inspect %></strong>
     <pre><%= [@error.file_name, @error.line_number].join(':') %></pre>
     <pre><%= @error.source_extract %></pre>
