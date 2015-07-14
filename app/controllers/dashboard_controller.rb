@@ -8,7 +8,7 @@ class DashboardController < ApplicationController
 
   def cohort
     render locals: {
-      students: current_student.cohort.students.order('last_active_at')
+      students: current_student.cohort.students.order(last_active_at: :DESC)
     }
   end
 
