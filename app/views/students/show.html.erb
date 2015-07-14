@@ -25,7 +25,7 @@
     </div>
     <div class='row'>
       <div class='col-md-8'>
-        Twitter <%= link_to student.twitter, student.twitter %>
+        Twitter <%= link_to student.twitter, "https://twitter.com/#{student.twitter}" %>
       </div>
       <div class='col-md-4'>
         Blog: <%= link_to truncate(student.blog, length: 23), student.blog %>
