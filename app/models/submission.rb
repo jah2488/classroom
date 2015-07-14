@@ -2,6 +2,8 @@ class Submission < ActiveRecord::Base
   belongs_to :student
   belongs_to :assignment
   has_many :ratings
+  has_many :submission_badges
+  has_many :badges, through: :submission_badges
 
   PENDING = 1
   # wat ^ aren't these the same?

@@ -5,6 +5,7 @@ class Student < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :cohort
   has_many :submissions
+  has_many :badges, through: :submissions
   has_many :checkins
   has_many :adjustments, through: :checkins
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714022853) do
+ActiveRecord::Schema.define(version: 20150714040411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,6 +158,16 @@ ActiveRecord::Schema.define(version: 20150714022853) do
   add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree
   add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
 
+  create_table "submission_badges", force: :cascade do |t|
+    t.integer  "badge_id"
+    t.integer  "submission_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "submission_badges", ["badge_id"], name: "index_submission_badges_on_badge_id", using: :btree
+  add_index "submission_badges", ["submission_id"], name: "index_submission_badges_on_submission_id", using: :btree
+
   create_table "submissions", force: :cascade do |t|
     t.string   "link"
     t.text     "notes"
@@ -189,6 +199,8 @@ ActiveRecord::Schema.define(version: 20150714022853) do
   add_foreign_key "days", "cohorts"
   add_foreign_key "ratings", "submissions"
   add_foreign_key "students", "cohorts"
+  add_foreign_key "submission_badges", "badges"
+  add_foreign_key "submission_badges", "submissions"
   add_foreign_key "submissions", "assignments"
   add_foreign_key "submissions", "students"
 end

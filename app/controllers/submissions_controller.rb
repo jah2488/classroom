@@ -48,6 +48,8 @@ class SubmissionsController < ApplicationController
     submission = Submission.find(params[:id])
     submission.completed = completed
     submission.state = Submission::GRADED
+    badge_ids  = params.fetch(:badge_ids, []).reject { |_, v| v == 'false' }.map { |(k, _)| k.split('-').last }
+    submission.badge_ids = badge_ids
     submission.save!
 
     rating = Rating.new
@@ -59,7 +61,7 @@ class SubmissionsController < ApplicationController
   end
 
   def submission_params
-    params.require(:submission).permit(:assignment_id, :link, :notes)
+    params.require(:submission).permit(:assignment_id, :link, :notes, :badge_ids)
   end
 
 end

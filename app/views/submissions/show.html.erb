@@ -11,7 +11,6 @@
   <% else %>
     <%= react_component('Submission', submission: submission) %>
   <% end %>
-
   <p class='muted'>Status</p>
   <section>
     <h4><%= submission.status %></h4>
@@ -31,7 +30,8 @@
 
   <h1></h1>
   <% if current_instructor %>
-    <%= react_component('GradeSubmissionForm', { submissionID: submission.id,
+    <%= react_component('GradeSubmissionForm', { badges: Badge.all.map { |x| x.attributes.merge({ icon_image: attachment_url(x, :icon_image, :fill, 100, 100, format: :png)}) },
+                                                 submissionID: submission.id,
                                                  nextForStudent: next_submission_url_for_student(submission),
                                                  nextForAssignment: next_submission_url_for_assignment(submission)}) %>
   <% end %>
