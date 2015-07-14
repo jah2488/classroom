@@ -13,7 +13,8 @@ class Student < ActiveRecord::Base
 
   def marked_checkins
     c = Checkin.arel_table
-    checkins.where(c[:late].eq(true).or(
+    checkins.includes(:adjustment)
+            .where(c[:late].eq(true).or(
                    c[:absent].eq(true)))
   end
 

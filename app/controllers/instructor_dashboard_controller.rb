@@ -10,7 +10,7 @@ class InstructorDashboardController < ApplicationController
   private
   def render_with_cohort
     cohort      = current_instructor.current_cohort
-    students    = cohort.students
+    students    = cohort.students.includes(:adjustments)
     assignments = cohort.assignments.order('due_date DESC')
     submissions = Submission.ungraded_for(cohort)
     adjustments = students.flat_map(&:adjustments)

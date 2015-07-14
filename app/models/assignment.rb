@@ -17,7 +17,7 @@ class Assignment < ActiveRecord::Base
   end
 
   def self.for(student)
-    where(cohort_id: student.cohort_id).order('due_date DESC')
+    where(cohort_id: student.cohort_id).includes(:submissions).order('due_date DESC')
   end
 
   def self.late_for(student)
@@ -33,7 +33,7 @@ class Assignment < ActiveRecord::Base
   end
 
   def submissions_for(student)
-    submissions.where(student_id: student.id).order('created_at ASC')
+    submissions.includes(:ratings).where(student_id: student.id).order('created_at ASC')
   end
 
   def completed_by?(student)

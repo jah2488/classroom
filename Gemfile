@@ -42,6 +42,7 @@ gem 'refile-mini_magick'
 gem 'refile-postgres'
 
 group :test, :development do
+  gem 'bullet'
   gem 'byebug'
   gem 'pry'
   gem 'web-console', '~> 2.0'
