@@ -2,6 +2,7 @@ class Day < ActiveRecord::Base
   belongs_to :cohort
   has_many :checkins
   has_many :students, through: :checkins
+  validates :start, presence: true
 
   def self.for(cohort)
     where(cohort_id: cohort.id)
@@ -9,6 +10,10 @@ class Day < ActiveRecord::Base
 
   def self.current_for(cohort)
     self.for(cohort).last
+  end
+
+  def to_s
+    self.start.strftime("%b %e, %y")
   end
 
   def unaccounted_for_students
@@ -33,6 +38,10 @@ class Day < ActiveRecord::Base
 
   def created_on
     created_at.strftime("%A, %B #{created_at.day.ordinalize}")
+  end
+
+  def start_time
+    start.to_time
   end
 
   def present?(student)
