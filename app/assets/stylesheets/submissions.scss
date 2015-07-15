@@ -8,3 +8,25 @@
     margin-right: 10px;
   }
 }
+
+input[type='checkbox'] {
+  display: none;
+}
+
+input[type='checkbox'] ~ label:hover {
+  border-radius: 100%;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  transition: all .1s ease-out;
+}
+
+input[type='checkbox'] ~ label {
+  transition: all .1s ease-out;
+}
+
+input[type='checkbox']:checked ~ label {
+  border-radius: 100%;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  transition: all .2s ease-out;
+}
+
+
