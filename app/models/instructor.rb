@@ -9,4 +9,8 @@ class Instructor < ActiveRecord::Base
   def current_cohort
     cohorts.last
   end
+
+  def has_office_hours?
+    office_hours_start != nil && office_hours_end != nil
+  end
 end

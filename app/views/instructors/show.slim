@@ -1,0 +1,9 @@
+p = @instructor.name
+p = @instructor.phone
+p
+  - if @instructor.has_office_hours?
+    = @instructor.office_hours_start.strftime("%H:%M")
+    '  to
+    = @instructor.office_hours_end.strftime("%H:%M")
+  - else
+    | No office hours set
