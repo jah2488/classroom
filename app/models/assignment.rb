@@ -29,7 +29,7 @@ class Assignment < ActiveRecord::Base
   end
 
   def self.complete_for(student)
-    Assignment.for(student).where(submissions: { completed: true }).uniq
+    Assignment.for(student).where(submissions: { student_id: student.id, completed: true }).uniq
   end
 
   def submissions_for(student)
