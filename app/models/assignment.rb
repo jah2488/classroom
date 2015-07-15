@@ -5,31 +5,31 @@ class Assignment < ActiveRecord::Base
   has_many :tags, through: :assignment_tags
 
   def self.by_week(records)
-    records.group_by { |assignment| assignment.due_date.beginning_of_week}
-  end
-
-  def self.current_for(student)
-    self.for(student).reject(&:late?).first
+    records.group_by { |assignment| assignment.due_date.beginning_of_week }
   end
 
   def self.search(query)
     where(arel_table[:title].matches("%#{query}%"))
   end
 
+  def self.current_for(student)
+    self.for(student).not_late.first
+  end
+
   def self.for(student)
-    where(cohort_id: student.cohort_id).includes(:submissions).order('due_date DESC')
+    where(cohort_id: student.cohort_id).includes(:submissions)
   end
 
   def self.late_for(student)
-    self.for(student).select(&:late?) - student.submissions.flat_map(&:assignment)
+    self.for(student).late - student.assignments
   end
 
   def self.incomplete_for(student)
-    self.for(student).reject { |x| x.completed_by?(student) }
+    Assignment.for(student) - Assignment.complete_for(student)
   end
 
   def self.complete_for(student)
-    self.for(student).select { |x| x.completed_by?(student) }
+    Assignment.for(student).where(submissions: { completed: true }).uniq
   end
 
   def submissions_for(student)
@@ -49,8 +49,12 @@ class Assignment < ActiveRecord::Base
     student_submissions.where(submissions[:completed].eq(true)).count == 0
   end
 
-  def late?
-    Time.now > due_date
+  def self.not_late
+    where(Assignment.arel_table[:due_date].gt(Time.zone.now))
+  end
+
+  def self.late
+    where(Assignment.arel_table[:due_date].lt(Time.zone.now))
   end
 
   def to_s
