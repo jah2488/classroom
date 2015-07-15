@@ -6,6 +6,7 @@ class Student < ActiveRecord::Base
   belongs_to :cohort
   has_many :submissions
   has_many :assignments, -> { uniq }, through: :submissions
+  has_many :complete_assignments, -> { where(submissions: { completed: true }).uniq }, through: :submissions, source: :assignment
   has_many :badges, through: :submissions
   has_many :checkins
   has_many :adjustments, through: :checkins
@@ -17,6 +18,11 @@ class Student < ActiveRecord::Base
     checkins.includes(:adjustment)
             .where(c[:late].eq(true).or(
                    c[:absent].eq(true)))
+  end
+
+  def badge_list
+    @badges ||= badges
+    [@badges, Badge.all - @badges]
   end
 
   def tardies
@@ -32,7 +38,7 @@ class Student < ActiveRecord::Base
   end
 
   def complete_percentage
-    (completed_assignments.group_by(&:assignment).count.to_f / cohort.assignments.count.to_f).round(1)
+    (complete_assignments.count.to_f / cohort.assignments.count.to_f).round(2)
   end
 
   def past_due_count
