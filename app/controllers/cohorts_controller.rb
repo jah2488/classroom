@@ -11,6 +11,10 @@ class CohortsController < ApplicationController
     }
   end
 
+  def index
+    @cohorts = Cohort.all
+  end
+
   def create
     cohort = Cohort.new(cohort_params)
     cohort.instructor = current_instructor

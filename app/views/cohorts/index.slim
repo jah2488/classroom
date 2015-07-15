@@ -1,0 +1,12 @@
+table.table.table-hover
+  thead
+      tr
+        th Name
+        th Location
+        th Instructor
+  tbody
+    - @cohorts.each do |cohort|
+      tr
+        td = cohort.name.titleize
+        td = cohort.location
+        td = link_to cohort.instructor.name, cohort.instructor
