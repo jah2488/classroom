@@ -13,7 +13,7 @@ class Day < ActiveRecord::Base
   end
 
   def to_s
-    self.start.strftime("%b %e, %y")
+    self.start.strftime("%b %e, %y") if start
   end
 
   def unaccounted_for_students
@@ -25,7 +25,7 @@ class Day < ActiveRecord::Base
   end
 
   def starts_at
-    start_time.strftime("%I:%M%p")
+    start.strftime("%I:%M%p") if start
   end
 
   def late_at
@@ -33,15 +33,23 @@ class Day < ActiveRecord::Base
   end
 
   def late_time
-    (start_time + 15.minutes)
+    (start + 15.minutes)
   end
 
   def created_on
     created_at.strftime("%A, %B #{created_at.day.ordinalize}")
   end
 
+  #remain until prod is migrated
+  def start
+    return read_attribute(:start) if read_attribute(:start)
+    read_attribute(:start_time).to_datetime if read_attribute(:start_time)
+  end
+
+  #deprecated
   def start_time
-    start.to_time
+    return read_attribute(:start_time) if read_attribute(:start_time)
+    start.to_time if read_attribute(:start)
   end
 
   def present?(student)
