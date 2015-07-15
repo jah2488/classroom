@@ -12,12 +12,12 @@ class Assignment < ActiveRecord::Base
     where(arel_table[:title].matches("%#{query}%"))
   end
 
-  def self.current_for(student)
-    self.for(student).not_late.first
-  end
-
   def self.for(student)
     where(cohort_id: student.cohort_id).includes(:submissions).order(due_date: :DESC)
+  end
+
+  def self.current_for(student)
+    self.for(student).not_late.first
   end
 
   def self.late_for(student)
@@ -25,11 +25,19 @@ class Assignment < ActiveRecord::Base
   end
 
   def self.incomplete_for(student)
-    Assignment.for(student) - Assignment.complete_for(student)
+    self.for(student) - Assignment.complete_for(student)
   end
 
   def self.complete_for(student)
-    Assignment.for(student).where(submissions: { student_id: student.id, completed: true }).uniq
+    self.for(student).where(submissions: { student_id: student.id, completed: true }).uniq
+  end
+
+  def self.not_late
+    where(Assignment.arel_table[:due_date].gt(Time.zone.now))
+  end
+
+  def self.late
+    where(Assignment.arel_table[:due_date].lt(Time.zone.now))
   end
 
   def submissions_for(student)
@@ -47,14 +55,6 @@ class Assignment < ActiveRecord::Base
                               submissions[:completed].eq(false)
                                 .or(submissions[:completed].eq(nil))).count > 0 &&
     student_submissions.where(submissions[:completed].eq(true)).count == 0
-  end
-
-  def self.not_late
-    where(Assignment.arel_table[:due_date].gt(Time.zone.now))
-  end
-
-  def self.late
-    where(Assignment.arel_table[:due_date].lt(Time.zone.now))
   end
 
   def late?
