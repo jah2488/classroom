@@ -17,7 +17,7 @@ class Assignment < ActiveRecord::Base
   end
 
   def self.for(student)
-    where(cohort_id: student.cohort_id).includes(:submissions)
+    where(cohort_id: student.cohort_id).includes(:submissions).order(due_date: :DESC)
   end
 
   def self.late_for(student)
