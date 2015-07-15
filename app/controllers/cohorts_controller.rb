@@ -26,6 +26,6 @@ class CohortsController < ApplicationController
   private
 
   def cohort_params
-    params.require(:cohort).permit(:name, :location, :latitude, :longitude)
+    params.require(:cohort).permit(:name, :location, :latitude, :longitude, :first_day)
   end
 end
