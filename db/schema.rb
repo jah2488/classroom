@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715222527) do
+ActiveRecord::Schema.define(version: 20150715231308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,12 @@ ActiveRecord::Schema.define(version: 20150715222527) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "campus", force: :cascade do |t|
+    t.string "name"
+    t.float  "latitude"
+    t.float  "longitude"
+  end
+
   create_table "checkins", force: :cascade do |t|
     t.integer  "student_id"
     t.boolean  "late",       default: false
@@ -68,13 +74,11 @@ ActiveRecord::Schema.define(version: 20150715222527) do
 
   create_table "cohorts", force: :cascade do |t|
     t.string   "name"
-    t.string   "location"
     t.integer  "instructor_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.float    "latitude"
-    t.float    "longitude"
     t.datetime "first_day"
+    t.integer  "campus_id"
   end
 
   add_index "cohorts", ["instructor_id"], name: "index_cohorts_on_instructor_id", using: :btree

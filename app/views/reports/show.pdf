@@ -85,9 +85,6 @@
           <p class='text-right'><%= @report.campus_name %></p>
 
           <h4 class='text-right'>Course</h4>
-          <p class='text-right'><%= @report.course_name %></p>
-
-          <h4 class='text-right'>Session</h4>
           <p class='text-right'><%= @report.cohort_name %></p>
 
           <h4 class='text-right'>Instructor</h4>

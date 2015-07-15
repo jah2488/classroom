@@ -8,11 +8,7 @@ class Report < ActiveRecord::Base
   }
 
   def campus_name
-    day.cohort.location
-  end
-
-  def course_name
-    day.cohort.name
+    day.cohort.campus.name
   end
 
   def cohort_name
