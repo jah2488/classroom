@@ -4,24 +4,22 @@
     <div class='col-xs-8  col-sm-3'><h5><%= react_time(assignment.due_date) %></h5></div>
     <div class='grade col-xs-2'><%= status_for(assignment, current_student) %></div>
   </div>
-  <% if submissions.count > 1 %>
-    <div class='row'>
-      <div class='col-sm-12'>
-        <ul class='submissions'>
-        <% submissions.each do |submission| %>
-          <li>
-            <div class='submission'>
-              <div class='row'>
-                <div class='col-sm-10'>
-                  Submitted <%= react_time submission.created_at %> <%= link_to "View Submission #{' And Feedback' if has_feedback?(submission)}", submission %>
-                </div>
+  <div class='row'>
+    <div class='col-sm-12'>
+      <ul class='submissions'>
+      <% submissions.each do |submission| %>
+        <li>
+          <div class='submission'>
+            <div class='row'>
+              <div class='col-sm-10'>
+                Submitted <%= react_time submission.created_at %> <%= link_to "View Submission #{' And Feedback' if has_feedback?(submission)}", submission %>
               </div>
             </div>
-        </li>
-        <% end %>
-        </ul>
-      </div>
+          </div>
+      </li>
+      <% end %>
+      </ul>
     </div>
-  <% end %>
+  </div>
 </div>
 

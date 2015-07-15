@@ -22,7 +22,10 @@
           <ul class='assignments'>
             <% assignments.each do |assignment| %>
               <li>
-                <%= render partial: 'assignment', locals: { assignment: assignment, submissions: assignment.submissions_for(current_student) } %>
+                <%= render partial: 'assignment', locals: {
+                  assignment: assignment,
+                  submissions: assignment.submissions_for(current_student)
+                } %>
               </li>
             <% end %>
           </ul>
