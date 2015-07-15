@@ -48,6 +48,5 @@ var Location = (function () {
             navigator.geolocation.getCurrentPosition(fallbackCallback);
           }
       }
-
   };
 })();
