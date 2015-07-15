@@ -20,8 +20,7 @@
         <div class='visible-xs-inline' style='float:right;'>
 
           <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="mobileNav" data-toggle="dropdown" aria-expanded="true">
-             Menu
+            <button class="btn btn-default dropdown-toggle" type="button" id="mobileNav" data-toggle="dropdown" aria-expanded="true"> Menu
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" style='left: -87px;' role="menu" aria-labelledby="dropdownMenu1">
@@ -65,7 +64,7 @@
     </div>
   </header>
 
-  <span class='hidden' id='loc-data' data-location=<%= distance_from_current_cohort %>>;)</span>
+  <span class='hidden' id='loc-data' data-location=<%= distance_from_current_cohort %>></span>
 
   <main>
     <div class='container-fluid'>
@@ -89,6 +88,6 @@
       <% end %>
     </script>
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/material.min.js' %>
-  <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/ripples.js' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/ripples.min.js' %>
 </body>
 </html>
