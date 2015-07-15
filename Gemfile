@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.0'
+ruby '2.2.2'
 
 gem 'rails', '4.2.0'
 
@@ -40,6 +40,10 @@ gem 'exception_notification'
 gem 'refile', require: 'refile/rails'
 gem 'refile-mini_magick'
 gem 'refile-postgres'
+
+group :development do
+  gem 'foreman'
+end
 
 group :test, :development do
   gem 'bullet'
