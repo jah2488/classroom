@@ -84,6 +84,7 @@ GEM
     docile (1.1.5)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
+    enum_help (0.0.14)
     erubis (2.7.0)
     every_day_irb (2.0.0)
       cd (~> 1.0)
@@ -349,6 +350,7 @@ DEPENDENCIES
   bullet
   byebug
   devise
+  enum_help
   exception_notification
   faker
   figaro

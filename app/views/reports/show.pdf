@@ -67,12 +67,9 @@
         font-style: italic;
       }
       p.description {
-        font-size: 13px;
+        font-size: 10pt;
       }
       .logo-box {
-        margin-top: 20px;
-      }
-      body {
         margin-top: 20px;
       }
     </style>
@@ -82,60 +79,55 @@
       <div class='row'>
         <div class='col-xs-4'>
           <div class='logo-box clearfix'>
-            <% if local_assigns[:debug] %>
-              <%= image_tag 'iron-yard-logo.svg', style: 'float: right;' %>
-            <% else %>
               <%= wicked_pdf_image_tag 'iron-yard-logo.svg', style: 'float: right;' %>
-            <% end %>
           </div>
           <h4 class='text-right'>Campus</h4>
-          <p class='text-right'><%= campus %></p>
+          <p class='text-right'><%= @report.campus_name %></p>
 
           <h4 class='text-right'>Course</h4>
-          <p class='text-right'><%= course %></p>
+          <p class='text-right'><%= @report.course_name %></p>
 
           <h4 class='text-right'>Session</h4>
-          <p class='text-right'><%= cohort %></p>
+          <p class='text-right'><%= @report.cohort_name %></p>
 
           <h4 class='text-right'>Instructor</h4>
-          <p class='text-right'><%= instructor %></p>
+          <p class='text-right'><%= @report.instructor_name %></p>
 
           <h4 class='text-right'>Student</h4>
-          <p class='text-right'><%= student %></p>
+          <p class='text-right'><%= @report.student.name %></p>
         </div>
         <div class='col-xs-8'>
           <h1>Bi-Weekly Performance</h1>
           <p class='description'>TIY students will be assessed every two weeks during the regular session, and every week during the final project (unless otherwise noted by the Instructor. On a biweekly basis, students will be assessed on their participation, effort, and skill on a Likert scale from 1 (unsatisfactory) to 3 (satisfactory) with room for comments. In addition, students’ overall performance and accountability will be assessed, including attendance and meeting homework and career assistance deadlines.</p>
 
-            <h2>Participation (<%= participation %>)</h2>
+            <h2>Participation (<%= @report.participation %>)</h2>
             <p>Comments:</p>
-            <%= content_tag(:p, participation_comments) %>
+            <%= content_tag(:p, @report.participation_comments) %>
 
-            <h2>Effort (<%= effort %>)</h2>
+            <h2>Effort (<%= @report.effort %>)</h2>
             <p>Comments:</p>
-            <%= content_tag(:p, effort_comments) %>
+            <%= content_tag(:p, @report.effort_comments) %>
 
-            <h2>Skill (<%= skill %>)</h2>
+            <h2>Skill (<%= @report.skill %>)</h2>
             <p>Comments:</p>
-            <%= content_tag(:p, skill_comments) %>
+            <%= content_tag(:p, @report.skill_comments) %>
 
-            <h3>Overall Performance (<%= overall %>)</h3>
+            <h3>Overall Performance (<%= @report.overall %>)</h3>
             <h4>Attendance:</h4>
             <p>Student has...<br/>
-            attended <%= total_lectures - absences %>/<%= total_lectures %> lectures in total during the 12-week session<br/>
-            been late <%= tardies %>/<%= total_lectures %> times in total during the 12-week session</p>
+            attended <%= @report.attended %>/<%= @report.total_lectures %> lectures in total during the 12-week session<br/>
+            been late <%= @report.tardies %>/<%= @report.total_lectures %> times in total during the 12-week session</p>
             <h4>Completed assignments:</h4>
             <p>Student has...<br/>
-            completed <%= completed_assignments %>/<%= total_assignments %> assignments in total during the 12-week session Comments:</p>
-            <%= content_tag(:p, overall_comments) %>
+            completed <%= @report.completed_assignments %>/<%= @report.total_assignments %> assignments in total during the 12-week session Comments:</p>
+            <%= content_tag(:p, @report.overall_comments) %>
 
             <h4>Status (based on above)</h4>
-            <h1><%= status %></h1>
+            <h1><%= @report.status %></h1>
 
             <p class='description'><strong>Satisfactory:</strong> Meeting course standards and requirements; continues receiving career support and ability to present at Demo Day.</p>
             <p class='description'><strong>Unsatisfactory:</strong> Not meeting course standards and requirements, must improve performance before next review and maintain performance in order to receive both career support and ability to present at Demo Day.</p>
             <p class='description'><strong>Probation:</strong> Continued failure to meet course standards and requirements; access to career support and ability to present at Demo Day are temporarily revoked until the end of semester (or other time as specified by staff) at which time a review of progress takes place.If the results are satisfactory, career support and ability to present at Demo Day will be reinstated.</p>
-
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ en:
   instructor_dashboard:
     index:
       new-cohort: 'New Cohort'
+  report: "Report"
   cohorts:
     new:
       title: 'New Cohort'

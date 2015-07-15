@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715194903) do
+ActiveRecord::Schema.define(version: 20150715211724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,6 +127,22 @@ ActiveRecord::Schema.define(version: 20150715194903) do
   end
 
   add_index "refile_attachments", ["namespace"], name: "index_refile_attachments_on_namespace", using: :btree
+
+  create_table "reports", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "day_id"
+    t.integer  "participation"
+    t.string   "participation_comments"
+    t.integer  "effort"
+    t.string   "effort_comments"
+    t.integer  "skill"
+    t.string   "skill_comments"
+    t.integer  "overall"
+    t.string   "overall_comments"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "students", force: :cascade do |t|
     t.string   "name"

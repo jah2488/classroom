@@ -1,0 +1,10 @@
+h1 Student Assessment Form
+= simple_form_for @report, html: { class: 'form' } do |f|
+  = f.input :student_id, collection: @students.map { |x| [x.name, x.id] }
+  - %i(participation effort skill overall).each do |metric|
+    = f.input metric, collection: 1..3, as: :radio_buttons, checked: 3, wrapper_html: { class: 'col-sm-7' }, label_html: { class: 'radio-inline col-sm-3' }, item_wrapper_class: 'radio-inline'
+    = f.input "#{metric}_comments".to_sym, as: :text , wrapper_html: { class: 'col-md-5' }
+  = f.input :status, selected: 0
+  .row
+    .col-md-12
+      = f.submit 'Create Assessment' , class: 'btn btn-lg btn-primary'
