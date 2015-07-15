@@ -30,7 +30,7 @@
 
   <h1></h1>
   <% if current_instructor %>
-    <%= react_component('GradeSubmissionForm', { badges: Badge.all.map { |x| x.attributes.merge({ icon_image: attachment_url(x, :icon_image, :fill, 100, 100, format: :png)}) },
+    <%= react_component('GradeSubmissionForm', { badges: Badge.all.map { |badge| badge.as_hash(self) },
                                                  submissionID: submission.id,
                                                  nextForStudent: next_submission_url_for_student(submission),
                                                  nextForAssignment: next_submission_url_for_assignment(submission)}) %>

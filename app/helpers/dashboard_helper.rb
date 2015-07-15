@@ -17,7 +17,7 @@ module DashboardHelper
 
   def has_feedback?(submission)
     ratings = submission.ratings
-    ratings.present?  && ratings.first.notes.length > 1
+    ratings.present? && ratings.any? { |rating| rating.has_feedback? }
   end
 
   def as_label(msg, severity = :default)

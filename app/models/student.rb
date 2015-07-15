@@ -21,7 +21,7 @@ class Student < ActiveRecord::Base
   end
 
   def badge_list
-    @badges ||= badges
+    @badges ||= badges.uniq
     [@badges, Badge.all - @badges]
   end
 
