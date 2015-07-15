@@ -57,6 +57,10 @@ class Assignment < ActiveRecord::Base
     where(Assignment.arel_table[:due_date].lt(Time.zone.now))
   end
 
+  def late?
+    Time.zone.now > due_date
+  end
+
   def to_s
     "Title: #{title} | Due: #{due_date}"
   end
