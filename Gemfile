@@ -8,7 +8,7 @@ gem 'skylight'
 
 gem 'pg'
 gem 'puma'
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 gem 'figaro'
 gem 'devise'
 
@@ -50,6 +50,7 @@ group :development do
 end
 
 group :test, :development do
+  gem 'database_cleaner'
   gem 'bullet'
   gem 'byebug'
   gem 'pry'
