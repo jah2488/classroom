@@ -12,11 +12,12 @@ class Cohort < ActiveRecord::Base
   def tz
     campus.tz
   end
+
   private
 
   def create_first_day
     day = Day.new
     day.cohort = self
-    day.start = self.first_day.change hour: 9
+    day.start  = self.first_day.change(hour: 9)
   end
 end

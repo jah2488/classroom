@@ -11,6 +11,6 @@ class Instructor < ActiveRecord::Base
   end
 
   def has_office_hours?
-    office_hours_start != nil && office_hours_end != nil
+    office_hours_start && office_hours_end
   end
 end

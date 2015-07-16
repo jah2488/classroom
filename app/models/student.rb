@@ -23,7 +23,7 @@ class Student < ActiveRecord::Base
   end
 
   def tardies
-    checkins.select{|c| c.late}.count
+    checkins.select { |c| c.late }.count
   end
 
   def absences

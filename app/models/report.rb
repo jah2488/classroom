@@ -2,9 +2,10 @@ class Report < ActiveRecord::Base
   belongs_to :student
   belongs_to :day
 
-  enum status: { "Satisfactory" => 0,
-                 "Unsatisfactory"           => 1,
-                 "Probation"   => 2
+  enum status: {
+    "Satisfactory"    => 0,
+    "Unsatisfactory"  => 1,
+    "Probation"       => 2
   }
 
   def cohort

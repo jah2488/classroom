@@ -45,13 +45,13 @@
       <div class='hidden-xs col-sm-8'>
         <nav>
           <ul class='nav nav-pills pull-right'>
-            <% if current_student || current_instructor %>
-              <li><%= link_to("Reports", reports_path) %></li>
-            <% end %>
             <% if student_signed_in? %>
               <li><%= link_to('Dashboard', dashboard_path) %></li>
               <li><%= link_to('Cohort', my_cohort_path)%></li>
               <li><%= link_to('Profile', profile_path(current_student)) %></li>
+              <% if current_student || current_instructor %>
+                <li><%= link_to("Reports", reports_path) %></li>
+              <% end %>
               <li><%= link_to('Logout', destroy_student_session_path, class: 'danger', method: :delete) %></li>
             <% else %>
               <li><%= link_to('Student Signin', new_student_session_path) %></li>
