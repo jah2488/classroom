@@ -12,7 +12,12 @@ class AssignmentsController < ApplicationController
   end
 
   def current
-    redirect_to student_assignment_path(Assignment.current_for(current_student))
+    assignment = Assignment.current_for(current_student)
+    if assignment
+      redirect_to student_assignment_path(assignment)
+    else
+      redirect_to dashboard_path, alert: 'All assignments are past due or completed.'
+    end
   end
 
   def search
