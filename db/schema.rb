@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716001416) do
+ActiveRecord::Schema.define(version: 20150716171433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "adjustments", force: :cascade do |t|
     t.integer  "checkin_id"
-    t.string   "state",      default: "OPEN"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "state",      default: "OPENED"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "adjustments", ["checkin_id"], name: "index_adjustments_on_checkin_id", using: :btree
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20150716001416) do
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
     t.string   "override_code", default: "d80c",                null: false
-    t.datetime "start",         default: '2015-07-15 23:06:21'
+    t.datetime "start",         default: '2015-07-16 00:47:44'
   end
 
   add_index "days", ["cohort_id"], name: "index_days_on_cohort_id", using: :btree
