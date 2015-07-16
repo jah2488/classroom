@@ -19,7 +19,7 @@ class DaysController < ApplicationController
   private
 
   def day_params
-    params.require(:day).permit(:start_time, :override_code)
+    params.require(:day).permit(:start, :override_code)
   end
 
 

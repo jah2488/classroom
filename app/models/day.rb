@@ -15,6 +15,7 @@ class Day < ActiveRecord::Base
   def tz
     cohort.tz
   end
+
   def to_s
     self.start.strftime("%b %e, %y") if start
   end
