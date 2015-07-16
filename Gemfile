@@ -37,7 +37,9 @@ gem 'wkhtmltopdf-binary', group: :development
 gem 'wkhtmltopdf-heroku', group: :production
 
 gem 'mandrill_dm'
+
 gem 'exception_notification'
+gem 'slack-notifier'
 
 gem 'refile', require: 'refile/rails'
 gem 'refile-mini_magick'
