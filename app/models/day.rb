@@ -12,6 +12,9 @@ class Day < ActiveRecord::Base
     self.for(cohort).order(:start).last
   end
 
+  def tz
+    cohort.tz
+  end
   def to_s
     self.start.strftime("%b %e, %y") if start
   end
@@ -25,11 +28,11 @@ class Day < ActiveRecord::Base
   end
 
   def starts_at
-    start.strftime("%I:%M%p") if start
+    start.in_time_zone(cohort.tz).strftime("%I:%M%p %Z") if start
   end
 
   def late_at
-    late_time.strftime("%I:%M%p")
+    late_time.in_time_zone(cohort.tz).strftime("%I:%M%p %Z")
   end
 
   def late_time

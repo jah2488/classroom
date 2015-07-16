@@ -9,6 +9,9 @@ class Cohort < ActiveRecord::Base
 
   after_create :create_first_day
 
+  def tz
+    campus.tz
+  end
   private
 
   def create_first_day

@@ -16,7 +16,7 @@ class Checkin < ActiveRecord::Base
   end
 
   def checkin_time
-    created_at.strftime("%I:%M%p")
+    created_at.in_time_zone(day.tz).strftime("%I:%M%p %Z")
   end
 
   def status
@@ -29,7 +29,7 @@ class Checkin < ActiveRecord::Base
   end
 
   def short_checkin_status
-    "#{status.capitalize} on #{created_at.strftime('%e %b %l:%M%p')}"
+    "#{status.capitalize} on #{created_at.in_time_zone(day.tz).strftime('%e %b %l:%M%p %Z')}"
   end
 
   def as_hash
