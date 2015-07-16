@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   devise_for :students
   devise_for :instructors
 
-  get 'students/reports/assessment' => 'students#report', as: 'student_assessment'
-
+  resources :reports
   authenticate :student do
     get 'dashboard' => 'dashboard#index'
     get 'my-cohort' => 'dashboard#cohort', as: 'my_cohort'
@@ -24,7 +23,6 @@ Rails.application.routes.draw do
   end
 
   authenticate :instructor do
-    get 'reports' => 'students#reports', as: :reports
     resources :instructors, only: [:show, :edit, :update]
     resources :ratings, only: [:create, :update]
     resources :tags, only: :create

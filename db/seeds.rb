@@ -15,10 +15,17 @@ instructor = Instructor.create!({
   password: 'password'
 })
 
+campus = Campus.create!({
+  name: "Nashville, TN",
+  latitude: 36.1316327,
+  longitude: -86.7495919
+})
+
 cohort = Cohort.create!({
   name: 'ruby on rails',
   location: 'Building A Room 2001',
-  instructor_id: instructor.id
+  instructor_id: instructor.id,
+  campus_id: campus.id
 })
 
 assignments = []

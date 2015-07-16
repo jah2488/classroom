@@ -8,7 +8,8 @@ en:
   instructor_dashboard:
     index:
       new-cohort: 'New Cohort'
+  report: "Report"
   cohorts:
     new:
       title: 'New Cohort'
-      location-hint: 'What building/room will the class take place?'
+      location-hint: 'What campus will the class take place?'

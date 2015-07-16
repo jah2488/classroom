@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714040411) do
+ActiveRecord::Schema.define(version: 20150716001416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,12 +54,17 @@ ActiveRecord::Schema.define(version: 20150714040411) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "campus", force: :cascade do |t|
+    t.string "name"
+    t.float  "latitude"
+    t.float  "longitude"
+    t.string "tz",        default: "Central Time (US & Canada)"
+  end
+
   create_table "checkins", force: :cascade do |t|
     t.integer  "student_id"
-    t.boolean  "late",       default: false
-    t.boolean  "absent",     default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "day_id"
   end
 
@@ -68,22 +73,21 @@ ActiveRecord::Schema.define(version: 20150714040411) do
 
   create_table "cohorts", force: :cascade do |t|
     t.string   "name"
-    t.string   "location"
     t.integer  "instructor_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.float    "latitude"
-    t.float    "longitude"
+    t.datetime "first_day"
+    t.integer  "campus_id"
   end
 
   add_index "cohorts", ["instructor_id"], name: "index_cohorts_on_instructor_id", using: :btree
 
   create_table "days", force: :cascade do |t|
-    t.time     "start_time"
     t.integer  "cohort_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.string   "override_code", default: "d80c", null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.string   "override_code", default: "d80c",                null: false
+    t.datetime "start",         default: '2015-07-15 23:06:21'
   end
 
   add_index "days", ["cohort_id"], name: "index_days_on_cohort_id", using: :btree
@@ -126,6 +130,22 @@ ActiveRecord::Schema.define(version: 20150714040411) do
   end
 
   add_index "refile_attachments", ["namespace"], name: "index_refile_attachments_on_namespace", using: :btree
+
+  create_table "reports", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "day_id"
+    t.integer  "participation"
+    t.string   "participation_comments"
+    t.integer  "effort"
+    t.string   "effort_comments"
+    t.integer  "skill"
+    t.string   "skill_comments"
+    t.integer  "overall"
+    t.string   "overall_comments"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "students", force: :cascade do |t|
     t.string   "name"

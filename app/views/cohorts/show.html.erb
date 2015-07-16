@@ -2,8 +2,7 @@
 
 <div class='col-lg-8 col-lg-offset-4'>
   <h1><%= cohort.name.titleize %></h1>
-  <p>Location: <%= cohort.location %></p>
+  <p>First Day: <%= cohort.first_day.to_date %></p>
+  <p>Campus: <%= cohort.campus %></p>
   <p>Instructor: <%= link_to cohort.instructor.name, cohort.instructor %></p>
-  <p>Latitude: <%= cohort.latitude %></p>
-  <p>Longitude: <%= cohort.longitude %></p>
 </div>
