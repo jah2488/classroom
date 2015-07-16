@@ -13,4 +13,12 @@ class Instructor < ActiveRecord::Base
   def has_office_hours?
     office_hours_start && office_hours_end
   end
+
+  def office_hours_start_at
+    office_hours_start.strftime("%H:%M")
+  end
+
+  def office_hours_end_at
+    office_hours_end.strftime("%H:%M")
+  end
 end

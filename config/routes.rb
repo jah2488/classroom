@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     get 'assignments/search/:query' => 'assignments#search'
 
     resources :students
+    resources :instructors, only: :show
   end
 
   authenticate :instructor do
