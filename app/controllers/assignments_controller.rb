@@ -27,6 +27,7 @@ class AssignmentsController < ApplicationController
   def create
     assignment = Assignment.new(assignment_params)
     assignment.cohort = current_instructor.current_cohort
+    assignment.due_date = ActiveSupport::TimeZone[assignment.cohort.tz].parse(params[:assignment][:due_date])
     if assignment.save
       redirect_to instructor_dash_path, notice: 'Assignment successfully created'
     else
@@ -50,7 +51,7 @@ class AssignmentsController < ApplicationController
   private
 
   def assignment_params
-    params.require(:assignment).permit(:title, :info, :due_date, tag_ids: [])
+    params.require(:assignment).permit(:title, :info, tag_ids: [])
   end
 
 end
