@@ -20,7 +20,7 @@ RSpec.describe AssignmentsController, type: :controller do
 
   describe "GET #show" do
     it "returns http success" do
-      Assignment.create!
+      Assignment.create!(title: 'example assignment')
       get :show, id: 1
       expect(response).to have_http_status(:success)
     end
@@ -35,18 +35,47 @@ RSpec.describe AssignmentsController, type: :controller do
 
   describe "GET #search" do
     it "returns http success" do
-      get :search
+      get :search, query: 'foo'
       expect(response).to have_http_status(:success)
     end
   end
-
-
 
   describe "GET #create" do
     it "returns http success" do
       get :create, assignment: { title: 'foo', info: 'nope', due_date: '', tag_ids: [] }
       expect(response).to have_http_status(:redirect)
     end
+    it "returns new page on errors" do
+      get :create, assignment: { info: 'none' }
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
   end
+
+  describe "GET #edit" do
+    it "returns http success" do
+      assignment = Assignment.create!(title: 'example assignment')
+      get :edit, id: assignment.id
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "GET #update" do
+    let(:assignment) {
+      Assignment.create!(title: 'example assignment')
+    }
+
+    it "returns http success" do
+      get :update, id: assignment.id, assignment: { title: 'foo', info: 'nope', due_date: '', tag_ids: [] }
+      expect(response).to have_http_status(:redirect)
+    end
+
+    it "returns new page on errors" do
+      get :update, id: assignment.id, assignment: { title: nil, info: 'none' }
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
+  end
+
+
+
 
 end

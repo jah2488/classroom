@@ -31,7 +31,7 @@ class AssignmentsController < ApplicationController
     if assignment.save
       redirect_to instructor_dash_path, notice: 'Assignment successfully created'
     else
-      render :new
+      render :new, alert: 'Assignment could not be saved', status: 422
     end
   end
 
@@ -45,6 +45,8 @@ class AssignmentsController < ApplicationController
     assignment = Assignment.find(params[:id])
     if assignment.update(assignment_params)
       redirect_to assignment, notice: 'Assignment updated'
+    else
+      render :edit, alert: 'Assignment could not be updated', status: 422
     end
   end
 

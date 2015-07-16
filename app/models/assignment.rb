@@ -3,6 +3,7 @@ class Assignment < ActiveRecord::Base
   has_many :submissions
   has_many :assignment_tags
   has_many :tags, through: :assignment_tags
+  validates :title, presence: true
 
   def self.by_week(records)
     records.group_by { |assignment| assignment.due_date.beginning_of_week }
