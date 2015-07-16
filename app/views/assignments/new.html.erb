@@ -6,7 +6,7 @@
     <%= f.input :title, required: true %>
     <%= f.input :info, hint: 'put markdown in me', required: true %>
     <%= f.input :due_date, as: :string, input_html: { class: 'datetimepicker', value: (Time.zone.tomorrow + 8.hours) }, required: true %>
-    <%= f.input :tags, as: :string, hint: 'comma seperated' %>
+    <%= react_component('AssignmentTags', tags: Tag.all, tag_ids: assignment.tag_ids) %>
   </div>
   <div class='form-actions'>
     <%= f.button :submit %>
