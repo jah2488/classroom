@@ -9,7 +9,7 @@ class Day < ActiveRecord::Base
   end
 
   def self.current_for(cohort)
-    self.for(cohort).last
+    self.for(cohort).order(:start).last
   end
 
   def to_s

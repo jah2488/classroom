@@ -109,18 +109,14 @@
             <p>Comments:</p>
             <%= content_tag(:p, @report.skill_comments) %>
 
-            <h3>Overall Performance (<%= @report.overall %>)</h3>
+            <h2>Overall Performance (<%= @report.overall %>)</h3>
             <h4>Attendance:</h4>
-            <p>Student has...<br/>
-            attended <%= @report.attended %>/<%= @report.total_lectures %> lectures in total during the 12-week session<br/>
-            been late <%= @report.tardies %>/<%= @report.total_lectures %> times in total during the 12-week session</p>
+            <p>Student has attended <%= @report.attended %> out of <%= @report.total_lectures %> lectures, being late for <%= @report.tardies %> attended lecture(s).</p>
             <h4>Completed assignments:</h4>
-            <p>Student has...<br/>
-            completed <%= @report.completed_assignments %>/<%= @report.total_assignments %> assignments in total during the 12-week session Comments:</p>
-            <%= content_tag(:p, @report.overall_comments) %>
-
-            <h4>Status (based on above)</h4>
-            <h1><%= @report.status %></h1>
+            <p>Student has completed <%= @report.completed_assignments %> of <%= @report.total_assignments %> assignments in total during the 12-week session</p>
+            <h4>Comments:</h4>
+            <p><%= content_tag(:p, @report.overall_comments) %></p>
+            <h3><%= @report.status %></h3>
 
             <p class='description'><strong>Satisfactory:</strong> Meeting course standards and requirements; continues receiving career support and ability to present at Demo Day.</p>
             <p class='description'><strong>Unsatisfactory:</strong> Not meeting course standards and requirements, must improve performance before next review and maintain performance in order to receive both career support and ability to present at Demo Day.</p>

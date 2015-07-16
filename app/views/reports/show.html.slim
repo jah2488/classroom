@@ -48,41 +48,32 @@
     p
       | Comments:
     = content_tag(:p, @report.skill_comments)
-    h3
+    h2
       | Overall Performance (
       = @report.overall
       | )
     h4
       | Attendance:
     p
-      | Student has...
-      br
-      |  attended 
+      ' Student has attended
       = @report.attended
-      | /
+      '  out of
       = @report.total_lectures
-      |  lectures in total during the 12-week session
-      br
-      |  been late 
+      '  lectures, being late for
       = @report.tardies
-      | /
-      = @report.total_lectures
-      |  times in total during the 12-week session
+      |  attended lecture(s).
     h4
       | Completed assignments:
     p
-      | Student has...
-      br
-      |  completed 
+      ' Student has completed
       = @report.completed_assignments
-      | /
+      '  of
       = @report.total_assignments
-      |  assignments in total during the 12-week session Comments:
-    = content_tag(:p, @report.overall_comments)
+      |  assignments in total during the 12-week session.
     h4
-      | Status (based on above)
-    h1
-      = @report.status
+      | Comments:
+    = content_tag(:p, @report.overall_comments)
+    h3 = @report.status
     p.description
       strong
         | Satisfactory:

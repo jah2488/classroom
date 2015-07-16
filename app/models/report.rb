@@ -7,12 +7,16 @@ class Report < ActiveRecord::Base
                  "Probation"   => 2
   }
 
+  def cohort
+    day.cohort
+  end
+
   def campus_name
     day.cohort.campus.name
   end
 
   def cohort_name
-    day.cohort.name
+    cohort.name
   end
 
   def instructor_name
@@ -23,27 +27,27 @@ class Report < ActiveRecord::Base
     student.name
   end
 
+  def end_of_day
+    day.start.end_of_day
+  end
+
   def completed_assignments
-    Assignment.complete_for(student).count
+    Assignment.complete_for(student).where("due_date <= ?", end_of_day).count
   end
 
   def total_assignments
-    Assignment.for(student).count
-  end
-
-  def absences
-    student.absences
+    Assignment.for(student).where("due_date <= ?", end_of_day).count
   end
 
   def attended
-    total_lectures - absences
+    student.checkins.where("created_at <= ?", end_of_day).count
   end
 
   def tardies
-    student.tardies
+    student.checkins.where("created_at <= ?", end_of_day).select{|c| c.late?}.count
   end
 
   def total_lectures
-    Day.where(cohort_id: day.cohort_id).count
+    cohort.days.where("start <= ?", end_of_day).count
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715231308) do
+ActiveRecord::Schema.define(version: 20150715233356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,10 +62,8 @@ ActiveRecord::Schema.define(version: 20150715231308) do
 
   create_table "checkins", force: :cascade do |t|
     t.integer  "student_id"
-    t.boolean  "late",       default: false
-    t.boolean  "absent",     default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "day_id"
   end
 

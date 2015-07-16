@@ -14,10 +14,7 @@ class Student < ActiveRecord::Base
   validates_presence_of :cohort
 
   def marked_checkins
-    c = Checkin.arel_table
     checkins.includes(:adjustment)
-            .where(c[:late].eq(true).or(
-                   c[:absent].eq(true)))
   end
 
   def badge_list
@@ -26,11 +23,11 @@ class Student < ActiveRecord::Base
   end
 
   def tardies
-    checkins.where(late: true).count
+    checkins.select{|c| c.late}.count
   end
 
   def absences
-    checkins.where(absent: true).count
+    cohort.days.count - checkins.count
   end
 
   def completed_assignments
