@@ -16,7 +16,7 @@ class SubmissionsController < ApplicationController
     submission = Submission.new(submission_params)
     submission.student    = current_student
     submission.assignment = assignment
-    submission.late       = true if assignment.due_date < Time.zone.now
+    submission.late       = true if assignment.due_date.past?
 
     if submission.save
       redirect_to dashboard_path, notice: "Submission for '#{assignment.title.titleize}' submitted for review."
