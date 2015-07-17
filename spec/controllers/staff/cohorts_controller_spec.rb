@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe BadgesController, type: :controller do
+describe Staff::CohortsController do
 
   describe "GET #new" do
     it "returns http success" do

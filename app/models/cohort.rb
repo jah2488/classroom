@@ -15,7 +15,7 @@ class Cohort < ActiveRecord::Base
 
   def days_by_month
     days.group_by{|d| d.start.month}.each do |month|
-      yield month[1]
+      yield DayDecorator.decorate_collection(month[1])
     end
   end
   private

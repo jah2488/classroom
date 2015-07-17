@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CohortsController, type: :controller do
+describe Staff::DaysController do
 
   describe "GET #new" do
     it "returns http success" do

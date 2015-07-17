@@ -27,7 +27,7 @@ class Staff::AssignmentsController < Staff::ApplicationController
   def update
     assignment = Assignment.find(params[:id])
     if assignment.update(assignment_params)
-      redirect_to staff_assignment_path(assignment), notice: 'Assignment updated'
+      redirect_to staff_cohort_assignment_path(assignment.cohort, assignment), notice: 'Assignment updated'
     else
       render :edit, alert: 'Assignment could not be updated', status: 422
     end
