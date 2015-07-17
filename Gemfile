@@ -63,6 +63,9 @@ group :test, :development do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'simplecov'
+
+  gem 'guard'
+  gem 'guard-rspec', require: false
 end
 
 source 'https://rails-assets.org' do

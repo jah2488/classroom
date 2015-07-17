@@ -6,7 +6,7 @@ class Assignment < ActiveRecord::Base
   validates :title, presence: true
 
   def self.by_week(records)
-    records.group_by { |assignment| assignment.due_date.beginning_of_week }
+    records.group_by { |assignment| assignment.due_date.beginning_of_week.to_date }
   end
 
   def self.search(query)
