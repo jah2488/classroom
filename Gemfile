@@ -48,6 +48,7 @@ group :test, :development do
   gem 'byebug'
   gem 'codeclimate-test-reporter', require: nil
   gem 'database_cleaner'
+  gem 'factory_girl_rails'
   gem 'faker'
   gem 'guard'
   gem 'guard-rspec', require: false
@@ -56,9 +57,11 @@ group :test, :development do
   gem 'quiet_assets'
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'rspec-mocks'
   gem 'simplecov'
   gem 'spring', '~> 1.3.6'
   gem 'web-console', '~> 2.0'
+  gem 'zonebie'
 end
 
 source 'https://rails-assets.org' do
