@@ -1,6 +1,6 @@
 <div class='assignment'>
   <div class='row'>
-    <div class='col-xs-12 col-sm-7'><h4><%= link_to assignment.title.titleize, student_assignment_path(assignment) %></h4></div>
+    <div class='col-xs-12 col-sm-7'><h4><%= link_to assignment.title.titleize, assignment_path(assignment) %></h4></div>
     <div class='col-xs-8  col-sm-3'><h5><%= react_time(assignment.due_date) %></h5></div>
     <div class='grade col-xs-2'><%= status_for(assignment, current_student) %></div>
   </div>

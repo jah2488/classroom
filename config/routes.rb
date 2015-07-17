@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :instructors
 
   resources :reports
+  resources :instructors
+
   authenticate :student do
     get 'dashboard' => 'dashboard#index'
     get 'my-cohort' => 'dashboard#cohort', as: 'my_cohort'
@@ -15,19 +17,17 @@ Rails.application.routes.draw do
     get 'profile/:id' => 'students#show', as: 'profile'
     get 'profile/:id/edit' => 'students#edit', as: 'edit_profile'
 
-    get 'assignments/current' => 'assignments#current', as: 'current_assignment'
-    get 'assignments/:id' => 'assignments#show', as: 'student_assignment'
-    get 'assignments/search/:query' => 'assignments#search'
-
+    resources :assignments, only: [:show] do
+      collection do
+        get 'current'
+        get 'search'
+      end
+    end
     resources :students
-    resources :instructors, only: :show
+    root to: 'dashboard#index'
   end
 
   authenticate :instructor do
-    resources :instructors, only: [:show, :edit, :update]
-    resources :ratings, only: [:create, :update]
-    resources :tags, only: :create
-    resources :badges, except: :index
 
     patch 'submissions/:id/complete'   => 'submissions#mark_complete',   as: 'mark_submission_complete'
     patch 'submissions/:id/unfinished' => 'submissions#mark_unfinished', as: 'mark_submission_unfinished'
@@ -35,22 +35,20 @@ Rails.application.routes.draw do
     patch 'adjustments/:id/adjust' => 'adjustments#adjust', as: 'adjust_checkin'
     patch 'adjustments/:id/close'  => 'adjustments#close',  as: 'close_adjustment'
 
-    scope 'instructor' do
-      get 'dashboard' => 'instructor_dashboard#index', as: 'instructor_dash'
-      resources :cohorts
-      resources :assignments
+    namespace 'staff' do
+      root to: "cohorts#index"
+      resources :cohorts, only: [:new, :create, :show] do
+        resources :days
+        resources :assignments
+      end
       resources :students, only: [:show, :edit, :update]
-      resources :days, only: [:new, :create]
+      resources :badges, except: :index
+      resources :ratings, only: [:create, :update]
+      resources :tags, only: :create
     end
   end
 
-  authenticate :student do
-    root 'dashboard#index'
-  end
-
-  if Rails.env.production? || ENV['DEBUG']
-    get '404', :to => 'application#page_not_found'
-    get '422', :to => 'application#server_error'
-    get '500', :to => 'application#server_error'
-  end
+  get '404', :to => 'application#page_not_found'
+  get '422', :to => 'application#server_error'
+  get '500', :to => 'application#server_error'
 end

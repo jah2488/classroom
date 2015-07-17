@@ -1,0 +1,14 @@
+<div class='row'>
+  <div class='col-md-12'>
+    <h1><%= cohort.name.titleize %></h1>
+    <nav>
+      <ul>
+        <li><%= link_to t('.dashboard'), staff_cohort_path(cohort), class: "btn btn-primary" %></li>
+        <li><%= link_to t('.reports'), reports_path, class: 'btn btn-primary' %></li>
+        <li><%= link_to t('.days'), staff_cohort_days_path(cohort), class: 'btn btn-primary' %></li>
+        <li><%= link_to t('.new-assignment'), new_staff_cohort_assignment_path(cohort), class: 'btn btn-primary' %></li>
+        <li><%= link_to t('.new-badge'), new_staff_badge_path, class: 'btn btn-primary' %></li>
+      </ul>
+    </nav>
+  </div>
+</div>

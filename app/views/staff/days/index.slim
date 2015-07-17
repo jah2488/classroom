@@ -1,0 +1,14 @@
+= render partial: 'staff/cohorts/nav', locals: { cohort: cohort }
+.col-md-2
+  h1
+    = cohort.name.titleize
+  dl
+    dt First Day
+    dd = cohort.first_day.to_date
+    dt Campus:
+    dd = cohort.campus
+    dt Instructor:
+    dd = link_to cohort.instructor.name, cohort.instructor
+  = link_to "Add Day", new_staff_cohort_day_path(cohort), class: "btn btn-success"
+.col-md-8
+  = render partial: "calendar", locals: { cohort: cohort }

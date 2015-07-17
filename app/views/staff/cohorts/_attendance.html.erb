@@ -1,0 +1,13 @@
+<section>
+  <header>
+    <h3><%= t('.attendance') %></h3>
+  </header>
+  <% if current_day %>
+    <h4>Current Day: <%= current_day.created_on %></h4>
+    <p class='muted'>Start:</p> <%= current_day.starts_at %>
+    <p class='muted'>Override:</p> <pre><code><%= current_day.override_code%></code></pre>
+    <%= react_component('StudentCheckinList', checkins: current_day.checkins.map(&:as_hash), student_count: cohort.students.count) %>
+  <% else %>
+    No Current Day
+  <% end %>
+</section>

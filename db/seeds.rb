@@ -23,9 +23,9 @@ campus = Campus.create!({
 
 cohort = Cohort.create!({
   name: 'ruby on rails',
-  location: 'Building A Room 2001',
   instructor_id: instructor.id,
-  campus_id: campus.id
+  campus_id: campus.id,
+  first_day: DateTime.new
 })
 
 assignments = []
