@@ -1,7 +1,6 @@
 language: ruby
 script:
-  - rake db:create db:migrate db:test:prepare
-  - bundle exec rspec spec/
+  - script/test
 rvm:
   - 2.2.2
 addons:
