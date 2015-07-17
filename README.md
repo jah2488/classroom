@@ -20,6 +20,7 @@ Any instructor who comes to use this app is going to have questions about the fu
 - Leverage the css frameworks being imployed whenever possible and use scss to tweak.
 - Use small React components for any javascript/ajax functionality. 
 - Prefer static data of complicated computed properties. _(Might be off to a bad start with this one)_
+- Be able to use the source code for demonstration purposes at several points through the cohort.
 - Minimize and avoid using much rails magic / meta programming as possible.
 - Prefer being explicit over being implicit.
   - Call a helper method instead of using a `before_filter`
