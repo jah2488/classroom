@@ -19,6 +19,7 @@ coverage
 *.swp
 
 .DS_Store
+.vagrant
 
 /public/*.pdf
 # Ignore application configuration
