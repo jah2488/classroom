@@ -42,11 +42,11 @@ RSpec.describe AssignmentsController, type: :controller do
 
   describe "GET #create" do
     it "returns http success" do
-      get :create, assignment: { title: 'foo', info: 'nope', due_date: '', tag_ids: [] }
+      get :create, assignment: { title: 'foo', info: 'nope', due_date: '01/01/2015 09:00 AM', tag_ids: [] }
       expect(response).to have_http_status(:redirect)
     end
     it "returns new page on errors" do
-      get :create, assignment: { info: 'none' }
+      get :create, assignment: { info: 'none', due_date: '' }
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end
