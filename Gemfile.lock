@@ -87,6 +87,11 @@ GEM
     docile (1.1.5)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
+    draper (2.1.0)
+      actionpack (>= 3.0)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      request_store (~> 1.0)
     enum_help (0.0.14)
     erubis (2.7.0)
     every_day_irb (2.0.0)
@@ -271,6 +276,7 @@ GEM
     refile-postgres (1.1.3)
       pg
       refile (~> 0.5.5)
+    request_store (1.2.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rest-client (1.8.0)
@@ -383,6 +389,7 @@ DEPENDENCIES
   codeclimate-test-reporter
   database_cleaner
   devise
+  draper
   enum_help
   exception_notification
   faker

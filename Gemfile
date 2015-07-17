@@ -6,6 +6,7 @@ gem 'rails', '4.2.0'
 
 gem 'bootstrap-sass'
 gem 'devise'
+gem 'draper'
 gem 'enum_help'
 gem 'exception_notification'
 gem 'figaro'
