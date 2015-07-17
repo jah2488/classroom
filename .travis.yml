@@ -1,6 +1,6 @@
 language: ruby
 script:
-  - rake
+  - rake db:create db:migrate db:test:prepare test
 rvm:
   - 2.2.2
 addons:
