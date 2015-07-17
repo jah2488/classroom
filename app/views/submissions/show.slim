@@ -1,0 +1,37 @@
+= render partial: 'dashboard/nav'
+article
+  header
+    h3
+      = link_to submission.student.name, submission.student
+      ' 's Submission for
+      = link_to submission.assignment.title, submission.assignment
+  p
+    strong
+      ' Due:
+    = react_time submission.assignment.due_date
+    strong
+      ' Turned In:
+    = react_time submission.created_at
+  - if can_edit?(submission)
+    = react_component('EditSubmission', submission: submission)
+  - else
+    = react_component('Submission', submission: submission)
+  p.muted
+    | Status
+  section
+    h4
+      = submission.status
+    - submission.ratings.each_with_index do |rating, index|
+      - if rating.has_feedback?
+        p.muted
+          ' Feedback on Submission added
+          = distance_of_time_in_words_to_now rating.created_at
+          |  ago
+        section
+          - if current_instructor
+            = react_component('EditRating', rating: rating)
+          - else
+            = react_md(rating.notes)
+  h1
+  - if current_instructor
+    = react_component('GradeSubmissionForm', { badges: Badge.all.map { |badge| badge.as_hash(self) }, submissionID: submission.id, nextForStudent: next_submission_url_for_student(submission), nextForAssignment: next_submission_url_for_assignment(submission)})
