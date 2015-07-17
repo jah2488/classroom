@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20150716171433) do
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
     t.string   "override_code", default: "d80c",                null: false
-    t.datetime "start",         default: '2015-07-16 00:47:44'
+    t.datetime "start",         default: '2015-07-15 23:06:21'
   end
 
   add_index "days", ["cohort_id"], name: "index_days_on_cohort_id", using: :btree

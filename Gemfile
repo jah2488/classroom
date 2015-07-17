@@ -4,70 +4,64 @@ ruby '2.2.2'
 
 gem 'rails', '4.2.0'
 
-gem 'skylight'
-
+gem 'bootstrap-sass'
+gem 'devise'
+gem 'draper'
+gem 'enum_help'
+gem 'exception_notification'
+gem 'figaro'
+gem 'geocoder'
+gem 'hirb'
+gem 'jbuilder', '~> 2.0'
+gem 'jquery-rails'
+gem 'kaminari'
+gem 'kramdown'
+gem 'mandrill_dm'
 gem 'pg'
 gem 'puma'
-gem 'rails_12factor', group: :production
-gem 'figaro'
-gem 'devise'
-
-gem 'enum_help'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'bootstrap-sass'
-gem 'slim'
-
-gem 'jquery-rails'
-gem 'turbolinks'
 gem 'react-rails', '~> 1.0'
-
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
-
-gem 'hirb'
-gem 'kaminari'
-
-gem 'geocoder'
-gem 'simple_form'
-gem 'kramdown'
-
-gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary', group: :development
-gem 'wkhtmltopdf-heroku', group: :production
-
-gem 'mandrill_dm'
-
-gem 'exception_notification'
-gem 'slack-notifier'
-
 gem 'refile', require: 'refile/rails'
 gem 'refile-mini_magick'
 gem 'refile-postgres'
+gem 'sass-rails', '~> 5.0'
+gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'simple_form'
+gem 'skylight'
+gem 'slack-notifier'
+gem 'slim'
+gem 'turbolinks'
+gem 'uglifier', '>= 1.3.0'
+gem 'wicked_pdf'
 
 group :development do
   gem 'foreman'
+  gem 'wkhtmltopdf-binary'
+end
+
+group :production do
+  gem 'rails_12factor'
+  gem 'wkhtmltopdf-heroku'
 end
 
 group :test, :development do
-  gem 'database_cleaner'
   gem 'bullet'
   gem 'byebug'
-  gem 'pry'
-  gem 'web-console', '~> 2.0'
-  gem 'spring', '~> 1.3.6'
-  gem 'irbtools', require: 'irbtools/binding'
-
+  gem 'codeclimate-test-reporter', require: nil
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
   gem 'faker'
+  gem 'guard'
+  gem 'guard-rspec', require: false
+  gem 'irbtools', require: 'irbtools/binding'
+  gem 'pry'
   gem 'quiet_assets'
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'rspec-mocks'
   gem 'simplecov'
-
-  gem 'guard'
-  gem 'guard-rspec', require: false
-
-  gem 'codeclimate-test-reporter', require: nil
+  gem 'spring', '~> 1.3.6'
+  gem 'web-console', '~> 2.0'
+  gem 'zonebie'
 end
 
 source 'https://rails-assets.org' do

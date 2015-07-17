@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
     render locals: {
       assignments: filtered_assignments,
       adjustments: current_student.marked_checkins,
-      current_day: Day.current_for(current_student.cohort)
+      current_day: Day.current_for(current_student.cohort).decorate
     }
   end
 
