@@ -14,8 +14,9 @@ To login as the seed instructor, visit `/instructors/sign_in` and use `instructo
 
 #### Philosophy
 Any instructor who comes to use this app is going to have questions about the functionality and any instructor who tries to develop in this app is going to have even more questions. I think it is worth going over some of the driving philosophical ideas behind this app during its development process. This will probably not answer any of those questions, but maybe some of the decisions will make more sense. Most of these points are not taken to be truths or best practice, but this app was ultimately a way for me to explore new way of developing a rails application from my new context as an instructor an educator.
-- No instance variables, ever. _(Instance variables are a horrible leaky abstraction, lead to bugs, bad code, and horrible error messages for beginners)_
 
+- No instance variables, ever.
+  - Instance variables are a horrible leaky abstraction, lead to bugs, bad code, and horrible error messages for beginners
 - Only write what is needed and being used now, not what may be used in the future.
 - Leverage the css frameworks being imployed whenever possible and use scss to tweak.
 - Use small React components for any javascript/ajax functionality. 
