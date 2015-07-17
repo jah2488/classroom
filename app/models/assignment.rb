@@ -41,15 +41,6 @@ class Assignment < ActiveRecord::Base
     where(Assignment.arel_table[:due_date].lt(Time.zone.now))
   end
 
-  def due_date_in_words
-    words = ActionController::Base.helpers.time_ago_in_words(self.due_date)
-    if self.due_date.past?
-      "#{words} ago"
-    else
-      "in #{words}"
-    end
-  end
-
   def submissions_for(student)
     submissions.includes(:ratings).where(student_id: student.id).order('created_at ASC')
   end

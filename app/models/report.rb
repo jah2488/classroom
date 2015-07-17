@@ -12,43 +12,27 @@ class Report < ActiveRecord::Base
     day.cohort
   end
 
-  def campus_name
-    day.cohort.campus.name
-  end
-
-  def cohort_name
-    cohort.name
-  end
-
-  def instructor_name
-    day.cohort.instructor.name
-  end
-
-  def student_name
-    student.name
-  end
-
   def end_of_day
     day.start.end_of_day
   end
 
   def completed_assignments
-    Assignment.complete_for(student).where("due_date <= ?", end_of_day).count
+    Assignment.complete_for(student).where("due_date <= ?", end_of_day)
   end
 
-  def total_assignments
-    Assignment.for(student).where("due_date <= ?", end_of_day).count
+  def assignments
+    Assignment.for(student).where("due_date <= ?", end_of_day)
   end
 
   def attended
-    student.checkins.where("created_at <= ?", end_of_day).count
+    student.checkins.where("created_at <= ?", end_of_day)
   end
 
   def tardies
-    student.checkins.where("created_at <= ?", end_of_day).select{|c| c.late?}.count
+    student.checkins.where("created_at <= ?", end_of_day).select{|c| c.late?}
   end
 
-  def total_lectures
-    cohort.days.where("start <= ?", end_of_day).count
+  def lectures
+    cohort.days.where("start <= ?", end_of_day)
   end
 end

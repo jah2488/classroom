@@ -17,7 +17,7 @@ class InstructorDashboardController < ApplicationController
     render locals: {
       instructor: current_instructor,
       cohort: cohort,
-      current_day: Day.current_for(cohort),
+      current_day: Day.current_for(cohort).decorate,
       assignments: assignments,
       submissions: submissions,
       students: students,

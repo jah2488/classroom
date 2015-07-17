@@ -25,7 +25,7 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @report = Report.find(params[:id])
+    @report = Report.find(params[:id]).decorate
     if @report.student == current_student || authenticate_instructor!
       respond_to do |format|
         format.html
