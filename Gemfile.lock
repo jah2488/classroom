@@ -59,6 +59,8 @@ GEM
     code (0.9.0)
       coderay (~> 1.1)
       method_source (~> 0.8, >= 0.8.2)
+    codeclimate-test-reporter (0.4.7)
+      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -378,6 +380,7 @@ DEPENDENCIES
   bootstrap-sass
   bullet
   byebug
+  codeclimate-test-reporter
   database_cleaner
   devise
   enum_help

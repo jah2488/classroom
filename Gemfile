@@ -66,6 +66,8 @@ group :test, :development do
 
   gem 'guard'
   gem 'guard-rspec', require: false
+
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 source 'https://rails-assets.org' do
