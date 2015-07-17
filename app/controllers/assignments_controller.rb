@@ -1,9 +1,4 @@
 class AssignmentsController < ApplicationController
-  def new
-    render locals: {
-      assignment: Assignment.new
-    }
-  end
 
   def show
     render locals: {
@@ -24,16 +19,6 @@ class AssignmentsController < ApplicationController
     render json: Assignment.search(params[:query])
   end
 
-  def create
-    assignment = Assignment.new(assignment_params)
-    assignment.cohort = current_instructor.current_cohort
-    assignment.due_date = ActiveSupport::TimeZone[assignment.cohort.tz].parse(params[:assignment][:due_date])
-    if assignment.save
-      redirect_to instructor_dash_path, notice: 'Assignment successfully created'
-    else
-      render :new, alert: 'Assignment could not be saved', status: 422
-    end
-  end
 
   def edit
     render locals: {
@@ -41,19 +26,6 @@ class AssignmentsController < ApplicationController
     }
   end
 
-  def update
-    assignment = Assignment.find(params[:id])
-    if assignment.update(assignment_params)
-      redirect_to assignment, notice: 'Assignment updated'
-    else
-      render :edit, alert: 'Assignment could not be updated', status: 422
-    end
-  end
 
-  private
-
-  def assignment_params
-    params.require(:assignment).permit(:title, :info, tag_ids: [])
-  end
 
 end

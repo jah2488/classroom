@@ -1,0 +1,14 @@
+= render partial: 'nav', locals: { cohort: cohort }
+.row
+  .col-md-12
+    .row
+      .col-md-6
+        = render partial: 'submissions', locals: { submissions: submissions }
+      .col-md-6
+        = render partial: 'attendance',  locals: { current_day: current_day, cohort: cohort }
+        = render partial: 'adjustments', locals: { adjustments: adjustments }
+    .row
+      .col-md-6
+        = render partial: 'assignments', locals: { assignments: assignments }
+      .col-md-6
+        = render partial: 'students', locals: { students: students }

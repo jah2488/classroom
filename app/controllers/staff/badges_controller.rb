@@ -1,4 +1,4 @@
-class BadgesController < ApplicationController
+class Staff::BadgesController < Staff::ApplicationController
   def new
     render locals: {
       badge: Badge.new
@@ -11,10 +11,16 @@ class BadgesController < ApplicationController
     }
   end
 
+  def show
+    render locals: {
+      badge: Badge.find(params[:id])
+    }
+  end
+
   def update
     badge = Badge.find(params[:id])
     if badge.update(badge_params)
-      redirect_to instructor_dash_path, notice: 'Badge updated!'
+      redirect_to staff_badge_path(badge), notice: 'Badge updated!'
     else
       render :new
     end
@@ -23,7 +29,7 @@ class BadgesController < ApplicationController
   def create
     badge = Badge.new(badge_params)
     if badge.save
-      redirect_to instructor_dash_path, notice: 'New badge created!'
+      redirect_to staff_badge_path(badge), notice: 'New badge created!'
     else
       render :new
     end

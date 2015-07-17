@@ -8,11 +8,10 @@
   </div>
   <ul class='list'>
     <% assignments.each do |assignment| %>
-      <li><%= link_to(assignment.title.titleize, assignment) %>
+      <li><%= link_to(assignment.title.titleize, staff_cohort_assignment_path(assignment.cohort, assignment)) %>
       <span style='float: right;'><%= react_time(assignment.due_date) %></span></li>
     <% end.empty? and begin %>
       <p> No Assignments </p>
     <% end %>
   </ul>
 </section>
-

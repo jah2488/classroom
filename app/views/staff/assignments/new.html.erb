@@ -1,7 +1,7 @@
 <%= render partial: 'dashboard/nav' %>
 <h1>New Assignment</h1>
 
-<%= simple_form_for(assignment) do |f| %>
+<%= simple_form_for(assignment, url: staff_cohort_assignments_path, method: :post) do |f| %>
   <div class='form-inputs'>
     <%= f.input :title, required: true %>
     <%= f.input :info, hint: 'put markdown in me', required: true %>
