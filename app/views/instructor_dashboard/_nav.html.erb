@@ -1,14 +1,14 @@
 <div class='row'>
   <div class='col-md-12'>
-    <h1>Instructor Dashboard <%= "For #{cohort.name.titleize}" if cohort.persisted? %></h1>
+    <h1>Instructor Dashboard <%= "- #{cohort.name.titleize}" if cohort.persisted? %></h1>
     <nav>
       <ul>
         <li><%= link_to t('.new-day'), new_day_path, class: 'btn btn-primary' %></li>
-        <li><%= link_to t('.new-assignment'), new_assignment_path, class: 'btn btn-default' %></li>
-        <li><%= link_to t('.reports'), reports_path, class: 'btn btn-default' %></li>
-        <li><%= link_to t('.current-cohort'), cohort_path(cohort), class: 'btn btn-default' if cohort.persisted? %></li>
-        <li><%= link_to t('.new-cohort'), new_cohort_path, class: 'btn btn-default' %></li>
-        <li><%= link_to t('.new-badge'), new_badge_path, class: 'btn btn-default' %></li>
+        <li><%= link_to t('.new-assignment'), new_assignment_path, class: 'btn btn-primary' %></li>
+        <li><%= link_to t('.reports'), reports_path, class: 'btn btn-primary' %></li>
+        <li><%= link_to t('.current-cohort'), cohort_path(cohort), class: 'btn btn-primary' if cohort.persisted? %></li>
+        <li><%= link_to t('.new-cohort'), new_cohort_path, class: 'btn btn-primary' %></li>
+        <li><%= link_to t('.new-badge'), new_badge_path, class: 'btn btn-primary' %></li>
       </ul>
     </nav>
   </div>

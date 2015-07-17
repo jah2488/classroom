@@ -24,12 +24,20 @@ class Day < ActiveRecord::Base
     cohort.students - students
   end
 
+  def absences?
+    cohort.students != students
+  end
+
   def has_checkin_for?(student)
     checkins.where(student_id: student.id).count > 0
   end
 
   def late_time
     (start + 15.minutes)
+  end
+
+  def week
+    start.to_datetime.cweek
   end
 
   def present?(student)

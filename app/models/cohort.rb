@@ -13,6 +13,11 @@ class Cohort < ActiveRecord::Base
     campus.tz
   end
 
+  def days_by_month
+    days.group_by{|d| d.start.month}.each do |month|
+      yield month[1]
+    end
+  end
   private
 
   def create_first_day

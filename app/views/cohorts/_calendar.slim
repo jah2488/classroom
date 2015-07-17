@@ -1,0 +1,12 @@
+- cohort.days_by_month do |month|
+  .col-md-2
+    h2 = month.first.start.strftime("%B")
+    - month.each do |day|
+      h3 = day.start.strftime("%a %e")
+      p
+        ' Started at
+        = day.starts_at
+      - if day.absences?
+        p
+          ' Absent:
+          = day.unaccounted_for_students.map(&:name).join ','
