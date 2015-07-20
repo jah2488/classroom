@@ -1,13 +1,18 @@
 class SubmissionsController < ApplicationController
+  after_action :verify_authorized, except: :index
   def new
+    submission = Submission.new
+    authorize submission
     render locals: {
-      submission: Submission.new
+      submission: submission
     }
   end
 
   def show
+    submission = Submission.find(params[:id])
+    authorize submission
     render locals: {
-      submission: Submission.find(params[:id])
+      submission: submission
     }
   end
 
@@ -18,6 +23,7 @@ class SubmissionsController < ApplicationController
     submission.assignment = assignment
     submission.late       = true if assignment.due_date.past?
 
+    authorize submission
     if submission.save
       redirect_to dashboard_path, notice: "Submission for '#{assignment.title.titleize}' submitted for review."
     else

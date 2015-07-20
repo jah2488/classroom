@@ -10,6 +10,10 @@ class Instructor < ActiveRecord::Base
     cohorts.last
   end
 
+  def instructor?
+    true
+  end
+
   def has_office_hours?
     office_hours_start && office_hours_end
   end

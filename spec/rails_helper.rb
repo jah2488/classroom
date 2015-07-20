@@ -4,6 +4,7 @@ require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'database_cleaner'
+require "pundit/rspec"
 require 'codeclimate-test-reporter'
 include Devise::TestHelpers
 

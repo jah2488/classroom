@@ -4,6 +4,8 @@ class Submission < ActiveRecord::Base
   has_many :ratings
   has_many :submission_badges
   has_many :badges, through: :submission_badges
+  validates :student, presence: true
+  validates :link, presence: true
 
   PENDING = 1
   # wat ^ aren't these the same?
@@ -33,9 +35,5 @@ class Submission < ActiveRecord::Base
 
   def status
     "#{label} #{on_time}"
-  end
-
-  def to_s
-    "#{(student.name || student.email)} - #{link[0..45]}"
   end
 end

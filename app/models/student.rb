@@ -13,6 +13,9 @@ class Student < ActiveRecord::Base
 
   validates_presence_of :cohort
 
+  def instructor?
+    false
+  end
   def marked_checkins
     checkins.includes(:adjustment)
   end
