@@ -25,4 +25,8 @@ class Instructor < ActiveRecord::Base
   def office_hours_end_at
     office_hours_end.strftime("%H:%M")
   end
+
+  def has_student? student
+    self.id == student.cohort.instructor_id
+  end
 end

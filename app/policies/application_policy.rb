@@ -39,10 +39,6 @@ class ApplicationPolicy
     Pundit.policy_scope!(user, record.class)
   end
 
-  def instructor_has_student? instructor, student
-    student.cohort.instructor_id == instructor.id
-  end
-
   class Scope
     attr_reader :user, :scope
 

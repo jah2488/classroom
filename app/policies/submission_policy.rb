@@ -9,17 +9,21 @@ class SubmissionPolicy < ApplicationPolicy
 
   def update?
     if user.instructor?
-      instructor_has_student?(user, record.student)
+      user.has_student? record.student
     else
       record.student_id == user.id
     end
   end
 
   def show?
-    if user.instructor?
-      instructor_has_student?(user, record.student)
-    else
-      record.student_id == user.id
-    end
+    update?
+  end
+
+  def mark_complete?
+    user.instructor? && user.has_student?(record.student)
+  end
+
+  def mark_unfinished?
+    mark_complete?
   end
 end

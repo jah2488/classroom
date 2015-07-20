@@ -33,6 +33,7 @@ class SubmissionsController < ApplicationController
 
   def update
     submission = Submission.find(params[:id])
+    authorize submission
     if submission.update(submission_params)
       render json: submission
     else
@@ -52,6 +53,7 @@ class SubmissionsController < ApplicationController
 
   def grade_submission(completed)
     submission = Submission.find(params[:id])
+    authorize submission
     submission.completed = completed
     submission.state = Submission::GRADED
     badge_ids  = params.fetch(:badge_ids, []).reject { |_, v| v == 'false' }.map { |(k, _)| k.split('-').last }
