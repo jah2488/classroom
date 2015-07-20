@@ -16,7 +16,6 @@ var Nav = React.createClass({
     render: function () {
         return (
             <div>
-                <Link url='/instructor/dashboard' text="Return to Dashboard"/>
                 <Link url={this.props.nextForStudent} text="Next Submission For Student"/>
                 <Link url={this.props.nextForAssignment} text="Next Submission For Assignment"/>
             </div>
