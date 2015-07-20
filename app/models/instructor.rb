@@ -29,4 +29,8 @@ class Instructor < ActiveRecord::Base
   def has_student? student
     self.id == student.cohort.instructor_id
   end
+
+  def students
+    cohorts.map(&:students).flatten
+  end
 end

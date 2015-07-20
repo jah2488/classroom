@@ -1,21 +1,19 @@
 class ReportsController < ApplicationController
+  after_action :verify_authorized, :except => :index
+  after_action :verify_policy_scoped, :only => :index
   def index
-    if current_instructor
-      @reports = Report.all
-    else
-      @reports = Report.where(student_id: current_student.id)
-    end
+    @reports = policy_scope(Report)
   end
 
   def new
-    authenticate_instructor!
     @report = Report.new
+    authorize @report
     @students = current_instructor.current_cohort.students
   end
 
   def create
-    authenticate_instructor!
     report = Report.new(report_params)
+    authorize report
     report.day = Day.current_for(current_instructor.current_cohort)
     if report.save
       redirect_to report_path(report), notice: I18n.t('.created', resource: I18n.t('.report'))
@@ -26,11 +24,10 @@ class ReportsController < ApplicationController
 
   def show
     @report = Report.find(params[:id]).decorate
-    if @report.student == current_student || authenticate_instructor!
-      respond_to do |format|
-        format.html
-        format.pdf { render pdf: "#{@report.student.name} Report", show_as_html: false}
-      end
+    authorize @report
+    respond_to do |format|
+      format.html
+      format.pdf { render pdf: "#{@report.student.name} Report", show_as_html: false}
     end
   end
 
