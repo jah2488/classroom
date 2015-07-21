@@ -18,6 +18,11 @@ class Cohort < ActiveRecord::Base
       yield DayDecorator.decorate_collection(month[1])
     end
   end
+
+  def current_day
+    days.where("start <= ?", DateTime.now.end_of_day).order(:start).last
+  end
+
   private
 
   def create_first_day
