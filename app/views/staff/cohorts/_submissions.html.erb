@@ -10,13 +10,13 @@
           <span style='float: right;'><%= react_time(assignment.due_date) %></span>
         </div>
         <ul class='submissions'>
-          <% submissions.group_by(&:student).each do |student, submission| %>
+          <% submissions.group_by(&:student).each do |student, grouped| %>
             <%= link_to(student.name, student) %>
-            <% submission.each do |submission| %>
+            <% grouped.each do |submission| %>
               <li>
                 <div class='row'>
                   <div class='col-md-10 col-sm-10 col-xs-8'>
-                    <%= link_to submission, submission %>
+                    <%= link_to submission.decorate.one_line, submission %>
                   </div>
                   <div class='col-md-2 col-sm-2 col-xs-4'>
                     <%= react_component('MarkAsComplete', { submissionID: submission.id }) %>

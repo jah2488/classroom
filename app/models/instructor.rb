@@ -10,6 +10,10 @@ class Instructor < ActiveRecord::Base
     cohorts.last
   end
 
+  def instructor?
+    true
+  end
+
   def has_office_hours?
     office_hours_start && office_hours_end
   end
@@ -20,5 +24,13 @@ class Instructor < ActiveRecord::Base
 
   def office_hours_end_at
     office_hours_end.strftime("%H:%M")
+  end
+
+  def has_student? student
+    self.id == student.cohort.instructor_id
+  end
+
+  def students
+    cohorts.map(&:students).flatten
   end
 end

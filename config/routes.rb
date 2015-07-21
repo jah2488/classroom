@@ -5,12 +5,12 @@ Rails.application.routes.draw do
 
   resources :reports
   resources :instructors
+  resources :submissions
 
   authenticate :student do
     get 'dashboard' => 'dashboard#index'
     get 'my-cohort' => 'dashboard#cohort', as: 'my_cohort'
 
-    resources :submissions
     resources :checkins
     resources :adjustments, only: :create
 
