@@ -7,8 +7,17 @@ describe ReportPolicy do
   subject { described_class }
 
   permissions ".scope" do
-    pending "it shows a student their own reports"
-    pending "it shows instructors all of their reports"
+    it "it shows a student their own reports" do
+      report = create(:report, student: student)
+      create(:report)
+      expect(ReportPolicy::Scope.new(student, Report.all).resolve).to eq [report]
+    end
+    it "it shows instructors all of their reports" do
+      allow(instructor).to receive(:students) {[student]}
+      one = create(:report, student: student)
+      two = create(:report, student: student)
+      expect(ReportPolicy::Scope.new(instructor, Report.all).resolve).to eq [one, two]
+    end
   end
 
   permissions :show? do

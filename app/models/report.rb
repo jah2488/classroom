@@ -1,6 +1,7 @@
 class Report < ActiveRecord::Base
   belongs_to :student
   belongs_to :day
+  validates :day, :student, presence: true
 
   enum status: {
     "Satisfactory"    => 0,
