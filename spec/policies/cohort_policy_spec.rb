@@ -2,7 +2,9 @@ require 'rails_helper'
 
 describe CohortPolicy do
 
-  let(:user) { User.new }
+  let(:instructor) { build_stubbed :instructor }
+  let(:student) { build_stubbed :student }
+  let(:cohort) { build_stubbed :cohort }
 
   subject { described_class }
 
@@ -11,18 +13,32 @@ describe CohortPolicy do
   end
 
   permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it "allows anyone to see cohorts" do
+      expect(subject).to permit(student, cohort)
+      expect(subject).to permit(instructor, cohort)
+    end
   end
 
   permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it "allows instructors to create" do
+      expect(subject).to permit(instructor, cohort)
+      expect(subject).to_not permit(student, cohort)
+    end
   end
 
   permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it "allows instructors to update their own" do
+      cohort.instructor_id = instructor.id
+      expect(subject).to permit(instructor, cohort)
+      expect(subject).to_not permit(student, cohort)
+    end
   end
 
   permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it "allows instructors to destroy their own" do
+      cohort.instructor_id = instructor.id
+      expect(subject).to permit(instructor, cohort)
+      expect(subject).to_not permit(student, cohort)
+    end
   end
 end
