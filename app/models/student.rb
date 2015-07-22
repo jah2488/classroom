@@ -16,8 +16,9 @@ class Student < ActiveRecord::Base
   def instructor?
     false
   end
+
   def marked_checkins
-    checkins.includes(:adjustment)
+    checkins.includes(:adjustment).select { |checkin| checkin.late }
   end
 
   def badge_list

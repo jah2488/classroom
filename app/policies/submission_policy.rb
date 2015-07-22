@@ -26,4 +26,8 @@ class SubmissionPolicy < ApplicationPolicy
   def mark_unfinished?
     mark_complete?
   end
+
+  def grade_submission?
+    mark_complete?
+  end
 end

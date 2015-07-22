@@ -53,7 +53,9 @@ class SubmissionsController < ApplicationController
 
   def grade_submission(completed)
     submission = Submission.find(params[:id])
+
     authorize submission
+
     submission.completed = completed
     submission.state = Submission::GRADED
     badge_ids  = params.fetch(:badge_ids, []).reject { |_, v| v == 'false' }.map { |(k, _)| k.split('-').last }
@@ -66,6 +68,10 @@ class SubmissionsController < ApplicationController
     rating.save!
 
     render json: {}, status: 200
+  end
+
+  def pundit_user
+    current_instructor || current_student
   end
 
   def submission_params

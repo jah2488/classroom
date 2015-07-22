@@ -35,6 +35,7 @@ var GradeSubmissionForm = React.createClass({
     handleClick: function(action) {
         jQuery.ajax({
             method: 'PATCH',
+            dataType: 'JSON',
             url: '/submissions/' + this.state.submissionID + '/' + action,
             data: {
                 notes: this.refs.textarea.state.text,
