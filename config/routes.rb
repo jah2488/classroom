@@ -5,7 +5,10 @@ Rails.application.routes.draw do
 
   resources :reports
   resources :instructors
-  resources :submissions
+  resources :submissions do
+    patch :complete
+    patch :unfinish
+  end
 
   authenticate :student do
     get 'dashboard' => 'dashboard#index'
@@ -28,10 +31,6 @@ Rails.application.routes.draw do
   end
 
   authenticate :instructor do
-
-    patch 'submissions/:id/complete'   => 'submissions#mark_complete',   as: 'mark_submission_complete'
-    patch 'submissions/:id/unfinished' => 'submissions#mark_unfinished', as: 'mark_submission_unfinished'
-
     patch 'adjustments/:id/adjust' => 'adjustments#adjust', as: 'adjust_checkin'
     patch 'adjustments/:id/close'  => 'adjustments#close',  as: 'close_adjustment'
 

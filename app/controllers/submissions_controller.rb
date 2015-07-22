@@ -41,18 +41,18 @@ class SubmissionsController < ApplicationController
     end
   end
 
-  def mark_complete
+  def complete
     grade_submission(true)
   end
 
-  def mark_unfinished
+  def unfinish
     grade_submission(false)
   end
 
   private
 
   def grade_submission(completed)
-    submission = Submission.find(params[:id])
+    submission = Submission.find(params[:submission_id])
 
     authorize submission
 

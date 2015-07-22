@@ -28,7 +28,7 @@ RSpec.describe SubmissionPolicy do
     end
   end
 
-  permissions :mark_complete? do
+  permissions :complete? do
     it "denies students" do
       expect(subject).to_not permit(student, Submission.new)
     end
@@ -39,7 +39,7 @@ RSpec.describe SubmissionPolicy do
     end
   end
 
-  permissions :mark_unfinished? do
+  permissions :unfinish? do
     it "denies students" do
       expect(subject).to_not permit(student, Submission.new)
     end
