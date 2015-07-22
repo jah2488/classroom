@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716171433) do
+ActiveRecord::Schema.define(version: 20150722195237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,10 +84,10 @@ ActiveRecord::Schema.define(version: 20150716171433) do
 
   create_table "days", force: :cascade do |t|
     t.integer  "cohort_id"
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
-    t.string   "override_code", default: "d80c",                null: false
-    t.datetime "start",         default: '2015-07-16 00:47:44'
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "override_code", default: "d80c", null: false
+    t.datetime "start"
   end
 
   add_index "days", ["cohort_id"], name: "index_days_on_cohort_id", using: :btree
