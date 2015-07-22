@@ -27,4 +27,25 @@ RSpec.describe SubmissionPolicy do
       expect(subject).to_not permit(instructor, Submission.new(student: student))
     end
   end
+
+  permissions :mark_complete? do
+    it "denies students" do
+      expect(subject).to_not permit(student, Submission.new)
+    end
+
+    it "allows instructors to complete submissions" do
+      student.cohort.instructor = instructor
+      expect(subject).to permit(instructor, Submission.new(student: student))
+    end
+  end
+
+  permissions :mark_unfinished? do
+    it "denies students" do
+      expect(subject).to_not permit(student, Submission.new)
+    end
+    it "allows instructors to mark submissions unfinished" do
+      student.cohort.instructor = instructor
+      expect(subject).to permit(instructor, Submission.new(student: student))
+    end
+  end
 end

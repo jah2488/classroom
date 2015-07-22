@@ -25,6 +25,14 @@ class Submission < ActiveRecord::Base
     state == GRADED
   end
 
+  def complete?
+    completed && graded?
+  end
+
+  def unfinished?
+    !completed && graded?
+  end
+
   def label
     completed ? 'Completed' : 'Incomplete'
   end
