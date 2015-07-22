@@ -6,29 +6,27 @@ Rails.application.routes.draw do
   resources :reports
   resources :instructors
   resources :submissions
+  resources :checkins
+  resources :students
+  resources :cohorts, only: :show
+  resources :adjustments, only: :create do
+    patch 'adjust'
+    patch 'close'
+  end
+  resources :assignments, only: [:show] do
+    collection do
+      get 'current'
+      get 'search'
+    end
+  end
 
   authenticate :student do
     get 'dashboard' => 'dashboard#index'
     get 'my-cohort' => 'dashboard#cohort', as: 'my_cohort'
-
-    resources :checkins
-    resources :adjustments, only: :create
-
-    get 'profile/:id' => 'students#show', as: 'profile'
-    get 'profile/:id/edit' => 'students#edit', as: 'edit_profile'
-
-    resources :assignments, only: [:show] do
-      collection do
-        get 'current'
-        get 'search'
-      end
-    end
-    resources :students
-    root to: 'dashboard#index'
+    root to: redirect('/dashboard')
   end
 
   authenticate :instructor do
-
     patch 'submissions/:id/complete'   => 'submissions#mark_complete',   as: 'mark_submission_complete'
     patch 'submissions/:id/unfinished' => 'submissions#mark_unfinished', as: 'mark_submission_unfinished'
 
