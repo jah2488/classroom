@@ -1,12 +1,16 @@
 class Staff::CohortsController < Staff::ApplicationController
+  after_action :verify_authorized, except: :index
   def new
+    cohort = Cohort.new
+    authorize cohort
     render locals: {
-      cohort: Cohort.new
+      cohort: cohort
     }
   end
 
   def show
-    cohort      = Cohort.find(params[:id])
+    cohort      = Cohort.find(params[:id]).decorate
+    authorize cohort
     students    = cohort.students.includes(:adjustments)
     assignments = cohort.assignments.order('due_date DESC')
     submissions = Submission.ungraded_for(cohort)
@@ -14,7 +18,6 @@ class Staff::CohortsController < Staff::ApplicationController
     render locals: {
       instructor: current_instructor,
       cohort: cohort,
-      current_day: Day.current_for(cohort).decorate,
       assignments: assignments,
       submissions: submissions,
       students: students,
@@ -30,6 +33,7 @@ class Staff::CohortsController < Staff::ApplicationController
     cohort = Cohort.new(cohort_params)
     cohort.instructor = current_instructor
     cohort.first_day = cohort.first_day.beginning_of_day
+    authorize cohort
     if cohort.save
       redirect_to staff_cohort_path(cohort), notice: I18n.t('.created', resource: I18n.t('.cohort'))
     end

@@ -8,10 +8,6 @@ class Day < ActiveRecord::Base
     where(cohort_id: cohort.id)
   end
 
-  def self.current_for(cohort)
-    self.for(cohort).order(:start).last
-  end
-
   def tz
     cohort.tz
   end
