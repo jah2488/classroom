@@ -7,11 +7,15 @@ class CohortPolicy < ApplicationPolicy
     user.instructor?
   end
 
-  def show
+  def show?
     true
   end
 
   def update?
+    record.instructor_id == user.id
+  end
+
+  def destroy?
     record.instructor_id == user.id
   end
 
