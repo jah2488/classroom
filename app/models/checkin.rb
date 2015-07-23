@@ -2,9 +2,14 @@ class Checkin < ActiveRecord::Base
   belongs_to :student
   belongs_to :day
   has_one :adjustment
+  validates :day, :student, presence: true
 
   def on_time?
     created_at < day.late_time
+  end
+
+  def correct
+    self.created_at = day.start
   end
 
   def late
