@@ -4,7 +4,7 @@ class CheckinsController < ApplicationController
     # -- In a controller of all places too. Ugh.
     #
 
-    day = Day.current_for(current_student.cohort)
+    day = current_student.cohort.current_day
 
     if day.has_checkin_for?(current_student)
       render json: '', status: :unauthorized

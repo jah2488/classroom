@@ -14,7 +14,7 @@ class ReportsController < ApplicationController
   def create
     report = Report.new(report_params)
     authorize report
-    report.day = Day.current_for(current_instructor.current_cohort)
+    report.day = current_instructor.current_cohort.current_day
     if report.save
       redirect_to report_path(report), notice: I18n.t('.created', resource: I18n.t('.report'))
     else
