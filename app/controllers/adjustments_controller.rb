@@ -12,8 +12,7 @@ class AdjustmentsController < ApplicationController
     adjustment = Adjustment.find(params[:id])
     checkin    = adjustment.checkin
 
-    checkin.late     = false
-    checkin.absent   = false
+    checkin.correct
     adjustment.state = Adjustment::ADJUSTED
 
     checkin.save
