@@ -34,7 +34,8 @@
               <li role="presentation"><%= link_to('Student Signin', new_student_session_path) %></li>
             <% end %>
             <% if instructor_signed_in? %>
-              <li role="presentation"><%= link_to('Staff Dashboard', staff_root_path) %></li>
+              <li role="presentation"><%= link_to('Dashboard', staff_root_path) %></li>
+              <li role="presentation"><%= link_to("Cohorts", staff_cohorts_path) %></li>
               <li role="presentation"><%= link_to('Instructor Logout', destroy_instructor_session_path, class: 'danger', method: :delete) %>
             <% end %>
             </ul>
@@ -57,7 +58,8 @@
               <li><%= link_to('Student Signin', new_student_session_path) %></li>
             <% end %>
             <% if instructor_signed_in? %>
-              <li><%= link_to('Staff Dashboard', staff_root_path) %></li>
+              <li><%= link_to('Dashboard', staff_root_path) %></li>
+              <li><%= link_to("Cohorts", staff_cohorts_path) %></li>
               <li><%= link_to('Instructor Logout', destroy_instructor_session_path, class: 'danger', method: :delete) %>
             <% end %>
           </ul>
