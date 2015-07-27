@@ -1,0 +1,19 @@
+<section>
+  <header>
+    <h3>Students</h3>
+  </header>
+  <div class="list-group">
+    <% students.each do |student| %>
+      <div class="list-group-item">
+        <div class="row-picture">
+          <%= image_tag avatar_url(student.user), class: 'circle' %>
+        </div>
+        <div class="row-content">
+          <h4 class="list-group-item-heading"><%= link_to student.user.name, student %></h4>
+          <p class="list-group-item-text">Last Active <%= react_time(student.last_active_at) %></p>
+        </div>
+      </div>
+      <div class="list-group-separator"></div>
+    <% end %>
+  </div>
+</section>

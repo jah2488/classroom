@@ -6,13 +6,13 @@ require 'rspec/rails'
 require 'database_cleaner'
 require "pundit/rspec"
 require 'codeclimate-test-reporter'
-include Devise::TestHelpers
 
 ActiveRecord::Migration.maintain_test_schema!
 
 CodeClimate::TestReporter.start
 
 RSpec.configure do |config|
+  config.include Devise::TestHelpers, type: :controller
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.use_transactional_fixtures = false

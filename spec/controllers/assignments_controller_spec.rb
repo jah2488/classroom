@@ -5,8 +5,9 @@ describe AssignmentsController do
     instructor = FactoryGirl.create(:instructor)
     campus     = FactoryGirl.create(:campus)
     @cohort     = FactoryGirl.create(:cohort, instructor: instructor, campus: campus)
-    student    = Student.create!(cohort_id: @cohort.id, email: 'student@example.com', password: 123456789)
-    sign_in student
+    student    = create(:student, cohort_id: @cohort.id)
+    student_user = create(:user, student: student)
+    sign_in student_user
   end
 
   describe "GET #current" do

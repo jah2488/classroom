@@ -24,7 +24,7 @@
               <li>
                 <%= render partial: 'assignment', locals: {
                   assignment: assignment,
-                  submissions: assignment.submissions_for(current_student)
+                  submissions: assignment.submissions_for(current_user.student)
                 } %>
               </li>
             <% end %>
@@ -34,4 +34,3 @@
     </ul>
   </div>
 </section>
-

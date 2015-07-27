@@ -4,7 +4,8 @@
   = simple_form_for(cohort, url: staff_cohorts_path) do |f|
     .form-inputs
       = f.input :name
-      = f.input :campus_id, collection: Campus.all, hint: t('.location-hint')
+      = f.association :campus
+      = f.association :instructor
       = f.input :first_day, as: :date
     .form-actions
       = f.button :submit

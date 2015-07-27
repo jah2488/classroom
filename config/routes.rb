@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
-
-  devise_for :students
-  devise_for :instructors
+  devise_for :users
 
   resources :reports
   resources :instructors
-
   resources :checkins
   resources :students
   resources :cohorts, only: :show
@@ -29,25 +26,20 @@ Rails.application.routes.draw do
     end
   end
 
-  authenticate :student do
-    get 'dashboard' => 'dashboard#index'
-    get 'my-cohort' => 'dashboard#cohort', as: 'my_cohort'
-    root to: redirect('/dashboard')
+  namespace 'staff' do
+    root to: 'cohorts#show'
+    resources :cohorts do
+      resources :days
+      resources :assignments
+      resources :reports
+    end
+    resources :students, only: [:show, :edit, :update]
+    resources :badges, except: :index
+    resources :ratings, only: [:create, :update]
+    resources :tags, only: :create
   end
 
-  authenticate :instructor do
-    namespace 'staff' do
-      root to: "cohorts#show"
-      resources :cohorts do
-        resources :days
-        resources :assignments
-      end
-      resources :students, only: [:show, :edit, :update]
-      resources :badges, except: :index
-      resources :ratings, only: [:create, :update]
-      resources :tags, only: :create
-    end
-  end
+  root to: "cohorts#my"
 
   get '404', :to => 'application#page_not_found'
   get '422', :to => 'application#server_error'

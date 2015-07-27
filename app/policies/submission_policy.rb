@@ -9,9 +9,9 @@ class SubmissionPolicy < ApplicationPolicy
 
   def update?
     if user.instructor?
-      user.has_student? record.student
+      user.instructor.has_student? record.student
     else
-      record.student_id == user.id
+      record.student_id == user.student.id
     end
   end
 
@@ -20,7 +20,7 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def complete?
-    user.instructor? && user.has_student?(record.student)
+    user.instructor? && user.instructor.has_student?(record.student)
   end
 
   def unfinish?

@@ -1,17 +1,17 @@
 class ApplicationController < ActionController::Base
   include Pundit
   protect_from_forgery with: :exception
+  before_filter :authenticate_user!
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :record_student_activity
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  def current_user
-    return current_student if current_student
-    current_instructor
-  end
   def record_student_activity
-    current_student.touch(:last_active_at) if current_student
+    if current_user && current_user.student?
+      current_user.student.touch(:last_active_at)
+    end
   end
 
   def page_not_found

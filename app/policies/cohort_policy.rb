@@ -12,11 +12,11 @@ class CohortPolicy < ApplicationPolicy
   end
 
   def update?
-    record.instructor_id == user.id
+    user.instructor? && record.instructor_id == user.instructor.id
   end
 
   def destroy?
-    record.instructor_id == user.id
+    user.instructor? && record.instructor_id == user.instructor.id
   end
 
   class Scope < Scope

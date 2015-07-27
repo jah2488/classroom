@@ -1,4 +1,9 @@
-<h1>Student Dashboard</h1>
+<div class='row'>
+  <div class='col-md-12'>
+    <h2><%= @cohort.name %><br/><small><%= @cohort.campus %></small></h2>
+    <h4>On Day <%= @cohort.days.count + 1 %></h4>
+  </div>
+</div>
 <div class='row'>
   <div class='visible-xs visible-sm col-sm-12'>
     <%= link_to 'SUBMIT HOMEWORK', new_submission_path,  class:'full-width btn btn-primary btn-md'%>
@@ -9,14 +14,20 @@
     <%= link_to 'CURRENT ASSIGNMENT', current_assignments_path,  class:'btn btn-default btn-md'%>
   </div>
 </div>
-
+<div class='row'>
+  <div class='col-md-3'>
+  </div>
+</div>
 <div class='row'>
   <div class='col-md-push-8 col-md-4'>
     <div class='row'>
-      <%= render partial: 'attendance', locals: { current_day: current_day } %>
+      <%= render partial: 'attendance', locals: { current_day: current_day, current_student: current_user.student } %>
     </div>
     <div class='row'>
-      <%= render partial: 'adjustments', locals: { current_student: current_student } %>
+      <%= render partial: 'adjustments', locals: { current_student: current_user.student } %>
+    </div>
+    <div class='row'>
+      <%= render partial: 'students', locals: { students: students }  %>
     </div>
   </div>
   <div class='col-md-pull-4 col-md-8'>

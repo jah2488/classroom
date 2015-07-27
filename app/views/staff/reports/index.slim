@@ -1,0 +1,17 @@
+= render partial: 'nav', locals: { cohort: @cohort }
+table.table.table-hover
+  thead
+    tr
+      th Student Name
+      th Day
+      th Status
+  tbody
+    - @reports.each do |report|
+      tr
+        td = report.student.name
+        td = report.day
+        td = report.status
+        td = link_to "View", staff_cohort_report_path(@cohort, report)
+
+- if policy(Report).create?
+  = link_to "Create Report", new_staff_cohort_report_path(@cohort), class: 'btn btn-primary'

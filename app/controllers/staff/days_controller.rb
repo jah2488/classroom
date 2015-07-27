@@ -6,6 +6,7 @@ class Staff::DaysController < Staff::ApplicationController
   end
 
   def new
+    @cohort = Cohort.find(params[:cohort_id])
     render locals: {
       day: Day.new
     }

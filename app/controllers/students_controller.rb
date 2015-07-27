@@ -28,7 +28,7 @@ class StudentsController < ApplicationController
   def update
     student = Student.find(params[:id])
     authorize student
-    if student.update(student_params)
+    if student.update(student_params) && student.user.update(user_params)
       redirect_to student_path(student), notice: 'Profile successfully updated'
     end
   end
@@ -36,6 +36,10 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    params.require(:student).permit(:name, :github, :phone, :blog, :bio, :twitter)
+    params.require(:student).permit(:phone, :blog, :bio, :twitter)
+  end
+
+  def user_params
+    params.require(:student).require(:user_attributes).permit(:name, :github, :email)
   end
 end
