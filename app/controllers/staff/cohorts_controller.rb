@@ -1,5 +1,4 @@
 class Staff::CohortsController < Staff::ApplicationController
-  after_action :verify_authorized, except: :index
   def new
     cohort = Cohort.new
     authorize cohort
@@ -9,20 +8,29 @@ class Staff::CohortsController < Staff::ApplicationController
   end
 
   def show
-    cohort      = Cohort.find(params[:id]).decorate
-    authorize cohort
-    students    = cohort.students.includes(:adjustments)
-    assignments = cohort.assignments.order('due_date DESC')
-    submissions = Submission.ungraded_for(cohort)
-    adjustments = students.flat_map(&:adjustments)
-    render locals: {
-      instructor: current_instructor,
-      cohort: cohort,
-      assignments: assignments,
-      submissions: submissions,
-      students: students,
-      adjustments: adjustments
-    }
+    if params[:id]
+      cohort      = Cohort.find(params[:id]).decorate
+      authorize cohort
+      students    = cohort.students.includes(:adjustments)
+      assignments = cohort.assignments.order('due_date DESC')
+      submissions = Submission.ungraded_for(cohort)
+      adjustments = students.flat_map(&:adjustments)
+      session[:cohort_id] = cohort.id
+      render locals: {
+        instructor: current_instructor,
+        cohort: cohort,
+        assignments: assignments,
+        submissions: submissions,
+        students: students,
+        adjustments: adjustments
+      }
+    else
+      if session[:cohort_id]
+        redirect_to staff_cohort_path(session[:cohort_id])
+      else
+        redirect_to staff_cohorts_path
+      end
+    end
   end
 
   def index

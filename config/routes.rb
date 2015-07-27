@@ -37,8 +37,8 @@ Rails.application.routes.draw do
 
   authenticate :instructor do
     namespace 'staff' do
-      root to: 'cohorts#index'
-      resources :cohorts, only: [:new, :create, :show] do
+      root to: "cohorts#show"
+      resources :cohorts do
         resources :days
         resources :assignments
       end
