@@ -26,44 +26,44 @@ html
               ul.dropdown-menu[style="left: -87px;" role="menu" aria-labelledby="dropdownMenu1"]
                 - if student_signed_in?
                   li[role="presentation"]
-                    = link_to('Dashboard', dashboard_path)
+                    = active_link_to('Dashboard', dashboard_path)
                   li[role="presentation"]
-                    = link_to('Cohort', my_cohort_path)
+                    = active_link_to('Cohort', my_cohort_path)
                   li[role="presentation"]
-                    = link_to('Profile', profile_path(current_student))
+                    = active_link_to('Profile', profile_path(current_student))
                   li.divider[role="presentation"]
                   li[role="presentation"]
-                    = link_to('Logout', destroy_student_session_path, class: 'danger', method: :delete)
+                    = active_link_to('Logout', destroy_student_session_path, class: 'danger', method: :delete)
                 - else
                   li[role="presentation"]
-                    = link_to('Student Signin', new_student_session_path)
+                    = active_link_to('Student Signin', new_student_session_path)
                 - if instructor_signed_in?
                   li[role="presentation"]
-                    = link_to('Staff Dashboard', staff_root_path)
+                    = active_link_to('Staff Dashboard', staff_root_path)
                   li[role="presentation"]
-                    = link_to('Instructor Logout', destroy_instructor_session_path, class: 'danger', method: :delete)
+                    = active_link_to('Instructor Logout', destroy_instructor_session_path, class: 'danger', method: :delete)
         .hidden-xs.col-sm-8
           nav
             ul.nav.nav-pills.pull-right
               - if student_signed_in?
                 li
-                  = link_to('Dashboard', dashboard_path)
+                  = active_link_to('Dashboard', dashboard_path)
                 li
-                  = link_to('Cohort', my_cohort_path)
+                  = active_link_to('Cohort', my_cohort_path)
                 li
-                  = link_to('Profile', profile_path(current_student))
+                  = active_link_to('Profile', profile_path(current_student))
                 - if current_student || current_instructor
-                  li = link_to("Reports", reports_path)
+                  li = active_link_to("Reports", reports_path)
                 li
-                  = link_to('Logout', destroy_student_session_path, class: 'danger', method: :delete)
+                  = active_link_to('Logout', destroy_student_session_path, class: 'danger', method: :delete)
               - else
                 li
-                  = link_to('Student Signin', new_student_session_path)
+                  = active_link_to('Student Signin', new_student_session_path)
               - if instructor_signed_in?
                 li
-                  = link_to('Staff Dashboard', staff_root_path)
+                  = active_link_to('Staff Dashboard', staff_root_path)
                 li
-                  = link_to('Instructor Logout', destroy_instructor_session_path, class: 'danger', method: :delete)
+                  = active_link_to('Instructor Logout', destroy_instructor_session_path, class: 'danger', method: :delete)
     span class='hidden' id='loc-data' data-location="#{distance_from_current_cohort}"
     main
       .container-fluid
