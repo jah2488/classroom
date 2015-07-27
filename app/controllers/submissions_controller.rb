@@ -27,7 +27,7 @@ class SubmissionsController < ApplicationController
     if submission.save
       redirect_to dashboard_path, notice: "Submission for '#{assignment.title.titleize}' submitted for review."
     else
-      render :new, alert: 'Submission was unable to be submitted.'
+      render :new, alert: 'Submission was unable to be submitted.', locals: { submission: submission }
     end
   end
 
