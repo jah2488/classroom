@@ -27,7 +27,7 @@
             <% if student_signed_in? %>
               <li role="presentation"><%= link_to('Dashboard', dashboard_path) %></li>
               <li role="presentation"><%= link_to('Cohort', my_cohort_path)%></li>
-              <li role="presentation"><%= link_to('Profile', profile_path(current_student)) %></li>
+              <li role="presentation"><%= link_to('Profile', student_path(current_student)) %></li>
               <li role="presentation" class="divider"></li>
               <li role="presentation"><%= link_to('Logout', destroy_student_session_path, class: 'danger', method: :delete) %></li>
             <% else %>
@@ -48,7 +48,7 @@
             <% if student_signed_in? %>
               <li><%= link_to('Dashboard', dashboard_path) %></li>
               <li><%= link_to('Cohort', my_cohort_path)%></li>
-              <li><%= link_to('Profile', profile_path(current_student)) %></li>
+              <li><%= link_to('Profile', student_path(current_student)) %></li>
               <% if current_student || current_instructor %>
                 <li><%= link_to("Reports", reports_path) %></li>
               <% end %>

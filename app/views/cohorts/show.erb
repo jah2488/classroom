@@ -1,7 +1,7 @@
 <div class='row'>
   <div class='col-md-12'>
-    <h2><%= current_student.cohort.name %><br/><small><%= current_student.cohort.campus %></h2>
-      <h4>On Day <%= current_student.cohort.days.count + 1 %></h4>
+    <h2><%= @cohort.name %><br/><small><%= @cohort.campus %></h2>
+      <h4>On Day <%= @cohort.days.count + 1 %></h4>
   </div>
 <div class='row'>
   <div class='col-md-offset-3 col-md-6'>
@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="list-group">
-      <% students.each do |student| %>
+      <% @cohort.students.each do |student| %>
         <div class="list-group-item">
             <div class="row-picture">
                 <%= image_tag avatar_url(student), class: 'circle' %>

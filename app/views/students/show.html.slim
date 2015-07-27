@@ -1,0 +1,75 @@
+.row
+  .col-md-offset-3.col-md-6
+    .row
+      .col-md-12
+        = image_tag avatar_url(student), class: 'center-block circle'
+    .row
+      .col-md-12
+        h1.text-center
+          = student.name
+    .row
+      .col-md-12
+        = student.bio
+    .row
+      .col-md-8
+        '  Github:
+        = link_to student.github, "https://github.com/#{student.github}"
+      .col-md-4
+        '  Phone:
+        = link_to student.phone, "tel://#{student.phone}"
+    .row
+      .col-md-8
+        '  Twitter:
+        = link_to student.twitter, "https://twitter.com/#{student.twitter}"
+      .col-md-4
+        '  Blog:
+        = link_to truncate(student.blog, length: 23), student.blog
+    = link_to 'Edit', edit_student_path(student),  class: 'btn btn-primary' if policy(student).edit?
+.row
+  .col-md-6
+    section
+      header
+        h3
+          | Badges
+      .row
+        .col-sm-12.badges
+          - student.badge_list.each_with_index do |badge_set, i|
+            - badge_set.each do |badge|
+              .col-md-3.col-sm-4.col-xs-6
+                span class="#{'tint' unless i.zero?} circle">
+                = image_tag attachment_url(badge, :icon_image, :fill, 200, 200, format: 'png'), class: 'shadow-z-1 circle student-badge', tabindex: 0, 'data-trigger': "focus", 'data-toggle': 'popover', 'data-placement': 'bottom', 'data-title': badge.name, 'data-content': badge.description
+  - if policy(student).grades?
+    .col-md-6
+      section
+        header
+          h3
+            | Stats
+        table.table.table-hover
+          thead
+
+          tbody
+            tr
+              td.align-middle
+                | Tardies
+              td
+                h3
+                  = student.tardies
+            tr
+              td.align-middle
+                | Absences
+              td
+                h3
+                  = student.absences
+            tr
+              td.align-middle
+                | Completed Assignments
+              td
+                h3
+                  = student.complete_percentage * 100
+                  | %
+            tr
+              td.align-middle
+                | Past Due Assignments
+              td
+                h3
+                  = student.past_due_count

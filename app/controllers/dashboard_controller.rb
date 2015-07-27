@@ -8,9 +8,7 @@ class DashboardController < ApplicationController
   end
 
   def cohort
-    render locals: {
-      students: current_student.cohort.students.order(last_active_at: :DESC)
-    }
+    redirect_to cohort_path(current_student.cohort)
   end
 
   private
