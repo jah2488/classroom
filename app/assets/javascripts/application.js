@@ -5,6 +5,7 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //
+//= require refile
 //= require marked
 //= require moment
 //= require datetimepicker
