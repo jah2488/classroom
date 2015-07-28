@@ -8,5 +8,5 @@ Refile.configure do |config|
   }
   Refile.cache = Refile::S3.new(prefix: "cache", **aws)
   Refile.store = Refile::S3.new(prefix: "store", **aws)
-  Refile.host = "//" + ENV['ASSET_HOST']
+  Refile.host = "//" + ENV['ASSET_HOST'] unless Rails.env.test?
 end
