@@ -19,15 +19,11 @@ class SubmissionPolicy < ApplicationPolicy
     update?
   end
 
-  def mark_complete?
+  def complete?
     user.instructor? && user.has_student?(record.student)
   end
 
-  def mark_unfinished?
-    mark_complete?
-  end
-
-  def grade_submission?
-    mark_complete?
+  def unfinish?
+    complete?
   end
 end

@@ -32,7 +32,7 @@ RSpec.describe SubmissionsController do
       it "marks complete" do
         student.cohort.instructor = instructor
         student.cohort.save
-        patch :mark_complete, id: submission.id
+        patch :complete, submission_id: submission.id
         expect(response).to be_success
         submission.reload
         expect(submission).to be_complete
@@ -40,7 +40,7 @@ RSpec.describe SubmissionsController do
       it "marks unfinished" do
         student.cohort.instructor = instructor
         student.cohort.save
-        patch :mark_unfinished, id: submission.id
+        patch :unfinish, submission_id: submission.id
         expect(response).to be_success
         submission.reload
         expect(submission).to be_unfinished

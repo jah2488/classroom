@@ -76,7 +76,7 @@ var GradeSubmissionForm = React.createClass({
                     <div className='row'>
                         <div className='actions col-sm-12'>
                             <a className="btn btn-primary" rel="nofollow" onClick={this.handleClick.bind(this, 'complete')}>Mark as Complete</a>
-                            <a className="btn btn-default" rel="nofollow" onClick={this.handleClick.bind(this, 'unfinished')}>Mark as Unfinished</a>
+                            <a className="btn btn-default" rel="nofollow" onClick={this.handleClick.bind(this, 'unfinish')}>Mark as Unfinished</a>
                             <a className="btn btn-default" rel="nofollow" onClick={this.handleSend}>Send Feedback</a>
                         </div>
                     </div>
