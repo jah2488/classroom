@@ -23,7 +23,7 @@ gem 'pundit'
 gem 'react-rails', '~> 1.0'
 gem 'refile', require: 'refile/rails'
 gem 'refile-mini_magick'
-gem 'refile-postgres'
+gem 'refile-s3'
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'simple_form'
