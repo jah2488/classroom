@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722195237) do
+ActiveRecord::Schema.define(version: 20150727201118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,12 +124,6 @@ ActiveRecord::Schema.define(version: 20150722195237) do
   end
 
   add_index "ratings", ["submission_id"], name: "index_ratings_on_submission_id", using: :btree
-
-  create_table "refile_attachments", force: :cascade do |t|
-    t.string "namespace", null: false
-  end
-
-  add_index "refile_attachments", ["namespace"], name: "index_refile_attachments_on_namespace", using: :btree
 
   create_table "reports", force: :cascade do |t|
     t.integer  "student_id"
