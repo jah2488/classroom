@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><%= t('.title', title: local_assigns[:title]) %></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material-fullpalette.min.css', media: 'all' %>
+  <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/ripples.min.css' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header class='main-header'>
+    <div class='row'>
+      <div class='col-sm-4'>
+        <h1><%= link_to t('.header-title'), dashboard_path %></h1>
+        <div class='visible-xs-inline' style='float:right;'>
+
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="mobileNav" data-toggle="dropdown" aria-expanded="true"> Menu
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" style='left: -87px;' role="menu" aria-labelledby="dropdownMenu1">
+            <% if student_signed_in? %>
+              <li role="presentation"><%= link_to('Dashboard', dashboard_path) %></li>
+              <li role="presentation"><%= link_to('Cohort', my_cohort_path)%></li>
+              <li role="presentation"><%= link_to('Profile', student_path(current_student)) %></li>
+              <li role="presentation" class="divider"></li>
+              <li role="presentation"><%= link_to('Logout', destroy_student_session_path, class: 'danger', method: :delete) %></li>
+            <% else %>
+              <li role="presentation"><%= link_to('Student Signin', new_student_session_path) %></li>
+            <% end %>
+            <% if instructor_signed_in? %>
+              <li role="presentation"><%= link_to('Staff Dashboard', staff_root_path) %></li>
+              <li role="presentation"><%= link_to('Instructor Logout', destroy_instructor_session_path, class: 'danger', method: :delete) %>
+            <% end %>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+      <div class='hidden-xs col-sm-8'>
+        <nav>
+          <ul class='nav nav-pills pull-right'>
+            <% if student_signed_in? %>
+              <li><%= link_to('Dashboard', dashboard_path) %></li>
+              <li><%= link_to('Cohort', my_cohort_path)%></li>
+              <li><%= link_to('Profile', student_path(current_student)) %></li>
+              <% if current_student || current_instructor %>
+                <li><%= link_to("Reports", reports_path) %></li>
+              <% end %>
+              <li><%= link_to('Logout', destroy_student_session_path, class: 'danger', method: :delete) %></li>
+            <% else %>
+              <li><%= link_to('Student Signin', new_student_session_path) %></li>
+            <% end %>
+            <% if instructor_signed_in? %>
+              <li><%= link_to('Staff Dashboard', staff_root_path) %></li>
+              <li><%= link_to('Instructor Logout', destroy_instructor_session_path, class: 'danger', method: :delete) %>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+
+    </div>
+  </header>
+
+  <span class='hidden' id='loc-data' data-location=<%= distance_from_current_cohort %>></span>
+
+  <main>
+    <div class='container-fluid'>
+      <div class='row'>
+        <div class='content col-lg-12'>
+          <div class='notices'>
+            <% flash.each do |key, value| %>
+              <%= display_flash(key, value) %>
+            <% end %>
+          </div>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </main>
+    <script data-turbolinks-track='true'>
+      <% if current_student || current_instructor %>
+        _loggedIn = true;
+      <% else %>
+        _loggedIn = false;
+      <% end %>
+    </script>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/material.min.js' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/ripples.min.js' %>
+</body>
+</html>
