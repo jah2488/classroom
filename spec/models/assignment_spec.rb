@@ -39,9 +39,7 @@ RSpec.describe Assignment, type: :model do
       Assignment.create!(cohort_id: co2.id, title: 'fizz')
     end
 
-    let!(:student) {
-      Student.create!(email: 'f@g.com', password: 123445890, cohort_id: Cohort.first.id)
-    }
+    let(:student) { create :student, cohort_id: Cohort.first.id }
 
     describe 'for' do
       it 'returns all assignments for that student by cohort' do

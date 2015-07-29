@@ -19,7 +19,7 @@ class SubmissionsController < ApplicationController
   def create
     assignment = Assignment.find(submission_params.fetch(:assignment_id))
     submission = Submission.new(submission_params)
-    submission.student    = current_student
+    submission.student    = current_user.student
     submission.assignment = assignment
     submission.late       = true if assignment.due_date.past?
 
@@ -68,10 +68,6 @@ class SubmissionsController < ApplicationController
     rating.save!
 
     render json: {}, status: 200
-  end
-
-  def pundit_user
-    current_instructor || current_student
   end
 
   def submission_params

@@ -4,13 +4,13 @@ class CheckinsController < ApplicationController
     # -- In a controller of all places too. Ugh.
     #
 
-    day = current_student.cohort.current_day
+    day = current_user.student.cohort.current_day
 
-    if day.has_checkin_for?(current_student)
+    if day.has_checkin_for?(current_user.student)
       render json: '', status: :unauthorized
     else
       checkin         = Checkin.new
-      checkin.student = current_student
+      checkin.student = current_user.student
       checkin.day     = day
       provided_code   = params.fetch(:override_code, 'none')
       distance        = params.fetch(:distance, 0)
@@ -20,7 +20,7 @@ class CheckinsController < ApplicationController
         render json: [
           checkin.created_at.strftime("%I:%M%p"),
           checkin,
-          { tardies: current_student.tardies, absences: current_student.absences }
+          { tardies: current_user.student.tardies, absences: current_user.student.absences }
         ].to_json, status: 200
       else
         render json: checkin.errors, status: :unprocessable_entity

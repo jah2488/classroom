@@ -12,7 +12,7 @@ article
     strong
       ' Turned In:
     = react_time submission.created_at
-  - if can_edit?(submission)
+  - if policy(submission).edit?
     = react_component('EditSubmission', submission: submission)
   - else
     = react_component('Submission', submission: submission)
@@ -33,5 +33,5 @@ article
           - else
             = react_md(rating.notes)
   h1
-  - if current_instructor
+  - if current_user.instructor?
     = react_component('GradeSubmissionForm', { badges: Badge.all.map { |badge| badge.as_hash(self) }, submissionID: submission.id, nextForStudent: next_submission_url_for_student(submission), nextForAssignment: next_submission_url_for_assignment(submission)})

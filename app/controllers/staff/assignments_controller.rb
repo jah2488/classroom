@@ -2,7 +2,8 @@ class Staff::AssignmentsController < Staff::ApplicationController
 
   def new
     render locals: {
-      assignment: Assignment.new
+      assignment: Assignment.new,
+      cohort: Cohort.find(params[:cohort_id])
     }
   end
 

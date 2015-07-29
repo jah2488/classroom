@@ -1,6 +1,6 @@
 <div class='col-md-10 col-md-offset-1
             col-lg-8  col-lg-offset-2'>
-  <%= render partial: 'dashboard/nav' %>
+  <%= render partial: 'cohorts/nav' %>
   <article>
     <header>
       <div class='row'>
@@ -28,12 +28,4 @@
       </div>
     </footer>
   </article>
-  <% if current_instructor %>
-    <p class='muted'>Submissions</p>
-    <section>
-      <% assignment.submissions.each do |submission| %>
-        <p><%= 'graded' if submission.graded? %> <%= link_to submission, submission %></p>
-      <% end %>
-    </section>
-  <% end %>
 </div>

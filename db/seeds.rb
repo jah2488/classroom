@@ -5,14 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
+user = User.create!({
+  email: 'instructor@example.com',
+  password: 'password'
+})
+user.save!
 instructor = Instructor.create!({
-  name: 'test instructor',
   phone: '555 555 5555',
   office_hours_start: "March 22, 2015 12:00PM",
   office_hours_end: "March 22, 2015 5:00PM",
-  email: 'instructor@example.com',
-  password: 'password'
+  user: user
 })
 
 campus = Campus.create!({
@@ -44,14 +46,10 @@ end
 
 15.times do |n|
   students << Student.create({
-    name: "student-#{n}",
-    github: "ghstudent-#{n}",
     phone: "555-555-555#{n}",
     blog: "http://blogger.com/",
     bio: "blah blah blah",
     cohort_id: cohort.id,
-    email: "student-#{n}@example.com",
-    password: "password"
   })
 end
 

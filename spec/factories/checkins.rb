@@ -3,5 +3,4 @@ FactoryGirl.define do
     day
     student
   end
-
 end

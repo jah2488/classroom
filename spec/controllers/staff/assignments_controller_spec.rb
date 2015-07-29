@@ -4,9 +4,10 @@ describe Staff::AssignmentsController do
 
   before(:each) do
     instructor = FactoryGirl.create(:instructor)
+    instructor_user = create :user, instructor: instructor
     campus     = FactoryGirl.create(:campus)
     @cohort     = FactoryGirl.create(:cohort, instructor: instructor, campus: campus)
-    sign_in instructor
+    sign_in instructor_user
   end
 
   describe "GET #new" do

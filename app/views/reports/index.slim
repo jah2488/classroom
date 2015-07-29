@@ -1,18 +1,18 @@
 table.table.table-hover
   thead
     tr
-      - if current_instructor
+      - if current_user.instructor?
         th Student Name
       th Day
       th Status
   tbody
     - @reports.each do |report|
       tr
-        - if current_instructor
+        - if current_user.instructor?
           td = report.student.name
         td = report.day
         td = report.status
         td = link_to "View", report
 
-- if current_instructor
+- if policy(Report).create?
   = link_to "Create Report", new_report_path, class: 'btn btn-primary'

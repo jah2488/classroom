@@ -1,8 +1,5 @@
 class Student < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  belongs_to :user
   belongs_to :cohort
   has_many :submissions
   has_many :assignments, -> { uniq }, through: :submissions
@@ -10,11 +7,11 @@ class Student < ActiveRecord::Base
   has_many :badges, through: :submissions
   has_many :checkins
   has_many :adjustments, through: :checkins
-
+  accepts_nested_attributes_for :user
   validates_presence_of :cohort
 
-  def instructor?
-    false
+  def name
+    user.name
   end
 
   def marked_checkins
@@ -47,6 +44,6 @@ class Student < ActiveRecord::Base
   end
 
   def to_s
-    "#{(name || email)} | tardies: #{tardies} | absences: #{absences} | submissions: #{submissions.count}"
+    "#{(user.name || user.email)} | tardies: #{tardies} | absences: #{absences} | submissions: #{submissions.count}"
   end
 end

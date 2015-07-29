@@ -1,10 +1,5 @@
 module ApplicationHelper
 
-  def can_edit?(resource)
-    true if current_instructor
-    resource.respond_to?(:student) && resource.student == current_student
-  end
-
   def react_time(time, opts = {})
     react_component('TimeField', { time: time }.merge(opts), tag: 'span')
   end
@@ -26,10 +21,7 @@ module ApplicationHelper
     end
   end
 
-  def distance_from_current_cohort
-    return unless current_student || current_instructor
-    cohort = current_instructor.current_cohort if current_instructor
-    cohort = current_student.cohort            if current_student
+  def distance_from_cohort cohort
     return unless cohort
     "#{cohort.campus.latitude},#{cohort.campus.longitude}"
   end

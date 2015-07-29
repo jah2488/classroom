@@ -1,5 +1,4 @@
 class Staff::CohortsController < Staff::ApplicationController
-  after_action :verify_authorized, except: :index
   def new
     cohort = Cohort.new
     authorize cohort
@@ -9,15 +8,17 @@ class Staff::CohortsController < Staff::ApplicationController
   end
 
   def show
-    cohort      = Cohort.find(params[:id]).decorate
-    authorize cohort
-    students    = cohort.students.includes(:adjustments)
-    assignments = cohort.assignments.order('due_date DESC')
-    submissions = Submission.ungraded_for(cohort)
+    return find_cohort unless params[:id]
+    @cohort      = Cohort.find(params[:id]).decorate
+    authorize @cohort
+    students    = @cohort.students.includes(:adjustments)
+    assignments = @cohort.assignments.order('due_date DESC')
+    submissions = Submission.ungraded_for(@cohort)
     adjustments = students.flat_map(&:adjustments)
+    session[:cohort_id] = @cohort.id
     render locals: {
-      instructor: current_instructor,
-      cohort: cohort,
+      instructor: @cohort.instructor,
+      cohort: @cohort,
       assignments: assignments,
       submissions: submissions,
       students: students,
@@ -31,7 +32,6 @@ class Staff::CohortsController < Staff::ApplicationController
 
   def create
     cohort = Cohort.new(cohort_params)
-    cohort.instructor = current_instructor
     cohort.first_day = cohort.first_day.beginning_of_day
     authorize cohort
     if cohort.save
@@ -43,5 +43,12 @@ class Staff::CohortsController < Staff::ApplicationController
 
   def cohort_params
     params.require(:cohort).permit(:name, :campus_id, :first_day)
+  end
+  def find_cohort
+    if current_user && current_user.instructor? && session[:cohort_id]
+      redirect_to staff_cohort_path(session[:cohort_id])
+    elsif current_user && current_user.instructor?
+      redirect_to staff_cohorts_path
+    end
   end
 end

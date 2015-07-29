@@ -1,13 +1,6 @@
 Rails.application.configure do
-      config.paperclip_defaults = {
-        :storage => 's3',
-        :s3_credentials => {
-          :bucket => ENV['AWS_BUCKET'],
-          :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-          :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
-        }
-      }
   # Settings specified here will take precedence over those in config/application.rb.
+  config.action_mailer.default_url_options = { :host => 'localhost' }
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

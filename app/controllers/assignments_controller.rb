@@ -7,11 +7,11 @@ class AssignmentsController < ApplicationController
   end
 
   def current
-    assignment = Assignment.current_for(current_student)
+    assignment = Assignment.current_for(current_user.student)
     if assignment
       redirect_to assignment_path(assignment)
     else
-      redirect_to dashboard_path, alert: 'All assignments are past due or completed.'
+      redirect_to root_path, notice: 'All assignments are past due or completed.'
     end
   end
 
@@ -19,13 +19,9 @@ class AssignmentsController < ApplicationController
     render json: Assignment.search(params[:query])
   end
 
-
   def edit
     render locals: {
       assignment: Assignment.find(params[:id])
     }
   end
-
-
-
 end

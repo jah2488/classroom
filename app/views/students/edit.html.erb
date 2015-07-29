@@ -1,0 +1,24 @@
+<%= link_to 'Back', url_for(:back), class: 'btn btn-primary' %>
+<h1><%= student.name %></h1>
+
+<p class='muted'>Contact Info</p>
+<section>
+  <%= simple_form_for(student) do |f| %>
+    <div class='form-inputs'>
+      <%= f.simple_fields_for :user do |u| %>
+        <%= u.input :name %>
+        <%= u.input :email %>
+        <%= u.input :github %>
+      <% end %>
+      <%= f.input :blog, as: :url %>
+      <%= f.input :twitter %>
+      <%= f.input :phone %>
+      <%= f.input :bio, as: :text %>
+    </div>
+    <div class='form-actions'>
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+  <ul>
+  </ul>
+</section>

@@ -7,6 +7,14 @@ class StudentPolicy < ApplicationPolicy
     end
   end
 
+  def edit?
+    if user.student?
+      user.student.id == record.id
+    else
+      false
+    end
+  end
+
   def update?
     if user.instructor?
       user.has_student? record.student
