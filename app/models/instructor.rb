@@ -7,6 +7,7 @@ class Instructor < ActiveRecord::Base
   end
 
   def name
+    return read_attribute(:name) if has_attribute?(:name)
     user.name
   end
 
@@ -22,7 +23,7 @@ class Instructor < ActiveRecord::Base
     office_hours_end.strftime("%H:%M")
   end
 
-  def has_student? student
+  def has_student?(student)
     self.id == student.cohort.instructor_id
   end
 
