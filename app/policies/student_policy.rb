@@ -1,10 +1,6 @@
 class StudentPolicy < ApplicationPolicy
   def show?
-    if user.instructor?
-      user.has_student? record.student
-    else
-      record.id == user.id || record.cohort_id == user.cohort_id
-    end
+    instructor_or_self || record.cohort_id == user.cohort_id
   end
 
   def edit?
@@ -16,18 +12,18 @@ class StudentPolicy < ApplicationPolicy
   end
 
   def update?
-    if user.instructor?
-      user.has_student? record.student
-    else
-      record.id == user.id
-    end
+    instructor_or_self
   end
 
   def grades?
+    instructor_or_self
+  end
+
+  def instructor_or_self
     if user.instructor?
-      user.has_student? record.student
+      user.instructor.has_student? record
     else
-      record.id == user.id
+      record.user.id == user.id
     end
   end
 
