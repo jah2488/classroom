@@ -41,28 +41,27 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class='hidden-xs col-sm-8'>
-        <nav>
-          <ul class='nav nav-pills pull-right'>
-            <% if current_user %>
-              <% if current_user.student? %>
-                <li><%= link_to('My Cohort', root_path)%></li>
-                <li><%= link_to('Profile', student_path(current_user.student)) %></li>
+        <div class='hidden-xs col-sm-8'>
+          <nav>
+            <ul class='nav nav-pills pull-right'>
+              <% if current_user %>
+                <% if current_user.student? %>
+                  <li><%= link_to('My Cohort', root_path)%></li>
+                  <li><%= link_to('Profile', student_path(current_user.student)) %></li>
+                <% end %>
+                <% if current_user.instructor? %>
+                  <li><%= link_to('Dashboard', staff_root_path) %></li>
+                  <li><%= link_to("Cohorts", staff_cohorts_path) %></li>
+                <% end %>
+                <li><%= link_to("Reports", reports_path) %></li>
+                <li><%= link_to('Logout', destroy_user_session_path, class: 'danger') %>
+              <% else %>
+                <li><%= link_to('Signin', new_user_session_path) %></li>
               <% end %>
-              <% if current_user.instructor? %>
-                <li><%= link_to('Dashboard', staff_root_path) %></li>
-                <li><%= link_to("Cohorts", staff_cohorts_path) %></li>
-              <% end %>
-              <li><%= link_to("Reports", reports_path) %></li>
-              <li><%= link_to('Logout', destroy_user_session_path, class: 'danger') %>
-            <% else %>
-              <li><%= link_to('Signin', new_user_session_path) %></li>
-            <% end %>
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        </div>
       </div>
-
     </div>
   </header>
 
