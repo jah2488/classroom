@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
   def student?
     !student.nil?
   end
+
+  def to_s
+    name || email
+  end
 end

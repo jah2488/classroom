@@ -1,4 +1,5 @@
 class SubmissionDecorator < Draper::Decorator
+  decorates_association :student
   delegate_all
 
   def one_line

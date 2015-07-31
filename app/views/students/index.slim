@@ -1,0 +1,12 @@
+table.table.table-hover
+  thead
+    tr
+      th Email
+      th Name
+      th
+  tbody
+    - students.each do |student|
+      tr
+        td = student.email
+        td = student.name
+        td = link_to "View", student_path(student)

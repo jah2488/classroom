@@ -3,7 +3,7 @@
   .col-md-12
     .row
       .col-md-6
-        = render partial: 'submissions', locals: { submissions: submissions }
+        = render partial: 'submissions', locals: { submissions: cohort.ungraded_submissions }
       .col-md-6
         = render partial: 'attendance',  locals: { cohort: cohort }
         = render partial: 'adjustments', locals: { adjustments: adjustments }
@@ -11,4 +11,4 @@
       .col-md-6
         = render partial: 'assignments', locals: { assignments: assignments }
       .col-md-6
-        = render partial: 'students', locals: { students: students }
+        = render partial: 'students', locals: { students: cohort.students }

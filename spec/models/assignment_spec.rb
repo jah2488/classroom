@@ -31,15 +31,15 @@ RSpec.describe Assignment, type: :model do
 
   context 'students with assignments' do
     before(:each) do
-      c = Campus.create!(name: 'iron yard')
-      co1 = Cohort.create!(campus_id: c.id, first_day: DateTime.now)
-      co2 = Cohort.create!(campus_id: c.id, first_day: DateTime.now)
-      @foo = Assignment.create!(cohort_id: co1.id, title: 'foo', due_date: DateTime.now + 2.days)
-      @bar = Assignment.create!(cohort_id: co1.id, title: 'bar', due_date: DateTime.now + 2.weeks)
-      Assignment.create!(cohort_id: co2.id, title: 'fizz')
+      c = create :campus, name: 'iron yard'
+      @co1 = create :cohort, campus_id: c.id
+      co2 = create :cohort, campus_id: c.id
+      @foo = create :assignment, cohort: @co1, title: 'foo', due_date: DateTime.now + 2.days
+      @bar = create :assignment, cohort: @co1, title: 'bar', due_date: DateTime.now + 2.weeks
+      create :assignment, cohort: co2, title: 'fizz'
     end
 
-    let(:student) { create :student, cohort_id: Cohort.first.id }
+    let(:student) { create :student, cohort: @co1 }
 
     describe 'for' do
       it 'returns all assignments for that student by cohort' do

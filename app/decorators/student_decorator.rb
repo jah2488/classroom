@@ -14,4 +14,16 @@ class StudentDecorator < Draper::Decorator
       object.user.github
     end
   end
+
+  def name
+    user.name if user
+  end
+
+  def email
+    user.email if user
+  end
+
+  def info
+    "#{(name || email)} | tardies: #{tardies} | absences: #{absences} | submissions: #{submissions.count}"
+  end
 end

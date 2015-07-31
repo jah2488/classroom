@@ -13,10 +13,12 @@ class Student < ActiveRecord::Base
   def name
     user.name if user
   end
+  deprecate :name
 
   def email
     user.email if user
   end
+  deprecate :email
 
   def marked_checkins
     checkins.includes(:adjustment).select { |checkin| checkin.late }
@@ -48,6 +50,10 @@ class Student < ActiveRecord::Base
   end
 
   def to_s
-    "#{(name || email)} | tardies: #{tardies} | absences: #{absences} | submissions: #{submissions.count}"
+    if user
+      user.to_s
+    else
+      "StudentID#{self.id}"
+    end
   end
 end
