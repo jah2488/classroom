@@ -11,12 +11,11 @@ class Student < ActiveRecord::Base
   validates_presence_of :cohort
 
   def name
-    return read_attribute(:name) if has_attribute?(:name)
-    user.name
+    user.name if user
   end
 
   def email
-    user.email
+    user.email if user
   end
 
   def marked_checkins
@@ -49,6 +48,6 @@ class Student < ActiveRecord::Base
   end
 
   def to_s
-    "#{(user.name || user.email)} | tardies: #{tardies} | absences: #{absences} | submissions: #{submissions.count}"
+    "#{(name || email)} | tardies: #{tardies} | absences: #{absences} | submissions: #{submissions.count}"
   end
 end
