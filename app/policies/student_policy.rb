@@ -4,11 +4,7 @@ class StudentPolicy < ApplicationPolicy
   end
 
   def edit?
-    if user.student?
-      user.student.id == record.id
-    else
-      false
-    end
+    update?
   end
 
   def update?
@@ -17,6 +13,18 @@ class StudentPolicy < ApplicationPolicy
 
   def grades?
     instructor_or_self
+  end
+
+  def new?
+    create?
+  end
+
+  def create?
+    user.instructor?
+  end
+
+  def destroy?
+    user.instructor?
   end
 
   def instructor_or_self

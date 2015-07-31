@@ -13,15 +13,11 @@ class Staff::CohortsController < Staff::ApplicationController
     authorize @cohort
     students    = @cohort.students.includes(:adjustments)
     assignments = @cohort.assignments.order('due_date DESC')
-    submissions = Submission.ungraded_for(@cohort)
     adjustments = students.flat_map(&:adjustments)
     session[:cohort_id] = @cohort.id
     render locals: {
-      instructor: @cohort.instructor,
       cohort: @cohort,
       assignments: assignments,
-      submissions: submissions,
-      students: students,
       adjustments: adjustments
     }
   end

@@ -4,8 +4,7 @@ class Cohort < ActiveRecord::Base
   has_many :students
   has_many :assignments
   has_many :days
-  validates :first_day, presence: true
-  validates :campus_id, presence: true
+  validates :first_day, :name, :campus_id, presence: true
 
   after_create :create_first_day
 
@@ -21,6 +20,10 @@ class Cohort < ActiveRecord::Base
 
   def current_day
     days.where("start <= ?", DateTime.now.end_of_day).order(:start).last
+  end
+
+  def ungraded_submissions
+    Submission.ungraded_for self
   end
 
   private

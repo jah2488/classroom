@@ -22,8 +22,15 @@ RSpec.describe StudentsController, type: :controller do
   end
 
   describe "GET #index" do
-    it "returns http success" do
+    it "allows instructor to see only own students" do
+      create_list :student, 5
+      student.cohort.instructor_id = instructor_user.instructor.id
+      student.cohort.save
       sign_in instructor_user
+      allow(controller).to receive(:render).with no_args
+      expect(controller).to receive(:render).with({
+        locals: { students: [student] }
+      })
       get :index
       expect(response).to have_http_status(:success)
     end

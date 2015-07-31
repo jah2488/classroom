@@ -11,7 +11,7 @@
         </div>
         <ul class='submissions'>
           <% submissions.group_by(&:student).each do |student, grouped| %>
-            <%= link_to(student.name, student) %>
+            <%= link_to(student.decorate.name, student) %>
             <% grouped.each do |submission| %>
               <li>
                 <div class='row'>

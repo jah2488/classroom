@@ -9,10 +9,6 @@ describe StudentPolicy do
 
   subject { described_class }
 
-  permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
   permissions :show? do
     it "allows instructor to view own students" do
       student.cohort = build_stubbed(:cohort, instructor: instructor_user.instructor)
@@ -33,15 +29,19 @@ describe StudentPolicy do
     end
   end
 
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
+  permissions :create?, :new?, :destroy? do
+    it "allows instructors to create students" do
+      expect(subject).to permit(instructor_user, Student.new)
+    end
   end
 
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+  permissions :update?, :edit?, :grades? do
+    it "allows instructor of student" do
+      student.cohort = build_stubbed(:cohort, instructor: instructor_user.instructor)
+      expect(subject).to permit(instructor_user, student)
+    end
+    it "allows self" do
+      expect(subject).to permit(student_user, student)
+    end
   end
 end
