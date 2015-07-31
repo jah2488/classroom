@@ -1,6 +1,7 @@
 class CohortsController < ApplicationController
-  after_action :verify_authorized, :except => :index
+  after_action :verify_authorized, :except => [:index, :my]
   after_action :verify_policy_scoped, :only => :index
+
   def show
     @cohort      = Cohort.find(params[:id]).decorate
     authorize @cohort
@@ -14,10 +15,11 @@ class CohortsController < ApplicationController
   end
 
   def my
-    if current_user && current_user.student?
-      redirect_to cohort_path(current_user.student.cohort)
+    if current_user
+      redirect_to cohort_path(current_user.student.cohort) if current_user.student?
+      redirect_to staff_cohorts_path if current_user.instructor?
     else
-      render "Not enrolled"
+      redirect_to '/404', alert: "Not enrolled in a cohort. Contact your instructor."
     end
   end
 

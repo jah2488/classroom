@@ -11,6 +11,7 @@ class Student < ActiveRecord::Base
   validates_presence_of :cohort
 
   def name
+    return read_attribute(:name) if has_attribute?(:name)
     user.name
   end
 
