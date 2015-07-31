@@ -1,6 +1,6 @@
 class StudentPolicy < ApplicationPolicy
   def show?
-    instructor_or_self || record.cohort_id == user.cohort_id
+    instructor_or_self || (user.student? && same_cohort(user.student, record))
   end
 
   def edit?
@@ -22,15 +22,19 @@ class StudentPolicy < ApplicationPolicy
   def instructor_or_self
     if user.instructor?
       user.instructor.has_student? record
-    else
-      record.user.id == user.id
+    elsif user.student?
+      record.id == user.student.id
     end
+  end
+
+  def same_cohort a, b
+    a.cohort_id == b.cohort_id
   end
 
   class Scope < Scope
     def resolve
       if user.instructor?
-        scope.where(id: user.students.map(&:id))
+        scope.where(id: user.instructor.students.map(&:id))
       else
         scope.where(id: user.id)
       end

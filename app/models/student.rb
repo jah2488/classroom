@@ -10,14 +10,6 @@ class Student < ActiveRecord::Base
   accepts_nested_attributes_for :user
   validates_presence_of :cohort
 
-  def name
-    user.name if user
-  end
-
-  def email
-    user.email if user
-  end
-
   def marked_checkins
     checkins.includes(:adjustment).select { |checkin| checkin.late }
   end
@@ -48,6 +40,10 @@ class Student < ActiveRecord::Base
   end
 
   def to_s
-    "#{(name || email)} | tardies: #{tardies} | absences: #{absences} | submissions: #{submissions.count}"
+    if user
+      user.to_s
+    else
+      "StudentID#{self.id}"
+    end
   end
 end

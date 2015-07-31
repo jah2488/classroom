@@ -1,7 +1,7 @@
 require 'factory_girl'
 require 'simplecov'
 require 'zonebie'
-SimpleCov.start
+SimpleCov.start 'rails'
 Zonebie.set_random_timezone
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
