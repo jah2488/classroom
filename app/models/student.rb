@@ -15,6 +15,10 @@ class Student < ActiveRecord::Base
     user.name
   end
 
+  def email
+    user.email
+  end
+
   def marked_checkins
     checkins.includes(:adjustment).select { |checkin| checkin.late }
   end
