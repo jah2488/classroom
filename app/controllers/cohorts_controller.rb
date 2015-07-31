@@ -7,7 +7,7 @@ class CohortsController < ApplicationController
     authorize @cohort
     student = current_user.student
     render locals: {
-      students: @cohort.students.order(last_active_at: :DESC),
+      students: @cohort.students.order(last_active_at: :DESC).map(&:decorate),
       assignments: filtered_assignments,
       adjustments: student.marked_checkins,
       current_day: student.cohort.current_day.decorate,
