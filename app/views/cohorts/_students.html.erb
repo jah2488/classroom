@@ -6,7 +6,7 @@
     <% students.each do |student| %>
       <div class="list-group-item">
         <div class="row-picture">
-          <%= image_tag avatar_url(student.user), class: 'circle' %>
+          <%= image_tag student.user.avatar_url, class: 'circle' %>
         </div>
         <div class="row-content">
           <h4 class="list-group-item-heading"><%= link_to student.user.name, student %></h4>
