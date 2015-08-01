@@ -8,7 +8,7 @@ table.table.table-hover
   tbody
     - @cohorts.each do |cohort|
       tr
-        td = link_to "Select", staff_cohort_path(cohort), class: "btn btn-primary"
+        td = link_to "Select", staff_cohort_path(cohort), class: "btn btn-primary", 'data-id': cohort.id
         td = cohort.name.titleize
         td = cohort.campus
         td = link_to cohort.instructor.name, cohort.instructor
