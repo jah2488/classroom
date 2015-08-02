@@ -14,7 +14,7 @@ RSpec.describe Assignment, type: :model do
         am_three.due_date.beginning_of_week.to_date => [ am_three ],
         am_four.due_date.beginning_of_week.to_date  => [ am_four ]
       }
-      expect(Assignment.by_week(records)).to include(result)
+      expect(Assignment.by_week(records)).to eq result
     end
   end
 
