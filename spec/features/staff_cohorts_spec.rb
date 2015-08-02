@@ -34,19 +34,6 @@ RSpec.feature "StaffCohorts", type: :feature do
     #    Could help isolate especially brittle areas of the test or the code.
     #  - I realize that this tests is taking the big assumption that you will be redirected to the staff_cohorts_index after sign_in
 
-    def sign_in(type)
-      case type
-      when :instructor
-        visit new_user_session_path
-        fill_in 'Email', with: 'instructor@theironyard.com'
-        fill_in 'Password', with: 'password'
-        click_button 'Log in'
-        expect(page).to have_content('Signed in successfully')
-      else
-        raise 'Sign in type not found. Please add a new entry for that type.'
-      end
-    end
-
     def click_new_cohort_link
       find(:css, "a[href='#{new_staff_cohort_path}']").click
     end

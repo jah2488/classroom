@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :cohort do
     name { Faker::App.name }
     campus
+    instructor
     first_day { DateTime.now }
     factory :cohort_w_stuff do
       transient do
