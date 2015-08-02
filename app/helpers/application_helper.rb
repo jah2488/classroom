@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def markdown(source)
-    Kramdown::Document.new(source).to_html.html_safe
+    Kramdown::Document.new(source || '').to_html.html_safe
   end
 
   def display_flash(key, msg)
