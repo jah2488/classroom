@@ -15,11 +15,13 @@ class CohortsController < ApplicationController
   end
 
   def my
-    if current_user
-      redirect_to cohort_path(current_user.student.cohort) if current_user.student?
+    if current_user && current_user.student?
+      redirect_to cohort_path(current_user.student.cohort)
+    elsif current_user && current_user.instructor?
       redirect_to staff_cohorts_path if current_user.instructor?
+    else
+      render layout: "application", html: "Not enrolled in a cohort. Contact your instructor."
     end
-    render html: "Not enrolled in a cohort. Contact your instructor."
   end
 
   private

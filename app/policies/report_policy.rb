@@ -10,7 +10,7 @@ class ReportPolicy < ApplicationPolicy
   def show?
     if user.instructor?
       user.instructor.has_student? record.student
-    else
+    elsif user.student?
       record.student_id == user.student.id
     end
   end
@@ -23,7 +23,7 @@ class ReportPolicy < ApplicationPolicy
     def resolve
       if user.instructor?
         scope.where(student_id: user.instructor.students.map(&:id))
-      else
+      elsif user.student?
         scope.where(student_id: user.student.id)
       end
     end

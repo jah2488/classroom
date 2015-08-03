@@ -32,5 +32,6 @@ class Cohort < ActiveRecord::Base
     day = Day.new
     day.cohort = self
     day.start  = self.first_day.change(hour: 9)
+    day.save
   end
 end

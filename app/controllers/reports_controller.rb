@@ -3,6 +3,7 @@ class ReportsController < ApplicationController
   after_action :verify_policy_scoped, :only => :index
 
   def index
+    authorize Report
     @reports = policy_scope(Report)
   end
 
