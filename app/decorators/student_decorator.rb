@@ -15,6 +15,10 @@ class StudentDecorator < Draper::Decorator
     end
   end
 
+  def blog_link
+    h.link_to h.truncate(object.blog, length: 23), object.blog.to_s
+  end
+
   def name
     user.name if user
   end
