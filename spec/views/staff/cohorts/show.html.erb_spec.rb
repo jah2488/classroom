@@ -5,7 +5,7 @@ RSpec.describe "staff/cohorts/show", type: :view do
   before do
     # these locals are smelly
     render template: subject, locals: {
-      cohort: cohort,
+      cohort: cohort.decorate,
       assignments: cohort.assignments,
       adjustments: cohort.students.flat_map(&:adjustments)
     }
