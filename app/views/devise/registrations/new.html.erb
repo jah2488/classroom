@@ -1,7 +1,11 @@
 <div class='col-sm-4 col-sm-offset-4'>
-  <h2>Sign up</h2>
+  <% if @cohort %>
+    <h2>Sign up for <%= @cohort.name.titleize %> <small><%= @cohort.campus.name %></small></h2>
+  <% else %>
+    <h2>Sign up</h2>
+  <% end %>
 
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name, cohort_id: (@cohort.present? ? @cohort.id : nil))) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
@@ -9,8 +13,6 @@
       <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable) %>
       <%= f.input :password_confirmation, required: true %>
     </div>
-
-    <%= render partial: "#{resource_name.to_s.pluralize}/fields", locals: { :f => f } %>
 
     <div class="form-actions">
       <%= f.button :submit, "Sign up" %>
