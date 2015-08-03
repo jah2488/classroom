@@ -1,18 +1,15 @@
 class StudentDecorator < Draper::Decorator
   delegate_all
-
   def avatar_url
     if object.user
-      object.user.avatar_url
+      object.user.decorate.avatar_url
     else
       ""
     end
   end
 
   def github
-    if object.user
-      object.user.github
-    end
+    object.user.decorate.github if user
   end
 
   def blog_link
@@ -20,7 +17,7 @@ class StudentDecorator < Draper::Decorator
   end
 
   def name
-    user.name if user
+    object.user.decorate.name if user
   end
 
   def email
