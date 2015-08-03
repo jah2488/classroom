@@ -44,7 +44,7 @@ RSpec.feature "StaffDashes", type: :feature do
 
       click_link_to(submission_path(assignment.submissions.first))
 
-      expect(page).to have_content(/#{assignment.submissions.first.student.name}'s Submission for #{assignment.title}/i)
+      expect(page).to have_content(/#{assignment.submissions.first.student.decorate.name}'s Submission for #{assignment.title}/i)
     end
 
     scenario 'viewing students' do

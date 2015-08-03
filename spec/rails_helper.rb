@@ -6,6 +6,7 @@ require 'rspec/rails'
 require 'database_cleaner'
 require 'pundit/rspec'
 require 'codeclimate-test-reporter'
+require 'support/pundit'
 
 require 'support/features/session_helpers.rb'
 
@@ -15,6 +16,8 @@ CodeClimate::TestReporter.start
 RSpec.configure do |config|
   config.include Features::SessionHelpers, type: :feature
   config.include Devise::TestHelpers, type: :controller
+  config.include PunditViewPolicy, type: :view
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.use_transactional_fixtures = false
 

@@ -10,16 +10,6 @@ class Student < ActiveRecord::Base
   accepts_nested_attributes_for :user
   validates_presence_of :cohort
 
-  def name
-    user.name if user
-  end
-  deprecate :name
-
-  def email
-    user.email if user
-  end
-  deprecate :email
-
   def marked_checkins
     checkins.includes(:adjustment).select { |checkin| checkin.late }
   end

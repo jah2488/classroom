@@ -4,7 +4,7 @@ class SubmissionsController < ApplicationController
     submission = Submission.new
     authorize submission
     render locals: {
-      submission: submission
+      submission: submission.decorate
     }
   end
 
@@ -12,7 +12,7 @@ class SubmissionsController < ApplicationController
     submission = Submission.find(params[:id])
     authorize submission
     render locals: {
-      submission: submission
+      submission: submission.decorate
     }
   end
 
