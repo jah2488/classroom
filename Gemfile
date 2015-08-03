@@ -59,6 +59,7 @@ group :test, :development do
   gem 'quiet_assets'
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'capybara'
   gem 'rspec-mocks'
   gem 'simplecov'
   gem 'spring', '~> 1.3.6'

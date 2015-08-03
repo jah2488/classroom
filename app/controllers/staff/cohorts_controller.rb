@@ -38,8 +38,9 @@ class Staff::CohortsController < Staff::ApplicationController
   private
 
   def cohort_params
-    params.require(:cohort).permit(:name, :campus_id, :first_day)
+    params.require(:cohort).permit(:name, :instructor_id, :campus_id, :first_day)
   end
+
   def find_cohort
     if current_user && current_user.instructor? && session[:cohort_id]
       redirect_to staff_cohort_path(session[:cohort_id])

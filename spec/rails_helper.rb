@@ -4,16 +4,17 @@ require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'database_cleaner'
-require "pundit/rspec"
+require 'pundit/rspec'
 require 'codeclimate-test-reporter'
 
-ActiveRecord::Migration.maintain_test_schema!
+require 'support/features/session_helpers.rb'
 
+ActiveRecord::Migration.maintain_test_schema!
 CodeClimate::TestReporter.start
 
 RSpec.configure do |config|
+  config.include Features::SessionHelpers, type: :feature
   config.include Devise::TestHelpers, type: :controller
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.use_transactional_fixtures = false
 
