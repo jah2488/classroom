@@ -16,7 +16,7 @@ class Staff::CohortsController < Staff::ApplicationController
     adjustments = students.flat_map(&:adjustments)
     session[:cohort_id] = @cohort.id
     render locals: {
-      cohort: @cohort,
+      cohort: @cohort.decorate,
       assignments: assignments,
       adjustments: adjustments
     }
