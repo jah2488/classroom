@@ -9,13 +9,21 @@ user = User.create!({
   email: 'instructor@example.com',
   password: 'password'
 })
+user.confirm!
 user.save!
+
 instructor = Instructor.create!({
   phone: '555 555 5555',
   office_hours_start: "March 22, 2015 12:00PM",
   office_hours_end: "March 22, 2015 5:00PM",
   user: user
 })
+
+user2 = User.create!({
+  email: 'student@example.com',
+  password: 'password'
+})
+user2.confirm!
 
 campus = Campus.create!({
   name: "Nashville, TN",
