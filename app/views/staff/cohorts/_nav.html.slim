@@ -9,3 +9,4 @@
         li = active_link_to t('.days'), staff_cohort_days_path(cohort), class: 'btn btn-primary'
         li = active_link_to t('.new-assignment'), new_staff_cohort_assignment_path(cohort), class: 'btn btn-primary'
         li = active_link_to t('.new-badge'), new_staff_badge_path, class: 'btn btn-primary'
+        li = text_field_tag 'Signup link', url_for(only_path: false, controller: '/registrations', action: :new, cohort_id: cohort.id)
