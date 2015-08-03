@@ -24,7 +24,10 @@ class StudentDecorator < Draper::Decorator
     user.email if user
   end
 
+  def pretty_name
+    name || email || "Student ##{id}"
+  end
   def info
-    "#{(name || email)} | tardies: #{tardies} | absences: #{absences} | submissions: #{submissions.count}"
+    "#{pretty_name} | tardies: #{tardies} | absences: #{absences} | submissions: #{submissions.count}"
   end
 end
