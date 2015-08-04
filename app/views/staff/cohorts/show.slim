@@ -11,4 +11,4 @@
       .col-md-6
         = render partial: 'assignments', locals: { assignments: assignments }
       .col-md-6
-        = render partial: 'students', locals: { students: cohort.students }
+        = render partial: 'students', locals: { students: cohort.students.decorate }
