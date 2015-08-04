@@ -25,7 +25,7 @@ class SubmissionsController < ApplicationController
 
     authorize submission
     if submission.save
-      redirect_to dashboard_path, notice: "Submission for '#{assignment.title.titleize}' submitted for review."
+      redirect_to cohort_path(current_user.student.cohort), notice: "Submission for '#{assignment.title.titleize}' submitted for review."
     else
       render :new, alert: 'Submission was unable to be submitted.', locals: { submission: submission }
     end
