@@ -39,6 +39,10 @@ class Student < ActiveRecord::Base
     Assignment.late_for(self).count
   end
 
+  def name
+    user.name if user
+  end
+
   def to_s
     if user
       user.to_s
