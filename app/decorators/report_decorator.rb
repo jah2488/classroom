@@ -9,11 +9,11 @@ class ReportDecorator < Draper::Decorator
   end
 
   def instructor_name
-    object.day.cohort.instructor.name
+    object.cohort.instructor.name
   end
 
   def student_name
-    object.student.name
+    object.student.pretty_name
   end
 
   def attended

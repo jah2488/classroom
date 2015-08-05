@@ -25,7 +25,7 @@ var MarkAsComplete = React.createClass({
             );
         } else {
             return (
-                <button onClick={this.handleClick} type="button" className="btn btn-xs btn-default" aria-label="Correct">
+                <button onClick={this.handleClick} type="button" className="btn btn-xs btn-success" aria-label="Correct">
                   <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>
                 </button>
             );
