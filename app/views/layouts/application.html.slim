@@ -30,8 +30,6 @@ html
                       = link_to('My Cohort', root_path)
                     li
                       = link_to('Profile', student_path(current_user.student))
-                    li
-                      = link_to("Reports", reports_path)
                   - if current_user.instructor?
                     li
                       = link_to('Dashboard', staff_root_path)
@@ -51,8 +49,6 @@ html
                     = link_to('My Cohort', root_path)
                   li
                     = link_to('Profile', student_path(current_user.student))
-                  li
-                    = link_to("Reports", reports_path)
                 - if current_user.instructor?
                   li
                     = link_to('Dashboard', staff_root_path)

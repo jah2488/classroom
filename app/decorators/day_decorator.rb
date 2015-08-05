@@ -1,6 +1,7 @@
 class DayDecorator < Draper::Decorator
   # don't delegate_all in this one! it's too easy to forget to in_time_zone things
-  delegate :absences?
+  delegate :absences?, :has_checkin_for?, :checkin_for
+
   def starts_at
     object.start.in_time_zone(object.tz).strftime("%l:%M%P %Z") if object.start
   end
