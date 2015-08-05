@@ -23,7 +23,7 @@ class Staff::CohortsController < Staff::ApplicationController
   end
 
   def index
-    @cohorts = Cohort.all
+    @cohorts = CohortDecorator.decorate_collection(Cohort.all)
   end
 
   def create
