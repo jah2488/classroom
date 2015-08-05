@@ -7,8 +7,11 @@ class Instructor < ActiveRecord::Base
   end
 
   def name
-    return read_attribute(:name) if has_attribute?(:name)
-    user.name
+    if user
+      user.name || user.email
+    else
+      "Instructor #"+id
+    end
   end
 
   def has_office_hours?

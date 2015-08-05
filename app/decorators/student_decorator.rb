@@ -27,6 +27,7 @@ class StudentDecorator < Draper::Decorator
   def pretty_name
     name || email || "Student ##{id}"
   end
+
   def info
     "#{pretty_name} | tardies: #{tardies} | absences: #{absences} | submissions: #{submissions.count}"
   end

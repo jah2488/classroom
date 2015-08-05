@@ -5,6 +5,7 @@ class Staff::ReportsController < Staff::ApplicationController
 
   def index
     @reports = policy_scope(Report).where(day_id: @cohort.days)
+    @reports = ReportDecorator.decorate_collection(@reports)
   end
 
   def new
@@ -13,8 +14,9 @@ class Staff::ReportsController < Staff::ApplicationController
   end
 
   def show
-    @report = Report.find(params[:id]).decorate
+    @report = Report.find(params[:id])
     authorize @report
+    @report = @report.decorate
     respond_to do |format|
       format.html
       format.pdf { render pdf: "#{@report.student.name} Report", show_as_html: false}
@@ -34,7 +36,7 @@ class Staff::ReportsController < Staff::ApplicationController
 
   private
   def set_cohort
-    @cohort = Cohort.find(params[:cohort_id])
+    @cohort = Cohort.find(params[:cohort_id]).decorate
   end
 
   def report_params

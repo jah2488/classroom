@@ -17,13 +17,13 @@ class Staff::CohortsController < Staff::ApplicationController
     session[:cohort_id] = @cohort.id
     render locals: {
       cohort: @cohort.decorate,
-      assignments: assignments,
+      assignments: assignments.decorate,
       adjustments: adjustments
     }
   end
 
   def index
-    @cohorts = Cohort.all
+    @cohorts = CohortDecorator.decorate_collection(Cohort.all)
   end
 
   def create

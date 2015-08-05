@@ -8,6 +8,5 @@ class AssignmentDecorator < Draper::Decorator
     else
       "in #{words}"
     end
-
   end
 end
