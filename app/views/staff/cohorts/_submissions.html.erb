@@ -17,7 +17,7 @@
                 <div class='row'>
                   <div class='col-md-10 col-sm-10 col-xs-8'>
                     <p><%= submission.notes %></p>
-                    <%= link_to "Link (on #{submission.decorate.link_domain})", submission.link, target: "_blank" %>
+                    <%= link_to "Link (on #{submission.decorate.link_domain})", submission.link, target: "_blank" %> | <%= link_to "View", submission_path(submission) %>
                   </div>
                   <div class='col-md-2 col-sm-2 col-xs-4'>
                     <%= react_component('MarkAsComplete', { submissionID: submission.id }) %>

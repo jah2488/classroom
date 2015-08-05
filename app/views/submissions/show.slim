@@ -2,7 +2,7 @@
 article
   header
     h3
-      = link_to submission.student.name, submission.student
+      = link_to submission.student.pretty_name, submission.student
       ' 's Submission for
       = link_to submission.assignment.title, submission.assignment
   p

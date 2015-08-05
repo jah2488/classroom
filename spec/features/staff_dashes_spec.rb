@@ -15,7 +15,7 @@ RSpec.feature "StaffDashes", type: :feature do
 
       expect(page).to have_content(day.decorate.starts_at)
       expect(page).to have_content(assignment.title)
-      expect(page).to have_content(assignment.submissions.first.link)
+      expect(page).to have_content(assignment.submissions.first.decorate.link_domain)
       expect(page).to have_content(/#{user.name}/i)
     end
 
