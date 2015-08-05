@@ -4,7 +4,7 @@ class StudentDecorator < Draper::Decorator
     if object.user
       object.user.decorate.avatar_url
     else
-      ""
+      "https://secure.gravatar.com/avatar/44e0021f61946ce33b0c965356f6ff99.png?r=PG"
     end
   end
 
