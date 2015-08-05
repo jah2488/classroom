@@ -28,7 +28,7 @@ article
           = distance_of_time_in_words_to_now rating.created_at
           |  ago
         section
-          - if current_instructor
+          - if current_user.instructor?
             = react_component('EditRating', rating: rating)
           - else
             = react_md(rating.notes)
