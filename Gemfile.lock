@@ -135,6 +135,7 @@ GEM
     geocoder (1.2.8)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
+    gravtastic (3.2.6)
     guard (2.12.8)
       formatador (>= 0.2.4)
       listen (>= 2.7, <= 4.0)
@@ -425,6 +426,7 @@ DEPENDENCIES
   figaro
   foreman
   geocoder
+  gravtastic
   guard
   guard-rspec
   hirb
