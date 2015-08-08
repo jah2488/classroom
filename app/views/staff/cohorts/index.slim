@@ -8,8 +8,10 @@ table.table.table-hover
   tbody
     - @cohorts.each do |cohort|
       tr
-        td = link_to "Select", staff_cohort_path(cohort), class: "btn btn-primary", 'data-id': cohort.id
-        td = cohort.name.titleize
+        td = link_to "Select", staff_cohort_path(cohort), class: "btn btn-primary", style: "background-color: ##{cohort.color};", 'data-id': cohort.id
+        td
+          = image_tag cohort.logo_url, height: 32
+          = cohort.name.titleize
         td = cohort.campus
         td = link_to cohort.instructor.name, cohort.instructor
 = link_to "New Cohort", new_staff_cohort_path, class: "btn btn-success"

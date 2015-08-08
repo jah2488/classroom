@@ -1,12 +1,12 @@
 class Staff::DaysController < Staff::ApplicationController
   def index
     render locals: {
-      cohort: Cohort.find(params.fetch(:cohort_id))
+      cohort: Cohort.find(params.fetch(:cohort_id)).decorate
     }
   end
 
   def new
-    @cohort = Cohort.find(params[:cohort_id])
+    @cohort = Cohort.find(params[:cohort_id]).decorate
     render locals: {
       day: Day.new
     }
