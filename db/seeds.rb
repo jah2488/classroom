@@ -54,12 +54,8 @@ students    = []
 end
 
 15.times do |n|
-  students << Student.create({
-    phone: "555-555-555#{n}",
-    blog: "http://blogger.com/",
-    bio: "blah blah blah",
-    cohort_id: cohort.id,
-  })
+  user = FactoryGirl.create(:full_user)
+  students << FactoryGirl.create(:full_student, cohort_id: cohort.id, user: user)
 end
 
 15.times do |n|
