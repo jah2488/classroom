@@ -7,7 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 user = User.create!({
   email: 'instructor@example.com',
-  password: 'password'
+  password: 'password',
+  name: "Great Instructor"
 })
 user.confirm!
 user.save!
@@ -32,7 +33,7 @@ campus = Campus.create!({
 })
 
 cohort = Cohort.create!({
-  name: 'ruby on rails',
+  name: 'Ruby on Rails',
   instructor_id: instructor.id,
   campus_id: campus.id,
   first_day: DateTime.new
