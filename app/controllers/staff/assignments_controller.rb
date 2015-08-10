@@ -21,7 +21,7 @@ class Staff::AssignmentsController < Staff::ApplicationController
 
   def show
     render locals: {
-      assignment: Assignment.find(params[:id])
+      assignment: Assignment.find(params[:id]).decorate
     }
   end
 
