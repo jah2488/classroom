@@ -11,5 +11,9 @@ table.table.table-hover
         td = link_to "Select", staff_cohort_path(cohort), class: "btn btn-primary", 'data-id': cohort.id
         td = cohort.name.titleize
         td = cohort.campus
-        td = link_to cohort.instructor.name, cohort.instructor
+        td
+          = link_to cohort.instructor do
+            = image_tag(cohort.instructor.avatar_url(32))
+            = cohort.instructor.name
+
 = link_to "New Cohort", new_staff_cohort_path, class: "btn btn-success"

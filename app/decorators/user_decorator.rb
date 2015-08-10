@@ -1,7 +1,7 @@
 class UserDecorator < Draper::Decorator
   delegate_all
 
-  def avatar_url
-    object.gravatar_url(default: :identicon, size: 80, secure: true)
+  def avatar_url(size = 80)
+    object.gravatar_url(default: :identicon, size: size, secure: true)
   end
 end

@@ -5,6 +5,9 @@ section
   - unless students.empty?
     ul.list
       - students.each do |student|
-        li = link_to student.info, student
+        = link_to student do
+          li
+            = image_tag student.avatar_url(64)
+            = student.info
   - else
     p No Students
