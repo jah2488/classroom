@@ -21,4 +21,3 @@ class RegistrationsController < Devise::RegistrationsController
     new_user_session_path
   end
 end
-
