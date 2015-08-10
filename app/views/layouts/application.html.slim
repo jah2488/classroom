@@ -34,7 +34,7 @@ html
                     li
                       = link_to('Dashboard', staff_root_path)
                     li[role="presentation"]
-                      = link_to("Cohorts", staff_cohorts_path)
+                      = active_link_to("Cohorts", staff_cohorts_path)
                   li
                     = link_to('Logout', destroy_user_session_path, class: 'danger')
                 - else
@@ -53,7 +53,7 @@ html
                   li
                     = link_to('Dashboard', staff_root_path)
                   li
-                    = link_to("Cohorts", staff_cohorts_path)
+                    = active_link_to("Cohorts", staff_cohorts_path)
                 li
                   = link_to('Logout', destroy_user_session_path, class: 'danger')
               - else

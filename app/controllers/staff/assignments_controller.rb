@@ -3,7 +3,7 @@ class Staff::AssignmentsController < Staff::ApplicationController
   def new
     render locals: {
       assignment: Assignment.new,
-      cohort: Cohort.find(params[:cohort_id])
+      cohort: Cohort.find(params[:cohort_id]).decorate
     }
   end
 
@@ -21,7 +21,7 @@ class Staff::AssignmentsController < Staff::ApplicationController
 
   def show
     render locals: {
-      assignment: Assignment.find(params[:id])
+      assignment: Assignment.find(params[:id]).decorate
     }
   end
 
