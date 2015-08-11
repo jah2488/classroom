@@ -1,3 +1,10 @@
+css:
+ .bg-img {
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 10px 0 10px 40px;
+ }
+
 table.table.table-hover
   thead
     tr
@@ -10,12 +17,12 @@ table.table.table-hover
       tr
         td = link_to "Select", staff_cohort_path(cohort), class: "btn btn-primary", style: "background-color: ##{cohort.color};", 'data-id': cohort.id
         td
-          = image_tag cohort.logo_url, height: 32
-          = cohort.name.titleize
+          .bg-img style="background-image: url(#{cohort.logo_url});"
+            = cohort.name.titleize
         td = cohort.campus
         td
           = link_to cohort.instructor do
-            = image_tag(cohort.instructor.avatar_url(32))
+            = image_tag(cohort.instructor.avatar_url(32), class: 'circle user-avatar')
             = cohort.instructor.name
 
 = link_to "New Cohort", new_staff_cohort_path, class: "btn btn-success"

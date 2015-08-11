@@ -6,6 +6,10 @@
   border-radius: 100%;
 }
 
+.user-avatar {
+  padding-right: 10px;
+}
+
 .student-badge {
   cursor: pointer;
   height: auto;
@@ -40,6 +44,7 @@
 .popover {
   padding: 0;
 }
+
 .popover-title {
   background: darken(rgba(101, 101, 101, .9), 20%);
   border: 0;

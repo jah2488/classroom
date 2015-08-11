@@ -4,10 +4,10 @@ RSpec.describe Assignment, type: :model do
   describe 'by_week' do
     it 'lumps assignments by the week they are due in' do
       records = [
-        am_one   = Assignment.new(title: 'foo', due_date: DateTime.now.beginning_of_week + 1.day),
-        am_two   = Assignment.new(title: 'foo', due_date: DateTime.now.beginning_of_week + 2.days),
-        am_three = Assignment.new(title: 'foo', due_date: DateTime.now.beginning_of_week + 1.week),
-        am_four  = Assignment.new(title: 'foo', due_date: DateTime.now.beginning_of_week + 2.week)
+        am_one   = Assignment.new(title: 'foo-1', due_date: DateTime.now.beginning_of_week + 1.day),
+        am_two   = Assignment.new(title: 'foo-2', due_date: DateTime.now.beginning_of_week + 2.days),
+        am_three = Assignment.new(title: 'foo-3', due_date: DateTime.now.beginning_of_week + 1.week),
+        am_four  = Assignment.new(title: 'foo-4', due_date: DateTime.now.beginning_of_week + 2.week)
       ]
       result = {
         am_one.due_date.beginning_of_week.to_date   => [ am_one, am_two ],
