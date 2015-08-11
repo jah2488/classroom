@@ -31,7 +31,7 @@ describe Staff::AssignmentsController do
       expect(response).to have_http_status(:redirect)
     end
     it "returns new page on errors" do
-      post :create, assignment: { info: 'none', due_date: '' }, cohort_id: @cohort.id
+      post :create, assignment: { title: nil, tag_ids: [], info: 'none', due_date: '' }, cohort_id: @cohort.id
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end
@@ -53,7 +53,7 @@ describe Staff::AssignmentsController do
     end
 
     it "returns new page on errors" do
-      post :update, id: assignment.id, assignment: { title: nil, info: 'none' }, cohort_id: @cohort.id
+      post :update, id: assignment.id, assignment: { title: nil, due_date: '', tag_ids: [], info: 'none' }, cohort_id: @cohort.id
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end
