@@ -7,7 +7,7 @@ section
       - students.each do |student|
         = link_to student do
           li
-            = image_tag student.avatar_url(64)
+            = image_tag student.avatar_url(64), class: 'circle user-avatar'
             = student.info
   - else
     p No Students
