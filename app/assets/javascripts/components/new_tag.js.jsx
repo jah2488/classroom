@@ -7,7 +7,7 @@ var NewTag = React.createClass({
                     <label htmlFor='name'>New Tag</label>
                     <Input ref='name' name='name' value='' className='col-md-1'/>
                 </div>
-                <button onClick={this.handleSubmit} className='btn btn-primary'>Create</button>
+                <button onClick={this.handleSubmit} className='btn btn-sm btn-primary'>Create Tag</button>
             </div>
         );
     },

@@ -26,6 +26,7 @@ var ready = function() {
   jQuery('.datetimepicker').datetimepicker();
   jQuery.material.init();
   jQuery('[data-toggle="popover"]').popover();
+  jQuery.material.checkbox();
 
 
   if(_loggedIn && (Location.distance === undefined || Location.distance === 0)) {
