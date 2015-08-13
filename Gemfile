@@ -4,6 +4,7 @@ ruby '2.2.2'
 
 gem 'rails', '4.2.0'
 
+gem 'airbrake'
 gem 'active_link_to'
 gem 'bootstrap-sass'
 gem 'devise'
