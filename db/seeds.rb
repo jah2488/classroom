@@ -36,7 +36,7 @@ cohort = Cohort.create!({
   name: 'Ruby on Rails',
   instructor_id: instructor.id,
   campus_id: campus.id,
-  first_day: DateTime.new
+  start_time: DateTime.now
 })
 
 FactoryGirl.create(:cohort, name: "Mobile")

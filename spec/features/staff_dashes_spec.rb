@@ -11,12 +11,13 @@ RSpec.feature "StaffDashes", type: :feature do
 
       sign_in(:instructor)
 
-      visit staff_cohort_path(cohort)
-
-      expect(page).to have_content(day.decorate.starts_at)
-      expect(page).to have_content(assignment.title)
-      expect(page).to have_content(assignment.submissions.first.decorate.link_domain)
-      expect(page).to have_content(/#{user.name}/i)
+      Timecop.travel(cohort.start_time) do
+        visit staff_cohort_path(cohort)
+        expect(page).to have_content(day.decorate.starts_at)
+        expect(page).to have_content(assignment.title)
+        expect(page).to have_content(assignment.submissions.first.decorate.link_domain)
+        expect(page).to have_content(/#{user.name}/i)
+      end
     end
 
     scenario 'viewing assignments' do
@@ -79,7 +80,7 @@ RSpec.feature "StaffDashes", type: :feature do
 
     def create_full_dash
       cohort  = create :cohort, name: 'Rails Summer', instructor: instructor.instructor
-      day     = create :day, cohort: cohort
+      day = cohort.first_day
       checkin = create :checkin, day: day
       assignment = create :assignment_w_submissions, cohort: cohort
       adjustment = create :adjustment, checkin: checkin

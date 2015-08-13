@@ -32,8 +32,8 @@ RSpec.describe Assignment, type: :model do
   context 'students with assignments' do
     before(:each) do
       c = create :campus, name: 'iron yard'
-      @co1 = create :cohort, campus_id: c.id
-      co2 = create :cohort, campus_id: c.id
+      @co1 = create :cohort, campus: c
+      co2 = create :cohort, campus: c
       @foo = create :assignment, cohort: @co1, title: 'foo', due_date: DateTime.now + 2.days
       @bar = create :assignment, cohort: @co1, title: 'bar', due_date: DateTime.now + 2.weeks
       create :assignment, cohort: co2, title: 'fizz'
