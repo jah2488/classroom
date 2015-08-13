@@ -14,7 +14,7 @@ RSpec.feature "StaffDashes", type: :feature do
       Timecop.travel(cohort.start_time) do
         visit staff_cohort_path(cohort)
         expect(page).to have_content(day.decorate.starts_at)
-        expect(page).to have_content(assignment.title)
+        expect(page).to have_content(assignment.title.titleize)
         expect(page).to have_content(assignment.submissions.first.decorate.link_domain)
         expect(page).to have_content(/#{user.name}/i)
       end
