@@ -39,6 +39,9 @@ cohort = Cohort.create!({
   first_day: DateTime.new
 })
 
+FactoryGirl.create(:cohort, name: "Mobile")
+FactoryGirl.create(:cohort, name: "Front End JS")
+
 assignments = []
 students    = []
 
