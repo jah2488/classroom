@@ -3,6 +3,8 @@ class Day < ActiveRecord::Base
   has_many :checkins
   has_many :students, through: :checkins
   validates :start, presence: true
+  validate :must_be_after_cohort_start_time
+  validate :cannot_overlap_calendar_day
 
   def self.for(cohort)
     where(cohort_id: cohort.id)
@@ -42,5 +44,18 @@ class Day < ActiveRecord::Base
 
   def checkin_for(student)
     checkins.find { |chk| chk.student == student }
+  end
+
+  def must_be_after_cohort_start_time
+    if self.start < cohort.start_time
+      errors.add(:start, "can't be before cohort start time")
+    end
+  end
+
+  def cannot_overlap_calendar_day
+    calendar_day = self.start.to_datetime.in_time_zone(tz).mjd
+    if cohort.days.find{|d| d.to_datetime.in_time_zone(tz).mjd == calendar_day}
+      errors.add(:start, "cohort already has calendar day")
+    end
   end
 end

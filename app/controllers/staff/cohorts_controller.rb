@@ -28,17 +28,18 @@ class Staff::CohortsController < Staff::ApplicationController
 
   def create
     cohort = Cohort.new(cohort_params)
-    cohort.first_day = cohort.first_day.beginning_of_day
     authorize cohort
     if cohort.save
       redirect_to staff_cohort_path(cohort), notice: I18n.t('.created', resource: I18n.t('.cohort'))
+    else
+      render :new, locals: { cohort: cohort }
     end
   end
 
   private
 
   def cohort_params
-    params.require(:cohort).permit(:name, :instructor_id, :campus_id, :first_day)
+    params.require(:cohort).permit(:name, :instructor_id, :campus_id, :start_time)
   end
 
   def find_cohort

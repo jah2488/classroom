@@ -65,6 +65,7 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'rspec-mocks'
+  gem 'timecop'
   gem 'simplecov'
   gem 'spring', '~> 1.3.6'
   gem 'web-console', '~> 2.0'
