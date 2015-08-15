@@ -21,7 +21,7 @@
 <div class='row'>
   <div class='col-md-push-8 col-md-4'>
     <div class='row'>
-      <%= render partial: 'attendance', locals: { current_day: current_day, current_student: current_user.student } %>
+      <%= render partial: 'attendance', locals: { cohort: cohort, current_student: current_user.student } %>
     </div>
     <div class='row'>
       <%= render partial: 'adjustments', locals: { current_student: current_user.student } %>

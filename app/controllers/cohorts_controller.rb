@@ -10,7 +10,7 @@ class CohortsController < ApplicationController
       students: @cohort.students.order(last_active_at: :DESC).map(&:decorate),
       assignments: filtered_assignments,
       adjustments: student.marked_checkins,
-      current_day: student.cohort.current_day.decorate,
+      cohort: student.cohort,
     }
   end
 
