@@ -74,3 +74,28 @@
               td
                 h3
                   = student.past_due_count
+.row
+  .col-md-12
+    section
+      header
+        h3
+          | Assignments
+    table.table.table-hover
+      thead
+        tr
+          td
+            | Title
+          td
+            | Status
+          td
+            | Latest Submission
+      tbody
+        - student.assignments.each do |assignment|
+          tr
+            td
+              = link_to assignment.title, assignment
+            td
+              = status_for(assignment, student)
+            td
+              - submission = assignment.submissions_for(student).last
+              = link_to react_time(submission.updated_at, hoverable: false), submission
