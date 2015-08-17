@@ -54,7 +54,7 @@ class Day < ActiveRecord::Base
 
   def cannot_overlap_calendar_day
     calendar_day = self.start.to_datetime.in_time_zone(tz).mjd
-    if cohort.days.find{|d| d.to_datetime.in_time_zone(tz).mjd == calendar_day}
+    if cohort.days.find{|d| d.start.to_datetime.in_time_zone(tz).mjd == calendar_day }
       errors.add(:start, "cohort already has calendar day")
     end
   end
