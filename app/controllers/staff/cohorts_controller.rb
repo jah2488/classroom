@@ -23,7 +23,7 @@ class Staff::CohortsController < Staff::ApplicationController
   end
 
   def index
-    @cohorts = CohortDecorator.decorate_collection(Cohort.all)
+    @cohorts = CohortDecorator.decorate_collection(Cohort.all.order(:instructor_id, :created_at))
   end
 
   def create
