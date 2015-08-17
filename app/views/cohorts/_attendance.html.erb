@@ -5,9 +5,9 @@
   <div class='col-md-12'>
     <% if cohort.current_day %>
       <div>
-        <% if current_day.has_checkin_for?(current_student) %>
+        <% if cohort.current_day.has_checkin_for?(current_student) %>
           <a class='btn btn-primary btn-lg full-width'>
-            <%= current_day.checkin_for(current_student).checkin_status.upcase %>
+            <%= cohort.current_day.checkin_for(current_student).checkin_status.upcase %>
           </a>
           <%= react_component('Attendance', { tardies: current_student.tardies, absences: current_student.absences }) %>
         <% else %>
