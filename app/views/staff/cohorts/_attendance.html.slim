@@ -12,4 +12,5 @@ section
       code = cohort.current_day.override_code
     = react_component('StudentCheckinList', checkins: cohort.current_day.checkins_hash, student_count: cohort.students.count)
   - else
-    ' No Current Day
+    h4
+      ' No Current Day

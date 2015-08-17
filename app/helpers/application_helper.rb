@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def react_time(time, opts = {})
-    react_component('TimeField', { time: time }.merge(opts), tag: 'span')
+    react_component('TimeField', { time: time, hoverable: true }.merge(opts), tag: 'span')
   end
 
   def react_md(text, props = {}, opts = {})

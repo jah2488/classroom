@@ -42,7 +42,9 @@ var TimeField = React.createClass({
   },
 
   mouseOver: function () {
-      this.setState({ hover: true});
+      if (this.props.hoverable === true) {
+          this.setState({ hover: true});
+      }
   },
 
   mouseOut: function() {
