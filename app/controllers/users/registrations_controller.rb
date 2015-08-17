@@ -1,4 +1,4 @@
-class RegistrationsController < Devise::RegistrationsController
+class Users::RegistrationsController < Devise::RegistrationsController
   def new
     @cohort = Cohort.find(params[:cohort_id]) if params[:cohort_id]
     super
