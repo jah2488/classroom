@@ -11,7 +11,7 @@ class Instructor < ActiveRecord::Base
     if user
       user.name || user.email
     else
-      "Instructor #"+id
+      "Instructor ##{id}"
     end
   end
 
