@@ -21,7 +21,7 @@
     <div id='attendance-info' class='collapse' style='margin-top:10px;'>
       <div class='well'>
         <p class='muted'>You <strong>must</strong> checkin every day to be considered present for that class.</p>
-        <p class='muted'>Checkin needs to occur before <%= cohort.current_day ? cohort.current_day.late_at : 'class begins '%> to not be considered tardy.</p>
+        <p class='muted'>Checkin needs to occur before <%= cohort.current_day ? cohort.current_day.decorate.late_at : 'class begins '%> to not be considered tardy.</p>
       </div>
     </div>
   </div>
