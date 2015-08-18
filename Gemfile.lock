@@ -113,9 +113,6 @@ GEM
     erubis (2.7.0)
     every_day_irb (2.0.0)
       cd (~> 1.0)
-    exception_notification (4.1.1)
-      actionmailer (>= 3.0.4)
-      activesupport (>= 3.0.4)
     excon (0.45.3)
     execjs (2.4.0)
     factory_girl (4.5.0)
@@ -446,7 +443,6 @@ DEPENDENCIES
   devise
   draper
   enum_help
-  exception_notification
   factory_girl_rails
   faker
   figaro
