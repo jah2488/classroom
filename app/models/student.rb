@@ -40,7 +40,7 @@ class Student < ActiveRecord::Base
   end
 
   def name
-    user.name if user
+    (user.name || user.email) if user
   end
 
   def to_s
