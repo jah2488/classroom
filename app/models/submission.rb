@@ -6,6 +6,7 @@ class Submission < ActiveRecord::Base
   has_many :badges, through: :submission_badges
   validates :student, presence: true
   validates :link, presence: true
+  validate :link_must_be_uri
 
   PENDING = 1
   # wat ^ aren't these the same?
@@ -43,5 +44,13 @@ class Submission < ActiveRecord::Base
 
   def status
     "#{label} #{on_time}"
+  end
+
+  def link_must_be_uri
+    begin
+      URI.parse(link)
+    rescue URI::InvalidURIError
+      errors.add(:link, "Link is not a valid URL")
+    end
   end
 end
