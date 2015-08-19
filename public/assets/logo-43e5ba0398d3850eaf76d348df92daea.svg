@@ -1,0 +1,8 @@
+<svg width="345" height="331" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <title>The Iron Yard</title>
+  <rect stroke="#333333" id="body" height="152" width="325" y="110" x="10" rx="2" ry="2" stroke-linejoin="round" stroke-width="15" fill="#333333"/>
+  <path stroke="#333333" id="top"    d="m11,  110 l 162, -100 l 162, 100 l -324, 0z" stroke-linejoin="round" stroke-width="15" fill="#333333"/>
+  <path stroke="#333333" id="bottom" d="m-7, 321 l 162,  -58 l 162,  58 l -324, 0z" stroke-linejoin="round" stroke-width="15" fill="#333333" transform="rotate(180 164, 292)" />
+ </g>
+</svg>
