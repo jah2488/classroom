@@ -26,10 +26,10 @@ class Staff::ReportsController < Staff::ApplicationController
   def create
     @report = Report.new(report_params)
     authorize @report
-    @report.day = @cohort.current_day
     if @report.save
       redirect_to staff_cohort_report_path(@cohort, @report), notice: I18n.t('.created', resource: I18n.t('.report'))
     else
+      flash[:alert] = "Report couldn't be created because #{@report.errors.full_messages.join(', ')}"
       render :new
     end
   end
@@ -40,6 +40,6 @@ class Staff::ReportsController < Staff::ApplicationController
   end
 
   def report_params
-    params.require(:report).permit(:student_id, :participation, :participation_comments, :effort, :effort_comments, :skill, :skill_comments, :overall, :overall_comments, :status)
+    params.require(:report).permit(:student_id, :day_id, :participation, :participation_comments, :effort, :effort_comments, :skill, :skill_comments, :overall, :overall_comments, :status)
   end
 end
