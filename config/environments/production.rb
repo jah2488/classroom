@@ -1,18 +1,3 @@
-Rails.application.config.middleware.use ExceptionNotification::Rack, {
-  :email => {
-    :email_prefix => "[CLASSROOM ERROR] ",
-    :sender_address => %{"notifier" <notifier@tiy-classroom.herokuapp.com>},
-    :exception_recipients => %w{justin@theironyard.com}
-  },
-  :slack => {
-    :webhook_url => "https://hooks.slack.com/services/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",
-    :additional_parameters => {
-      :icon_emoji => ":alarm_clock:",
-      :mrkdwn => true
-    }
-  }
-}
-
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_mailer.default_url_options = { :host => 'tiy-classroom.herokuapp.com' }
@@ -77,7 +62,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = ENV['ASSET_HOST']
+  config.action_controller.asset_host = ENV['ASSET_HOST'] unless ENV['ASSET_HOST'].blank?
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

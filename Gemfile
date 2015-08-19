@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.2'
+ruby '2.2.3'
 
 gem 'rails', '4.2.0'
 
@@ -10,7 +10,6 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'draper'
 gem 'enum_help'
-gem 'exception_notification'
 gem 'figaro'
 gem 'geocoder'
 gem 'gravtastic'

@@ -2,7 +2,7 @@ language: ruby
 script:
   - script/test
 rvm:
-  - 2.2.2
+  - 2.2.3
 addons:
   code_climate:
     repo_token: 9a277340510fc8b4baf12acbf37e192a3dfe6be9c1d31d0b92aef1aa0f6bbb94

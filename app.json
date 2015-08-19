@@ -1,0 +1,44 @@
+{
+  "name":"PicClicker",
+  "scripts":{
+    "postdeploy": "bundle exec rake db:setup"
+  },
+  "env":{
+    "AWS_ID":{
+      "required":true
+    },
+    "AWS_SECRET":{
+      "required":true
+    },
+    "GOOGLE_CLIENT_ID":{
+      "required":true
+    },
+    "GOOGLE_CLIENT_SECRET":{
+      "required":true
+    },
+    "LANG":{
+      "required":true
+    },
+    "RACK_ENV":{
+      "required":true
+    },
+    "RAILS_ENV":{
+      "required":true
+    },
+    "RAILS_SERVE_STATIC_FILES":{
+      "required":true
+    },
+    "S3_BUCKET":{
+      "required":true
+    },
+    "SECRET_KEY_BASE":{
+      "generator":"secret"
+    }
+  },
+  "image": "heroku/ruby",
+  "addons":[
+    "papertrail:choklad",
+    "airbrake:free_heroku",
+    "heroku-postgresql"
+  ]
+}
