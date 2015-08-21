@@ -48,7 +48,6 @@ class Day < ActiveRecord::Base
 
   def must_be_after_cohort_start_time
     if self.start < cohort.start_time
-      puts "Day start: #{start} cohort: #{cohort.start_time}"
       errors.add(:start, "can't be before cohort start time")
     end
   end

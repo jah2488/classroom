@@ -36,6 +36,12 @@ RSpec.feature "StaffDashes", type: :feature do
     scenario 'creating assignments' do
     end
 
+    scenario 'viewing days' do
+      cohort = create :cohort, instructor: nil
+      sign_in(:instructor)
+      visit staff_cohort_days_path(cohort)
+    end
+
     scenario 'viewing submissions' do
       cohort, _, _, assignment, _, _ = create_full_dash
 
@@ -80,7 +86,7 @@ RSpec.feature "StaffDashes", type: :feature do
 
     def create_full_dash
       cohort  = create :cohort, name: 'Rails Summer', instructor: instructor.instructor
-      day = cohort.first_day
+      day = create :day, cohort: cohort, start: cohort.start_time
       checkin = create :checkin, day: day
       assignment = create :assignment_w_submissions, cohort: cohort
       adjustment = create :adjustment, checkin: checkin

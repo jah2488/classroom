@@ -21,8 +21,9 @@ table.table.table-hover
             = cohort.name.titleize
         td = cohort.campus
         td
-          = link_to cohort.instructor do
-            = image_tag(cohort.instructor.avatar_url(32), class: 'circle user-avatar')
-            = cohort.instructor.name
+          - if cohort.instructor
+            = link_to cohort.instructor do
+              = image_tag(cohort.instructor.avatar_url(32), class: 'circle user-avatar')
+              = cohort.instructor.name
 
 = link_to "New Cohort", new_staff_cohort_path, class: "btn btn-success"
