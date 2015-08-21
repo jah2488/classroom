@@ -11,7 +11,7 @@ RSpec.feature "StaffDashes", type: :feature do
 
       sign_in(:instructor)
 
-      Timecop.travel(cohort.start_time) do
+      Timecop.travel(cohort.start_time.to_datetime) do
         visit staff_cohort_path(cohort)
         expect(page).to have_content(day.decorate.starts_at)
         expect(page).to have_content(assignment.title.titleize)
