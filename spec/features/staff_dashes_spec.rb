@@ -11,7 +11,7 @@ RSpec.feature "StaffDashes", type: :feature do
 
       sign_in(:instructor)
 
-      Timecop.travel(cohort.start_time) do
+      Timecop.travel(cohort.start_time.to_datetime) do
         visit staff_cohort_path(cohort)
         expect(page).to have_content(day.decorate.starts_at)
         expect(page).to have_content(assignment.title.titleize)
@@ -34,6 +34,12 @@ RSpec.feature "StaffDashes", type: :feature do
     end
 
     scenario 'creating assignments' do
+    end
+
+    scenario 'viewing days' do
+      cohort = create :cohort, instructor: nil
+      sign_in(:instructor)
+      visit staff_cohort_days_path(cohort)
     end
 
     scenario 'viewing submissions' do
@@ -80,7 +86,7 @@ RSpec.feature "StaffDashes", type: :feature do
 
     def create_full_dash
       cohort  = create :cohort, name: 'Rails Summer', instructor: instructor.instructor
-      day = cohort.first_day
+      day = create :day, cohort: cohort, start: cohort.start_time
       checkin = create :checkin, day: day
       assignment = create :assignment_w_submissions, cohort: cohort
       adjustment = create :adjustment, checkin: checkin

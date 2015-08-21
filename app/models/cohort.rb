@@ -4,9 +4,7 @@ class Cohort < ActiveRecord::Base
   has_many :students
   has_many :assignments
   has_many :days
-  validates :start_time, :name, :campus_id, presence: true
-
-  after_create :create_first_day
+  validates :start_date, :name, :campus_id, presence: true
 
   def tz
     campus.tz if campus
@@ -20,7 +18,7 @@ class Cohort < ActiveRecord::Base
 
   def current_day
     time = DateTime.now.in_time_zone(tz)
-    days.find_by("start >= ? AND start < ?", time.beginning_of_day, time.end_of_day)
+    days.find_by("start >= ? AND start < ?", time.beginning_of_day.utc, time.end_of_day.utc)
   end
 
   def first_day
@@ -31,21 +29,17 @@ class Cohort < ActiveRecord::Base
     Submission.ungraded_for self
   end
 
-  def start_time
-    time = read_attribute(:start_time)
-    time.in_time_zone(tz) if time && tz
+  def start_date= val
+    self.start_time = val.to_datetime.change(offset: tz_offset).beginning_of_day
   end
 
-  def start_time= val
-    write_attribute(:start_time, val.in_time_zone(tz).beginning_of_day)
+  def start_date
+    self.start_time.in_time_zone(tz).to_date if self.start_time
   end
 
   private
 
-  def create_first_day
-    day = Day.new
-    day.cohort = self
-    day.start  = self.start_time.change(hour: 9)
-    day.save
+  def tz_offset
+     ActiveSupport::TimeZone.new(tz).formatted_offset
   end
 end

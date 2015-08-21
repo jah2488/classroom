@@ -3,7 +3,7 @@ FactoryGirl.define do
     name { Faker::App.name }
     campus
     instructor
-    start_time { Faker::Time.forward(90).beginning_of_day }
+    start_date { Faker::Time.forward(30).to_datetime }
     factory :cohort_w_stuff do
       transient do
         assignments_count 5
