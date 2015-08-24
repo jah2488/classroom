@@ -1,4 +1,4 @@
-<%= render partial: 'dashboard/nav' %>
+<%= render partial: 'staff/application/nav', locals: { cohort: cohort } %>
 <h1>Edit Assignment</h1>
 
 <%= simple_form_for(assignment) do |f| %>
