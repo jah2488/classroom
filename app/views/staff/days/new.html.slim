@@ -1,0 +1,8 @@
+= render partial: 'nav', locals: { cohort: cohort }
+.col-md-4.col-md-offset-4
+  h1 New Day
+  = simple_form_for([:staff, cohort, day], html: { class: 'form-inline' }) do |f|
+    = f.input :start, as: :string, input_html: { class: 'datetimepicker', value: Time.zone.now.beginning_of_hour, required: true}, hint: "When does class start? Students will be considered late if they do not checkin within 15 minutes of this time."
+    = f.input :override_code, input_html: { value: SecureRandom.hex(2) }, hint: "This code allows students to check-in when not on campus."
+    p.muted Creating a new day will cause all students who have not checked in to be marked as absent
+    = f.button :submit, class: "btn btn-success"

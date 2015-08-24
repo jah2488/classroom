@@ -35,7 +35,7 @@ class Staff::CohortsController < Staff::ApplicationController
     # end terribleness
     cohort = Cohort.new(cohort_params)
     authorize cohort
-    if cohort.save!
+    if cohort.save
       redirect_to staff_cohort_path(cohort), notice: I18n.t('.created', resource: I18n.t('.cohort'))
     else
       render :new, locals: { cohort: cohort }
