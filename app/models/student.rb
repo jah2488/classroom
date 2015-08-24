@@ -24,7 +24,7 @@ class Student < ActiveRecord::Base
   end
 
   def absences
-    cohort.days.count - checkins.count
+    (cohort.days.count - checkins.count) - 1 #offset first day
   end
 
   def completed_assignments
