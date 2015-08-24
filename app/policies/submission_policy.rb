@@ -1,10 +1,10 @@
 class SubmissionPolicy < ApplicationPolicy
   def new?
-    user
+    user.student?
   end
 
   def create?
-    user
+    user.student?
   end
 
   def update?

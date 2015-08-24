@@ -5,6 +5,7 @@ class CohortsController < ApplicationController
   def show
     @cohort      = Cohort.find(params[:id]).decorate
     authorize @cohort
+    return redirect_to staff_cohort_path(@cohort) if current_user.instructor?
     student = current_user.student
     render locals: {
       students: @cohort.students.order(last_active_at: :DESC).map(&:decorate),

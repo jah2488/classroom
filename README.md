@@ -1,4 +1,7 @@
-# Classroom [![Code Climate](https://codeclimate.com/github/jah2488/classroom/badges/gpa.svg)](https://codeclimate.com/github/jah2488/classroom) [![Build Status](https://travis-ci.org/jah2488/classroom.svg)](https://travis-ci.org/jah2488/classroom) [![Test Coverage](https://codeclimate.com/github/jah2488/classroom/badges/coverage.svg)](https://codeclimate.com/github/jah2488/classroom/coverage)
+# Classroom
+[![Code Climate](https://codeclimate.com/github/jah2488/classroom/badges/gpa.svg)](https://codeclimate.com/github/jah2488/classroom)
+[![Build Status](https://travis-ci.org/jah2488/classroom.svg?branch=master)](https://travis-ci.org/jah2488/classroom)
+[![Test Coverage](https://codeclimate.com/github/jah2488/classroom/badges/coverage.svg)](https://codeclimate.com/github/jah2488/classroom/coverage)
 
 ## Deployment
 

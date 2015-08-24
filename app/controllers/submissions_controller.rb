@@ -17,7 +17,7 @@ class SubmissionsController < ApplicationController
   end
 
   def create
-    assignment = Assignment.find(submission_params.fetch(:assignment_id))
+    assignment = Assignment.find(submission_params.fetch(:assignment_id, nil))
     submission = Submission.new(submission_params)
     submission.student    = current_user.student
     submission.assignment = assignment

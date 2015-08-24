@@ -8,7 +8,7 @@ class CohortPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    user.instructor? || (user.student? && user.student.cohort_id == record.id)
   end
 
   def update?

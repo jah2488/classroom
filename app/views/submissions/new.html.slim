@@ -1,0 +1,7 @@
+.col-sm-4.col-sm-offset-4
+  h1 New Submission
+  = simple_form_for(submission) do |f|
+    = f.association :assignment, collection: current_user.student.cohort.assignments, hint: "Which assignment is this submission for?", selected: params.fetch(:assignment, nil)
+    = f.input :link, required: true, hint: "Link to where I can find the assignment. (Usually a Github Repo or a blog post)"
+    = f.input :notes, hint: 'Tell me what worked and didn\'t work with this assignment.'
+    = f.button :submit, class: "btn-success"

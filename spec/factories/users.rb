@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :user do
     email { Faker::Internet.email }
     password { Faker::Internet.password }
-    confirmed_at { DateTime.now }
+    after(:create) { |i| i.confirm }
     factory :instructor_user do
       instructor
     end
