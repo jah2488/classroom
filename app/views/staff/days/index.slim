@@ -4,11 +4,14 @@
     = cohort.name.titleize
   dl
     dt First Day
-    dd = cohort.first_day.start.to_date
+    dd = cohort.start_date.to_date
     dt Campus:
     dd = cohort.campus
     dt Instructor:
-    dd = link_to cohort.instructor.name, cohort.instructor
+    - if cohort.instructor
+      dd = link_to cohort.instructor.name, cohort.instructor
+    - else
+      dd TBD
   = link_to "Add Day", new_staff_cohort_day_path(cohort), class: "btn btn-success"
 .col-md-8
   = render partial: "calendar", locals: { cohort: cohort }
