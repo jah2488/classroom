@@ -25,6 +25,10 @@ class Staff::AssignmentsController < Staff::ApplicationController
     end
   end
 
+  def edit
+    render locals: { assignment: Assignment.find(params[:id]), cohort: Cohort.find(params[:cohort_id]).decorate }
+  end
+
   def update
     assignment = Assignment.find(params[:id])
     params[:assignment][:due_date] = ActiveSupport::TimeZone[assignment.cohort.tz].parse(params[:assignment][:due_date])
