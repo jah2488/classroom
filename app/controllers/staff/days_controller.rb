@@ -6,8 +6,8 @@ class Staff::DaysController < Staff::ApplicationController
   end
 
   def new
-    @cohort = Cohort.find(params[:cohort_id]).decorate
     render locals: {
+      cohort: Cohort.find(params[:cohort_id]).decorate,
       day: Day.new
     }
   end
@@ -19,7 +19,10 @@ class Staff::DaysController < Staff::ApplicationController
     if day.save
       redirect_to staff_cohort_days_path(day.cohort), notice: 'A New Day has successfully been created'
     else
-      render :new
+      render :new, locals: {
+        cohort: Cohort.find(params[:cohort_id]).decorate,
+        day: day
+      }
     end
   end
 
