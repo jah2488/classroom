@@ -13,8 +13,16 @@ describe CohortPolicy do
   end
 
   permissions :show? do
-    it "allows anyone to see cohorts" do
+    it 'denies unenrolled students' do
+      expect(subject).to_not permit(student_user, cohort)
+    end
+
+    it "allows enrolled students to see cohorts" do
+      student_user.student.cohort_id = cohort.id
       expect(subject).to permit(student_user, cohort)
+    end
+
+    it 'allows instructors to view' do
       expect(subject).to permit(instructor_user, cohort)
     end
   end
