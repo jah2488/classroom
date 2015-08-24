@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Cohort instructor view", type: :feature do
   let!(:instructor) do
-    create :instructor_user, email: 'instructor@theironyard.com', password: 'password', name: 'Jane Doe'
+    create :instructor_user, name: 'Jane Doe'
   end
 
   feature 'Picking Cohort' do
@@ -12,7 +12,7 @@ RSpec.feature "Cohort instructor view", type: :feature do
       create :cohort, name: 'Design Summer', instructor: instructor.instructor
       rails_cohort = create :cohort, name: 'Rails Summer', instructor: instructor.instructor
 
-      sign_in(:instructor)
+      sign_in(instructor)
 
       find(:css, "a[data-id='#{rails_cohort.id}']").click
 
@@ -25,7 +25,7 @@ RSpec.feature "Cohort instructor view", type: :feature do
 
   scenario 'creating a cohort' do
     create :campus, name: 'Moon'
-    sign_in(:instructor)
+    sign_in(instructor)
     click_link "New Cohort"
     create_cohort
     expect_cohort_to_be_created

@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.feature "StaffDashes", type: :feature do
   feature 'The Cohort Dashboard' do
     let!(:instructor) do
-      create :instructor_user, email: 'instructor@theironyard.com', password: 'password', name: 'Jane Doe'
+      create :instructor_user, name: 'Jane Doe'
     end
 
     scenario 'has assignments, students, submissions, and adjustments' do
       cohort, day, _, assignment, user, _ = create_full_dash
 
-      sign_in(:instructor)
+      sign_in(instructor)
 
       Timecop.travel(cohort.start_time.to_datetime) do
         visit staff_cohort_path(cohort)
@@ -23,7 +23,7 @@ RSpec.feature "StaffDashes", type: :feature do
     scenario 'viewing assignments' do
       cohort, _, _, assignment, _, _ = create_full_dash
 
-      sign_in(:instructor)
+      sign_in(instructor)
 
       visit staff_cohort_path(cohort)
 
@@ -38,14 +38,14 @@ RSpec.feature "StaffDashes", type: :feature do
 
     scenario 'viewing days' do
       cohort = create :cohort, instructor: nil
-      sign_in(:instructor)
+      sign_in(instructor)
       visit staff_cohort_days_path(cohort)
     end
 
     scenario 'viewing submissions' do
       cohort, _, _, assignment, _, _ = create_full_dash
 
-      sign_in(:instructor)
+      sign_in(instructor)
 
       visit staff_cohort_path(cohort)
 
@@ -57,7 +57,7 @@ RSpec.feature "StaffDashes", type: :feature do
     scenario 'viewing students' do
       cohort, _, _, assignment, _, _ = create_full_dash
 
-      sign_in(:instructor)
+      sign_in(instructor)
 
       visit staff_cohort_path(cohort)
 
