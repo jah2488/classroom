@@ -62,6 +62,7 @@ group :test, :development do
   gem 'quiet_assets'
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'rspec-page-regression'
   gem 'capybara'
   gem 'rspec-mocks'
   gem 'timecop'
