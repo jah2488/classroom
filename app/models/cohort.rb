@@ -1,9 +1,9 @@
 class Cohort < ActiveRecord::Base
   belongs_to :instructor
   belongs_to :campus
-  has_many :students
-  has_many :assignments
-  has_many :days
+  has_many :students, dependent: :destroy
+  has_many :assignments, dependent: :destroy
+  has_many :days, dependent: :destroy
   validates :start_date, :name, :campus_id, presence: true
 
   def tz
