@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       resources :assignments
       resources :reports
     end
+    resources :campuses
     resources :students, only: [:show, :edit, :update]
     resources :badges, except: :index
     resources :ratings, only: [:create, :update]

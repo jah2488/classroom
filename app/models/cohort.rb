@@ -7,7 +7,7 @@ class Cohort < ActiveRecord::Base
   validates :start_date, :name, :campus_id, presence: true
 
   def tz
-    campus.tz if campus
+    campus.time_zone if campus
   end
 
   def days_by_month

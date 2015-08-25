@@ -1,0 +1,9 @@
+table.table.table-hover
+  thead
+    tr
+      th Name
+  tbody
+    - campuses.each do |campus|
+      tr
+        td = campus.name
+= link_to "New Campus", new_staff_campus_path, class: "btn btn-primary"

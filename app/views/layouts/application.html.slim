@@ -54,6 +54,8 @@ html
                     = link_to('Dashboard', staff_root_path)
                   li
                     = active_link_to("Cohorts", staff_cohorts_path)
+                  li
+                    = active_link_to("Campuses", staff_campuses_path)
                 li
                   = link_to('Logout', destroy_user_session_path, class: 'danger')
               - else
