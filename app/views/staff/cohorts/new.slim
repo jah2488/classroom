@@ -1,7 +1,6 @@
 .col-lg-4.col-lg-offset-4
-  h1
-    = t('.title')
-  = simple_form_for(cohort, url: staff_cohorts_path) do |f|
+  h1 Create Cohort
+  = simple_form_for [:staff, cohort] do |f|
     .form-inputs
       = f.input :name
       = f.association :campus

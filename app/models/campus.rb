@@ -1,6 +1,6 @@
 class Campus < ActiveRecord::Base
   has_many :cohorts
-  validates :name, :tz, presence: true
+  validates :name, :time_zone, presence: true
 
   def to_s
     self.name
