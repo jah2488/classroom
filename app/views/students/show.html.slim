@@ -26,6 +26,8 @@
         = student.blog_link
     - if policy(student).edit?
       = link_to 'Edit', edit_student_path(student), class: 'btn btn-primary'
+    - if policy(student).become?
+      = link_to 'Become', student_become_path(student), class: 'btn btn-primary'
 .row
   .col-md-6
     section
