@@ -137,6 +137,10 @@ p.muted ~ section {
   margin-top: 10px;
 }
 
+article a, &:hover, &:focus {
+  font-weight: bold;
+}
+
 /* Ahhh bootstrap overrides */
 .btn.btn-default {
   padding-left: 18px;
