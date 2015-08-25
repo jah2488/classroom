@@ -17,6 +17,13 @@ class StudentsController < ApplicationController
     }
   end
 
+  def become
+    student = Student.find(params[:student_id])
+    authorize student
+    sign_in(student.user)
+    redirect_to root_path
+  end
+
   def edit
     student = Student.find(params[:id])
     authorize student

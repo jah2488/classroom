@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :reports
   resources :instructors
   resources :checkins
-  resources :students
+  resources :students do
+    get :become
+  end
   resources :cohorts, only: :show
 
   resources :submissions do

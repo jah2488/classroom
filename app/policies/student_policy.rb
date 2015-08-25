@@ -19,6 +19,10 @@ class StudentPolicy < ApplicationPolicy
     create?
   end
 
+  def become?
+    user.instructor? && user.instructor.has_student?(record)
+  end
+
   def create?
     user.instructor?
   end
