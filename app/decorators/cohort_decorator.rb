@@ -13,7 +13,7 @@ class CohortDecorator < Draper::Decorator
     elsif backend?
       "AF5C56"
     else
-      "00B5A4"
+      "39474e"
     end
   end
 

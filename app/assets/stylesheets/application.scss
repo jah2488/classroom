@@ -15,7 +15,7 @@ $orange: #d3ac9a;
 $yellow: #d3c89a;
 $teal: #9ad3c8;
 
-$primary: #00B5A4; //#9AA5D3;
+$primary: #39474e; // #00B5A4; //#9AA5D3;
 $complementary: $yellow;
 
 .notices {
@@ -137,7 +137,7 @@ p.muted ~ section {
   margin-top: 10px;
 }
 
-article a, &:hover, &:focus {
+article a, article a:hover, article a:focus {
   font-weight: bold;
 }
 
