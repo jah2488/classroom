@@ -15,7 +15,11 @@ $orange: #d3ac9a;
 $yellow: #d3c89a;
 $teal: #9ad3c8;
 
-$primary: #39474e; // #00B5A4; //#9AA5D3;
+$v1-blue: #9AA5D3;
+$material-teal: #00B5A4;
+$tiy-gray: #39474e;
+
+$primary:  $tiy-gray;
 $complementary: $yellow;
 
 .notices {
