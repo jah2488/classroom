@@ -3,13 +3,15 @@ ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
+require 'rspec/page-regression'
 require 'database_cleaner'
 require 'pundit/rspec'
 require 'codeclimate-test-reporter'
 require 'support/pundit'
 
 require 'support/features/session_helpers.rb'
-
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
 ActiveRecord::Migration.maintain_test_schema!
 CodeClimate::TestReporter.start
 
