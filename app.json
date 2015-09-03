@@ -1,47 +1,64 @@
 {
-  "name":"PicClicker",
-  "scripts":{
-    "postdeploy": "bundle exec rake db:setup db:migrate"
-  },
-  "env":{
-    "AWS_ID":{
-      "required":true
-    },
-    "AWS_SECRET":{
-      "required":true
-    },
-    "GOOGLE_CLIENT_ID":{
-      "required":true
-    },
-    "GOOGLE_CLIENT_SECRET":{
-      "required":true
-    },
-    "mandrill_api_key":{
-      "required": true
-    },
-    "LANG":{
-      "required":true
-    },
-    "RACK_ENV":{
-      "required":true
-    },
-    "RAILS_ENV":{
-      "required":true
-    },
-    "RAILS_SERVE_STATIC_FILES":{
-      "required":true
-    },
-    "S3_BUCKET":{
-      "required":true
-    },
-    "SECRET_KEY_BASE":{
-      "generator":"secret"
-    }
-  },
-  "image": "heroku/ruby",
-  "addons":[
-    "papertrail:choklad",
-    "airbrake:free_heroku",
-    "heroku-postgresql"
-  ]
+        "name":"Classroom",
+        "description": "Tracks students & assignments in a cohort based classroom",
+        "keywords": [
+                "education",
+                "rails"
+        ],
+        "repository": "https://github.com/jah2488/classroom",
+        "scripts":{
+                "postdeploy": "bundle exec rake db:setup db:migrate"
+        },
+        "env":{
+                "AWS_ID":{
+                        "required":true
+                },
+                "AWS_SECRET":{
+                        "required":true
+                },
+                "DEPLOY_TASKS": {
+                        "value": "db:migrate"
+                },
+                "GOOGLE_CLIENT_ID":{
+                        "required":true
+                },
+                "GOOGLE_CLIENT_SECRET":{
+                        "required":true
+                },
+                "mandrill_api_key":{
+                        "required": true
+                },
+                "LANG":{
+                        "value": "en_US.UTF-8"
+                },
+                "RACK_ENV":{
+                        "value": "production"
+                },
+                "RAILS_ENV":{
+                        "value": "production"
+                },
+                "RAILS_SERVE_STATIC_FILES":{
+                        "value": true
+                },
+                "S3_BUCKET":{
+                        "required":true
+                },
+                "SECRET_KEY_BASE":{
+                        "generator":"secret"
+                }
+        },
+        "image": "heroku/ruby",
+        "addons":[
+                "papertrail:choklad",
+                "airbrake:free_heroku",
+                "heroku-postgresql"
+        ],
+        "buildpacks": [
+                {
+                        "url": "https://github.com/heroku/heroku-buildpack-ruby.git"
+                },
+                {
+                        "url": "https://github.com/gunpowderlabs/buildpack-ruby-rake-deploy-tasks"
+                }
+        ]
 }
