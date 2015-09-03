@@ -1,7 +1,7 @@
 {
   "name":"PicClicker",
   "scripts":{
-    "postdeploy": "bundle exec rake db:setup"
+    "postdeploy": "bundle exec rake db:setup db:migrate"
   },
   "env":{
     "AWS_ID":{
@@ -15,6 +15,9 @@
     },
     "GOOGLE_CLIENT_SECRET":{
       "required":true
+    },
+    "mandrill_api_key":{
+      "required": true
     },
     "LANG":{
       "required":true
