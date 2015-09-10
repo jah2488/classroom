@@ -6,7 +6,7 @@ var Link = React.createClass({
   },
 
   classes: function () {
-    var defaults = 'btn btn-default btn-large';
+    var defaults = 'btn btn-default btn-primary btn-large';
     if (this.props.url) { return defaults; }
     return defaults + ' disabled';
   }
@@ -75,9 +75,9 @@ var GradeSubmissionForm = React.createClass({
                     <Badges ref='badges' badges={this.props.badges} />
                     <div className='row'>
                         <div className='actions col-sm-12'>
-                            <a className="btn btn-primary" rel="nofollow" onClick={this.handleClick.bind(this, 'complete')}>Mark as Complete</a>
-                            <a className="btn btn-default" rel="nofollow" onClick={this.handleClick.bind(this, 'unfinish')}>Mark as Unfinished</a>
-                            <a className="btn btn-default" rel="nofollow" onClick={this.handleSend}>Send Feedback</a>
+                            <a className="btn btn-success" rel="nofollow" onClick={this.handleClick.bind(this, 'complete')}>Mark as Complete</a>
+                            <a className="btn btn-warning" rel="nofollow" onClick={this.handleClick.bind(this, 'unfinish')}>Mark as Unfinished</a>
+                            <a className="btn btn-primary" rel="nofollow" onClick={this.handleSend}>Send Feedback</a>
                         </div>
                     </div>
                     <div className='row'>

@@ -30,7 +30,8 @@ RSpec.feature "StaffDashes", type: :feature do
       click_link_to(staff_cohort_assignment_path(cohort, assignment))
 
       expect(page).to have_content(assignment.title)
-      expect(page).to have_content(/submit homework/i)
+      expect(page).to have_content(/submitted/i)
+      expect(page).to have_content(/unsubmitted/i)
     end
 
     scenario 'creating assignments' do

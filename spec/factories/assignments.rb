@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :assignment do
+    cohort
     title { Faker::Name.name }
     factory :assignment_w_submissions do
       transient do
