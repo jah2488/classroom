@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Cohort views" do
   let(:instructor_user) { create :instructor_user }
-  let(:cohort) { create :cohort, instructor: instructor_user.instructor }
+  let(:cohort) { create :cohort, instructors: [instructor_user.instructor] }
   let(:student) { create :student, cohort: cohort }
   let(:student_user) { create :student_user, student: student }
 

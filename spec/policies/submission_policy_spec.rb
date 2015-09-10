@@ -20,12 +20,12 @@ RSpec.describe SubmissionPolicy do
     end
 
     it "allows instructors to view all in cohort" do
-      student.cohort.instructor = instructor
+      expect(instructor).to receive(:has_student?).with(student).and_return true
       expect(subject).to permit(instructor_user, Submission.new(student: student))
     end
 
     it "denies cross-cohort staff" do
-      student.cohort.instructor_id = nil
+      expect(instructor).to receive(:has_student?).with(student).and_return false
       expect(subject).to_not permit(instructor_user, Submission.new(student: student))
     end
   end
@@ -36,7 +36,7 @@ RSpec.describe SubmissionPolicy do
     end
 
     it "allows instructors to complete submissions" do
-      student.cohort.instructor = instructor
+      expect(instructor).to receive(:has_student?).with(student).and_return true
       expect(subject).to permit(instructor_user, Submission.new(student: student))
     end
   end
@@ -46,7 +46,7 @@ RSpec.describe SubmissionPolicy do
       expect(subject).to_not permit(student_user, Submission.new)
     end
     it "allows instructors to mark submissions unfinished" do
-      student.cohort.instructor = instructor
+      expect(instructor).to receive(:has_student?).with(student).and_return true
       expect(subject).to permit(instructor_user, Submission.new(student: student))
     end
   end

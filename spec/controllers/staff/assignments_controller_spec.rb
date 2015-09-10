@@ -6,7 +6,7 @@ describe Staff::AssignmentsController do
     instructor = FactoryGirl.create(:instructor)
     instructor_user = create :user, instructor: instructor
     campus     = FactoryGirl.create(:campus)
-    @cohort     = FactoryGirl.create(:cohort, instructor: instructor, campus: campus)
+    @cohort     = FactoryGirl.create(:cohort, instructors: [instructor], campus: campus)
     sign_in instructor_user
   end
 

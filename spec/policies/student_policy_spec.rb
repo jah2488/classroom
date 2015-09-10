@@ -5,13 +5,14 @@ describe StudentPolicy do
   let(:student) { build_stubbed :student }
   let(:student2) { build_stubbed :student }
   let(:student_user) { build_stubbed :user, student: student }
-  let(:instructor_user) { build_stubbed :instructor_user }
+  let(:instructor) { build_stubbed(:instructor) }
+  let(:instructor_user) { build_stubbed(:user, instructor: instructor) }
 
   subject { described_class }
 
   permissions :show? do
     it "allows instructor to view own students" do
-      student.cohort = build_stubbed(:cohort, instructor: instructor_user.instructor)
+      expect(instructor).to receive(:has_student?).with(student).and_return true
       expect(subject).to permit(instructor_user, student)
     end
 
@@ -37,7 +38,7 @@ describe StudentPolicy do
 
   permissions :update?, :edit?, :grades? do
     it "allows instructor of student" do
-      student.cohort = build_stubbed(:cohort, instructor: instructor_user.instructor)
+      expect(instructor).to receive(:has_student?).with(student).and_return(true).thrice
       expect(subject).to permit(instructor_user, student)
     end
     it "allows self" do

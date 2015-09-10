@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'Student views' do
   let(:instructor_user) { create :instructor_user }
-  let(:cohort) { create :cohort, instructor: instructor_user.instructor }
+  let(:cohort) { create :cohort, instructors: [instructor_user.instructor] }
   let(:student)  { create :full_student, cohort: cohort }
 
   feature 'Instructor can become a student' do

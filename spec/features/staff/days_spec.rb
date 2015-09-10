@@ -4,7 +4,7 @@ RSpec.feature "Staff days panel" do
   let(:instructor) do
     create :instructor_user, email: 'instructor@theironyard.com', password: 'password', name: 'Jane Doe'
   end
-  let(:cohort) { create :cohort, instructor: instructor.instructor }
+  let(:cohort) { create :cohort, instructors: [instructor.instructor] }
   before do
     create_list :student, 2, cohort: cohort
     sign_in instructor

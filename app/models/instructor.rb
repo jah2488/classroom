@@ -28,7 +28,7 @@ class Instructor < ActiveRecord::Base
   end
 
   def has_student?(student)
-    self.id == student.cohort.instructor_id
+    self.cohort_ids.include? student.cohort_id
   end
 
   def students

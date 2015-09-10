@@ -44,6 +44,7 @@ class Cohort < ActiveRecord::Base
   private
 
   def tz_offset
-     ActiveSupport::TimeZone.new(tz).formatted_offset
+    return 0 unless tz
+    ActiveSupport::TimeZone.new(tz).formatted_offset
   end
 end
