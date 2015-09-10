@@ -1,6 +1,6 @@
 class Assignment < ActiveRecord::Base
   belongs_to :cohort
-  has_many :submissions
+  has_many :submissions, dependent: :destroy
   has_many :assignment_tags
   has_many :tags, through: :assignment_tags
   validates :title, presence: true
