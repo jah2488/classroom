@@ -35,10 +35,9 @@ campus = Campus.create!({
 cohort = Cohort.create!({
   name: 'Ruby on Rails',
   campus_id: campus.id,
-  start_time: DateTime.now
+  start_time: DateTime.now,
+  instructors: [instructor]
 })
-
-CohortInstructor.create!(instructor: instructor, cohort: cohort)
 
 FactoryGirl.create(:cohort, name: "Mobile")
 FactoryGirl.create(:cohort, name: "Front End JS")

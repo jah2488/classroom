@@ -6,10 +6,6 @@ class Cohort < ActiveRecord::Base
   has_and_belongs_to_many :instructors
   validates :start_date, :name, :campus_id, presence: true
 
-  def instructor
-    instructors.first
-  end
-
   def tz
     campus.time_zone if campus
   end
