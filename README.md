@@ -6,7 +6,8 @@
 
 ## Deployment
 
-The app is deployed on [Heroku](https://tiy-classroom.herokuapp.com/) as `tiy-classroom`
+The app is deployed in production on [Heroku](https://tiy-classroom.herokuapp.com/) as `tiy-classroom`
+[Staging](https://tiy-classroom-staging.herokuapp.com/) automatically deploys as long as travis is green on master.
 
 ## Development
 
