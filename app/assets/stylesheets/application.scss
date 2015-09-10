@@ -39,7 +39,7 @@ header {
     border-bottom: 5px solid darken($primary, 5%);
     background: $primary;
     color: white;
-    height: 50px;
+    min-height: 50px;
     padding-top: 1px;
 
     h3 {

@@ -58,6 +58,10 @@ class Assignment < ActiveRecord::Base
     student_submissions.where(submissions[:completed].eq(true)).count == 0
   end
 
+  def unsubmitted_by
+    cohort.students.where("id NOT IN (?)", self.submissions.pluck(:student_id).uniq)
+  end
+
   def late?
     Time.zone.now > due_date
   end

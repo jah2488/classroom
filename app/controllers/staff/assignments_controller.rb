@@ -8,8 +8,11 @@ class Staff::AssignmentsController < Staff::ApplicationController
   end
 
   def show
+    assignment = Assignment.find(params[:id])
     render locals: {
-      assignment: Assignment.find(params[:id]).decorate
+      assignment: assignment.decorate,
+      submitted: assignment.submissions,
+      unsubmitted: assignment.unsubmitted_by
     }
   end
 
