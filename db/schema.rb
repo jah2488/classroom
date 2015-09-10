@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825161912) do
+ActiveRecord::Schema.define(version: 20150910161017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "adjustments", force: :cascade do |t|
     t.integer  "checkin_id"
@@ -54,6 +55,13 @@ ActiveRecord::Schema.define(version: 20150825161912) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "campus", force: :cascade do |t|
+    t.string "name"
+    t.float  "latitude"
+    t.float  "longitude"
+    t.string "tz",        default: "Central Time (US & Canada)"
+  end
+
   create_table "campuses", force: :cascade do |t|
     t.string "name"
     t.float  "latitude"
@@ -71,6 +79,11 @@ ActiveRecord::Schema.define(version: 20150825161912) do
   add_index "checkins", ["day_id"], name: "index_checkins_on_day_id", using: :btree
   add_index "checkins", ["student_id"], name: "index_checkins_on_student_id", using: :btree
 
+  create_table "cohort_instructors", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.integer "cohort_id"
+    t.integer "instructor_id"
+  end
+
   create_table "cohorts", force: :cascade do |t|
     t.string   "name"
     t.integer  "instructor_id"
@@ -81,6 +94,11 @@ ActiveRecord::Schema.define(version: 20150825161912) do
   end
 
   add_index "cohorts", ["instructor_id"], name: "index_cohorts_on_instructor_id", using: :btree
+
+  create_table "cohorts_instructors", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.integer "cohort_id"
+    t.integer "instructor_id"
+  end
 
   create_table "days", force: :cascade do |t|
     t.integer  "cohort_id"

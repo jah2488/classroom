@@ -1,10 +1,14 @@
 class Cohort < ActiveRecord::Base
-  belongs_to :instructor
   belongs_to :campus
   has_many :students, dependent: :destroy
   has_many :assignments, dependent: :destroy
   has_many :days, dependent: :destroy
+  has_and_belongs_to_many :instructors
   validates :start_date, :name, :campus_id, presence: true
+
+  def instructor
+    instructors.first
+  end
 
   def tz
     campus.time_zone if campus
