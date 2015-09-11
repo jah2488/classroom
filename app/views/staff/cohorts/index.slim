@@ -11,7 +11,7 @@ table.table.table-hover
       th
       th Name
       th Campus
-      th Instructor
+      th Instructors
   tbody
     - @cohorts.each do |cohort|
       tr
@@ -21,9 +21,9 @@ table.table.table-hover
             = cohort.name.titleize
         td = cohort.campus
         td
-          - if cohort.instructor
-            = link_to cohort.instructor do
-              = image_tag(cohort.instructor.avatar_url(32), class: 'circle user-avatar')
-              = cohort.instructor.name
+          - cohort.instructors.each do |instructor|
+            = link_to instructor do
+              = image_tag(instructor.avatar_url(32), class: 'circle user-avatar')
+              = instructor.name
 
 = link_to "New Cohort", new_staff_cohort_path, class: "btn btn-success"

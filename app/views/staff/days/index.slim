@@ -8,10 +8,11 @@
     dt Campus:
     dd = cohort.campus
     dt Instructor:
-    - if cohort.instructor
-      dd = link_to cohort.instructor.name, cohort.instructor
-    - else
+    - if cohort.instructors.empty?
       dd TBD
+    - else
+      - cohort.instructors.each do |instructor|
+        dd = link_to instructor.name, instructor
   = link_to "Add Day", new_staff_cohort_day_path(cohort), class: "btn btn-success"
 .col-md-8
   = render partial: "calendar", locals: { cohort: cohort }

@@ -7,10 +7,10 @@ RSpec.feature "Cohort instructor view", type: :feature do
 
   feature 'Picking Cohort' do
     scenario 'with multiple available cohorts' do
-      create :cohort, instructor: nil
+      create :cohort, instructors_count: 0
       create :cohort
-      create :cohort, name: 'Design Summer', instructor: instructor.instructor
-      rails_cohort = create :cohort, name: 'Rails Summer', instructor: instructor.instructor
+      create :cohort, name: 'Design Summer', instructors: [instructor.instructor]
+      rails_cohort = create :cohort, name: 'Rails Summer', instructors: [instructor.instructor]
 
       sign_in(instructor)
 

@@ -34,6 +34,7 @@ class Staff::CohortsController < Staff::ApplicationController
     params[:cohort].delete(:"start_date(3i)")
     # end terribleness
     cohort = Cohort.new(cohort_params)
+    cohort.instructor_ids = [params[:cohort][:instructor_id]]
     authorize cohort
     if cohort.save
       redirect_to staff_cohort_path(cohort), notice: I18n.t('.created', resource: I18n.t('.cohort'))
@@ -45,7 +46,7 @@ class Staff::CohortsController < Staff::ApplicationController
   private
 
   def cohort_params
-    params.require(:cohort).permit(:name, :instructor_id, :campus_id, :start_date)
+    params.require(:cohort).permit(:name, :campus_id, :start_date, :instructor_id)
   end
 
   def find_cohort

@@ -28,7 +28,7 @@ describe ReportPolicy do
     end
 
     it "allows instructors to see own reports" do
-      student.cohort.instructor_id = instructor.id
+      expect(instructor).to receive(:has_student?).with(student).and_return true
       expect(subject).to permit(instructor_user, Report.new(student: student))
     end
 

@@ -79,7 +79,7 @@ RSpec.feature "StaffDashes", type: :feature do
     end
 
     def create_full_dash
-      cohort  = create :cohort, name: 'Rails Summer', instructor: instructor.instructor
+      cohort  = create :cohort, name: 'Rails Summer', instructors: [instructor.instructor]
       day = create :day, cohort: cohort, start: cohort.start_time
       checkin = create :checkin, day: day
       assignment = create :assignment_w_submissions, cohort: cohort

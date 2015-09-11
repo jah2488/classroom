@@ -4,7 +4,7 @@ describe AssignmentsController do
   before(:each) do
     instructor = FactoryGirl.create(:instructor)
     campus     = FactoryGirl.create(:campus)
-    @cohort     = FactoryGirl.create(:cohort, instructor: instructor, campus: campus)
+    @cohort     = FactoryGirl.create(:cohort, instructors: [instructor], campus: campus)
     student    = create(:student, cohort_id: @cohort.id)
     student_user = create(:user, student: student)
     sign_in student_user

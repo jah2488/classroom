@@ -4,7 +4,7 @@
     .form-inputs
       = f.input :name
       = f.association :campus
-      = f.association :instructor
+      = f.input :instructor_id, collection: Instructor.all, selected: current_user.instructor
       = f.input :start_date, as: :date
     .form-actions
       = f.button :submit

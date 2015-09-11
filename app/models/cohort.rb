@@ -1,9 +1,9 @@
 class Cohort < ActiveRecord::Base
-  belongs_to :instructor
   belongs_to :campus
   has_many :students, dependent: :destroy
   has_many :assignments, dependent: :destroy
   has_many :days, dependent: :destroy
+  has_and_belongs_to_many :instructors
   validates :start_date, :name, :campus_id, presence: true
 
   def tz
@@ -40,6 +40,7 @@ class Cohort < ActiveRecord::Base
   private
 
   def tz_offset
-     ActiveSupport::TimeZone.new(tz).formatted_offset
+    return 0 unless tz
+    ActiveSupport::TimeZone.new(tz).formatted_offset
   end
 end

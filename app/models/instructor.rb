@@ -1,6 +1,6 @@
 class Instructor < ActiveRecord::Base
   belongs_to :user
-  has_many :cohorts
+  has_and_belongs_to_many :cohorts
   validates :user_id, presence: true
 
   def current_cohort
@@ -28,7 +28,7 @@ class Instructor < ActiveRecord::Base
   end
 
   def has_student?(student)
-    self.id == student.cohort.instructor_id
+    self.cohort_ids.include? student.cohort_id
   end
 
   def students

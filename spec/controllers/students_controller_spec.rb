@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe StudentsController, type: :controller do
-  let(:instructor_user) { create :instructor_user }
-  let(:student) { create :student }
+  let(:instructor) { create :instructor }
+  let(:instructor_user) { create :instructor_user, instructor: instructor }
+  let(:cohort) { create :cohort, instructors: [instructor] }
+  let(:student) { create :student, cohort: cohort }
   let(:student_user) { create :user, student: student }
 
   describe "GET #show" do
@@ -13,8 +15,6 @@ RSpec.describe StudentsController, type: :controller do
     end
 
     it "shows instructor a student" do
-      student.cohort.instructor_id = instructor_user.instructor.id
-      student.cohort.save
       sign_in instructor_user
       get :show, id: student.id
       expect(response).to have_http_status(:success)
@@ -24,8 +24,6 @@ RSpec.describe StudentsController, type: :controller do
   describe "GET #index" do
     it "allows instructor to see only own students" do
       create_list :student, 5
-      student.cohort.instructor_id = instructor_user.instructor.id
-      student.cohort.save
       sign_in instructor_user
       allow(controller).to receive(:render).with no_args
       expect(controller).to receive(:render).with({
