@@ -9,6 +9,7 @@ en:
     index:
       new-cohort: 'New Cohort'
   report: "Report"
+  campus: "Campus"
   cohorts:
     new:
       title: 'New Cohort'
