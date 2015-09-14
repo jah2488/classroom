@@ -1,0 +1,10 @@
+= render partial: 'staff/application/nav' , locals: { cohort: cohort }
+h1 Edit Assignment
+= simple_form_for([:staff, cohort, assignment]) do |f|
+  .form-inputs
+    = f.input :title, required: true
+    = f.input :info, hint: 'put markdown in me', required: true
+    = f.input :due_date, as: :string, input_html: { class: 'datetimepicker', value: assignment.due_date || (Time.zone.tomorrow + 8.hours) }, required: true
+    = react_component('AssignmentTags', tags: Tag.all, tag_ids: assignment.tag_ids)
+  .form-actions
+    = f.button :submit

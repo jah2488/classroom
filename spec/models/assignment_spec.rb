@@ -20,8 +20,8 @@ RSpec.describe Assignment, type: :model do
 
   describe 'search' do
     it 'retuns all assignments with title matching query' do
-      foo  = Assignment.create!(title: 'foobar')
-      fizz = Assignment.create!(title: 'fizzbuzz')
+      foo  = create :assignment, title: "foobar"
+      fizz = create :assignment, title: 'fizzbuzz'
 
       expect(Assignment.search('f')).to  eq([foo, fizz])
       expect(Assignment.search('fo')).to eq([foo])

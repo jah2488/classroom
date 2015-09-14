@@ -4,6 +4,7 @@ class Assignment < ActiveRecord::Base
   has_many :assignment_tags, dependent: :destroy
   has_many :tags, through: :assignment_tags
   validates :title, presence: true
+  validates :cohort, presence: true
 
   def self.by_week(records)
     records.group_by { |assignment| assignment.due_date.beginning_of_week.to_date }
@@ -56,6 +57,10 @@ class Assignment < ActiveRecord::Base
                               submissions[:completed].eq(false)
                                 .or(submissions[:completed].eq(nil))).count > 0 &&
     student_submissions.where(submissions[:completed].eq(true)).count == 0
+  end
+
+  def unsubmitted_by
+    self.cohort.students.where("id NOT IN (?)", self.submissions.pluck(:student_id).uniq)
   end
 
   def late?

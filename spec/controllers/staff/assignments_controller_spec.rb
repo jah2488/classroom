@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe Staff::AssignmentsController do
 
+  let(:assignment) { create :assignment }
   before(:each) do
     instructor = FactoryGirl.create(:instructor)
     instructor_user = create :user, instructor: instructor
@@ -19,8 +20,7 @@ describe Staff::AssignmentsController do
 
   describe "GET #show" do
     it "returns http success" do
-      Assignment.create!(title: 'example assignment')
-      get :show, id: 1, cohort_id: @cohort.id
+      get :show, id: assignment.id, cohort_id: @cohort.id
       expect(response).to have_http_status(:success)
     end
   end
@@ -38,7 +38,6 @@ describe Staff::AssignmentsController do
 
   describe "GET #edit" do
     it "returns http success" do
-      assignment = Assignment.create!(title: 'example assignment')
       get :edit, id: assignment.id, cohort_id: @cohort.id
       expect(response).to have_http_status(:success)
     end

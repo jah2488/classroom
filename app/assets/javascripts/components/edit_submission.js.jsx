@@ -21,14 +21,14 @@ var EditSubmission = React.createClass({
     action: function () {
         if (this.state.editing) {
             return (<span>
-                <a onClick={this.handleClick} className='btn btn-sm btn-default'>Cancel</a>
+                <a onClick={this.handleClick} className='btn btn-sm btn-danger'>Cancel</a>
                 <a onClick={this.handleSubmit} className='btn btn-sm btn-primary'>Submit</a>
                     </span>);
         } else {
           if (this.state.showNotitication) {
-            return (<span> <Notification parentCallback={this.onDismiss} message="Submission Updated!" /> <div onClick={this.handleClick} className='btn btn-sm btn-default'>Edit Your Submission</div></span>);
+            return (<span> <Notification parentCallback={this.onDismiss} message="Submission Updated!" /> <div onClick={this.handleClick} className='btn btn-sm btn-primary'>Edit Your Submission</div></span>);
           } else {
-            return ( <div onClick={this.handleClick} className='btn btn-sm btn-default'>Edit Your Submission</div>);
+            return ( <div onClick={this.handleClick} className='btn btn-sm btn-primary'>Edit Your Submission</div>);
           }
         }
     },

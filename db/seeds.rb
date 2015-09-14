@@ -65,6 +65,7 @@ end
   Submission.create({
     link: 'http://github.com/',
     notes: 'This was hard',
+    late: [true, false].sample,
     student_id: students.sample.id,
     assignment_id: assignments.sample.id
   })
