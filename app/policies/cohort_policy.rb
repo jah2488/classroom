@@ -8,15 +8,15 @@ class CohortPolicy < ApplicationPolicy
   end
 
   def show?
-    user.instructor? || (user.student? && user.student.cohort_id == record.id)
+    user.instructor? || (user.student? && user.in_cohort?(record))
   end
 
   def update?
-    user.instructor? && record.instructor_id == user.instructor.id
+    user.instructor? && user.in_cohort?(record)
   end
 
   def destroy?
-    user.instructor? && record.instructor_id == user.instructor.id
+    user.instructor? && user.in_cohort?(record)
   end
 
   class Scope < Scope
