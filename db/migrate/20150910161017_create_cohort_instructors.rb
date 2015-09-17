@@ -7,7 +7,7 @@ class CreateCohortInstructors < ActiveRecord::Migration
     end
 
     Cohort.all.each do |c|
-      CohortInstructor.create!(cohort: c, instructor_id: c.instructor_id)
+      CohortInstructor.create!(cohort: c, instructor_id: c.instructor_id) if c.instructor_id
     end
   end
 
