@@ -55,13 +55,6 @@ ActiveRecord::Schema.define(version: 20150910161017) do
     t.datetime "updated_at",    null: false
   end
 
-  create_table "campus", force: :cascade do |t|
-    t.string "name"
-    t.float  "latitude"
-    t.float  "longitude"
-    t.string "tz",        default: "Central Time (US & Canada)"
-  end
-
   create_table "campuses", force: :cascade do |t|
     t.string "name"
     t.float  "latitude"
@@ -79,11 +72,6 @@ ActiveRecord::Schema.define(version: 20150910161017) do
   add_index "checkins", ["day_id"], name: "index_checkins_on_day_id", using: :btree
   add_index "checkins", ["student_id"], name: "index_checkins_on_student_id", using: :btree
 
-  create_table "cohort_instructors", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.integer "cohort_id"
-    t.integer "instructor_id"
-  end
-
   create_table "cohorts", force: :cascade do |t|
     t.string   "name"
     t.integer  "instructor_id"
@@ -95,10 +83,13 @@ ActiveRecord::Schema.define(version: 20150910161017) do
 
   add_index "cohorts", ["instructor_id"], name: "index_cohorts_on_instructor_id", using: :btree
 
-  create_table "cohorts_instructors", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.integer "cohort_id"
-    t.integer "instructor_id"
+  create_table "cohorts_instructors", id: false, force: :cascade do |t|
+    t.integer "cohort_id",     null: false
+    t.integer "instructor_id", null: false
   end
+
+  add_index "cohorts_instructors", ["cohort_id"], name: "index_cohorts_instructors_on_cohort_id", using: :btree
+  add_index "cohorts_instructors", ["instructor_id"], name: "index_cohorts_instructors_on_instructor_id", using: :btree
 
   create_table "days", force: :cascade do |t|
     t.integer  "cohort_id"
@@ -125,7 +116,6 @@ ActiveRecord::Schema.define(version: 20150910161017) do
     t.integer  "submission_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.boolean  "read"
   end
 
   add_index "ratings", ["submission_id"], name: "index_ratings_on_submission_id", using: :btree
@@ -150,13 +140,9 @@ ActiveRecord::Schema.define(version: 20150910161017) do
     t.string   "phone"
     t.string   "blog"
     t.text     "bio"
-    t.integer  "cohort_id",           null: false
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.integer  "cohort_id",      null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "twitter"
     t.datetime "last_active_at"
     t.integer  "user_id"
