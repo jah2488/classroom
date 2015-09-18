@@ -17,7 +17,7 @@ describe CohortPolicy do
     end
 
     it "allows enrolled students to see cohorts" do
-      student_user.student.cohort_id = cohort.id
+      expect(student_user).to receive(:in_cohort?).with(cohort).and_return(true)
       expect(subject).to permit(student_user, cohort)
     end
 
@@ -35,7 +35,7 @@ describe CohortPolicy do
 
   permissions :update? do
     it "allows instructors to update their own" do
-      cohort.instructor_id = instructor_user.instructor.id
+      expect(instructor_user).to receive(:in_cohort?).with(cohort).and_return(true)
       expect(subject).to permit(instructor_user, cohort)
       expect(subject).to_not permit(student_user, cohort)
     end
@@ -43,7 +43,7 @@ describe CohortPolicy do
 
   permissions :destroy? do
     it "allows instructors to destroy their own" do
-      cohort.instructor_id = instructor_user.instructor.id
+      expect(instructor_user).to receive(:in_cohort?).with(cohort).and_return(true)
       expect(subject).to permit(instructor_user, cohort)
       expect(subject).to_not permit(student_user, cohort)
     end

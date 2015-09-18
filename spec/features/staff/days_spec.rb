@@ -13,7 +13,7 @@ RSpec.feature "Staff days panel" do
   feature 'Viewing days' do
     scenario 'with new cohort' do
       visit staff_cohort_days_path(cohort)
-      expect(page).to have_content(cohort.name)
+      expect(page).to have_content(cohort.name.titleize)
       expect(page).to_not have_content("Started")
       expect(page).to_not have_content("Absent")
     end

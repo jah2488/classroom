@@ -29,6 +29,12 @@ class User < ActiveRecord::Base
     !student.nil?
   end
 
+  def in_cohort? cohort
+    return true if self.instructor? && self.instructor.cohorts.include?(cohort)
+    return true if self.student? && self.student.cohort == cohort
+    false
+  end
+
   def to_s
     name || email
   end

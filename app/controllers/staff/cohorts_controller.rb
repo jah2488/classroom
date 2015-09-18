@@ -23,7 +23,7 @@ class Staff::CohortsController < Staff::ApplicationController
   end
 
   def index
-    @cohorts = CohortDecorator.decorate_collection(Cohort.all.order(:instructor_id, :created_at))
+    @cohorts = CohortDecorator.decorate_collection(Cohort.all.order(:created_at))
   end
 
   def create
@@ -46,7 +46,7 @@ class Staff::CohortsController < Staff::ApplicationController
   private
 
   def cohort_params
-    params.require(:cohort).permit(:name, :campus_id, :start_date, :instructor_id)
+    params.require(:cohort).permit(:name, :campus_id, :start_date)
   end
 
   def find_cohort

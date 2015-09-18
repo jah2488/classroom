@@ -39,7 +39,7 @@ describe ReportPolicy do
 
   permissions :create? do
     it "allows instructors to create reports on own students" do
-      student.cohort.instructor_id = instructor.id
+      student.cohort.instructors << instructor
       expect(subject).to permit(instructor_user, Report.new(student: student))
     end
   end

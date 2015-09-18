@@ -10,7 +10,7 @@ user = User.create!({
   password: 'password',
   name: "Great Instructor"
 })
-user.confirm!
+user.confirm
 user.save!
 
 instructor = Instructor.create!({
@@ -24,7 +24,7 @@ user2 = User.create!({
   email: 'student@example.com',
   password: 'password'
 })
-user2.confirm!
+user2.confirm
 
 campus = Campus.create!({
   name: "Nashville, TN",

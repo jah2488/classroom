@@ -9,7 +9,7 @@ class ReportDecorator < Draper::Decorator
   end
 
   def instructor_name
-    object.cohort.instructor.name
+    object.cohort.instructors.map(&:name).join(',')
   end
 
   def student_name
