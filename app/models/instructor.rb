@@ -28,6 +28,7 @@ class Instructor < ActiveRecord::Base
   end
 
   def has_student?(student)
+    return false unless student
     self.cohort_ids.include? student.cohort_id
   end
 
