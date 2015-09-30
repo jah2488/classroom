@@ -8,9 +8,10 @@ class StudentsController < ApplicationController
       students = policy_scope(Student)
     end
     students = StudentDecorator.decorate_collection(students)
-    render locals: {
-      students: students
-    }
+    respond_to do |format|
+      format.html { render locals: { students: students }}
+      format.json { render json: students }
+    end
   end
 
   def show
