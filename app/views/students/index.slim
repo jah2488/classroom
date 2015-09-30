@@ -1,12 +1,18 @@
 table.table.table-hover
   thead
     tr
+      th Cohort
       th Email
       th Name
       th
   tbody
     - students.each do |student|
       tr
+        td
+          - if student.cohort
+            = link_to student.cohort.name, cohort_path(student.cohort)
+          - else
+            | Unenrolled
         td = student.email
         td = student.name
         td = link_to "View", student_path(student)

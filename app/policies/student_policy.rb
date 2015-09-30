@@ -47,8 +47,10 @@ class StudentPolicy < ApplicationPolicy
     def resolve
       if user.instructor?
         scope.where(id: user.instructor.students.map(&:id))
+      elsif user.student? && user.student.cohort
+        scope.where(id: user.student.cohort.student_ids)
       else
-        scope.where(id: user.id)
+        []
       end
     end
   end

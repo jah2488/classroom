@@ -1,9 +1,13 @@
 class StudentsController < ApplicationController
   after_action :verify_authorized, :except => :index
-  after_action :verify_policy_scoped, :only => :index
 
   def index
-    students = policy_scope(Student).decorate
+    if params[:q]
+      students = Student.search(current_user, params[:q])
+    else
+      students = policy_scope(Student)
+    end
+    students = StudentDecorator.decorate_collection(students)
     render locals: {
       students: students
     }
