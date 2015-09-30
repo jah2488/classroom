@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   resources :cohorts, only: :show
   resources :badges, except: :show
+  resources :users, only: :index
 
   resources :submissions do
     patch :complete

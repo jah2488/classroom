@@ -14,6 +14,24 @@ class StudentsController < ApplicationController
     end
   end
 
+  def new
+    student = Student.new
+    authorize student
+    render locals: {
+      student: student
+    }
+  end
+
+  def create
+    student = Student.new(params.require(:student).permit(:cohort_id, :user_id))
+    authorize student
+    if student.save
+      redirect_to student_path(student), notice: I18n.t('.created', resource: I18n.t('.student'))
+    else
+      render :new, locals: { student: student }
+    end
+  end
+
   def show
     student = Student.find(params[:id])
     authorize student

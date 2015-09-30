@@ -16,7 +16,7 @@ class Student < ActiveRecord::Base
     students = users.map(&:student)
     if user && user.instructor?
       instructor = user.instructor
-      students.select{|s| s.cohort_id == nil || instructor.has_student?(s)}
+      students.select{|s| instructor.has_student?(s)}
     elsif user && user.student?
       cohort_id = user.student.cohort_id
       students.select{|s| s.cohort_id == cohort_id}
