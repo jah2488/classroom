@@ -1,0 +1,24 @@
+section.assignments
+  .col-md-12
+    header
+      h3 Assignments
+    .filters
+      ul.nav.nav-tabs
+        li = active_link_to "All",        params.merge(filter: :all)
+        li = active_link_to "Current", current_assignments_path
+        li = active_link_to "Incomplete", params.merge(filter: :incomplete)
+        li = active_link_to "Complete",   params.merge(filter: :complete)
+        li = active_link_to "Late",       params.merge(filter: :late)
+        li = react_component('SearchAssignments', {}, tag: 'span' )
+    ul.list
+      - weekly_assignments.each_with_index do |(week, assignments), index|
+        li
+          h3
+            ' Week
+            = week_number(weekly_assignments_count, index)
+            |  (
+            = react_time(week)
+            | )
+          ul.assignments
+            - assignments.each do |assignment|
+              li = render partial: 'assignment', locals: {assignment: assignment, submissions: assignment.submissions_for(current_user.student)}

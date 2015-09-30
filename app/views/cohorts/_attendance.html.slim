@@ -1,0 +1,29 @@
+section.checkin
+  header
+    h3
+      | Attendance
+  .col-md-12
+    - if cohort.current_day
+      div
+        - if cohort.current_day.has_checkin_for?(current_student)
+          a.btn.btn-primary.btn-lg.full-width
+            = cohort.current_day.checkin_for(current_student).checkin_status.upcase
+          = react_component('Attendance', { tardies: current_student.tardies, absences: current_student.absences })
+        - else
+          = react_component('Checkin', { tardies: current_student.tardies, absences: current_student.absences })
+    - else
+      h4
+        | No Checkin Today
+    a.btn.btn-default.btn-sm[data-toggle="collapse" href="#attendance-info" aria-expanded="false" aria-controls="collapseExample"]
+      |  What is this?
+    #attendance-info.collapse[style="margin-top:10px;"]
+      .well
+        p.muted
+          | You
+          strong
+            | must
+          |  checkin every day to be considered present for that class.
+        p.muted
+          | Checkin needs to occur before
+          = cohort.current_day ? cohort.current_day.decorate.late_at : 'class begins '
+          |  to not be considered tardy.

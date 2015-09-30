@@ -8,6 +8,9 @@ section
         = link_to student do
           li
             = image_tag student.avatar_url(64), class: 'circle user-avatar'
-            = student.info
+            - if policy(student).grades?
+              = student.info
+            - else
+              = student.pretty_name
   - else
     p No Students

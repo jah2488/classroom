@@ -1,0 +1,26 @@
+section
+  header
+    h3
+      | Adjustments
+  .col-md-12
+    table.table.table-hover
+      thead
+        tr
+          th
+            | State
+          th
+            | Checkin
+      tbody
+        - current_student.marked_checkins.each do |checkin|
+          = react_component('Adjustment', { adjustment: checkin.adjustment, checkin: checkin, checkin_status: checkin.checkin_status}, tag: 'tr')
+    a.btn.btn-default.btn-sm[data-toggle="collapse" href="#adjustment-info" aria-expanded="false" aria-controls="collapseExample"]
+      |  What is this?
+    #adjustment-info.collapse[style="margin-top:10px;"]
+      .well
+        p.muted
+          | If you forgot to checkin on a certain day, you can file and adjustment for review to remove that tardy or absence.
+        p.muted
+          | Note: You only get
+          strong
+            | 5
+          |  adjustment reviews a cohort.

@@ -1,0 +1,21 @@
+.assignment
+  .row
+    .col-xs-12.col-sm-7
+      h4
+        = link_to assignment.title.titleize, assignment_path(assignment)
+    .col-xs-8.col-sm-3
+      h5
+        = react_time(assignment.due_date)
+    .grade.col-xs-2
+      = status_for(assignment, current_user.student)
+  .row
+    .col-sm-12
+      ul.submissions
+        - submissions.each do |submission|
+          li
+            .submission
+              .row
+                .col-sm-10
+                  |  Submitted
+                  = react_time submission.created_at
+                  = link_to "View Submission #{' And Feedback' if has_feedback?(submission)}", submission

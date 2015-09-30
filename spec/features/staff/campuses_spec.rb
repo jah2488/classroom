@@ -18,7 +18,7 @@ RSpec.feature "Campus instructor view", type: :feature do
 
   scenario 'creating a campus' do
     sign_in(instructor)
-    click_link "Campuses"
+    visit(staff_campuses_path)
     click_link "New Campus"
 
     fill_in 'Name', with: 'Nashville'

@@ -9,67 +9,24 @@ html
     meta[name="viewport" content="width=device-width, initial-scale=1"]
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material-fullpalette.min.css', media: 'all'
-    = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/ripples.min.css'
     = csrf_meta_tags
   body
-    header.main-header
-      .row
-        .col-sm-4
-          h1
-            = link_to t('.header-title'), root_path
-          .visible-xs-inline[style="float:right;"]
-            .dropdown
-              button#mobileNav.btn.btn-default.dropdown-toggle[type="button" data-toggle="dropdown" aria-expanded="true"]
-                |  Menu 
-                span.caret
-              ul.dropdown-menu[style="left: -87px;" role="menu" aria-labelledby="dropdownMenu1"]
-                - if current_user
-                  - if current_user.student?
-                    li
-                      = link_to('My Cohort', root_path)
-                    li
-                      = link_to('Profile', student_path(current_user.student))
-                  - if current_user.instructor?
-                    li
-                      = link_to('Dashboard', staff_root_path)
-                    li[role="presentation"]
-                      = active_link_to("Cohorts", staff_cohorts_path)
-                  li
-                    = link_to('Logout', destroy_user_session_path, class: 'danger')
-                - else
-                  li
-                    = link_to('Signin', new_user_session_path)
-        .hidden-xs.col-sm-8
-          nav
-            ul.nav.nav-pills.pull-right
-              - if current_user
-                - if current_user.student?
-                  li
-                    = link_to('My Cohort', root_path)
-                  li
-                    = link_to('Profile', student_path(current_user.student))
-                - if current_user.instructor?
-                  li
-                    = link_to('Dashboard', staff_root_path)
-                  li
-                    = active_link_to("Cohorts", staff_cohorts_path)
-                  li
-                    = active_link_to("Campuses", staff_campuses_path)
-                li
-                  = link_to('Logout', destroy_user_session_path, class: 'danger')
-              - else
-                li
-                  = link_to('Signin', new_user_session_path)
+    nav
+      .nav-wrapper
+        = link_to root_path, class: "brand-logo"
+          = image_tag 'iron-yard-logo.svg', height: 60
+        a href="#" data-activates="mobile-nav" class="button-collapse"
+          == material_icon.menu
+        ul.right.hide-on-med-and-down
+          = menu_items current_user
+        ul#mobile-nav.side-nav
+          = menu_items current_user
     span class='hidden' id='loc-data' data-location="#{distance_from_cohort(@cohort)}"
-    main
-      .container-fluid
-        .row
-          .content.col-lg-12
-            .notices
-              - flash.each do |key, value|
-                = display_flash(key, value)
-            = yield
+    .container-fluid
+      .notices
+        - flash.each do |key, value|
+          = display_flash(key, value)
+      = yield
     script[data-turbolinks-track="true"]
       - if current_user
         | _loggedIn = true;

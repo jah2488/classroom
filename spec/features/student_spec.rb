@@ -13,4 +13,12 @@ RSpec.feature 'Student views' do
       expect(page).to have_content("My Cohort")
     end
   end
+
+  feature 'student list' do
+    scenario 'instructor can see all students they have taught' do
+      sign_in instructor_user
+      visit students_path
+      expect(page).to have_content("Email")
+    end
+  end
 end
