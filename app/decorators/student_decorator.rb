@@ -20,6 +20,10 @@ class StudentDecorator < Draper::Decorator
     object.user.decorate.name if user
   end
 
+  def phone
+    object.user.decorate.phone if user
+  end
+
   def email
     user.email if user
   end
