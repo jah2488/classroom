@@ -1,14 +1,14 @@
-var UserLookup = React.createClass({
+var CohortLookup = React.createClass({
         getInitialState: function() {
-                return {query: '', users: [], user: null};
+                return {query: '', cohorts: [], cohort: null};
         },
 
         render: function() {
-                if(this.state.user) {
+                if(this.state.cohort) {
                   return (
                                   <div>
-                                          <p>User selected: {this.state.user.email}</p>
-                                          <button onClick={this.clearUser}>Clear</button>
+                                          <p>Cohort selected: {this.state.cohort.name}</p>
+                                          <button onClick={this.clearCohort}>Clear</button>
                                   </div>
                          )
                 } else {
@@ -19,8 +19,8 @@ var UserLookup = React.createClass({
                                 <input type='text' name='query' onChange={this.onChange} />
                                 </div>
                                 <ul>
-                                {this.state.users.map(function(user, i) {
-                                                                                return <li key={user.id}><User onClick={this.selectUser.bind(this, i)} data={user} /></li>;
+                                {this.state.cohorts.map(function(cohort, i) {
+                                                                                return <li key={cohort.id}><Cohort onClick={this.selectCohort.bind(this, i)} data={cohort} /></li>;
                                                                         }, this)}
                                 </ul>
                                 </div>
@@ -28,16 +28,16 @@ var UserLookup = React.createClass({
                 }
         },
 
-        selectUser: function(i) {
-          let user = this.state.users[i];
-          this.setState({user: user});
-          if(this.props.onSelect) {
-            this.props.onSelect(user);
+        selectCohort: function(i) {
+          let cohort = this.state.cohorts[i];
+          this.setState({cohort: cohort});
+          if(this.props.onSelect){
+            this.props.onSelect(cohort);
           }
         },
 
-        clearUser: function() {
-          this.setState({user: null});
+        clearCohort: function() {
+          this.setState({cohort: null});
         },
 
         onChange: function(e) {
@@ -50,12 +50,12 @@ var UserLookup = React.createClass({
         performLookup: function() {
                 $.ajax({
                         method: 'GET',
-                        url: '/users',
+                        url: '/cohorts',
                         data: {q: this.state.query}
                 }).done(function (response) {
                         if (this.isMounted()) {
                                 this.setState({
-                                        users: response
+                                        cohorts: response
                                 });
                         }
                 }.bind(this));

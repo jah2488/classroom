@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   resources :students do
     get :become
   end
-  resources :cohorts, only: :show
   resources :badges, except: :show
+  resources :cohorts, only: [:show, :index]
   resources :users, only: :index
 
   resources :submissions do
