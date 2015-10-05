@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     super do |resource|
-      resource.student = Student.new(cohort_id: params[:cohort_id]) if params[:cohort_id]
+      resource.student = Student.create!(cohort_id: params[:cohort_id]) if params[:cohort_id]
       resource.save
     end
   end
