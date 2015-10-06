@@ -23,13 +23,13 @@ class CohortDecorator < Draper::Decorator
 
   def logo_url
     if data_science?
-      "http://theironyard.com/images/courses/icons/data-science-icon.png"
+      h.image_url "data-science-icon.png"
     elsif frontend?
-      "http://theironyard.com/images/courses/icons/front-end-engineering-icon.png"
+      h.image_url "front-end-engineering-icon.png"
     elsif mobile?
-      "http://theironyard.com/images/courses/icons/mobile-engineering-icon.png"
+      h.image_url "mobile-engineering-icon.png"
     elsif backend?
-      "http://theironyard.com/images/courses/icons/back-end-engineering-icon.png"
+      h.image_url "back-end-engineering-icon.png"
     end
   end
 
