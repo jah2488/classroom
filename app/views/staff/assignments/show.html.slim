@@ -30,8 +30,9 @@
             - submitted.each do |submission|
               = link_to submission do
                 li
-                  = image_tag submission.student.decorate.avatar_url(64), class: 'circle user-avatar'
-                  = submission.student
+                  - if submission.student
+                    = image_tag submission.student.decorate.avatar_url(64), class: 'circle user-avatar'
+                    = submission.student
                   - if submission.late
                     span.pull-right.label.label-warning late
                   - if submission.unfinished?
