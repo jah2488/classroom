@@ -32,7 +32,7 @@ var SearchAssignments = React.createClass({
 
         if (searchQuery.length > 1) {
 
-            var URL = '/assignments/search/' + searchQuery;
+            var URL = '/assignments/?q=' + searchQuery;
 
             this.setState({ loading: true, query: searchQuery });
 

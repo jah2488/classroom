@@ -15,8 +15,8 @@ class AssignmentsController < ApplicationController
     end
   end
 
-  def search
-    render json: Assignment.search(params[:query])
+  def index
+    render json: Assignment.search(params[:q])
   end
 
   def edit
