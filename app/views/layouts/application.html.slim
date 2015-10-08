@@ -22,15 +22,16 @@ html
         ul#mobile-nav.side-nav
           = menu_items current_user
     span class='hidden' id='loc-data' data-location="#{distance_from_cohort(@cohort)}"
-    .container-fluid
-      .notices
-        - flash.each do |key, value|
-          = display_flash(key, value)
+    .container
+      .row
+        .col.s12
+          - flash.each do |key, value|
+            .card-panel.teal
+              span.white-text
+                = value
       = yield
     script[data-turbolinks-track="true"]
       - if current_user
         | _loggedIn = true;
       - else
         | _loggedIn = false;
-    = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/material.min.js'
-    = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/ripples.min.js'

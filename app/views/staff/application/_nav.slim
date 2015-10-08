@@ -1,5 +1,5 @@
 css:
-  nav.themed a {
+  nav.themed {
     color: white;
     background-color: ##{cohort.color};
   }
@@ -9,30 +9,16 @@ css:
   nav.themed a:hover {
     background-color: ##{cohort.dark_color};
   }
-  .nav .bg-img {
-    background-image: url(#{cohort.logo_url});
-    background-size: contain;
-    background-position: top left;
-    background-repeat: no-repeat;
-    padding: 10px 55px;
-  }
 
-.nav
-  .row
-    .col-md-9
-      h1.bg-img
-        = cohort.name.titleize
-        small = cohort.campus.name.titleize
-  .row
-    .col-md-9
-      nav.themed
-        ul.nav.nav-tabs
-          li = active_link_to t('.dashboard'), staff_cohort_path(cohort)
-          li = active_link_to t('.reports'), staff_cohort_reports_path(cohort)
-          li = active_link_to t('.days'), staff_cohort_days_path(cohort)
-          li = active_link_to t('.new-assignment'), new_staff_cohort_assignment_path(cohort)
-          li = active_link_to t('.new-badge'), new_staff_badge_path
-    .col-md-3
-      Student Signup Link
-      = text_field_tag 'Signup link', cohort.sign_up_url, size: cohort.sign_up_url.length
-
+.row
+  .col.l1.s12= image_tag cohort.logo_url, height: 100
+  h1.col.l7 = cohort.name.titleize
+  h4.col.l4 = cohort.campus.name.titleize
+nav.themed
+  .nav-wrapper
+    ul
+      li = active_link_to t('.dashboard'), staff_cohort_path(cohort)
+      li = active_link_to t('.reports'), staff_cohort_reports_path(cohort)
+      li = active_link_to t('.days'), staff_cohort_days_path(cohort)
+      li = active_link_to t('.new-assignment'), new_staff_cohort_assignment_path(cohort)
+      li = active_link_to t('.new-badge'), new_staff_badge_path
