@@ -21,10 +21,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :assignments, only: [:show] do
+  resources :assignments do
     collection do
       get :current
-      get :search
     end
   end
 
