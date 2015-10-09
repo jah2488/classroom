@@ -8,7 +8,7 @@ if Rails.env.production?
   }
   Refile.cache = Refile::S3.new(prefix: "cache", **aws)
   Refile.store = Refile::S3.new(prefix: "store", **aws)
-  Refile.cdn_host = "//" + ENV['ASSET_HOST']
+  Refile.cdn_host = "//" + ENV['ASSET_HOST'] if ENV['ASSET_HOST']
 else
   backend = Refile::Backend::FileSystem.new("tmp")
   Refile.cache = backend
