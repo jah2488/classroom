@@ -9,7 +9,7 @@
           <%= image_tag student.decorate.avatar_url, class: 'circle' %>
         </div>
         <div class="row-content">
-          <h4 class="list-group-item-heading"><%= link_to student.user.name, student %></h4>
+          <h4 class="list-group-item-heading"><%= link_to student.name, student %></h4>
           <p class="list-group-item-text">Last Active <%= react_time(student.last_active_at) %></p>
         </div>
       </div>
