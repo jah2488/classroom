@@ -1,13 +1,14 @@
-.card.cyan.darken-3
-  .card-content.white-text
-    span.card-title = t('.adjustments')
-    table
-      thead
-        tr
-          th State
-          th Checkin
-          th Student
-          th Actions
-      tbody
-        - adjustments.each do |adjustment|
-          = react_component('AdjustmentReview', { adjustment: adjustment, student_name: adjustment.checkin.student.decorate.pretty_name, checkin_status: adjustment.checkin.short_checkin_status}, tag: :tr )
+- if adjustments
+  .card.blue.darken-2
+    .card-content.white-text
+      span.card-title = t('.adjustments')
+      table
+        thead
+          tr
+            th State
+            th Checkin
+            th Student
+            th Actions
+        tbody
+          - adjustments.each do |adjustment|
+            = react_component('AdjustmentReview', { adjustment: adjustment, student_name: adjustment.checkin.student.decorate.pretty_name, checkin_status: adjustment.checkin.short_checkin_status}, tag: :tr )

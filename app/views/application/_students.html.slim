@@ -1,16 +1,14 @@
-section
-  header
-    h3
-      = t('.students')
-  - unless students.empty?
-    ul.list
-      - students.each do |student|
-        = link_to student do
-          li
-            = image_tag student.avatar_url(64), class: 'circle user-avatar'
-            - if policy(student).grades?
-              = student.info
-            - else
-              = student.pretty_name
-  - else
-    p No Students
+.card.blue.darken-2
+  .card-content.white-text
+      span.card-title = t('.students')
+      - unless students.empty?
+        ul.collection
+          - students.each do |student|
+            li.collection-item.avatar.black-text
+              = image_tag student.avatar_url(64), class: 'circle'
+              span.title = student.decorate.pretty_name
+              - if policy(student).grades?
+                p = student.info
+              = link_to material_icon.launch, student_path(student), class: "secondary-content"
+      - else
+        p No Students
