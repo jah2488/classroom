@@ -1,104 +1,94 @@
 .row
-  .col-md-offset-3.col-md-6
-    .row
-      .col-md-12
-        = image_tag student.avatar_url, class: 'center-block circle'
-    .row
-      .col-md-12
-        h1.text-center
-          = student.name
-    .row
-      .col-md-12
-        = student.bio
-    .row
-      .col-md-8
-        '  Github:
-        = link_to student.github, "https://github.com/#{student.github}"
-      .col-md-4
-        '  Phone:
-        = link_to student.phone, "tel://#{student.phone}"
-    .row
-      .col-md-8
-        '  Twitter:
-        = link_to student.twitter, "https://twitter.com/#{student.twitter}"
-      .col-md-4
-        '  Blog:
-        = student.blog_link
-    - if policy(student).edit?
-      = link_to 'Edit', edit_student_path(student), class: 'btn btn-primary'
-    - if policy(student).become?
-      = link_to 'Become', student_become_path(student), class: 'btn btn-primary'
-.row
-  .col-md-6
-    section
-      header
-        h3
-          | Badges
-      .row
-        .col-sm-12.badges
-          - student.badge_list.each_with_index do |badge_set, i|
-            - badge_set.each do |badge|
-              .col-md-3.col-sm-4.col-xs-6
-                span class="#{'tint' unless i.zero?} circle"
-                  = image_tag attachment_url(badge, :icon_image, :fill, 200, 200, format: 'png'), class: 'shadow-z-1 circle student-badge', tabindex: 0, 'data-trigger': "focus", 'data-toggle': 'popover', 'data-placement': 'bottom', 'data-title': badge.name, 'data-content': badge.description
-  - if policy(student).grades?
-    .col-md-6
-      section
-        header
-          h3
-            | Stats
-        table.table.table-hover
-          thead
-
-          tbody
-            tr
-              td.align-middle
-                | Tardies
-              td
-                h3
-                  = student.tardies
-            tr
-              td.align-middle
-                | Absences
-              td
-                h3
-                  = student.absences
-            tr
-              td.align-middle
-                | Completed Assignments
-              td
-                h3
-                  = student.complete_percentage * 100
-                  | %
-            tr
-              td.align-middle
-                | Past Due Assignments
-              td
-                h3
-                  = student.past_due_count
-- if policy(student).grades?
   .row
-    .col-md-12
-      section
-        header
-          h3
-            | Assignments
-      table.table.table-hover
-        thead
-          tr
-            td
-              | Title
-            td
-              | Status
-            td
-              | Latest Submission
-        tbody
-          - student.assignments.each do |assignment|
-            tr
-              td
-                = link_to assignment.title, assignment
-              td
-                = status_for(assignment, student)
-              td
-                - submission = assignment.submissions_for(student).last
-                = link_to react_time(submission.updated_at, hoverable: false), submission
+    .col.m12
+      h1
+        = image_tag student.avatar_url, class: 'circle'
+        = student.name
+  .row
+    .col.m12
+      = student.bio
+  .row
+    .col.m8
+      '  Github:
+      = link_to student.github, "https://github.com/#{student.github}"
+    .col.m4
+      '  Phone:
+      = link_to student.phone, "tel://#{student.phone}"
+  .row
+    .col.m8
+      '  Twitter:
+      = link_to student.twitter, "https://twitter.com/#{student.twitter}"
+    .col.m4
+      '  Blog:
+      = student.blog_link
+  - if policy(student).become?
+    = link_to 'Become', student_become_path(student), class: 'btn waves-effect waves-light'
+.row
+  .col.m4.s12
+    .card.blue-grey.darken-1
+      .card-content.white-text
+        span.card-title Badges
+        - student.badge_list.each_with_index do |badge_set, i|
+          - badge_set.each do |badge|
+            .col.m3.m4.s6
+              span class="#{'tint' unless i.zero?} circle"
+                = image_tag attachment_url(badge, :icon_image, :fill, 200, 200, format: 'png'), class: 'shadow-z-1 circle student-badge', tabindex: 0, 'data-trigger': "focus", 'data-toggle': 'popover', 'data-placement': 'bottom', 'data-title': badge.name, 'data-content': badge.description
+  - if policy(student).grades?
+    .col.m4.s12
+      .card.blue-grey.darken-1
+        .card-content.white-text
+          span.card-title Stats
+          table.table.table-hover
+            tbody
+              tr
+                td.align-middle
+                  | Tardies
+                td
+                  h3
+                    = student.tardies
+              tr
+                td.align-middle
+                  | Absences
+                td
+                  h3
+                    = student.absences
+              tr
+                td.align-middle
+                  | Completed Assignments
+                td
+                  h3
+                    = student.complete_percentage * 100
+                    | %
+              tr
+                td.align-middle
+                  | Past Due Assignments
+                td
+                  h3
+                    = student.past_due_count
+  - if policy(student).grades?
+    .col.m4
+      .card.blue-grey.darken-1
+        .card-content.white-text
+          span.card-title Assignments
+          table.table.table-hover
+            thead
+              tr
+                td
+                  | Title
+                td
+                  | Status
+                td
+                  | Latest Submission
+            tbody
+              - student.assignments.each do |assignment|
+                tr
+                  td
+                    = link_to assignment.title, assignment
+                  td
+                    = status_for(assignment, student)
+                  td
+                    - submission = assignment.submissions_for(student).last
+                    = link_to react_time(submission.updated_at, hoverable: false), submission
+- if policy(student).edit?
+  .fixed-action-btn style="bottom: 45px; right: 24px;"
+    = link_to material_icon.edit, edit_student_path(student), class: 'btn-floating btn-large waves-effect waves-blue'

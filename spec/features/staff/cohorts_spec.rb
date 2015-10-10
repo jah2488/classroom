@@ -18,15 +18,14 @@ RSpec.feature "Cohort instructor view", type: :feature do
 
       expect(page).to have_content('Dashboard')
       expect(page).to have_content('Reports')
-      expect(page).to have_content('New Assignment')
-      expect(page).to have_content('New Badge')
+      expect(page).to have_content('Assignments')
     end
   end
 
   scenario 'creating a cohort' do
     create :campus, name: 'Moon'
     sign_in(instructor)
-    click_link "New Cohort"
+    visit(new_staff_cohort_path)
     create_cohort
     expect_cohort_to_be_created
   end
