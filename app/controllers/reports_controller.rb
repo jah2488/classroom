@@ -16,9 +16,10 @@ class ReportsController < ApplicationController
   def show
     @report = Report.find(params[:id]).decorate
     authorize @report
+    @report = @report.decorate
     respond_to do |format|
       format.html
-      format.pdf { render pdf: "#{@report.student.name} Report", show_as_html: false}
+      format.pdf { render pdf: "#{@report.student_name} Report", show_as_html: false}
     end
   end
 end

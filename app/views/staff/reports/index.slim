@@ -14,4 +14,5 @@ table.table.table-hover
         td = link_to "View", staff_cohort_report_path(@cohort, report)
 
 - if policy(Report).create?
-  = link_to "Create Report", new_staff_cohort_report_path(@cohort), class: 'btn btn-primary'
+  .fixed-action-btn style="bottom: 45px; right: 24px;"
+    = link_to material_icon.add, new_staff_cohort_report_path(@cohort), class: "btn-floating btn-large waves-effect waves-light green"

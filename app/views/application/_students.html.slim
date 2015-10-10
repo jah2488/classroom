@@ -1,7 +1,7 @@
-.card.blue.darken-2
-  .card-content.white-text
-      span.card-title = t('.students')
-      - unless students.empty?
+- unless students.empty?
+  .card.blue.darken-2
+    .card-content.white-text
+        span.card-title = t('.students')
         ul.collection
           - students.each do |student|
             li.collection-item.avatar.black-text
@@ -10,5 +10,3 @@
               - if policy(student).grades?
                 p = student.info
               = link_to material_icon.launch, student_path(student), class: "secondary-content"
-      - else
-        p No Students

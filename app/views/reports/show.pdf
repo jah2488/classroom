@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset='utf-8' />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <%= wicked_pdf_stylesheet_link_tag "application" -%>
     <link href='http://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
     <script>
@@ -69,31 +70,25 @@
       p.description {
         font-size: 10pt;
       }
-      .logo-box {
-        margin-top: 20px;
-      }
     </style>
   </head>
   <body onready='loadFonts()' onload='loadFonts()'>
-    <div class='container'>
       <div class='row'>
-        <div class='col-xs-4'>
-          <div class='logo-box clearfix'>
-              <%= wicked_pdf_image_tag 'iron-yard-logo.svg', style: 'float: right;' %>
-          </div>
-          <h4 class='text-right'>Campus</h4>
-          <p class='text-right'><%= @report.campus_name %></p>
+        <div class='col m3'>
+          <h1><%= wicked_pdf_image_tag 'iron-yard-logo.svg' %></h1>
+          <h4>Campus</h4>
+          <p><%= @report.campus_name %></p>
 
-          <h4 class='text-right'>Course</h4>
-          <p class='text-right'><%= @report.cohort_name %></p>
+          <h4>Course</h4>
+          <p><%= @report.cohort_name %></p>
 
-          <h4 class='text-right'>Instructor</h4>
-          <p class='text-right'><%= @report.instructor_name %></p>
+          <h4>Instructor</h4>
+          <p><%= @report.instructor_name %></p>
 
-          <h4 class='text-right'>Student</h4>
-          <p class='text-right'><%= @report.student.name %></p>
+          <h4>Student</h4>
+          <p><%= @report.student_name %></p>
         </div>
-        <div class='col-xs-8'>
+        <div class='col m9'>
           <h1>Bi-Weekly Performance</h1>
           <p class='description'>TIY students will be assessed every two weeks during the regular session, and every week during the final project (unless otherwise noted by the Instructor. On a biweekly basis, students will be assessed on their participation, effort, and skill on a Likert scale from 1 (unsatisfactory) to 3 (satisfactory) with room for comments. In addition, students’ overall performance and accountability will be assessed, including attendance and meeting homework and career assistance deadlines.</p>
 
@@ -123,7 +118,6 @@
             <p class='description'><strong>Probation:</strong> Continued failure to meet course standards and requirements; access to career support and ability to present at Demo Day are temporarily revoked until the end of semester (or other time as specified by staff) at which time a review of progress takes place.If the results are satisfactory, career support and ability to present at Demo Day will be reinstated.</p>
         </div>
       </div>
-    </div>
     <script>
       loadFonts();
     </script>

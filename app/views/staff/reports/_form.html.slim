@@ -1,11 +1,28 @@
-h1 Student Assessment Form
-= simple_form_for @report, url: staff_cohort_reports_path(@cohort), html: { class: 'form' } do |f|
-  = f.input :student_id, collection: @cohort.students
-  = f.input :day_id, collection: @cohort.days, selected: @cohort.current_day
-  - %i(participation effort skill overall).each do |metric|
-    = f.input metric, collection: 1..3, as: :radio_buttons, checked: 3, wrapper_html: { class: 'col-sm-7' }, label_html: { class: 'radio-inline col-sm-3' }, item_wrapper_class: 'radio-inline'
-    = f.input "#{metric}_comments".to_sym, as: :text , wrapper_html: { class: 'col-md-5' }
-  = f.input :status, selected: 0
+h2 Student Assessment Form
+= form_for @report, url: staff_cohort_reports_path(@cohort) do |f|
   .row
-    .col-md-12
-      = f.submit 'Create Assessment' , class: 'btn btn-lg btn-primary'
+    .input-field.col.s12.m6
+      = f.collection_select :student_id, @cohort.students, :id, :to_s
+      = f.label :student_id
+    .input-field.col.s12.m6
+      = f.collection_select :day_id, @cohort.days, :id, :to_s
+      = f.label :day_id
+  - %i(participation effort skill overall).each do |metric|
+    .row
+      .input-field.col.s6.m2
+        = f.collection_select metric, (1..3), :to_i, :to_s
+        = f.label metric
+    .row
+      .input-field.col.s12.m10
+        = f.text_area "#{metric}_comments".to_sym, class: "materialize-textarea"
+        = f.label "#{metric}_comments"
+  .row
+    .input-field.col.s12
+      = f.select :status, Report.statuses.keys.map {|s| [s.titleize, s]}
+      = f.label :status
+  = f.submit 'Create' , class: 'btn'
+
+javascript:
+  $(document).ready(function() {
+    $('select').material_select();
+  });

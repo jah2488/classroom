@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
   after_action :verify_policy_scoped, :only => :index
 
   def index
-    students = policy_scope(Student)
+    students = policy_scope(Student).decorate
     render locals: {
       students: students
     }

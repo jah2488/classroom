@@ -9,3 +9,6 @@
           p = assignment.info
         .card-action
           = link_to "View", assignment_path(assignment)
+- if policy(Assignment).create?
+  .fixed-action-btn style="bottom: 45px; right: 24px;"
+    = link_to material_icon.library_books, new_staff_cohort_assignment_path(cohort), class: "btn-floating btn-large waves-effect waves-light green"

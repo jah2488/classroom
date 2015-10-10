@@ -7,3 +7,5 @@
   .col.l8.m6 = render partial: 'adjustments', locals: { adjustments: adjustments }
   .col.l4.m6 = render partial: 'ungraded_assignments', locals: { cohort: cohort }
   .col.l4.m6 = render partial: 'attendance',  locals: { cohort: cohort }
+  - if cohort.students.empty? && adjustments.empty? && !cohort.current_day
+    h4.col.offset-l2.l8.m10.offset-m1.s12 Nothing going on with this cohort yet!

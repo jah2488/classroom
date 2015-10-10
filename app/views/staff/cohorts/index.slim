@@ -25,5 +25,5 @@ table.table.table-hover
             = link_to instructor do
               = image_tag(instructor.avatar_url(32), class: 'circle user-avatar')
               = instructor.name
-
-= link_to "New Cohort", new_staff_cohort_path, class: "btn btn-success"
+.fixed-action-btn style="bottom: 45px; right: 24px;"
+  = link_to material_icon.add, new_staff_cohort_path, class: "btn-floating btn-large waves-effect waves-light green"
