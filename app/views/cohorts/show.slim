@@ -5,5 +5,5 @@
 .row
   .col.m6.s12 = render partial: 'assignments', locals: { assignments: assignments, student: current_user.student }
   .col.m6.s12 = render partial: 'attendance', locals: { cohort: cohort, current_student: current_user.student }
-  .col.m6.s12 = render partial: 'adjustments', locals: { current_student: current_user.student }
+  .col.m6.s12 = render partial: 'tardies', locals: { current_student: current_user.student }
   .col.m6.s12 = render partial: 'students', locals: { students: students }

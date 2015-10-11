@@ -2,12 +2,12 @@
   .card-content.white-text
     span.card-title Assignments
     nav.blue
-      ul
-        li = active_link_to "All",        params.merge(filter: :all)
-        li = active_link_to "Incomplete", params.merge(filter: :incomplete)
-        li = active_link_to "Complete",   params.merge(filter: :complete)
-        li = active_link_to "Late",       params.merge(filter: :late)
-        li = react_component('SearchAssignments', {}, tag: 'span' )
+      .nav-wrapper
+        ul
+          li = active_link_to "All",        params.merge(filter: :all)
+          li = active_link_to "Incomplete", params.merge(filter: :incomplete)
+          li = active_link_to "Complete",   params.merge(filter: :complete)
+          li = active_link_to "Late",       params.merge(filter: :late)
     ul.collapsible.black-text.popout
       - assignments.each do |assignment|
         - submissions = assignment.submissions_for(student)
@@ -44,4 +44,4 @@
                       td = submission.created
                       td = submission.label
                       td = link_to material_icon.input, submission_path(submission)
-
+    = react_component('SearchAssignments', {}, tag: 'span' )

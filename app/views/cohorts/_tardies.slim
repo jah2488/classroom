@@ -1,0 +1,8 @@
+- unless current_student.marked_checkins.empty?
+  .card.blue.darken-3
+    .card-content.white-text
+      span.card-title Tardies
+      table
+        tbody
+          - current_student.marked_checkins.each do |checkin|
+            = react_component('Adjustment', { adjustment: checkin.adjustment, checkin: checkin, day: checkin.day}, tag: 'tr')
