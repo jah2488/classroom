@@ -17,7 +17,7 @@ RSpec.feature "Cohort views" do
       sign_in(student_user)
       visit cohort_path(cohort)
       expect(page).to have_content(cohort.name.titleize)
-      expect(page).to have_content("No Checkin Today")
+      expect(page).to have_content("tardies")
     end
   end
 end

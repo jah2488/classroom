@@ -18,11 +18,10 @@ RSpec.feature "Campus instructor view", type: :feature do
 
   scenario 'creating a campus' do
     sign_in(instructor)
-    visit(staff_campuses_path)
-    click_link "New Campus"
+    visit(new_staff_campus_path)
 
     fill_in 'Name', with: 'Nashville'
-    click_button 'Create Campus'
+    click_button 'Create'
 
     expect(page).to have_content('Campus successfully created!')
   end
