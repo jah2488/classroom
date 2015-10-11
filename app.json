@@ -23,7 +23,7 @@
                         "required":true
                 },
                 "GOOGLE_CLIENT_SECRET":{
-                        "required":true
+                        "required": true
                 },
                 "mandrill_api_key":{
                         "required": true
@@ -38,10 +38,10 @@
                         "value": "production"
                 },
                 "RAILS_SERVE_STATIC_FILES":{
-                        "value": true
+                        "value": "true"
                 },
                 "S3_BUCKET":{
-                        "required":true
+                        "required": true
                 },
                 "SECRET_KEY_BASE":{
                         "generator":"secret"
