@@ -1,12 +1,7 @@
 .row
   .row
-    .col.m12
-      h1
-        = image_tag student.avatar_url, class: 'circle'
-        = student.name
-  .row
-    .col.m12
-      = student.bio
+    .col.m1 = image_tag student.avatar_url, class: 'circle'
+    h2.col.offset-m1.m8 = student.name
   .row
     .col.m8
       '  Github:
@@ -24,15 +19,12 @@
   - if policy(student).become?
     = link_to 'Become', student_become_path(student), class: 'btn waves-effect waves-light'
 .row
-  .col.m4.s12
-    .card.blue-grey.darken-1
-      .card-content.white-text
-        span.card-title Badges
-        - student.badge_list.each_with_index do |badge_set, i|
-          - badge_set.each do |badge|
-            .col.m3.m4.s6
-              span class="#{'tint' unless i.zero?} circle"
-                = image_tag attachment_url(badge, :icon_image, :fill, 200, 200, format: 'png'), class: 'shadow-z-1 circle student-badge', tabindex: 0, 'data-trigger': "focus", 'data-toggle': 'popover', 'data-placement': 'bottom', 'data-title': badge.name, 'data-content': badge.description
+  - if student.bio
+    .col.m4.s12
+      .card.blue-grey.darken-1
+        .card-content.white-text
+          span.card-title Bio
+          p.flow-text = student.bio
   - if policy(student).grades?
     .col.m4.s12
       .card.blue-grey.darken-1
@@ -66,7 +58,7 @@
                   h3
                     = student.past_due_count
   - if policy(student).grades?
-    .col.m4
+    .col.m4.s12
       .card.blue-grey.darken-1
         .card-content.white-text
           span.card-title Assignments
@@ -89,6 +81,15 @@
                   td
                     - submission = assignment.submissions_for(student).last
                     = link_to react_time(submission.updated_at, hoverable: false), submission
+  .col.m4.s12
+    .card.blue-grey.darken-1
+      .card-content.white-text
+        span.card-title Badges
+        - student.badge_list.each_with_index do |badge_set, i|
+          - badge_set.each do |badge|
+            .col.m3.m4.s6
+              span class="#{'tint' unless i.zero?} circle"
+                = image_tag attachment_url(badge, :icon_image, :fill, 200, 200, format: 'png'), class: 'shadow-z-1 circle student-badge', tabindex: 0, 'data-trigger': "focus", 'data-toggle': 'popover', 'data-placement': 'bottom', 'data-title': badge.name, 'data-content': badge.description
 - if policy(student).edit?
   .fixed-action-btn style="bottom: 45px; right: 24px;"
     = link_to material_icon.edit, edit_student_path(student), class: 'btn-floating btn-large waves-effect waves-blue'

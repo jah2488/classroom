@@ -28,7 +28,7 @@ class StudentsController < ApplicationController
     student = Student.find(params[:id])
     authorize student
     render locals: {
-      student: student
+      student: student.decorate
     }
   end
 
