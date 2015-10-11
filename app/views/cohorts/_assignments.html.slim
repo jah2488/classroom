@@ -41,6 +41,7 @@
                     tr
                       - submission = submission.decorate
                       td = submission.on_time
-                      td = submission.created_at
+                      td = submission.created
                       td = submission.label
                       td = link_to material_icon.input, submission_path(submission)
+

@@ -5,12 +5,12 @@ var Input = React.createClass({
     },
 
     getDefaultProps: function () {
-        return { type: 'text' };
+        return { type: 'text', name: "" };
     },
 
     render: function () {
         return (
-            <input type={this.props.type} className='required form-control' onChange={this.handleChange} value={this.state.value} />
+            <input name={this.props.name} type={this.props.type} className={this.props.className} onChange={this.handleChange} value={this.state.value} />
         );
     },
 

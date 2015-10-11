@@ -1,7 +1,17 @@
-.col-sm-4.col-sm-offset-4
-  h1 New Submission
-  = simple_form_for(submission) do |f|
-    = f.association :assignment, collection: current_user.student.cohort.assignments, hint: "Which assignment is this submission for?", selected: params.fetch(:assignment, nil)
-    = f.input :link, required: true, hint: "Link to where I can find the assignment. (Usually a Github Repo or a blog post)"
-    = f.input :notes, hint: 'Tell me what worked and didn\'t work with this assignment.'
-    = f.button :submit, class: "btn-success"
+h2 Submit Assignment
+= form_for(submission) do |f|
+  .input-field
+    i.material-icons.prefix assignment
+    = f.collection_select :assignment_id, current_user.student.cohort.assignments, :id, :title, selected: params.fetch(:assignment, nil)
+    = f.label :assignment_id
+  .input-field
+    i.material-icons.prefix http
+    = f.text_field :link, required: true
+    = f.label :link
+  .input-field
+    i.material-icons.prefix comment
+    = f.text_area :notes, class: "materialize-textarea"
+    = f.label :notes
+  button.btn.waves-effect.waves-light type="submit" name="action"
+    | Submit
+    i.material-icons.right send

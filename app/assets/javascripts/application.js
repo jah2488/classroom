@@ -23,6 +23,7 @@ Location.distance = 0.1;
 
 var ready = function() {
         $(".button-collapse").sideNav();
+        $('select').material_select();
         jQuery('.datetimepicker').datetimepicker();
 
 

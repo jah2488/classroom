@@ -21,8 +21,3 @@ h2 Student Assessment Form
       = f.select :status, Report.statuses.keys.map {|s| [s.titleize, s]}
       = f.label :status
   = f.submit 'Create', class: 'btn'
-
-javascript:
-  $(document).ready(function() {
-    $('select').material_select();
-  });

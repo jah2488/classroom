@@ -7,28 +7,25 @@ var EditSubmission = React.createClass({
 
     render: function () {
         return (
-            <div>
-                <Submission ref='submission' submission={this.state.submission} editing={this.state.editing} />
-                <div className='row'>
-                    <div className='actions col-md-12'>
-                        {this.action()}
-                    </div>
+            <Submission ref='submission' submission={this.state.submission} editing={this.state.editing}>
+                <div className='card-action'>
+                    {this.action()}
                 </div>
-            </div>
+            </Submission>
         );
     },
 
     action: function () {
         if (this.state.editing) {
             return (<span>
-                <a onClick={this.handleClick} className='btn btn-sm btn-danger'>Cancel</a>
-                <a onClick={this.handleSubmit} className='btn btn-sm btn-primary'>Submit</a>
+                <a onClick={this.handleClick}>Cancel</a>
+                <a onClick={this.handleSubmit}>Submit</a>
                     </span>);
         } else {
           if (this.state.showNotitication) {
-            return (<span> <Notification parentCallback={this.onDismiss} message="Submission Updated!" /> <div onClick={this.handleClick} className='btn btn-sm btn-primary'>Edit Your Submission</div></span>);
+            return (<span> <Notification parentCallback={this.onDismiss} message="Submission Updated!" /> <a onClick={this.handleClick}>Edit</a></span>);
           } else {
-            return ( <div onClick={this.handleClick} className='btn btn-sm btn-primary'>Edit Your Submission</div>);
+            return ( <a onClick={this.handleClick}>Edit</a>);
           }
         }
     },
