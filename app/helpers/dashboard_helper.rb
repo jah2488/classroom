@@ -6,10 +6,10 @@ module DashboardHelper
 
   def status_for(assignment, student)
     case
-    when assignment.completed_by?(student)            then as_label('Completed',  :success)
-    when assignment.incomplete_by?(student)           then as_label('Incomplete', :warning)
-    when assignment.submissions_for(student).present? then as_label('Pending')
-    when assignment.late?                             then as_label('Late',       :danger)
+    when assignment.completed_by?(student)            then 'Completed'
+    when assignment.incomplete_by?(student)           then 'Incomplete'
+    when assignment.submissions_for(student).present? then 'Pending'
+    when assignment.late?                             then 'Late'
     end
   end
 
@@ -18,9 +18,5 @@ module DashboardHelper
   def has_feedback?(submission)
     ratings = submission.ratings
     ratings.present? && ratings.any? { |rating| rating.has_feedback? }
-  end
-
-  def as_label(msg, severity = :default)
-    content_tag(:span, msg, class: "label label-#{severity}")
   end
 end

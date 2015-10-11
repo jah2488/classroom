@@ -35,7 +35,11 @@ class Submission < ActiveRecord::Base
   end
 
   def label
-    completed ? 'Completed' : 'Incomplete'
+    if graded?
+      completed ? 'Completed' : 'Incomplete'
+    else
+      'Ungraded'
+    end
   end
 
   def on_time
@@ -44,6 +48,10 @@ class Submission < ActiveRecord::Base
 
   def status
     "#{label} #{on_time}"
+  end
+
+  def tz
+    assignment.cohort.tz
   end
 
   def link_must_be_uri
