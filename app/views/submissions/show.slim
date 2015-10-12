@@ -35,5 +35,4 @@
             - else
               = react_md(rating.notes)
 - if current_user.instructor?
-  hr
   = react_component('GradeSubmissionForm', { badges: Badge.all.map { |badge| badge.as_hash(self) }, submissionID: submission.id, nextForStudent: next_submission_url_for_student(submission), nextForAssignment: next_submission_url_for_assignment(submission)})

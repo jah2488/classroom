@@ -11,19 +11,14 @@ var MarkdownField = React.createClass({
     },
     render: function () {
         return (
-            <div className='col-sm-12'>
-                <div className='col-sm-6'>
-                    <p className='muted'>{this.props.title}</p>
-                    <section>
-                        <textarea onKeyUp={this.handleChange} onKeyDown={this.handleChange} className="text required form-control" />
-                        <p className="help-block">I am a markdown field</p>
-                    </section>
+            <div className='row'>
+                <div className='col s6'>
+                  <textarea name="markdown" onKeyUp={this.handleChange} onKeyDown={this.handleChange} className="text required form-control materialize-textarea" />
+                  <label htmlFor="markdown">{this.props.title}</label>
                 </div>
-                <div className='col-sm-6'>
+                <div className='col s6'>
                     <p className='muted'>Preview</p>
-                    <section className='md-preview' style={{minHeight: '142px'}}>
-                      <Markdown text={this.state.text}/>
-                    </section>
+                    <Markdown text={this.state.text}/>
                 </div>
             </div>
         );
