@@ -99,3 +99,12 @@ table > tbody > tr > td h3 {
         margin-top: 10px;
         display: inline-block;
 }
+
+// Instructor Dash Materialize Override
+.collapsible.popout > li.full-width {
+  margin: 0;
+}
+
+li.collection-item.avatar.padded {
+  padding-top: 20px;
+}

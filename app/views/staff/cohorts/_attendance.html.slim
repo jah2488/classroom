@@ -25,3 +25,10 @@
               span.title = c.student.decorate.pretty_name
               p = c.checkin_status
               = link_to material_icon.perm_identity, student_path(c.student), class: "secondary-content"
+- else
+  .card.blue.darken-3
+    .card-content.white-text
+      span.card-title = t('.attendance')
+      p No day has been created for today
+    .card-action
+      = link_to "Add Day", new_staff_cohort_day_path(cohort), class: ""
