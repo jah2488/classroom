@@ -25,18 +25,20 @@
             '  due
             = react_time(assignment.due_date)
           .collapsible-body.white
-            - if submissions.empty?
-              p
-                ' Not submitted yet.
-                = link_to material_icon.input, assignment_path(assignment), class: "right"
-            - else
-              table
-                thead
+            table
+              thead
+                tr
+                  th Submitted
+                  th At
+                  th Status
+              tbody
+                - if submissions.empty?
                   tr
-                    th Submitted
-                    th At
-                    th Status
-                tbody
+                    td Not submitted yet.
+                    td
+                    td
+                    td
+                - else
                   - submissions.each do |submission|
                     tr
                       - submission = submission.decorate
@@ -44,4 +46,13 @@
                       td = submission.created
                       td = submission.label
                       td = link_to material_icon.input, submission_path(submission)
+                tr
+                  td = link_to assignment_path(assignment), class: "btn btn-flat waves-effect white" do
+                    | View
+                    i.material-icons.right assignment
+                  td
+                  td
+                  td = link_to new_submission_path(assignment: assignment.id), class: "btn" do
+                    | Submit
+                    i.material-icons.right send
     = react_component('SearchAssignments', {}, tag: 'span' )

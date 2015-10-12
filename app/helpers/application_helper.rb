@@ -12,6 +12,10 @@ module ApplicationHelper
     Kramdown::Document.new(source || '').to_html.html_safe
   end
 
+  def form_errors_for(object=nil)
+    render('application/form_errors', object: object) unless object.blank?
+  end
+
   def display_flash(key, msg)
     display_class = ((key == 'notice') ? 'success' : 'warning')
     content_tag :div, msg, class: "alert alert-#{display_class} flash #{key} alert-dismissible", role: "alert" do

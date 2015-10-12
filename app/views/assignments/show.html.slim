@@ -5,4 +5,5 @@
     = react_time(assignment.due_date)
 .row = react_md assignment.info
 .fixed-action-btn style="bottom: 45px; right: 24px;"
-  = link_to material_icon.note_add, new_submission_path(assignment: assignment.id), class: "btn-floating btn-large waves-effect waves-light green"
+  = link_to new_submission_path(assignment: assignment.id), class: "btn-floating btn-large waves-effect waves-light green" do
+    i.material-icons send

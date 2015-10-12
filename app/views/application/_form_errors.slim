@@ -1,0 +1,8 @@
+= content_for :form_errors do
+  .row
+    = pluralize(object.errors.count, "error")
+    | prevented the form from being saved:
+
+  ul
+    - object.errors.full_messages.each do |message|
+      li = message
