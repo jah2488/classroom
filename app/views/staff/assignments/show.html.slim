@@ -1,54 +1,44 @@
-.col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2
-  = render partial: 'nav', locals: { cohort: assignment.cohort.decorate}
-  article
-    header.row
-      .col-xs-12.col-sm-4
-        h3 = assignment.title
-      .col-xs-12.col-sm-4.pull-right
-        h3
-          strong
-            ' Due:
-          = react_time(assignment.due_date)
-    .row = markdown assignment.info
-    footer.row
-      - if policy(Submission.new(assignment: assignment)).new?
-        = link_to 'SUBMIT HOMEWORK', new_submission_path(assignment: assignment),  class:'btn btn-default btn-success'
-  div
-    ul.nav.nav-tabs role="tablist"
-      li.active role="presentation"
-        a href="#submitted" aria-controls="home" role="tab" data-toggle="tab"
+= render partial: 'nav', locals: { cohort: assignment.cohort.decorate}
+.row
+  h3.col.s12.m4 = assignment.title
+  h3.col.s12.m4
+    | Due:
+    = react_time(assignment.due_date)
+.row = react_md assignment.info
+.row
+  .col.s12
+    ul.tabs
+      li.tab.col.s3
+        a href="#submitted"
           = submitted.count
           |  Submitted
-      li role="presentation"
-        a href="#unsubmitted" aria-controls="profile" role="tab" data-toggle="tab"
+      li.tab.col.s3
+        a href="#unsubmitted"
           = unsubmitted.count
           |  Unsubmitted
-    .tab-content
-      .tab-pane.active.fade.in role="tabpanel" id="submitted"
-        - unless submitted.empty?
-          ul.list
-            - submitted.each do |submission|
-              = link_to submission do
-                li
-                  - if submission.student
-                    = image_tag submission.student.decorate.avatar_url(64), class: 'circle user-avatar'
-                    = submission.student
-                  - if submission.late
-                    span.pull-right.label.label-warning late
-                  - if submission.unfinished?
-                    span.pull-right.label.label-danger unfinished
-                  - if submission.complete?
-                    span.pull-right.label.label-success complete
-        - else
-          p No submissions
-      .tab-pane.active.fade role="tabpanel" id="unsubmitted"
-        - unless unsubmitted.empty?
-          ul.list
-            - unsubmitted.order(:last_active_at).each do |student|
-              - student = student.decorate
-              = link_to student do
-                li
-                  = image_tag student.avatar_url(64), class: 'circle user-avatar'
-                  = student.info
-        - else
-          Everyone submitted
+  div id="submitted" class="col s12"
+    - unless submitted.empty?
+      .collection
+        - submitted.each do |submission|
+          = link_to submission, class: "collection-item" do
+            - if submission.student
+              = submission.student.name
+            - if submission.late
+              .chip.right late
+            - if submission.unfinished?
+              .chip.right unfinished
+            - if submission.complete?
+              .chip.right complete
+    - else
+      p No submissions
+  div id="unsubmitted" class="col s12"
+    - unless unsubmitted.empty?
+      .collection
+        - unsubmitted.order(:last_active_at).each do |student|
+          - student = student.decorate
+          = link_to student, class: "collection-item" do
+            = student.name
+    - else
+      Everyone submitted
+.fixed-action-btn style="bottom: 45px; right: 24px;"
+  = link_to material_icon.assignment, edit_staff_cohort_assignment_path(assignment.cohort, assignment), class: "btn-floating btn-large waves-effect waves-light green"
