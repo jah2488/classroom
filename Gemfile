@@ -11,6 +11,7 @@ gem 'devise'
 gem 'draper'
 gem 'enum_help'
 gem 'factory_girl_rails'
+gem 'faker'
 gem 'font_assets'
 gem 'figaro'
 gem 'geocoder'
@@ -57,7 +58,6 @@ group :test, :development do
   gem 'byebug'
   gem 'codeclimate-test-reporter', require: nil
   gem 'database_cleaner'
-  gem 'faker'
   gem 'guard'
   gem 'guard-rspec', require: false
   gem 'irbtools', require: 'irbtools/binding'
