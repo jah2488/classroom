@@ -16,7 +16,7 @@
         a href="#unsubmitted"
           = unsubmitted.count
           |  Unsubmitted
-  div id="submitted" class="col s12"
+  #submitted.col.s12
     - unless submitted.empty?
       .collection
         - submitted.each do |submission|
@@ -31,7 +31,7 @@
               .chip.right complete
     - else
       p No submissions
-  div id="unsubmitted" class="col s12"
+  #unsubmitted.col.s12
     - unless unsubmitted.empty?
       .collection
         - unsubmitted.order(:last_active_at).each do |student|
