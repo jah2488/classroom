@@ -25,8 +25,8 @@ var AdjustmentReview = React.createClass({
     actions: function () {
         if (this.state.adjustment.state === 'OPENED') {
             return (<span>
-                    <a className='btn btn-xs btn-success' onClick={this.handleClick.bind(this, 'adjust')}>Adjust</a>
-                    <a className='btn btn-xs btn-danger' onClick={this.handleClick.bind(this, 'close')}>Close</a>
+                    <a className='btn waves-effect waves-light green' onClick={this.handleClick.bind(this, 'adjust')}><i className="material-icons">done</i></a>
+                    <a className='btn waves-effect waves-light red' onClick={this.handleClick.bind(this, 'close')}><i className="material-icons">not_interested</i></a>
                 </span>);
         } else {
             return (<span/>);

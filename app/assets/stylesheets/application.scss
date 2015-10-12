@@ -1,181 +1,113 @@
-@import 'bootstrap-sprockets';
-@import 'bootstrap';
+$border-gray: #acacac;
+$light-border-gray: #ececec;
+$background-gray: #f7f5f3;
+
+$tiy-shield: #233139;
+$tiy-brand: #39474e;
+$tiy-base: #727d84;
+$tiy-callout: #6fbbb7;
+$tiy-light: #eef1f6;
+
+$btn-border-radius-base: 0;
+
+@import "materialize/components/color";
+$primary-color: $tiy-brand !default;
+@import "materialize";
+@import "material_icons";
 @import 'datetimepicker';
 @import 'dashboard';
 @import 'submissions';
 @import 'students';
 
-
-$border-gray: #acacac;
-$light-border-gray: #ececec;
-$background-gray: #f7f5f3;
-
-$red: #d39aa5;
-$orange: #d3ac9a;
-$yellow: #d3c89a;
-$teal: #9ad3c8;
-
-$v1-blue: #9AA5D3;
-$material-teal: #00B5A4;
-$tiy-gray: #39474e;
-
-$primary:  $tiy-gray;
-$complementary: $yellow;
-
-.notices {
-  margin-top: 20px;
-}
-
 .help-block {
-  font-size:0.9em;
+        font-size:0.9em;
 }
 
-header, footer {
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
-header {
-    border-bottom: 5px solid darken($primary, 5%);
-    background: $primary;
-    color: white;
-    min-height: 50px;
-    padding-top: 1px;
-
-    h3 {
-      margin-top: 12px;
-    }
-
-    &.main-header {
-      height: 80px;
-      padding-top: 20px;
-    }
-
-    a {
-      color: white;
-    }
-    h1 {
-      display:inline;
-    }
-}
-
-.content {
-  padding-bottom: 60px;
-}
-
-nav ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-nav ul li {
-  display: inline;
+.btn-cohort {
+  color: white;
+  &:hover {
+    color: $tiy-light;
+  }
 }
 
 ul.list {
-    padding-left: 0;
+        padding-left: 0;
 
-    ul {
-      padding: 0;
-    }
-
-    li, li {
-        background: #fafafa;
-        padding: 10px;
-        margin: 10px 0;
-        border: 1px $light-border-gray solid;
-        list-style: none;
-        border-radius: 4px;
-        overflow: hidden;
-
-        &:hover {
-          box-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+        ul {
+                padding: 0;
         }
-    }
 
-    .student-view, .assignment-view {
-        background: white;
+        li, li {
+                background: #fafafa;
+                padding: 10px;
+                margin: 10px 0;
+                border: 1px $light-border-gray solid;
+                list-style: none;
+                border-radius: 4px;
+                overflow: hidden;
 
-        .row .col  {
-            height: 50px;
-            border-right: 1px $border-gray dashed;
-            padding: 17px;
+                &:hover {
+                        box-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+                }
         }
-    }
 
-    .entry .assignment-view .row .col:nth-child(even) {
-        padding: 10px;
-    }
+        .student-view, .assignment-view {
+                background: white;
+
+                .row .col  {
+                        height: 50px;
+                        border-right: 1px $border-gray dashed;
+                        padding: 17px;
+                }
+        }
+
+        .entry .assignment-view .row .col:nth-child(even) {
+                padding: 10px;
+        }
 }
 
 .outlook {
-  background: transparent;
-  border: 2px $border-gray solid;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: inline;
-  float: left;
-  margin: 0 10px;
-  position: relative;
-  top: 0;
-  left: 0;
+        background: transparent;
+        border: 2px $border-gray solid;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: inline;
+        float: left;
+        margin: 0 10px;
+        position: relative;
+        top: 0;
+        left: 0;
 
-  &.good { background: $teal;  }
-  &.ok   { background: $yellow; }
-  &.bad  { background: $red;    }
 }
 
 textarea.form-control {
-  padding-bottom: 20px;
+        padding-bottom: 20px;
 }
 
 $section-border: #c3c3c3;
 
 p.muted ~ section {
-  border: 1px solid $section-border;
-  padding: 15px;
+        border: 1px solid $section-border;
+        padding: 15px;
 }
 
 .list-group.spacer {
-  margin-top: 10px;
+        margin-top: 10px;
 }
 
 article a, article a:hover, article a:focus {
-  font-weight: bold;
-}
-
-/* Ahhh bootstrap overrides */
-.btn.btn-default {
-  padding-left: 18px;
-  padding-right: 18px;
-}
-.btn-primary {
-  background: $primary;
-  padding-left: 18px;
-  padding-right: 18px;
-  border-color: darken($primary, 5%);
-  &:hover {
-    background: darken($primary, 15%);
-    border-color: darken($primary, 20%);
-  }
+        font-weight: bold;
 }
 
 table > tbody > tr > td.align-middle {
-  vertical-align: middle;
+        vertical-align: middle;
 }
 table > tbody > tr > td h3 {
-  margin: 0;
+        margin: 0;
 }
 
 .assignment .grade span.label {
-  margin-top: 10px;
-  display: inline-block;
-}
-
-.nav li a.danger {
-  &:hover {
-    color: white;
-    background: #D84669;
-  }
+        margin-top: 10px;
+        display: inline-block;
 }

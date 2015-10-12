@@ -1,0 +1,20 @@
+- unless cohort.ungraded_submissions.empty?
+  .card.blue.darken-3
+    .card-content.white-text
+      span.card-title Ungraded Assignments
+      - cohort.ungraded_submissions.group_by(&:assignment).each do |assignment, submissions|
+        ul.collapsible.popout data-collapsible="accordion"
+          li
+            .collapsible-header.black-text
+              = assignment.title.titleize
+              = link_to material_icon.assignment, staff_cohort_assignment_path(assignment.cohort, assignment), class: "secondary-content"
+            .collapsible-body
+              ul.collection
+                - submissions.group_by(&:student).each do |student, grouped|
+                  - grouped.each do |submission|
+                    li.collection-item.avatar
+                      = image_tag submission.student.decorate.avatar_url, class: "circle"
+                      span.title = link_to student.decorate.pretty_name, student
+                      br
+                      = link_to "Link (on #{submission.decorate.link_domain})", submission.link, target: "_blank"
+                      = link_to material_icon.launch, submission_path(submission), class: "secondary-content"

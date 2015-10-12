@@ -15,7 +15,7 @@ table.table.table-hover
   tbody
     - @cohorts.each do |cohort|
       tr
-        td = link_to "Select", staff_cohort_path(cohort), class: "btn btn-primary", style: "background-color: ##{cohort.color};", 'data-id': cohort.id
+        td = link_to "Select", staff_cohort_path(cohort), class: "btn btn-cohort", style: "background-color: ##{cohort.color};", 'data-id': cohort.id
         td
           .bg-img style="background-image: url(#{cohort.logo_url});"
             = cohort.name.titleize
@@ -25,5 +25,5 @@ table.table.table-hover
             = link_to instructor do
               = image_tag(instructor.avatar_url(32), class: 'circle user-avatar')
               = instructor.name
-
-= link_to "New Cohort", new_staff_cohort_path, class: "btn btn-success"
+.fixed-action-btn style="bottom: 45px; right: 24px;"
+  = link_to material_icon.add, new_staff_cohort_path, class: "btn-floating btn-large waves-effect waves-light green"

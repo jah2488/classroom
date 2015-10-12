@@ -1,8 +1,23 @@
-.col-lg-4.col-lg-offset-4
-  h1 Create Campus
-  = simple_form_for [:staff, campus] do |f|
-    = f.input :name
-    = f.input :latitude
-    = f.input :longitude
-    = f.input :time_zone
-    = f.submit class: "btn btn-success"
+h2 Create Campus
+= form_for [:staff, campus] do |f|
+  .row
+    .input-field.col.s12
+      = f.text_field :name
+      = f.label :name
+  .row
+    .input-field.col.s6
+      = f.text_field :latitude
+      = f.label :latitude
+    .input-field.col.s6
+      = f.text_field :longitude
+      = f.label :longitude
+  .row
+    .input-field.col.s12
+      = f.time_zone_select :time_zone
+      = f.label :time_zone
+  = f.submit 'Create', class: "btn"
+
+javascript:
+  $(document).ready(function() {
+    $('select').material_select();
+  });

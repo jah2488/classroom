@@ -1,0 +1,8 @@
+.row
+  h3.col.m4 = assignment.title
+  h3.col.m5.offset-m3
+    ' Due:
+    = react_time(assignment.due_date)
+.row = react_md assignment.info
+.fixed-action-btn style="bottom: 45px; right: 24px;"
+  = link_to material_icon.note_add, new_submission_path(assignment: assignment.id), class: "btn-floating btn-large waves-effect waves-light green"

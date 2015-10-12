@@ -11,7 +11,7 @@ class CohortsController < ApplicationController
       students: @cohort.students.order(last_active_at: :DESC).map(&:decorate),
       assignments: filtered_assignments,
       adjustments: student.marked_checkins,
-      cohort: student.cohort,
+      cohort: student.cohort.decorate,
     }
   end
 
@@ -29,10 +29,10 @@ class CohortsController < ApplicationController
   def filtered_assignments
     current_student = current_user.student
     case params.fetch(:filter, 'all')
-    when 'incomplete' then Assignment.by_week(Assignment.incomplete_for(current_student))
-    when 'complete'   then Assignment.by_week(Assignment.complete_for(current_student))
-    when 'late'       then Assignment.by_week(Assignment.late_for(current_student))
-    when 'all'        then Assignment.by_week(Assignment.for(current_student))
+    when 'incomplete' then Assignment.incomplete_for(current_student)
+    when 'complete'   then Assignment.complete_for(current_student)
+    when 'late'       then Assignment.late_for(current_student)
+    when 'all'        then Assignment.for(current_student)
     end
   end
 end

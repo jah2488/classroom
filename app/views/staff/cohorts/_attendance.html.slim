@@ -1,16 +1,27 @@
-section
-  header
-    h3 = t('.attendance')
-  - if cohort.current_day
-    h4
-      ' Current Day:
-      = cohort.current_day.created_on
-    p.muted Start:
-    = cohort.current_day.starts_at
-    p.muted Override:
-    pre
-      code = cohort.current_day.override_code
-    = react_component('StudentCheckinList', checkins: cohort.current_day.checkins_hash, student_count: cohort.students.count)
-  - else
-    h4
-      ' No Current Day
+- if cohort.current_day
+  .card.blue.darken-3
+    .card-content.white-text
+      span.card-title = t('.attendance')
+      p
+        ' Current Day:
+        = cohort.current_day.created_on
+      p.muted Start:
+      p = cohort.current_day.starts_at
+      p.muted Override:
+      p = cohort.current_day.override_code
+    .card-action
+      a.activator Check-ins
+    .card-reveal.blue
+      span.card-title.white-text
+        | Today's checkins
+        .right == material_icon.close
+      - if cohort.current_day.checkins.empty?
+        p No one is checked in.
+      - else
+        ul.collection
+          - cohort.current_day.checkins.each do |c|
+            li.collection-item.avatar
+              = image_tag c.student.decorate.avatar_url, class: "circle"
+              span.title = c.student.decorate.pretty_name
+              p = c.checkin_status
+              = link_to material_icon.perm_identity, student_path(c.student), class: "secondary-content"

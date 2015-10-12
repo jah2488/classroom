@@ -1,17 +1,33 @@
-= link_to 'Back', url_for(:back), class: 'btn btn-primary'
-h1
-  = student.name
-p.muted
-  | Contact Info
-section
-  = simple_form_for(student) do |f|
-    .form-inputs
-      = f.input :name
-      = f.input :github, hint: 'Not the full url just your profile name'
-      = f.input :phone
-      = f.input :twitter, hint: 'Not the full url just your profile name'
-      = f.input :blog, as: :url
-      = f.input :bio, as: :text
-    .form-actions
-      = f.button :submit
-  ul
+= simple_form_for(student) do |f|
+  .row
+    = f.simple_fields_for :user do |u|
+      .input-field.col.m6.s12
+        i.material-icons.prefix perm_identity
+        = u.text_field :name
+        = u.label :name
+      .input-field.col.m6.s12
+        i.material-icons.prefix email
+        = u.text_field :email
+        = u.label :email
+      .input-field.col.s6
+        i.material-icons.prefix work
+        = u.text_field :github
+        = u.label :github
+    .input-field.col.s6
+      i.material-icons.prefix comment
+      = f.text_field :blog, type: :url
+      = f.label :blog
+    .input-field.col.s6
+      i.material-icons.prefix phone
+      = f.text_field :phone
+      = f.label :phone
+    .input-field.col.s6
+      i.material-icons.prefix forum
+      = f.text_field :twitter
+      = f.label :twitter
+    .input-field.col.s12
+      i.material-icons.prefix mode_edit
+      = f.text_area :bio, class: 'materialize-textarea'
+      = f.label :bio
+  .row
+    = f.submit "Update", class: "btn"

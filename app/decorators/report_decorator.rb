@@ -13,7 +13,7 @@ class ReportDecorator < Draper::Decorator
   end
 
   def student_name
-    object.student.pretty_name
+    object.student.decorate.pretty_name
   end
 
   def attended

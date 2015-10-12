@@ -1,51 +1,40 @@
-= link_to "Download PDF", { format: :pdf }, class: 'btn btn-primary'
 .row
-  .col-xs-4
-    .logo-box.clearfix
-      = image_tag 'iron-yard-logo.svg', style: 'float: right;'
-    h4.text-right
-      | Campus
-    p.text-right
-      = @report.campus_name
-    h4.text-right
-      | Course
-    p.text-right
-      = @report.cohort_name
-    h4.text-right
-      | Instructor
-    p.text-right
-      = @report.instructor_name
-    h4.text-right
-      | Student
-    p.text-right
-      = @report.student_name
-  .col-xs-8
-    h1
-      | Bi-Weekly Performance
+  .col.s12.m4.l2
+    h1 = image_tag 'iron-yard-logo.svg'
+    h4 Campus
+    p = @report.campus_name
+    h4 Course
+    p = @report.cohort_name
+    h4 Instructor
+    p = @report.instructor_name
+    h4 Student
+    p = @report.student.name
+  .col.s12.m8.l10
+    h1 Bi-Weekly Performance
     p.description
       | TIY students will be assessed every two weeks during the regular session, and every week during the final project (unless otherwise noted by the Instructor. On a biweekly basis, students will be assessed on their participation, effort, and skill on a Likert scale from 1 (unsatisfactory) to 3 (satisfactory) with room for comments. In addition, students’ overall performance and accountability will be assessed, including attendance and meeting homework and career assistance deadlines.
-    h2
+    h4
       | Participation (
       = @report.participation
       | )
     p
       | Comments:
     = content_tag(:p, @report.participation_comments)
-    h2
+    h4
       | Effort (
       = @report.effort
       | )
     p
       | Comments:
     = content_tag(:p, @report.effort_comments)
-    h2
+    h4
       | Skill (
       = @report.skill
       | )
     p
       | Comments:
     = content_tag(:p, @report.skill_comments)
-    h2
+    h4
       | Overall Performance (
       = @report.overall
       | )
@@ -70,7 +59,7 @@
     h4
       | Comments:
     = content_tag(:p, @report.overall_comments)
-    h3 = @report.status
+    h4 = @report.status
     p.description
       strong
         | Satisfactory:
@@ -83,3 +72,5 @@
       strong
         | Probation:
       |  Continued failure to meet course standards and requirements; access to career support and ability to present at Demo Day are temporarily revoked until the end of semester (or other time as specified by staff) at which time a review of progress takes place.If the results are satisfactory, career support and ability to present at Demo Day will be reinstated.
+.fixed-action-btn style="bottom: 45px; right: 24px;"
+  = link_to material_icon.library_books, report_path(@report, format: :pdf ), class: 'btn btn-floating btn-large waves-effect waves-lightgreen'

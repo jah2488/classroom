@@ -30,6 +30,7 @@ class Cohort < ActiveRecord::Base
   end
 
   def start_date= val
+    return unless val.to_datetime
     self.start_time = val.to_datetime.change(offset: tz_offset).beginning_of_day
   end
 

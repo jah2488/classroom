@@ -1,39 +1,23 @@
 css:
-  nav .btn-primary:not(.btn-link):not(.btn-flat) {
+  nav.themed {
+    color: white;
     background-color: ##{cohort.color};
   }
-  nav .btn-primary.active:not(.btn-link):not(.btn-flat) {
+  nav.themed a.active {
     background-color: ##{cohort.dark_color};
   }
-  nav .btn-primary:hover:not(.btn-link):not(.btn-flat) {
+  nav.themed a:hover {
     background-color: ##{cohort.dark_color};
   }
-  .nav .bg-img {
-    background-image: url(#{cohort.logo_url});
-    background-size: contain;
-    background-position: top left;
-    background-repeat: no-repeat;
-    padding: 10px 55px;
-  }
 
-.nav
-  .row
-    .col-md-9
-      h1.bg-img
-        = cohort.name.titleize
-        small = cohort.campus.name.titleize
-  .row
-    .col-md-9
-      nav
-        ul
-          li = active_link_to t('.dashboard'), staff_cohort_path(cohort), class: "btn btn-primary", active: :exclusive
-          li = active_link_to t('.reports'), staff_cohort_reports_path(cohort), class: 'btn btn-primary'
-          li = active_link_to t('.days'), staff_cohort_days_path(cohort), class: 'btn btn-primary'
-          li = active_link_to t('.new-assignment'), new_staff_cohort_assignment_path(cohort), class: 'btn btn-primary'
-          li = active_link_to t('.new-badge'), new_staff_badge_path, class: 'btn btn-primary'
-    .col-md-3
-      nav
-        ul
-          li Student Signup Link
-          li = text_field_tag 'Signup link', cohort.sign_up_url, size: cohort.sign_up_url.length
-
+.row
+  .col.l1.s12= image_tag cohort.logo_url, height: 100
+  h1.col.l7 = cohort.name.titleize
+  h4.col.l4 = cohort.campus.name.titleize
+nav.themed
+  .nav-wrapper
+    ul
+      li = active_link_to t('.dashboard'), staff_cohort_path(cohort)
+      li = active_link_to t('.reports'), staff_cohort_reports_path(cohort)
+      li = active_link_to t('.assignments'), staff_cohort_assignments_path(cohort)
+      li = active_link_to t('.days'), staff_cohort_days_path(cohort)

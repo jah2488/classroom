@@ -50,6 +50,10 @@ class Assignment < ActiveRecord::Base
     submissions_for(student).where(completed: true).count > 0
   end
 
+  def pending_by?(student)
+    submissions.where(student_id: student.id, completed: false, state: Submission::PENDING).count > 0
+  end
+
   def incomplete_by?(student)
     submissions = Arel::Table.new(:submissions)
     student_submissions = submissions_for(student)

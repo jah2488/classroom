@@ -29,7 +29,7 @@ RSpec.feature "StaffDashes", type: :feature do
 
       click_link_to(staff_cohort_assignment_path(cohort, assignment))
 
-      expect(page).to have_content(assignment.title)
+      expect(page).to have_content(/#{assignment.title}/i)
       expect(page).to have_content(/submitted/i)
       expect(page).to have_content(/unsubmitted/i)
     end
@@ -46,7 +46,8 @@ RSpec.feature "StaffDashes", type: :feature do
 
       click_link_to(submission_path(assignment.submissions.first))
 
-      expect(page).to have_content(/#{assignment.submissions.first.student.decorate.name}'s Submission for #{assignment.title}/i)
+      expect(page).to have_content(/Turned In/i)
+      expect(page).to have_content(assignment.title)
     end
 
     scenario 'viewing students' do

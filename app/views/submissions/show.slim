@@ -1,48 +1,39 @@
-.col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2
-  article
-    header
-      h3
-        = link_to submission.student.pretty_name, submission.student
-        ' 's Submission for
-        = link_to submission.assignment.title, submission.assignment
-    .row
-      span.col-md-4
-        strong
-          ' Due:
-        = react_time submission.assignment.due_date
-      span.col-md-4
-        strong
-          ' Turned In:
-        = react_time submission.created_at
-      span.col-md-4
-        strong
-          ' Status:
-        - if submission.late
-          span.label.label-warning late
-        - if submission.unfinished?
-          span.label.label-danger unfinished
-        - if submission.complete?
-          span.label.label-success complete
-        - if submission.graded?
-          span.label.label-primary graded
-        - else
-          span.label.label-primary ungraded
+.row
+  .col.m4
+    h1 = link_to submission.assignment.title, submission.assignment
+.row
+  .col.m3= link_to student_path(submission.student) do
+    .chip
+      = image_tag submission.student.avatar_url
+      = submission.student.pretty_name
+  .col.m3
+    strong
+      ' Due:
+    = react_time submission.assignment.due_date
+  .col.m3
+    strong
+      ' Turned In:
+    = react_time submission.created_at
+  .col.m3
+    .chip = submission.label
+    - if submission.late
+      .chip Late
+.row
+  .col.m6.s12
     - if policy(submission).edit?
       = react_component('EditSubmission', submission: submission)
     - else
       = react_component('Submission', submission: submission)
-    section
-      - submission.ratings.each_with_index do |rating, index|
-        - if rating.has_feedback?
-          p.muted
-            ' Feedback on Submission added
-            = distance_of_time_in_words_to_now rating.created_at
-            |  ago
-          section
+  - submission.ratings.each_with_index do |rating, index|
+    - if rating.has_feedback?
+      .col.m6.s12
+        .card.grey.lighten-5
+          .card-content.black-text
+            = rating.created_at.in_time_zone(submission.tz).strftime("%l:%M%P %Z, %m/%e")
             - if current_user.instructor?
               = react_component('EditRating', rating: rating)
             - else
               = react_md(rating.notes)
-    hr
-    - if current_user.instructor?
-      = react_component('GradeSubmissionForm', { badges: Badge.all.map { |badge| badge.as_hash(self) }, submissionID: submission.id, nextForStudent: next_submission_url_for_student(submission), nextForAssignment: next_submission_url_for_assignment(submission)})
+- if current_user.instructor?
+  hr
+  = react_component('GradeSubmissionForm', { badges: Badge.all.map { |badge| badge.as_hash(self) }, submissionID: submission.id, nextForStudent: next_submission_url_for_student(submission), nextForAssignment: next_submission_url_for_assignment(submission)})

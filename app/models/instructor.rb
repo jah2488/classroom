@@ -29,7 +29,8 @@ class Instructor < ActiveRecord::Base
 
   def has_student?(student)
     return false unless student
-    self.cohort_ids.include? student.cohort_id
+    #unassigned students should be available by all instructors
+    student.cohort_id == nil || self.cohort_ids.include?(student.cohort_id)
   end
 
   def students

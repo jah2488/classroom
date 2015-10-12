@@ -1,10 +1,29 @@
-.col-lg-4.col-lg-offset-4
-  h1 Create Cohort
-  = simple_form_for [:staff, cohort] do |f|
-    .form-inputs
-      = f.input :name
-      = f.association :campus
-      = f.input :instructor_id, collection: Instructor.all, selected: current_user.instructor
-      = f.input :start_date, as: :date
-    .form-actions
-      = f.button :submit
+h2 Create Cohort
+= form_for [:staff, cohort] do |f|
+  .row
+    .input-field.col.s12
+      = f.text_field :name
+      = f.label :name
+  .row
+    .input-field.col.s12
+      = f.collection_select :campus_id, Campus.all, :id, :name
+      = f.label :campus_id
+  .row
+    .input-field.col.s12
+      = f.collection_select :instructor_id, Instructor.all, :id, :name, selected: current_user.instructor
+      = f.label :instructor_id
+  .row
+    .input-field.col.s12
+      i.material-icons.prefix today
+      = f.date_field :start_date, class: "datepicker"
+      = f.label :start_date
+  = f.submit "Create", class: "btn"
+
+javascript:
+  $(document).ready(function() {
+    $('select').material_select();
+     $('.datepicker').pickadate({
+         selectMonths: true, // Creates a dropdown to control month
+         selectYears: 2 // Creates a dropdown of 15 years to control year
+     });
+  });

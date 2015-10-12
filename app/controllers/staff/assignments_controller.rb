@@ -16,6 +16,14 @@ class Staff::AssignmentsController < Staff::ApplicationController
     }
   end
 
+  def index
+    cohort = Cohort.find(params[:cohort_id])
+    render locals: {
+      cohort: cohort.decorate,
+      assignments: cohort.assignments
+    }
+  end
+
   def edit
     render locals: {
       assignment: Assignment.find(params[:id]),

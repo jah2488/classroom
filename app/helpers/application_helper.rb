@@ -25,4 +25,25 @@ module ApplicationHelper
     return unless cohort
     "#{cohort.campus.latitude},#{cohort.campus.longitude}"
   end
+
+  def menu_items user
+    links = []
+    if user
+      if user.student?
+        links << active_link_to('My Cohort', root_path)
+        links << active_link_to('Profile', student_path(user.student))
+      elsif current_user.instructor?
+        links << active_link_to('Dashboard', staff_root_path)
+        links << active_link_to("Cohorts", staff_cohorts_path)
+        links << active_link_to("Campuses", staff_campuses_path)
+        links << active_link_to("Students", students_path)
+      end
+    end
+    if user
+      links << active_link_to('Logout', destroy_user_session_path)
+    else
+      links << active_link_to('Signin', new_user_session_path)
+    end
+    links.map { |l| "<li>" + l + "</li>"}.join('').html_safe
+  end
 end

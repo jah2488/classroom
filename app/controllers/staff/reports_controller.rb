@@ -19,7 +19,6 @@ class Staff::ReportsController < Staff::ApplicationController
     @report = @report.decorate
     respond_to do |format|
       format.html
-      format.pdf { render pdf: "#{@report.student.name} Report", show_as_html: false}
     end
   end
 

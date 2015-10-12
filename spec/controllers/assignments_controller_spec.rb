@@ -18,8 +18,8 @@ describe AssignmentsController do
   end
 
   describe "GET #index" do
-    it "returns http success" do
-      get :index, query: 'foo'
+    it "supports a query" do
+      get :index, q: 'foo'
       expect(response).to have_http_status(:success)
     end
   end

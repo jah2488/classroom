@@ -1,0 +1,9 @@
+.row
+  .col.l1.s12= image_tag cohort.logo_url, height: 100
+  h1.col.l7 = cohort.name.titleize
+  h4.col.l4 = cohort.campus.name.titleize
+.row
+  .col.m6.s12 = render partial: 'assignments', locals: { assignments: assignments, student: current_user.student }
+  .col.m6.s12 = render partial: 'attendance', locals: { cohort: cohort, current_student: current_user.student }
+  .col.m6.s12 = render partial: 'tardies', locals: { current_student: current_user.student }
+  .col.m6.s12 = render partial: 'students', locals: { students: students }

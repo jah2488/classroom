@@ -1,14 +1,11 @@
 = render partial: 'nav', locals: { cohort: cohort }
+.col.s4
+  p.muted Student Signup:
+  = cohort.sign_up_url
 .row
-  .col-md-12
-    .row
-      .col-md-6
-        = render partial: 'submissions', locals: { submissions: cohort.ungraded_submissions }
-      .col-md-6
-        = render partial: 'attendance',  locals: { cohort: cohort }
-        = render partial: 'adjustments', locals: { adjustments: adjustments }
-    .row
-      .col-md-6
-        = render partial: 'assignments', locals: { assignments: assignments }
-      .col-md-6
-        = render partial: 'students', locals: { students: cohort.students.decorate }
+  .col.l4.m6 = render partial: 'students', locals: { students: cohort.students.decorate }
+  .col.l8.m6 = render partial: 'adjustments', locals: { adjustments: adjustments }
+  .col.l4.m6 = render partial: 'ungraded_assignments', locals: { cohort: cohort }
+  .col.l4.m6 = render partial: 'attendance',  locals: { cohort: cohort }
+  - if cohort.students.empty? && adjustments.empty? && !cohort.current_day
+    h4.col.offset-l2.l8.m10.offset-m1.s12 Nothing going on with this cohort yet!

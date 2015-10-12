@@ -27,12 +27,6 @@ class Staff::CohortsController < Staff::ApplicationController
   end
 
   def create
-    # rails does not know how to deal with multiparameter attributes on a virtual attribute
-    params[:cohort][:start_date] = Date.new(params[:cohort][:"start_date(1i)"].to_i, params[:cohort][:"start_date(2i)"].to_i, params[:cohort][:"start_date(3i)"].to_i)
-    params[:cohort].delete(:"start_date(1i)")
-    params[:cohort].delete(:"start_date(2i)")
-    params[:cohort].delete(:"start_date(3i)")
-    # end terribleness
     cohort = Cohort.new(cohort_params)
     cohort.instructor_ids = [params[:cohort][:instructor_id]]
     authorize cohort
