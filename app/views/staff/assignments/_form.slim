@@ -1,0 +1,26 @@
+= form_for(assignment, url: staff_cohort_assignments_path, method: :post) do |f|
+  - if assignment.errors.any?
+    #error_explanation
+      .alert.alert-warning.flash[role="alert"]
+        '  The assignment contains
+        = pluralize(assignment.errors.count, "error")
+        ' .
+      ul
+        - assignment.errors.full_messages.each do |msg|
+          li = msg
+  .row
+    .input-field.col.s6
+      i.material-icons.prefix info_outline
+      = f.text_field :title, required: true, class: "validate"
+      = f.label :title
+    .input-field.col.s6
+      i.material-icons.prefix query_builder
+      = f.text_field :due_date, class: 'datetimepicker', value: (Time.zone.tomorrow + 8.hours), required: true
+      = f.label :due_date
+  .row
+    .input-field.col.s12
+      i.material-icons.prefix mode_edit
+      = f.text_area :info, hint: 'put markdown in me', required: true, class: "materialize-textarea"
+      = f.label :info
+  .row
+    = f.submit "Save", class: "btn"
