@@ -10,6 +10,7 @@ gem 'concise_logging'
 gem 'devise'
 gem 'draper'
 gem 'enum_help'
+gem 'factory_girl_rails'
 gem 'font_assets'
 gem 'figaro'
 gem 'geocoder'
@@ -56,7 +57,6 @@ group :test, :development do
   gem 'byebug'
   gem 'codeclimate-test-reporter', require: nil
   gem 'database_cleaner'
-  gem 'factory_girl_rails'
   gem 'faker'
   gem 'guard'
   gem 'guard-rspec', require: false
