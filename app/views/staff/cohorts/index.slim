@@ -23,7 +23,8 @@ table.table.table-hover
         td
           - cohort.instructors.each do |instructor|
             = link_to instructor do
-              = image_tag(instructor.avatar_url(32), class: 'circle user-avatar')
-              = instructor.name
+              .chip
+                = image_tag(instructor.avatar_url(32))
+                = instructor.name
 .fixed-action-btn style="bottom: 45px; right: 24px;"
   = link_to material_icon.add, new_staff_cohort_path, class: "btn-floating btn-large waves-effect waves-light green"
