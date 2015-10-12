@@ -39,6 +39,8 @@ cohort = Cohort.create!({
   instructors: [instructor]
 })
 
+user2.create_student!(cohort: cohort)
+
 FactoryGirl.create(:cohort, name: "Mobile")
 FactoryGirl.create(:cohort, name: "Front End JS")
 
