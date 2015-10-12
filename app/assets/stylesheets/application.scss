@@ -19,17 +19,6 @@ $primary-color: $tiy-brand !default;
 @import 'submissions';
 @import 'students';
 
-.help-block {
-        font-size:0.9em;
-}
-
-.btn-cohort {
-  color: white;
-  &:hover {
-    color: $tiy-light;
-  }
-}
-
 ul.list {
         padding-left: 0;
 
