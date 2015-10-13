@@ -8,7 +8,8 @@
           li = active_link_to "Incomplete", params.merge(filter: :incomplete)
           li = active_link_to "Complete",   params.merge(filter: :complete)
           li = active_link_to "Late",       params.merge(filter: :late)
-          li = active_link_to "Current Assignment", assignment_path(Assignment.current_for(student))
+          - if Assignment.current_for(student)
+            li = active_link_to "Current Assignment", assignment_path(Assignment.current_for(student))
     = react_component('SearchAssignments', {}, tag: 'span' )
     ul.collapsible.black-text.popout
       - assignments.each do |assignment|
