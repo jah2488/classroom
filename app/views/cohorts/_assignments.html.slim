@@ -8,10 +8,12 @@
           li = active_link_to "Incomplete", params.merge(filter: :incomplete)
           li = active_link_to "Complete",   params.merge(filter: :complete)
           li = active_link_to "Late",       params.merge(filter: :late)
+          li = active_link_to "Current Assignment", assignment_path(Assignment.current_for(student))
+    = react_component('SearchAssignments', {}, tag: 'span' )
     ul.collapsible.black-text.popout
       - assignments.each do |assignment|
         - submissions = assignment.submissions_for(student)
-        li
+        li.full-width
           .collapsible-header
             - if assignment.completed_by? student
               i.material-icons done
@@ -21,38 +23,21 @@
               i.material-icons not_interested
             - else
               i.material-icons assignment
-            = assignment.title
+            = link_to assignment.title, assignment
             '  due
-            = react_time(assignment.due_date)
+            strong = react_time(assignment.due_date)
           .collapsible-body.white
-            table
-              thead
-                tr
-                  th Submitted
-                  th At
-                  th Status
-              tbody
-                - if submissions.empty?
-                  tr
-                    td Not submitted yet.
-                    td
-                    td
-                    td
-                - else
-                  - submissions.each do |submission|
-                    tr
-                      - submission = submission.decorate
-                      td = submission.on_time
-                      td = submission.created
-                      td = submission.label
-                      td = link_to material_icon.input, submission_path(submission)
-                tr
-                  td = link_to assignment_path(assignment), class: "btn btn-flat waves-effect white" do
-                    | View
-                    i.material-icons.right assignment
-                  td
-                  td
-                  td = link_to new_submission_path(assignment: assignment.id), class: "btn" do
-                    | Submit
-                    i.material-icons.right send
-    = react_component('SearchAssignments', {}, tag: 'span' )
+            - if submissions.empty?
+              p Not submitted yet.
+            - else
+              ul.collection
+                - submissions.map(&:decorate).each do |submission|
+                  li.collection-item
+                    = "Submitted #{submission.on_time} At #{submission.created}. "
+                    strong = submission.label
+                    = link_to submission_path(submission) do
+                      i.material-icons.right input
+
+            p = link_to new_submission_path(assignment: assignment.id), class: "btn" do
+             | Submit
+             i.material-icons.right send
