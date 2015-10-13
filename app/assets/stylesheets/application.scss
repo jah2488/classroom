@@ -108,3 +108,12 @@ table > tbody > tr > td h3 {
 li.collection-item.avatar.padded {
   padding-top: 20px;
 }
+
+
+// Instructor Assignment View Materialize Override
+.collection-item.with-chip {
+    line-height: 35px;
+    .chip.right {
+      margin-right: 5px;
+    }
+}

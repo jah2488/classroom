@@ -1,12 +1,23 @@
-- cohort.days_by_month do |month|
-  .col-md-2
-    h2 = month.first.month_name
-    - month.each do |day|
-      h3 = day.date_in_words
-      p
-        ' Started at
-        = day.starts_at
-      - if day.absences?
-        p
-          ' Absent:
-          = day.unaccounted_for_students_names
+.row
+  - cohort.days_by_month do |month|
+    .col.l4.m6.s12
+      .card.blue-grey.darken-1
+        .card-content.white-text
+          span.card-title = month.first.month_name
+          - month.each do |day|
+            ul.collapsible.popout data-collapsible="accordion"
+              li.full-width
+                .collapsible-header.black-text
+                  p
+                    strong = "#{truncate(day.date_in_words, length: 55)} "
+                    ' Started at
+                    = day.starts_at
+                  - if day.absences?
+                    p
+                      ' Absent Students:
+                .collapsible-body
+                  ul.collection
+                    - day.object.unaccounted_for_students.each do |student|
+                        li.collection-item.avatar.padded
+                          = image_tag student.decorate.avatar_url, class: "circle"
+                          span.title = link_to student.decorate.pretty_name, student

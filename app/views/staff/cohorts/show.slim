@@ -5,6 +5,7 @@
 .row
   .col.l6.m6 = render partial: 'ungraded_assignments', locals: { cohort: cohort }
   .col.l6.m6 = render partial: 'attendance',  locals: { cohort: cohort }
+.row
   .col.l6.m12 = render partial: 'students', locals: { students: cohort.students.decorate }
   .col.l6.m12 = render partial: 'adjustments', locals: { adjustments: adjustments }
   - if cohort.students.empty? && adjustments.empty? && !cohort.current_day

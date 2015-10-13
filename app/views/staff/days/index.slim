@@ -1,18 +1,21 @@
 = render partial: 'nav', locals: { cohort: cohort }
-.col-md-2
-  h1
-    = cohort.name.titleize
-  dl
-    dt First Day
-    dd = cohort.start_date.to_date
-    dt Campus:
-    dd = cohort.campus
-    dt Instructor:
-    - if cohort.instructors.empty?
-      dd TBD
-    - else
-      - cohort.instructors.each do |instructor|
-        dd = link_to instructor.name, instructor
-  = link_to "Add Day", new_staff_cohort_day_path(cohort), class: "btn btn-success"
-.col-md-8
-  = render partial: "calendar", locals: { cohort: cohort }
+.row
+  .col.m6.s12
+    p
+      strong = "First Day : "
+      = cohort.start_date.to_date
+  .col.m6.s12
+    p
+      strong = "Instructor(s) : "
+      - if cohort.instructors.empty?
+         TBD
+      - else
+        - cohort.instructors.each do |instructor|
+           = link_to instructor.name, instructor
+.row
+  .col.m12
+    = render partial: "calendar", locals: { cohort: cohort }
+
+- if policy(Assignment).create?
+  .fixed-action-btn style="bottom: 45px; right: 24px;"
+    = link_to material_icon.add, new_staff_cohort_day_path(cohort), class: "btn-floating btn-large waves-effect waves-light green"

@@ -31,12 +31,7 @@ var ready = function() {
                 Location.getCohortPosition();
                 Location.getCurrentPosition();
         }
-
-        jQuery('textarea').on('keyup', function (e) {
-                var elem = jQuery(this);
-                elem.css('height', elem[0].scrollHeight);
-        });
-
+        
         jQuery('.fillLatLong').on('click', function (e) {
                 if (Location.lat !== undefined && Location.long !== undefined) {
                         jQuery('#cohort_latitude').val(Location.lat);
@@ -56,4 +51,3 @@ var ready = function() {
 
 jQuery(document).ready(ready);
 jQuery(document).on('page:load', ready);
-
