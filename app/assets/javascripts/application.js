@@ -22,6 +22,7 @@ var _loggedIn = false;
 Location.distance = 0.1;
 
 var ready = function() {
+        $('.collapsible').collapsible({});
         $(".button-collapse").sideNav();
         $('select').material_select();
         jQuery('.datetimepicker').datetimepicker();
@@ -31,7 +32,7 @@ var ready = function() {
                 Location.getCohortPosition();
                 Location.getCurrentPosition();
         }
-        
+
         jQuery('.fillLatLong').on('click', function (e) {
                 if (Location.lat !== undefined && Location.long !== undefined) {
                         jQuery('#cohort_latitude').val(Location.lat);
@@ -49,5 +50,4 @@ var ready = function() {
 };
 
 
-jQuery(document).ready(ready);
-jQuery(document).on('page:load', ready);
+jQuery(document).on('ready page:load page:change', ready);
