@@ -100,6 +100,10 @@ table > tbody > tr > td h3 {
         display: inline-block;
 }
 
+nav .brand-logo {
+  top: 5px;
+  left: 5px;
+}
 // Instructor Dash Materialize Override
 .collapsible.popout > li.full-width {
   margin: 0;
@@ -108,7 +112,6 @@ table > tbody > tr > td h3 {
 li.collection-item.avatar.padded {
   padding-top: 20px;
 }
-
 
 // Instructor Assignment View Materialize Override
 .collection-item.with-chip {
