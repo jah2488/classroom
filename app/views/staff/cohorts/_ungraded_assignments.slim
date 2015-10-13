@@ -4,15 +4,15 @@
       span.card-title Ungraded Assignments
       - cohort.ungraded_submissions.group_by(&:assignment).each do |assignment, submissions|
         ul.collapsible.popout data-collapsible="accordion"
-          li
+          li.full-width
             .collapsible-header.black-text
-              = assignment.title.titleize
+              = truncate(assignment.title.titleize, length: 55) 
               = link_to material_icon.assignment, staff_cohort_assignment_path(assignment.cohort, assignment), class: "secondary-content"
             .collapsible-body
               ul.collection
                 - submissions.group_by(&:student).each do |student, grouped|
                   - grouped.each do |submission|
-                    li.collection-item.avatar
+                    li.collection-item.avatar.padded
                       = image_tag submission.student.decorate.avatar_url, class: "circle"
                       span.title = link_to student.decorate.pretty_name, student
                       br

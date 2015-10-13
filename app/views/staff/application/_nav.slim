@@ -11,9 +11,10 @@ css:
   }
 
 .row
-  .col.l1.s12= image_tag cohort.logo_url, height: 100
-  h1.col.l7 = cohort.name.titleize
-  h4.col.l4 = cohort.campus.name.titleize
+  .col.l1.s1 = image_tag cohort.logo_url, height: 100
+  h2.col.l11
+    = cohort.name.titleize
+    small.muted = cohort.campus.name.titleize
 nav.themed
   .nav-wrapper
     ul

@@ -34,7 +34,7 @@ class CohortDecorator < Draper::Decorator
   end
 
   def sign_up_url
-    h.new_user_registration_path(cohort_id: cohort.id)
+    h.new_user_registration_url(cohort_id: cohort.id)
   end
 
   def mobile?

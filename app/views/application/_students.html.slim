@@ -5,8 +5,8 @@
         ul.collection
           - students.each do |student|
             li.collection-item.avatar.black-text
-              = image_tag student.avatar_url(64), class: 'circle'
-              span.title = student.decorate.pretty_name
-              - if policy(student).grades?
-                p = student.info
-              = link_to material_icon.launch, student_path(student), class: "secondary-content"
+              = link_to student_path(student) do
+                = image_tag student.avatar_url(64), class: 'circle'
+                span.title = student.decorate.pretty_name
+                - if policy(student).grades?
+                  p = student.info

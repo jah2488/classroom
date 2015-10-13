@@ -18,8 +18,9 @@
       = student.blog_link
   - if policy(student).become?
     = link_to 'Become', student_become_path(student), class: 'btn waves-effect waves-light'
+
 .row
-  .col.m4.s12
+  .col.m6.s12
     - if student.bio
       .card.blue-grey.darken-1
         .card-content.white-text
@@ -34,7 +35,7 @@
               span class="#{'tint' unless i.zero?} circle"
                 = image_tag attachment_url(badge, :icon_image, :fill, 200, 200, format: 'png'), class: 'shadow-z-1 circle student-badge', tabindex: 0, 'data-trigger': "focus", 'data-toggle': 'popover', 'data-placement': 'bottom', 'data-title': badge.name, 'data-content': badge.description
   - if policy(student).grades?
-    .col.m4.s12
+    .col.m6.s12
       .card.blue-grey.darken-1
         .card-content.white-text
           span.card-title Stats
@@ -66,36 +67,37 @@
                   h3
                     = student.past_due_count
   - if policy(student).grades?
-    .col.m4.s12
-      .card.blue-grey.darken-1
-        .card-content.white-text
-          span.card-title Assignments
-          table.table.table-hover
-            thead
-              tr
-                td
-                  | Title
-                td
-                  | Status
-                td
-                  | Latest Submission
-            tbody
-              - student.assignments.each do |assignment|
+    .row
+      .col.m12.l12.s12
+        .card.blue-grey.darken-1
+          .card-content.white-text
+            span.card-title Assignments
+            table.table.table-hover
+              thead
                 tr
                   td
-                    = link_to assignment.title, assignment
+                    | Title
                   td
-                    - if assignment.completed_by? student
-                      i.material-icons done
-                    - elsif assignment.pending_by? student
-                      i.material-icons schedule
-                    - elsif assignment.incomplete_by? student
-                      i.material-icons not_interested
-                    - else
-                      i.material-icons assignment
+                    | Status
                   td
-                    - submission = assignment.submissions_for(student).last
-                    = link_to react_time(submission.updated_at, hoverable: false), submission
+                    | Latest Submission
+              tbody
+                - student.assignments.each do |assignment|
+                  tr
+                    td
+                      = link_to assignment.title, assignment
+                    td
+                      - if assignment.completed_by? student
+                        i.material-icons done
+                      - elsif assignment.pending_by? student
+                        i.material-icons schedule
+                      - elsif assignment.incomplete_by? student
+                        i.material-icons not_interested
+                      - else
+                        i.material-icons assignment
+                    td
+                      - submission = assignment.submissions_for(student).last
+                      = link_to react_time(submission.updated_at, hoverable: false), submission
 - if policy(student).edit?
   .fixed-action-btn style="bottom: 45px; right: 24px;"
     = link_to material_icon.edit, edit_student_path(student), class: 'btn-floating btn-large waves-effect waves-blue'

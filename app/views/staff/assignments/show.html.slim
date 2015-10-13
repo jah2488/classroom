@@ -1,7 +1,10 @@
 = render partial: 'nav', locals: { cohort: assignment.cohort.decorate}
+.col.s4
+  p.muted Student Link:
+  = assignment_url(assignment)
 .row
-  h3.col.s12.m4 = assignment.title
-  h3.col.s12.m4
+  h3.col.s12.m8 = assignment.title
+  h4.col.s12.m4
     | Due:
     = react_time(assignment.due_date)
 .row = react_md assignment.info
@@ -20,7 +23,7 @@
     - unless submitted.empty?
       .collection
         - submitted.each do |submission|
-          = link_to submission, class: "collection-item" do
+          = link_to submission, class: "collection-item with-chip" do
             - if submission.student
               = submission.student.name
             - if submission.late
@@ -40,5 +43,6 @@
             = student.name
     - else
       Everyone submitted
+
 .fixed-action-btn style="bottom: 45px; right: 24px;"
   = link_to material_icon.mode_edit, edit_staff_cohort_assignment_path(assignment.cohort, assignment), class: "btn-floating btn-large waves-effect waves-light green"

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Cohort, type: :model do
-  let(:cohort) { create :cohort }
+  let(:cohort) { create :cohort, start_date: Date.today - 1.month }
   let(:now) { Faker::Time.between(cohort.start_time, cohort.start_time + 3.months) }
 
   describe "#current_day" do
