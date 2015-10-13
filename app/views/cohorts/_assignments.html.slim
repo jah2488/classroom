@@ -16,6 +16,11 @@
         - submissions = assignment.submissions_for(student)
         li.full-width
           .collapsible-header
+            - if submissions.any? { |s| has_feedback?(s) }
+              i.material-icons announcement
+            - else
+              i.material-icons chat_bubble_outline
+
             - if assignment.completed_by? student
               i.material-icons done
             - elsif assignment.pending_by? student
@@ -34,6 +39,11 @@
               ul.collection
                 - submissions.map(&:decorate).each do |submission|
                   li.collection-item
+                    = link_to submission_path(submission) do
+                      - if has_feedback?(submission)
+                        i.material-icons.left announcement
+                      - else
+                        i.material-icons.left chat_bubble_outline
                     = "Submitted #{submission.on_time} At #{submission.created}. "
                     strong = submission.label
                     = link_to submission_path(submission) do
