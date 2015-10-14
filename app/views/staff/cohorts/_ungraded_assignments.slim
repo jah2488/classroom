@@ -1,13 +1,15 @@
 - unless cohort.ungraded_submissions.empty?
   .card.blue.darken-3
     .card-content.white-text
-      span.card-title Ungraded Assignments
+      span.card-title = "Ungraded Assignments (#{cohort.ungraded_submissions.count})"
       - cohort.ungraded_submissions.group_by(&:assignment).each do |assignment, submissions|
         ul.collapsible.popout data-collapsible="accordion"
           li.full-width
             .collapsible-header.black-text
               = truncate(assignment.title.titleize, length: 55) 
-              = link_to material_icon.assignment, staff_cohort_assignment_path(assignment.cohort, assignment), class: "secondary-content"
+              = link_to staff_cohort_assignment_path(assignment.cohort, assignment), class: "secondary-content" do
+                = "(#{submissions.count})"
+                i.material-icons assignment
             .collapsible-body
               ul.collection
                 - submissions.group_by(&:student).each do |student, grouped|
