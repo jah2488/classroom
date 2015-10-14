@@ -1,4 +1,14 @@
 - unless students.empty?
+- if students.empty?
+  .card.blue.darken-2
+    .card-content.white-text
+      span.card-title = t('.students')
+      p No Students are in this class yet.
+    .card-action
+      button.btn.copy-to-clipboard-button id='new-cohort-signup-link-button' title='Click to copy cohort sign up url to clipboard' data-clipboard-target='cohort-signup-url'
+        | Copy Cohort Signup URL to Clipboard
+        i.material-icons.right description
+- else
   .card.blue.darken-2
     .card-content.white-text
         span.card-title = t('.students')
