@@ -1,4 +1,11 @@
-- unless cohort.ungraded_submissions.empty?
+- if cohort.ungraded_submissions.empty?
+  .card.blue.darken-3
+    .card-content.white-text
+      span.card-title Ungraded Assignments
+      p No assignments to grade. Great job!
+    .card-action
+      = link_to "Add Assignment", new_staff_cohort_assignment_path(cohort), class: ""
+- else
   .card.blue.darken-3
     .card-content.white-text
       span.card-title Ungraded Assignments
@@ -6,7 +13,7 @@
         ul.collapsible.popout data-collapsible="accordion"
           li.full-width
             .collapsible-header.black-text
-              = truncate(assignment.title.titleize, length: 55) 
+              = truncate(assignment.title.titleize, length: 55)
               = link_to material_icon.assignment, staff_cohort_assignment_path(assignment.cohort, assignment), class: "secondary-content"
             .collapsible-body
               ul.collection

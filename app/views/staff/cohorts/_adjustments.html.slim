@@ -1,7 +1,9 @@
-- unless adjustments.empty?
-  .card.blue.darken-2
-    .card-content.white-text
-      span.card-title = t('.adjustments')
+.card.blue.darken-2
+  .card-content.white-text
+    span.card-title = t('.adjustments')
+    - if adjustments.empty?
+      p No adjustments have been submitted yet.
+    - else
       table
         thead
           tr
@@ -11,4 +13,8 @@
             th Actions
         tbody
           - adjustments.each do |adjustment|
-            = react_component('AdjustmentReview', { adjustment: adjustment, student_name: adjustment.checkin.student.decorate.pretty_name, checkin_status: adjustment.checkin.short_checkin_status}, tag: :tr )
+            = react_component('AdjustmentReview', { \
+                adjustment: adjustment, \
+                student_name: adjustment.checkin.student.decorate.pretty_name, \
+                checkin_status: adjustment.checkin.short_checkin_status \
+              }, tag: :tr )

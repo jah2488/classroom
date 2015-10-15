@@ -20,6 +20,19 @@ instructor = Instructor.create!({
   user: user
 })
 
+Instructor.create!({
+  phone: '555 555 5555',
+  office_hours_start: "March 22, 2015 12:00PM",
+  office_hours_end: "March 22, 2015 5:00PM",
+  user: new_instructor = User.create!({
+    email: 'new-instructor@example.com',
+    password: 'password',
+    name: "Okay Instructor"
+  })
+})
+new_instructor.confirm
+new_instructor.save!
+
 user2 = User.create!({
   email: 'student@example.com',
   password: 'password'
@@ -72,4 +85,3 @@ end
     assignment_id: assignments.sample.id
   })
 end
-
