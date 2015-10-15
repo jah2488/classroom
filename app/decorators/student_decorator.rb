@@ -29,6 +29,6 @@ class StudentDecorator < Draper::Decorator
   end
 
   def info
-    "tardies: #{tardies}\nabsences: #{absences}\nsubmissions: #{submissions.count}"
+    "tardies: #{tardies}\nabsences: #{absences}"
   end
 end

@@ -1,0 +1,18 @@
+table.table.table-hover
+  thead
+    tr
+      th Name
+      th Description
+      th Image
+      th
+      th
+  tbody
+    - badges.each do |badge|
+      tr 
+        td = badge.name
+        td = badge.description
+        td = badge.image_tag
+        td = link_to "Edit", edit_badge_path(badge), class: "btn"
+        td = link_to "Delete", badge_path(badge), method: :delete, class: "btn red"
+.fixed-action-btn style="bottom: 45px; right: 24px;"
+  = link_to material_icon.add, new_badge_path, class: "btn-floating btn-large waves-effect waves-light green"

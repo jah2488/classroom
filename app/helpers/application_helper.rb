@@ -41,6 +41,7 @@ module ApplicationHelper
         links << active_link_to("Cohorts", staff_cohorts_path)
         links << active_link_to("Campuses", staff_campuses_path)
         links << active_link_to("Students", students_path)
+        links << active_link_to("Badges", badges_path)
       end
     end
     if user
