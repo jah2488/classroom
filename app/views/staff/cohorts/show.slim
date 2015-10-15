@@ -1,15 +1,13 @@
 = render partial: 'nav', locals: { cohort: cohort }
 .col.s4
   p.muted Student Signup:
-  = cohort.sign_up_url
+  span.right-space id='cohort-signup-url' = cohort.sign_up_url
+  a.btn-floating.waves-effect.waves-light.copy-to-clipboard-button id='cohort-signup-link-button' data-clipboard-target='cohort-signup-url' title='Click to copy cohort sign up url to clipboard'
+    i.material-icons description
 
-- if cohort.students.empty? && adjustments.empty? && !cohort.current_day
-  .row
-    h4.col.offset-l2.l8.m10.offset-m1.s12 Nothing going on with this cohort yet!
-- else
-  .row
-    .col.l6.m6 = render partial: 'ungraded_assignments', locals: { cohort: cohort }
-    .col.l6.m6 = render partial: 'attendance',  locals: { cohort: cohort }
-  .row
-    .col.l6.m12 = render partial: 'students', locals: { students: cohort.students.decorate }
-    .col.l6.m12 = render partial: 'adjustments', locals: { adjustments: adjustments }
+.row
+  .col.s12.l6.m6 = render partial: 'ungraded_assignments', locals: { cohort: cohort }
+  .col.s12.l6.m6 = render partial: 'attendance',  locals: { cohort: cohort }
+.row
+  .col.s12.l6.m12 = render partial: 'students', locals: { students: cohort.students.decorate }
+  .col.s12.l6.m12 = render partial: 'adjustments', locals: { adjustments: adjustments }
