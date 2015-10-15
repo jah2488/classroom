@@ -1,0 +1,16 @@
+= form_for(badge) do |f|
+  .row
+    .input-field
+      i.material-icons.prefix info_outline
+      = f.text_field :name
+      = f.label :name
+  .row
+    .input-field
+      i.material-icons.prefix info_outline
+      = f.text_area :description, class: "materialize-textarea"
+      = f.label :description
+  .row
+    .input-field
+      = f.attachment_field :icon_image, direct: true, presigned: true
+  .row
+    = f.submit "Create", class: "btn"

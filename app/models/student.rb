@@ -14,11 +14,6 @@ class Student < ActiveRecord::Base
     checkins.includes(:adjustment).select { |checkin| checkin.late }
   end
 
-  def badge_list
-    @badges ||= badges.uniq
-    [@badges, Badge.all - @badges]
-  end
-
   def tardies
     checkins.select { |c| c.late }.count
   end

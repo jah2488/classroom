@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get :become
   end
   resources :cohorts, only: :show
+  resources :badges, except: :show
 
   resources :submissions do
     patch :complete
@@ -36,7 +37,6 @@ Rails.application.routes.draw do
     end
     resources :campuses
     resources :students, only: [:show, :edit, :update]
-    resources :badges, except: :index
     resources :ratings, only: [:create, :update]
     resources :tags, only: :create
   end
