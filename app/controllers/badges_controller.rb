@@ -1,24 +1,32 @@
 class BadgesController < ApplicationController
+  after_action :verify_authorized, :except => [:index, :my]
+  after_action :verify_policy_scoped, :only => :index
   def new
+    badge = Badge.new
+    authorize badge
     render locals: {
-      badge: Badge.new
+      badge: badge
     }
   end
 
   def edit
+    badge = Badge.find(params[:id])
+    authorize badge
     render template: 'badges/new', locals: {
-      badge: Badge.find(params[:id])
+      badge: badge
     }
   end
 
   def show
+    badge = Badge.find(params[:id])
+    authorize badge
     render locals: {
-      badge: Badge.find(params[:id])
+      badge: badge
     }
   end
 
   def index
-    badges = Badge.all.decorate
+    badges = policy_scope(Badge).decorate
     render locals: {
       badges: badges
     }
@@ -26,6 +34,7 @@ class BadgesController < ApplicationController
 
   def update
     badge = Badge.find(params[:id])
+    authorize badge
     if badge.update(badge_params)
       redirect_to badges_path, notice: 'Badge updated!'
     else
@@ -35,6 +44,7 @@ class BadgesController < ApplicationController
 
   def destroy
     badge = Badge.find(params[:id])
+    authorize badge
     if badge.destroy
       redirect_to badges_path, notice: "Badge deleted"
     else
@@ -44,6 +54,7 @@ class BadgesController < ApplicationController
 
   def create
     badge = Badge.new(badge_params)
+    authorize badge
     if badge.save
       redirect_to badges_path, notice: 'New badge created!'
     else
