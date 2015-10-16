@@ -1,16 +1,16 @@
 h2 Student Assessment Form
-= form_for @report, url: staff_cohort_reports_path(@cohort) do |f|
+= form_for [:staff, @cohort, @report] do |f|
   .row
     .input-field.col.s12.m6
       = f.collection_select :student_id, @cohort.students, :id, :to_s
       = f.label :student_id
     .input-field.col.s12.m6
-      = f.collection_select :day_id, @cohort.days, :id, :to_s
+      = f.collection_select :day_id, @cohort.days, :id, :to_s, selected: @cohort.days.last.id
       = f.label :day_id
   - %i(participation effort skill overall).each do |metric|
     .row
       .input-field.col.s6.m2
-        = f.collection_select metric, (1..3), :to_i, :to_s
+        = f.collection_select metric, (1..3), :to_i, :to_s, selected: 3
         = f.label metric
     .row
       .input-field.col.s12.m10
