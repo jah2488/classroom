@@ -6,5 +6,7 @@
 .row
   .col.m8.s12 = render partial: 'assignments', locals: { assignments: assignments, student: current_user.student }
   .col.m4.s12 = render partial: 'attendance', locals: { cohort: cohort, current_student: current_user.student }
+  -unless current_user.student.reports.empty?
+    .col.m4.s12 = link_to "View Reports", reports_path, class: "btn"
   .col.m4.s12 = render partial: 'tardies', locals: { current_student: current_user.student }
   .col.m4.s12 = render partial: 'students', locals: { students: students }

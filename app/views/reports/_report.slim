@@ -9,6 +9,8 @@
     p = @report.instructor_name
     h4 Student
     p = @report.student.name
+    - if policy(@report).edit?
+      = link_to "Edit", edit_staff_cohort_report_path(@report.cohort, @report), class: "btn"
   .col.s12.m8.l10
     h1 Bi-Weekly Performance
     p.description
@@ -16,28 +18,28 @@
     h4
       | Participation (
       = @report.participation
-      | )
+      | /3)
     p
       | Comments:
     = content_tag(:p, @report.participation_comments)
     h4
       | Effort (
       = @report.effort
-      | )
+      | /3)
     p
       | Comments:
     = content_tag(:p, @report.effort_comments)
     h4
       | Skill (
       = @report.skill
-      | )
+      | /3)
     p
       | Comments:
     = content_tag(:p, @report.skill_comments)
     h4
       | Overall Performance (
       = @report.overall
-      | )
+      | /3)
     h4
       | Attendance:
     p
