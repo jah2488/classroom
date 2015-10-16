@@ -1,4 +1,4 @@
-.card.grey.darken-3
+.card.grey.darken-2
   .card-content.white-text
     span.card-title Assignments
     nav.grey
@@ -12,6 +12,17 @@
             li = active_link_to "Current Assignment", assignment_path(Assignment.current_for(student))
     = react_component('SearchAssignments', {}, tag: 'span' )
     ul.collapsible.black-text.popout
+      li.full-width
+        .collapsible-header
+          i.material-icons.left language
+          | Icon Reference
+        .collapsible-body.white
+          ul.collection
+            - icon_definitions.each do |icon, message|
+              li.collection-item
+                i.material-icons.left = icon
+                = message
+
       - assignments.each do |assignment|
         - submissions = assignment.submissions_for(student)
         li.full-width
@@ -24,9 +35,11 @@
             - if assignment.completed_by? student
               i.material-icons done
             - elsif assignment.pending_by? student
-              i.material-icons schedule
+              i.material-icons code
             - elsif assignment.incomplete_by? student
               i.material-icons not_interested
+            - elsif assignment.late?
+              i.material-icons report_problem
             - else
               i.material-icons assignment
             = link_to assignment.title, assignment

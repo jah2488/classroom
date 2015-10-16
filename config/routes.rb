@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations', omniauth_callbacks: "users/omniauth_callbacks", }
 
-  resources :reports
+  resources :reports, only: [:show, :index]
   resources :instructors
   resources :checkins
   resources :students do
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     patch :complete
     patch :unfinish
   end
+  resources :ratings, only: [:create, :update]
 
   resources :adjustments, only: :create do
     member do
@@ -37,7 +38,6 @@ Rails.application.routes.draw do
     end
     resources :campuses
     resources :students, only: [:show, :edit, :update]
-    resources :ratings, only: [:create, :update]
     resources :tags, only: :create
   end
 

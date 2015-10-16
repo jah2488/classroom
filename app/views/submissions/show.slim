@@ -20,19 +20,6 @@
       .chip Late
 .row
   .col.m6.s12
-    - if policy(submission).edit?
-      = react_component('EditSubmission', submission: submission)
-    - else
-      = react_component('Submission', submission: submission)
-  - submission.ratings.each_with_index do |rating, index|
-    - if rating.has_feedback?
-      .col.m6.s12
-        .card.grey.lighten-5
-          .card-content.black-text
-            = rating.created_at.in_time_zone(submission.tz).strftime("%l:%M%P %Z, %m/%e")
-            - if current_user.instructor?
-              = react_component('EditRating', rating: rating)
-            - else
-              = react_md(rating.notes)
-- if current_user.instructor?
-  = react_component('GradeSubmissionForm', { badges: Badge.all.map { |badge| badge.as_hash(self) }, submissionID: submission.id, nextForStudent: next_submission_url_for_student(submission), nextForAssignment: next_submission_url_for_assignment(submission)})
+    = react_component('Submission', submission: submission, canEdit: policy(submission).edit?)
+  .col.m6.s12
+    = react_component('SubmissionFeedback', submission: submission, ratings: submission.ratings.reverse, canGrade: policy(submission).complete?)
