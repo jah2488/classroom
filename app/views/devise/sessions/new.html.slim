@@ -1,0 +1,16 @@
+h2 Log in
+
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .input-field
+    = f.text_field :email, required: true, autofocus: true
+    = f.label :email
+  .input-field
+    = f.password_field :password, required: true
+    = f.label :password
+  .row
+    .col.l2
+      = f.check_box :remember_me
+      = f.label :remember_me
+    .col.l2.offset-l4
+      = f.submit "Log in", class: "btn"
+= render "devise/shared/links"
