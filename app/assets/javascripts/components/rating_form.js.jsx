@@ -10,6 +10,7 @@ var RatingForm = React.createClass({
                     }
                 }).success(function (response) {
                     $('#grade-modal').closeModal();
+                    location.reload();
                 }.bind(this));
         },
 
