@@ -1,5 +1,5 @@
 - if cohort.current_day
-  .card.blue.darken-3
+  .card.grey.darken-2
     .card-content.white-text
       span.card-title = t('.attendance')
       p
@@ -11,7 +11,7 @@
       p = cohort.current_day.override_code
     .card-action
       a.activator Check-ins
-    .card-reveal.blue
+    .card-reveal.grey
       span.card-title.white-text
         | Today's checkins
         .right == material_icon.close
@@ -26,7 +26,7 @@
               p = c.checkin_status
               = link_to material_icon.perm_identity, student_path(c.student), class: "secondary-content"
 - else
-  .card.blue.darken-3
+  .card.grey.darken-2
     .card-content.white-text
       span.card-title = t('.attendance')
       p No day has been created for today.
