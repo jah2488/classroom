@@ -6,6 +6,7 @@ class Student < ActiveRecord::Base
   has_many :complete_assignments, -> { where(submissions: { completed: true }).uniq }, through: :submissions, source: :assignment
   has_many :badges, through: :submissions
   has_many :checkins
+  has_many :reports
   has_many :adjustments, through: :checkins
   accepts_nested_attributes_for :user
   validates_presence_of :cohort
