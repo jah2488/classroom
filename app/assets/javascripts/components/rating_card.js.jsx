@@ -33,23 +33,26 @@ var RatingCard = React.createClass({
                                 <span className="card-title black-text">Feedback from <TimeField time={this.props.rating.created_at}/></span>
                                 {this.ratingBody()}
                                 </div>
-                                <div className="card-action">
                                 {this.renderActions()}
-                                </div>
                                 </div>
 
                       )
         },
         renderActions: function () {
-                if (this.state.editing) {
+                if (!this.props.canGrade) {
+                        return (<div/>)
+                } else if (this.state.editing) {
                         return (
-                                        <div>
+                                <div className="card-action">
                                         <a onClick={this.setEditing.bind(this, false)}>Cancel</a>
                                         <a onClick={this.update}>Save</a>
                                         </div>
                                );
                 } else {
-                        return (<a onClick={this.setEditing.bind(this, true)}>Edit</a>);
+                        return (
+                                <div className="card-action">
+                                        <a onClick={this.setEditing.bind(this, true)}>Edit</a>
+                                        </div>);
                 }
         },
         ratingBody: function() {

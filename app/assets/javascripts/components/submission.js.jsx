@@ -19,14 +19,15 @@ var Submission = React.createClass({
         update: function () {
                 jQuery.ajax({
                         method: 'PATCH',
+                        dataType: 'JSON',
                         url: '/submissions/' + this.state.submission.id,
                         data: {
                                 submission: {
-                                        link: this.refs.link.state.value,
-                                        notes: this.refs.notes.state.value
+                                        link: this.state.submission.link,
+                                        notes: this.state.submission.notes
                                 }
                         }
-                }).done(function (response) {
+                }).success(function (response) {
                         this.setState({ submission: response, editing: false });
                 }.bind(this));
         },
@@ -39,23 +40,26 @@ var Submission = React.createClass({
                                 <p>{this.submissionLink()}</p>
                                 {this.submissionNotes()}
                                 </div>
-                                <div className="card-action">
                                 {this.renderActions()}
-                                </div>
                                 </div>
                        );
         },
 
         renderActions: function () {
-                if (this.state.editing) {
+                if (!this.props.canEdit) {
+                        return (<div/>)
+                } else if (this.state.editing) {
                         return (
-                                        <div>
+                                <div className="card-action">
                                         <a onClick={this.setEditing.bind(this, false)}>Cancel</a>
                                         <a onClick={this.update}>Save</a>
                                         </div>
                                );
                 } else {
-                        return (<a onClick={this.setEditing.bind(this, true)}>Edit</a>);
+                        return (
+                                <div className="card-action">
+                                        <a onClick={this.setEditing.bind(this, true)}>Edit</a>
+                                        </div>);
                 }
         },
         submissionLink: function () {
