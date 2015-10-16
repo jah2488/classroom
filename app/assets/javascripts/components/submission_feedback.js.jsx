@@ -17,9 +17,11 @@ var SubmissionFeedback = React.createClass({
                 <div>
                         <RatingList ratings={this.state.ratings} />
                         <RatingForm badges={this.props.badges} submission={this.props.submission} />
-                        <a className="modal-trigger waves-effect waves-light btn-flat" onClick={this.openModal}>
-                          <i className="material-icons right">assignment</i>Grade
-                        </a>
+                        <div className="fixed-action-btn" htmlStyle="bottom: 45px; right: 24px;">
+                                <a className="btn-floating btn-large blue" onClick={this.openModal}>
+                                  <i className="material-icons large">feedback</i>
+                                </a>
+                        </div>
                 </div>
             );
             } else {

@@ -2,24 +2,22 @@
   .col.m4
     h1 = link_to submission.assignment.title, submission.assignment
 .row
-  .col.m2= link_to student_path(submission.student) do
+  .col.m3= link_to student_path(submission.student) do
     .chip
       = image_tag submission.student.avatar_url
       = submission.student.pretty_name
-  .col.m2
+  .col.m3
     strong
       ' Due:
     = react_time submission.assignment.due_date
-  .col.m2
+  .col.m3
     strong
       ' Turned In:
     = react_time submission.created_at
-  .col.m2
+  .col.m3
     .chip = submission.label
     - if submission.late
       .chip Late
-  .col.m2
-    - if current_user.instructor?
 .row
   .col.m6.s12
     = react_component('Submission', submission: submission, canEdit: policy(submission).edit?)
