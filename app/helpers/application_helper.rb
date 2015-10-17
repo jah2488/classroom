@@ -58,7 +58,8 @@ module ApplicationHelper
       [:chat_bubble_outline, 'No feedback has been left on this assignment.'],
       [:done, 'This assignment is completed. Good job!'],
       [:code, 'This assignment is currently in code review.'],
-      [:report_problem, 'This assignment was marked as incomplete.'],
+      [:not_interested, 'This assignment was marked as incomplete.'],
+      [:report_problem, 'This assignment has no submissions and is now late.'],
       [:assignment, 'This is an assignment. You probably have several of these.'],
     ]
   end
