@@ -9,7 +9,7 @@
 //= require marked
 //= require moment
 //= require datetimepicker
-//= require zeroclipboard
+//= require clipboard
 //
 //= require location
 //= require react
@@ -28,10 +28,7 @@ var ready = function() {
         $('select').material_select();
         jQuery('.datetimepicker').datetimepicker();
 
-        var newInstructorClip = new ZeroClipboard(jQuery('#new-cohort-signup-link-button'));
-        var signup_url_clip   = new ZeroClipboard(jQuery('#cohort-signup-link-button'));
-        var assignment_clip   = new ZeroClipboard(jQuery('#assignment-url-button'));
-
+        new Clipboard('.clippy');
 
         if(_loggedIn && (Location.distance === undefined || Location.distance === 0)) {
                 Location.getCohortPosition();

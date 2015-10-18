@@ -6,7 +6,8 @@ var StudentEnroll = React.createClass({
         render: function() {
                 return (
                                 <div>
-                                <a onClick={this.openModal}>Enroll</a>
+                                <a href="#" onClick={this.openModal}>Enroll</a>
+                                <a className="clippy" href="#" data-clipboard-text={this.props.enrollURL}>Copy Enrollment URL</a>
                                 <div id="enroll-modal" className="modal bottom-sheet">
                                 <div className="modal-content">
                                 <CohortLookup onSelect={this.cohortSelected}/>

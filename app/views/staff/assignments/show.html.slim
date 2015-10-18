@@ -1,10 +1,4 @@
 = render partial: 'nav', locals: { cohort: assignment.cohort.decorate}
-.col.s4
-  p.muted Student Link:
-  span.right-space id='assignment-url' = assignment_url(assignment)
-  a.btn-floating.waves-effect.waves-light.copy-to-clipboard-button id='assignment-url-button' data-clipboard-target='assignment-url' title='Click to copy assignment url to clipboard'
-    i.material-icons description
-
 .row
   h3.col.s12.m6 = assignment.title
   .col.s6.m3
@@ -15,6 +9,8 @@
     i.material-icons schedule
     ' Opens
     = react_time(assignment.start_at)
+.row
+  a.clippy.btn href="#" data-clipboard-text="#{assignment_url(assignment)}" Copy Student URL
 .row = react_md assignment.info
 .row
   .col.s12
