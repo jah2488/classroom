@@ -6,10 +6,15 @@
     i.material-icons description
 
 .row
-  h3.col.s12.m8 = assignment.title
-  h4.col.s12.m4
-    | Due:
+  h3.col.s12.m6 = assignment.title
+  .col.s6.m3
+    i.material-icons alarm
+    ' Due
     = react_time(assignment.due_date)
+  .col.s6.m3
+    i.material-icons schedule
+    ' Opens
+    = react_time(assignment.start_at)
 .row = react_md assignment.info
 .row
   .col.s12

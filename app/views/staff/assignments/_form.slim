@@ -14,11 +14,11 @@
       = f.text_field :title, required: true, class: "validate"
       = f.label :title
     .input-field.col.m3.s6
-      i.material-icons.prefix query_builder
+      i.material-icons.prefix alarm
       = f.text_field :due_date, class: 'datetimepicker', required: true
       = f.label :due_date
     .input-field.col.m3.s6
-      i.material-icons.prefix query_builder
+      i.material-icons.prefix schedule
       = f.text_field :start_at, class: 'datetimepicker', value: Time.now, required: true
       = f.label :start_at
   .row
