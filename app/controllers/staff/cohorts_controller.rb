@@ -22,6 +22,14 @@ class Staff::CohortsController < Staff::ApplicationController
     }
   end
 
+  def archive
+    cohort = Cohort.find(params[:cohort_id])
+    if cohort.update(archived: true)
+      redirect_to staff_cohorts_path, notice: "Cohort archived"
+    else
+      render :show
+    end
+  end
   def index
     @cohorts = CohortDecorator.decorate_collection(Cohort.all.order(:created_at))
   end

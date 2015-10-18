@@ -5,7 +5,7 @@ class Cohort < ActiveRecord::Base
   has_many :days, dependent: :destroy
   has_and_belongs_to_many :instructors
   validates :start_date, :name, :campus_id, presence: true
-
+  default_scope { where(archived: false) }
   def self.search(current_user, query)
     if current_user.instructor?
       Cohort.where("name ILIKE (?)", "%#{query}%")

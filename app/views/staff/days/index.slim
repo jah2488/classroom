@@ -1,17 +1,19 @@
 = render partial: 'nav', locals: { cohort: cohort }
 .row
-  .col.m6.s12
+  .col.m4.s6
     p
       strong = "First Day : "
       = cohort.start_date.to_date
-  .col.m6.s12
+  .col.m4.s6
     p
       strong = "Instructor(s) : "
       - if cohort.instructors.empty?
          TBD
       - else
         - cohort.instructors.each do |instructor|
-           = link_to instructor.name, instructor
+          = link_to instructor.name, instructor
+  .col.m4.s12
+    p= link_to "Archive", staff_cohort_archive_path(cohort), method: :put, class: "btn-flat red-text"
 .row
   .col.m12
     = render partial: "calendar", locals: { cohort: cohort }
