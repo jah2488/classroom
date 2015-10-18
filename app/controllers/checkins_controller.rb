@@ -1,15 +1,17 @@
 class CheckinsController < ApplicationController
+  after_action :verify_authorized, :except => :index
   def create
     # Hardcoded business rules :(
     # -- In a controller of all places too. Ugh.
     #
 
+    checkin         = Checkin.new
+    authorize checkin
     day = current_user.student.cohort.current_day
 
-    if day.has_checkin_for?(current_user.student)
-      render json: '', status: :unauthorized
+    if !day || day.has_checkin_for?(current_user.student)
+      render json: '', status: :bad_request
     else
-      checkin         = Checkin.new
       checkin.student = current_user.student
       checkin.day     = day
       provided_code   = params.fetch(:override_code, 'none')

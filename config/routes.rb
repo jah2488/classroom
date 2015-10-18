@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :reports, only: [:show, :index]
   resources :instructors
-  resources :checkins
+  resources :checkins, only: :create
   resources :students, except: [:new] do
     get :become
   end
