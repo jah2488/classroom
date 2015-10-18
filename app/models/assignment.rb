@@ -15,7 +15,7 @@ class Assignment < ActiveRecord::Base
   end
 
   def self.for(student)
-    where(cohort_id: student.cohort_id).includes(:submissions).order(due_date: :DESC)
+    where("cohort_id = ? AND (start_at < ? OR start_at IS NULL)", student.cohort_id, Time.now).includes(:submissions).order(due_date: :DESC)
   end
 
   def self.current_for(student)

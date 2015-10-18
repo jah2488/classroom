@@ -1,6 +1,10 @@
 class AssignmentPolicy < ApplicationPolicy
   def show?
-    user.instructor? || (user.student? && same_cohort(user.student, record))
+    if user.instructor?
+      true
+    elsif user.student?
+      same_cohort(user.student, record) && started
+    end
   end
 
   def edit?
@@ -25,6 +29,11 @@ class AssignmentPolicy < ApplicationPolicy
 
   def same_cohort a, b
     a.cohort_id == b.cohort_id
+  end
+
+  def started
+    return true unless record.start_at
+    record.start_at < Time.now
   end
 
   class Scope < Scope

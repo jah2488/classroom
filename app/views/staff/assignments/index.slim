@@ -6,7 +6,7 @@
         .card-content.white-text
           span.card-title = assignment.title
           p = assignment.decorate.due_date_in_words
-          p = react_md(assignment.info[0,200] + "...")
+          p = assignment.decorate.start_in_words
         .card-action
           = link_to "View", staff_cohort_assignment_path(cohort, assignment)
 - if policy(Assignment).create?

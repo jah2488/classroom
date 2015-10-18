@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150917194048) do
+ActiveRecord::Schema.define(version: 20151018175742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,8 +41,9 @@ ActiveRecord::Schema.define(version: 20150917194048) do
     t.text     "info"
     t.datetime "due_date"
     t.integer  "cohort_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.datetime "start_at",   default: "now()"
   end
 
   add_index "assignments", ["cohort_id"], name: "index_assignments_on_cohort_id", using: :btree
