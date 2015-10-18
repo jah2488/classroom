@@ -11,6 +11,20 @@ class Student < ActiveRecord::Base
   accepts_nested_attributes_for :user
   validates_presence_of :cohort
 
+  def self.search(user, query)
+    users = User.where("email || ' ' || name ILIKE (?)", "%#{query}%")
+    students = users.map(&:student)
+    if user && user.instructor?
+      instructor = user.instructor
+      students.select{|s| instructor.has_student?(s)}
+    elsif user && user.student?
+      cohort_id = user.student.cohort_id
+      students.select{|s| s.cohort_id == cohort_id}
+    else
+      []
+    end
+  end
+
   def marked_checkins
     checkins.includes(:adjustment).select { |checkin| checkin.late }
   end

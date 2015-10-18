@@ -1,6 +1,10 @@
 class CohortsController < ApplicationController
   after_action :verify_authorized, :except => [:index, :my]
-  after_action :verify_policy_scoped, :only => :index
+
+  def index
+    cohorts = Cohort.search(current_user, params[:q])
+    render json: cohorts
+  end
 
   def show
     @cohort      = Cohort.find(params[:id]).decorate

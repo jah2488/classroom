@@ -1,22 +1,19 @@
-- unless students.empty?
-- if students.empty?
-  .card.grey.darken-2
-    .card-content.white-text
-      span.card-title = t('.students')
+.card.grey.darken-2
+  .card-content.white-text
+    span.card-title = t('.students')
+    - if students.empty?
       p No Students are in this class yet.
-    .card-action
-      button.btn.copy-to-clipboard-button id='new-cohort-signup-link-button' title='Click to copy cohort sign up url to clipboard' data-clipboard-target='cohort-signup-url'
-        | Copy Cohort Signup URL to Clipboard
-        i.material-icons.right description
-- else
-  .card.grey.darken-2
-    .card-content.white-text
-        span.card-title = t('.students')
-        ul.collection
-          - students.each do |student|
-            li.collection-item.avatar.black-text
-              = link_to student_path(student) do
-                = image_tag student.avatar_url(64), class: 'circle'
-                span.title = student.decorate.pretty_name
-                - if policy(student).grades?
-                  p = student.info
+    - else
+      ul.collection
+        - students.each do |student|
+          li.collection-item.avatar.black-text
+            = link_to student_path(student) do
+              = image_tag student.avatar_url(64), class: 'circle'
+              span.title = student.decorate.pretty_name
+              - if policy(student).grades?
+                p = student.info
+  .card-action
+    - if policy(Student).create?
+      = react_component('StudentEnroll')
+      a.copy-to-clipboard-button#new-cohort-signup-link-button title='Click to copy cohort sign up url to clipboard' data-clipboard-target='cohort-signup-url'
+        | Signup URL

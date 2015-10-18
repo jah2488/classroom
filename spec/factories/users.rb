@@ -12,6 +12,7 @@ FactoryGirl.define do
     factory :full_user do
       name { Faker::Name.name }
       github { Faker::Internet.user_name(name) }
+      phone { Faker::PhoneNumber.cell_phone }
     end
   end
 end

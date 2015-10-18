@@ -1,12 +1,27 @@
 class StudentsController < ApplicationController
   after_action :verify_authorized, :except => :index
-  after_action :verify_policy_scoped, :only => :index
 
   def index
-    students = policy_scope(Student).decorate
-    render locals: {
-      students: students
-    }
+    if params[:q]
+      students = Student.search(current_user, params[:q])
+    else
+      students = policy_scope(Student)
+    end
+    students = StudentDecorator.decorate_collection(students)
+    respond_to do |format|
+      format.html { render locals: { students: students }}
+      format.json { render json: students }
+    end
+  end
+
+  def create
+    student = Student.new(params.require(:student).permit(:cohort_id, :user_id))
+    authorize student
+    if student.save
+      redirect_to student_path(student), notice: I18n.t('.created', resource: I18n.t('.student'))
+    else
+      render :new, locals: { student: student }
+    end
   end
 
   def show

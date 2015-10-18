@@ -135,7 +135,6 @@ ActiveRecord::Schema.define(version: 20151018175742) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.string   "phone"
     t.string   "blog"
     t.text     "bio"
     t.integer  "cohort_id",      null: false

@@ -7,6 +7,14 @@ class User < ActiveRecord::Base
   has_one :student
   has_gravatar
 
+  def self.search(current_user, query)
+    if current_user.instructor?
+      User.where("email || ' ' || name ILIKE (?)", "%#{query}%")
+    else
+      [current_user]
+    end
+  end
+
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.find_by(email: data["email"])
