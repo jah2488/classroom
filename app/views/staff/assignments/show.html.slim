@@ -1,16 +1,23 @@
 = render partial: 'nav', locals: { cohort: assignment.cohort.decorate}
 .row
-  h3.col.s12.m6 = assignment.title
-  .col.s6.m3
-    i.material-icons alarm
+  h3 = assignment.title
+.row
+  .col.m3.s12
+    i.material-icons.left alarm
     ' Due
     = react_time(assignment.due_date)
-  .col.s6.m3
-    i.material-icons schedule
+  .col.m3.s12
+    i.material-icons.left schedule
     ' Opens
     = react_time(assignment.start_at)
-.row
-  a.clippy.btn href="#" data-clipboard-text="#{assignment_url(assignment)}" Copy Student URL
+  .col.m3.s12
+    a.clippy.btn-flat href="#" data-clipboard-text="#{assignment_url(assignment)}"
+      i.material-icons.left content_copy
+      | Student URL
+  .col.m3.s12
+    a.clippy.btn-flat href="#" data-clipboard-text="#{assignment.info}"
+      i.material-icons.left content_copy
+      | Assignment Body
 .row = react_md assignment.info
 .row
   .col.s12
