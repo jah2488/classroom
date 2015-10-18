@@ -1,8 +1,13 @@
 .row
   h3.col.m4 = assignment.title
-  h3.col.m5.offset-m3
+  .col.m4
+    i.material-icons.prefix alarm
     ' Due:
     = react_time(assignment.due_date)
+  .col.m4
+    i.material-icons.prefix schedule
+    ' Assigned
+    = react_time(assignment.start_at)
 .row = react_md assignment.info
 .fixed-action-btn style="bottom: 45px; right: 24px;"
   = link_to new_submission_path(assignment: assignment.id), class: "btn-floating btn-large waves-effect waves-light green" do

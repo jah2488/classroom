@@ -35,9 +35,7 @@ class Staff::AssignmentsController < Staff::ApplicationController
 
   def create
     cohort = Cohort.find(params[:cohort_id])
-    params[:assignment][:due_date] = ActiveSupport::TimeZone[cohort.tz].parse(params[:assignment][:due_date])
-    params[:assignment][:start_at] = ActiveSupport::TimeZone[cohort.tz].parse(params[:assignment][:start_at])
-    assignment = Assignment.new(assignment_params)
+    assignment = Assignment.new(assignment_params cohort)
     assignment.cohort   = cohort
     if assignment.save
       redirect_to staff_cohort_assignment_path(cohort, assignment), notice: 'Assignment successfully created'
@@ -48,9 +46,7 @@ class Staff::AssignmentsController < Staff::ApplicationController
 
   def update
     assignment = Assignment.find(params[:id])
-    params[:assignment][:due_date] = ActiveSupport::TimeZone[assignment.cohort.tz].parse(params[:assignment][:due_date])
-    params[:assignment][:start_at] = ActiveSupport::TimeZone[assignment.cohort.tz].parse(params[:assignment][:start_at])
-    if assignment.update(assignment_params)
+    if assignment.update(assignment_params(assignment.cohort))
       redirect_to staff_cohort_assignment_path(assignment.cohort, assignment), notice: 'Assignment updated'
     else
       render :edit, alert: 'Assignment could not be updated', status: 422, locals: { cohort: assignment.cohort.decorate, assignment: assignment }
@@ -59,7 +55,9 @@ class Staff::AssignmentsController < Staff::ApplicationController
 
   private
 
-  def assignment_params
+  def assignment_params cohort
+    params[:assignment][:due_date] = ActiveSupport::TimeZone[cohort.tz].parse(params[:assignment][:due_date]) if params[:assignment][:due_date]
+    params[:assignment][:start_at] = ActiveSupport::TimeZone[cohort.tz].parse(params[:assignment][:start_at]) if params[:assignment][:start_at]
     params.require(:assignment).permit(:title, :due_date, :start_at, :info, tag_ids: [])
   end
 end
