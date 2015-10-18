@@ -6,23 +6,25 @@ var CohortLookup = React.createClass({
         render: function() {
                 if(this.state.cohort) {
                         return (
-                                        <div>
-                                        <p>Cohort selected: {this.state.cohort.name}</p>
-                                        <button onClick={this.clearCohort}>Clear</button>
+                                        <div className="row">
+                                          {this.state.cohort.name}
+                                                <button className="btn-flat right" onClick={this.clearCohort}>Clear
+                                                  <i className="material-icons right">close</i>
+                                                </button>
                                         </div>
                                )
                 } else {
                         return (
                                         <div>
-                                        <div className='form'>
-                                        <label htmlFor='query'>Cohort</label>
+                                        <div className='input-field'>
                                         <input type='text' name='query' onChange={this.onChange} />
+                                        <label htmlFor='query'>Cohort</label>
                                         </div>
-                                        <ul>
+                                        <div className="collection">
                                         {this.state.cohorts.map(function(cohort, i) {
-                                                                                            return <li key={cohort.id}><Cohort onClick={this.selectCohort.bind(this, i)} data={cohort} /></li>;
+                                                                                            return <a key={cohort.id} className="collection-item"><Cohort onClick={this.selectCohort.bind(this, i)} data={cohort} /></a>;
                                                                                     }, this)}
-                                        </ul>
+                                        </div>
                                         </div>
                                );
                 }

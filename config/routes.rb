@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   resources :reports, only: [:show, :index]
   resources :instructors
   resources :checkins
-  resources :students do
+  resources :students, except: [:new] do
     get :become
   end
+
   resources :badges, except: :show
   resources :cohorts, only: [:show, :index]
   resources :users, only: :index

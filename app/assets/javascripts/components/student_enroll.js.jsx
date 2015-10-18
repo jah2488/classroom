@@ -1,14 +1,21 @@
 var StudentEnroll = React.createClass({
-        getInitialState: function() {
-                return {msg: ''};
+        openModal: function() {
+                jQuery('#enroll-modal').openModal();
         },
+
         render: function() {
                 return (
                                 <div>
+                                <a onClick={this.openModal}>Enroll</a>
+                                <div id="enroll-modal" className="modal bottom-sheet">
+                                <div className="modal-content">
                                 <CohortLookup onSelect={this.cohortSelected}/>
                                 <UserLookup onSelect={this.userSelected}/>
-                                <button className='btn btn-success' onClick={this.enroll}>Enroll</button>
-                                <span>{this.state.msg}</span>
+                                <div className="modal-footer">
+                                <a className='modal-action modal-close waves-effect waves-green btn-flat' onClick={this.enroll}>Enroll</a>
+                                </div>
+                                </div>
+                                </div>
                                 </div>
                        );
         },
@@ -26,13 +33,9 @@ var StudentEnroll = React.createClass({
                         method: 'POST',
                         url: '/students',
                         data: { student: { user_id: this.state.user.id, cohort_id: this.state.cohort.id } }
-                }).done(function (response) {
-                        if (this.props.callback) {
-                                this.props.callback(response);
-                        }
-                        this.setState({msg: "Enrolled " + this.state.user.name});
-                }.bind(this)).fail(function () {
-                        this.setState({msg: "Failed"});
-                });
+                }).success(function (response) {
+                        jQuery("#enroll-modal").closeModal();
+                        location.reload();
+                }.bind(this));
         }
 });

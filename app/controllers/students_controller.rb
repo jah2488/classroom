@@ -14,14 +14,6 @@ class StudentsController < ApplicationController
     end
   end
 
-  def new
-    student = Student.new
-    authorize student
-    render locals: {
-      student: student
-    }
-  end
-
   def create
     student = Student.new(params.require(:student).permit(:cohort_id, :user_id))
     authorize student

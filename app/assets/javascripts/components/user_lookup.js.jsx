@@ -6,23 +6,25 @@ var UserLookup = React.createClass({
         render: function() {
                 if(this.state.user) {
                         return (
-                                        <div>
-                                        <p>User selected: {this.state.user.email}</p>
-                                        <button onClick={this.clearUser}>Clear</button>
+                                        <div className="row">
+                                        {this.state.user.email}
+                                        <button className="btn-flat right" onClick={this.clearUser}>Clear
+                                          <i className="material-icons right">close</i>
+                                        </button>
                                         </div>
                                )
                 } else {
                         return (
                                         <div>
-                                        <div className='form'>
-                                        <label htmlFor='query'>User</label>
+                                        <div className='input-field'>
                                         <input type='text' name='query' onChange={this.onChange} />
+                                        <label htmlFor='query'>User</label>
                                         </div>
-                                        <ul>
+                                        <div className="collection">
                                         {this.state.users.map(function(user, i) {
-                                                                                        return <li key={user.id}><User onClick={this.selectUser.bind(this, i)} data={user} /></li>;
+                                                                                        return <a key={user.id} className="collection-item"><User onClick={this.selectUser.bind(this, i)} data={user} /></a>;
                                                                                 }, this)}
-                                        </ul>
+                                        </div>
                                         </div>
                                );
                 }
