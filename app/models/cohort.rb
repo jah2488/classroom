@@ -38,7 +38,7 @@ class Cohort < ActiveRecord::Base
   end
 
   def due_assignments
-    assignments.where("due_date >= ?", Time.now)
+    assignments.where("due_date <= ?", Time.now)
   end
 
   def start_date= val

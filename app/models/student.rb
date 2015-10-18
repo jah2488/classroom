@@ -42,11 +42,13 @@ class Student < ActiveRecord::Base
   end
 
   def complete_percentage
-    (complete_assignments.count.to_f / cohort.due_assignments.count.to_f).round(2)
+    due_count = cohort.due_assignments.count
+    return 100 if due_count == 0
+    (complete_assignments.where("due_date <= ?", Time.now).count.to_f / due_count.to_f).round(2)
   end
 
   def past_due_count
-    Assignment.late_for(self).count
+    Assignment.for(self).late.count
   end
 
   def name
