@@ -6,6 +6,11 @@ var MarkdownField = React.createClass({
             text: ''
         };
     },
+
+    componentDidMount: function () {
+      jQuery('#markdown-area').trigger('autoresize')
+    },
+
     handleChange: function (event) {
         this.setState({ text: event.target.value });
     },
