@@ -38,33 +38,25 @@
       .card.grey.darken-1
         .card-content.white-text
           span.card-title Stats
-          table.table.table-hover
+          table
             tbody
               tr
-                td.align-middle
-                  | Tardies
+                td Tardies
                 td
-                  h3
-                    = student.tardies
+                  h3 = student.tardies
               tr
-                td.align-middle
-                  | Absences
+                td Absences
                 td
-                  h3
-                    = student.absences
+                  h3 = student.absences
               tr
-                td.align-middle
+                td
                   | Completed Assignments
                 td
-                  h3
-                    = student.complete_percentage * 100
-                    | %
+                  h3 = student.complete_percentage
               tr
-                td.align-middle
-                  | Past Due Assignments
+                td Past Due Assignments
                 td
-                  h3
-                    = student.past_due_count
+                  h3 = student.past_due_count
   - if policy(student).grades?
     .row
       .col.m12.l12.s12

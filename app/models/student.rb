@@ -38,11 +38,11 @@ class Student < ActiveRecord::Base
   end
 
   def completed_assignments
-    submissions.where(completed: true)
+    Assignment.complete_for(self)
   end
 
   def complete_percentage
-    (complete_assignments.count.to_f / cohort.assignments.count.to_f).round(2)
+    (complete_assignments.count.to_f / cohort.due_assignments.count.to_f).round(2)
   end
 
   def past_due_count
