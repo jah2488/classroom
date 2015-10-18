@@ -58,10 +58,10 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    params.require(:student).permit(:phone, :blog, :bio, :twitter)
+    params.require(:student).permit(:blog, :bio, :twitter)
   end
 
   def user_params
-    params.require(:student).require(:user_attributes).permit(:name, :github, :email)
+    params.require(:student).require(:user_attributes).permit(:name, :github, :phone, :email)
   end
 end
