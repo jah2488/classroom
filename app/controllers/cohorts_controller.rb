@@ -22,8 +22,10 @@ class CohortsController < ApplicationController
   def my
     if current_user && current_user.student?
       redirect_to cohort_path(current_user.student.cohort)
+    elsif current_user && current_user.instructor? && session[:cohort_id]
+      redirect_to staff_cohort_path(session[:cohort_id])
     elsif current_user && current_user.instructor?
-      redirect_to staff_cohorts_path if current_user.instructor?
+      redirect_to staff_cohorts_path
     else
       render layout: "application", html: "Not enrolled in a cohort. Contact your instructor."
     end
