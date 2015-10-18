@@ -58,6 +58,6 @@ class Staff::AssignmentsController < Staff::ApplicationController
   private
 
   def assignment_params
-    params.require(:assignment).permit(:title, :due_date, :info, tag_ids: [])
+    params.require(:assignment).permit(:title, :due_date, :start_at, :info, tag_ids: [])
   end
 end

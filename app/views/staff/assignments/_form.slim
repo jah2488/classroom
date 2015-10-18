@@ -9,14 +9,18 @@
         - assignment.errors.full_messages.each do |msg|
           li = msg
   .row
-    .input-field.col.s6
+    .input-field.col.m6.s12
       i.material-icons.prefix info_outline
       = f.text_field :title, required: true, class: "validate"
       = f.label :title
-    .input-field.col.s6
+    .input-field.col.m3.s6
       i.material-icons.prefix query_builder
-      = f.text_field :due_date, class: 'datetimepicker', value: (Time.zone.tomorrow + 8.hours), required: true
+      = f.text_field :due_date, class: 'datetimepicker', required: true
       = f.label :due_date
+    .input-field.col.m3.s6
+      i.material-icons.prefix query_builder
+      = f.text_field :start_at, class: 'datetimepicker', value: Time.now, required: true
+      = f.label :start_at
   .row
     .input-field.col.s12
       i.material-icons.prefix mode_edit
