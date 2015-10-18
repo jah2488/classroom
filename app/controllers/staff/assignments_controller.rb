@@ -1,9 +1,11 @@
 class Staff::AssignmentsController < Staff::ApplicationController
 
   def new
+    cohort = Cohort.find(params[:cohort_id]).decorate
+    assignment = Assignment.new(cohort: cohort)
     render locals: {
-      assignment: Assignment.new,
-      cohort: Cohort.find(params[:cohort_id]).decorate
+      assignment: assignment,
+      cohort: cohort
     }
   end
 

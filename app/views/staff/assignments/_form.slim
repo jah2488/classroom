@@ -1,4 +1,4 @@
-= form_for(assignment, url: staff_cohort_assignments_path, method: :post) do |f|
+= form_for [:staff, assignment.cohort, assignment] do |f|
   - if assignment.errors.any?
     #error_explanation
       .alert.alert-warning.flash[role="alert"]
