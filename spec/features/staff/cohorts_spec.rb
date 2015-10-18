@@ -22,6 +22,13 @@ RSpec.feature "Cohort instructor view", type: :feature do
     end
   end
 
+  scenario 'archiving a cohort' do
+    cohort = create :cohort
+    sign_in(instructor)
+    visit(staff_cohort_days_path(cohort))
+    click_link("Archive")
+    expect(page).to_not have_content(cohort.name)
+  end
   scenario 'creating a cohort' do
     create :campus, name: 'Moon'
     sign_in(instructor)

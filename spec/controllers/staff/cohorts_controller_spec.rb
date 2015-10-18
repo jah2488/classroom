@@ -10,4 +10,11 @@ describe Staff::CohortsController do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe "PUT #archive" do
+    it "archives a cohort" do
+      sign_in instructor_user
+      expect{put :archive, cohort_id: cohort.id; cohort.reload}.to change(cohort, :archived).to true
+    end
+  end
 end

@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   namespace 'staff' do
     root to: 'cohorts#show'
     resources :cohorts do
+      put :archive
       resources :days
       resources :assignments
       resources :reports
