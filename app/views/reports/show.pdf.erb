@@ -61,20 +61,34 @@
         font-family: 'Patua One', serif;
         font-weight: bold;
       }
+      h1 {
+        font-size: 24pt;
+      }
       h2 {
+        font-size: 20pt;
         margin-bottom: 0px;
+      }
+      h3 {
+        font-size: 18pt;
+      }
+      h4 {
+        font-size: 16pt;
+      }
+      p {
+        font-family: sans-serif;
+        font-size: 12pt;
       }
       p strong {
         font-style: italic;
       }
       p.description {
-        font-size: 10pt;
+        font-size: 8pt;
       }
     </style>
   </head>
   <body onready='loadFonts()' onload='loadFonts()'>
       <div class='row'>
-        <div class='col m3'>
+        <div class='col s3'>
           <h1><%= wicked_pdf_image_tag 'iron-yard-logo.svg' %></h1>
           <h4>Campus</h4>
           <p><%= @report.campus_name %></p>
@@ -88,7 +102,7 @@
           <h4>Student</h4>
           <p><%= @report.student_name %></p>
         </div>
-        <div class='col m9'>
+        <div class='col s9'>
           <h1>Bi-Weekly Performance</h1>
           <p class='description'>TIY students will be assessed every two weeks during the regular session, and every week during the final project (unless otherwise noted by the Instructor. On a biweekly basis, students will be assessed on their participation, effort, and skill on a Likert scale from 1 (unsatisfactory) to 3 (satisfactory) with room for comments. In addition, students’ overall performance and accountability will be assessed, including attendance and meeting homework and career assistance deadlines.</p>
 
@@ -110,7 +124,7 @@
             <h4>Completed assignments:</h4>
             <p>Student has completed <%= @report.completed_assignments %> of <%= @report.total_assignments %> assignments in total during the 12-week session</p>
             <h4>Comments:</h4>
-            <p><%= content_tag(:p, @report.overall_comments) %></p>
+            <%= content_tag(:p, @report.overall_comments) %>
             <h3><%= @report.status %></h3>
 
             <p class='description'><strong>Satisfactory:</strong> Meeting course standards and requirements; continues receiving career support and ability to present at Demo Day.</p>

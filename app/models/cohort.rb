@@ -37,6 +37,10 @@ class Cohort < ActiveRecord::Base
     Submission.ungraded_for self
   end
 
+  def due_assignments
+    assignments.where("due_date <= ?", Time.now)
+  end
+
   def start_date= val
     return unless val.to_datetime
     self.start_time = val.to_datetime.change(offset: tz_offset).beginning_of_day

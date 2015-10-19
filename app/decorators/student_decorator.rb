@@ -8,6 +8,9 @@ class StudentDecorator < Draper::Decorator
     end
   end
 
+  def complete_percentage
+    (object.complete_percentage * 100).round.to_s + "%"
+  end
   def github
     object.user.decorate.github if user
   end

@@ -1,0 +1,16 @@
+- unless reports.empty?
+  .card.grey.darken-2
+    .card-content.white-text
+      span.card-title Reports
+      table
+        thead
+          tr
+            th Day
+            th Status
+        tbody
+          - reports.each do |report|
+            tr
+              td = report.day
+              td = report.status
+              td = link_to "View", report
+
