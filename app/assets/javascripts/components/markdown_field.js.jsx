@@ -8,7 +8,7 @@ var MarkdownField = React.createClass({
     },
 
     componentDidMount: function () {
-      jQuery('#markdown-area').trigger('autoresize')
+      jQuery('.materialize-textarea').trigger('autoresize')
     },
 
     handleChange: function (event) {
