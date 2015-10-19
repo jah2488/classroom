@@ -43,7 +43,7 @@ class Student < ActiveRecord::Base
 
   def complete_percentage
     due_count = cohort.due_assignments.count
-    return 100 if due_count == 0
+    return 1 if due_count == 0
     (complete_assignments.where("due_date <= ?", Time.now).count.to_f / due_count.to_f).round(2)
   end
 
