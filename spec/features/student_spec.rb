@@ -38,4 +38,13 @@ RSpec.feature 'Student views' do
       expect(page).to have_content 'About'
     end
   end
+
+  feature 'student profile statistics' do
+    scenario 'student has 100% if no assignments are due' do
+      sign_in student_user
+      visit student_path(student)
+      expect(page).to have_content 'Completed Assignments'
+      expect(page).to have_content '100%'
+    end
+  end
 end
