@@ -8,10 +8,6 @@ module ApplicationHelper
     react_component('Markdown', { text: text }.merge(props), opts)
   end
 
-  def markdown(source)
-    Kramdown::Document.new(source || '').to_html.html_safe
-  end
-
   def form_errors_for(object=nil)
     render('application/form_errors', object: object) unless object.blank?
   end

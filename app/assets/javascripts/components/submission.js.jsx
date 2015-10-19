@@ -12,6 +12,9 @@ var Submission = React.createClass({
                 submission.notes = event.target.value;
                 this.setState({submission});
         },
+        componentDidMount: function () {
+                jQuery('#submission_notes').trigger('autoresize')
+        },
         setEditing: function(editing) {
                 this.setState({editing});
         },
@@ -50,14 +53,14 @@ var Submission = React.createClass({
                         return (<div/>)
                 } else if (this.state.editing) {
                         return (
-                                <div className="card-action">
+                                        <div className="card-action">
                                         <a onClick={this.setEditing.bind(this, false)}>Cancel</a>
                                         <a onClick={this.update}>Save</a>
                                         </div>
                                );
                 } else {
                         return (
-                                <div className="card-action">
+                                        <div className="card-action">
                                         <a onClick={this.setEditing.bind(this, true)}>Edit</a>
                                         </div>);
                 }
@@ -75,7 +78,7 @@ var Submission = React.createClass({
         submissionNotes: function () {
                 if (this.state.editing) {
                         return (<div className='input-field row'>
-                                        <textarea ref='notes' name="notes" className="materialize-textarea" value={this.state.submission.notes} onChange={this.handleNotesChange} />
+                                        <textarea ref='notes' name="notes" id="submission_notes" className="materialize-textarea" value={this.state.submission.notes} onChange={this.handleNotesChange} />
                                         <label htmlFor="notes">Notes</label>
                                         </div>);
                 } else {
