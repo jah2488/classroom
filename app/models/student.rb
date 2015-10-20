@@ -47,8 +47,8 @@ class Student < ActiveRecord::Base
     (complete_assignments.where("due_date <= ?", Time.now).count.to_f / due_count.to_f).round(2)
   end
 
-  def past_due_count
-    Assignment.for(self).late.count
+  def late_assignments
+    Submission.select(:assignment_id).where(late: true, student_id: self.id).group(:assignment_id).includes(:assignment).map(&:assignment)
   end
 
   def name

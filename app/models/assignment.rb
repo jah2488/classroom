@@ -22,10 +22,6 @@ class Assignment < ActiveRecord::Base
     self.for(student).not_late.first
   end
 
-  def self.late_for(student)
-    self.for(student).late - student.assignments
-  end
-
   def self.incomplete_for(student)
     self.for(student) - Assignment.complete_for(student)
   end
