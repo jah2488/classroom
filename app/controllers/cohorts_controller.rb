@@ -36,8 +36,8 @@ class CohortsController < ApplicationController
     current_student = current_user.student
     case params.fetch(:filter, 'all')
     when 'incomplete' then Assignment.incomplete_for(current_student)
-    when 'complete'   then Assignment.complete_for(current_student)
-    when 'late'       then Assignment.late_for(current_student)
+    when 'complete'   then current_student.completed_assignments
+    when 'late'       then current_student.late_assignments
     when 'all'        then Assignment.for(current_student)
     end
   end
