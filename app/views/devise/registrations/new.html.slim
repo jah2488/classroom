@@ -1,0 +1,21 @@
+- if @cohort
+  h2
+    ' Sign up for
+    = @cohort.name.titleize
+    small
+      = @cohort.campus.name
+- else
+  h2 Sign up
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name, cohort_id: (@cohort.present? ? @cohort.id : nil))) do |f|
+  = f.error_notification
+  .input-field
+    = f.text_field :email,    required: true, autofocus: true
+    = f.label :email
+  .input-field
+    = f.password_field :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable)
+    = f.label :password
+  .input-field
+    = f.password_field :password_confirmation, required: true
+    = f.label :password_confirmation
+  = f.button :submit, "Sign up"
+= render "devise/shared/links"
