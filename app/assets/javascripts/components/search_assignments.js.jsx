@@ -12,7 +12,7 @@ var SearchAssignments = React.createClass({
         render: function () {
                 return (<div>
                                 <form>
-                                <div class="input-field">
+                                <div className="input-field">
                                 <input id="search" onKeyUp={this.handleChange} type='search' placeholder="search" required/>
                                 </div>
                                 </form>

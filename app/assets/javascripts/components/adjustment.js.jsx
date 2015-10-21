@@ -8,10 +8,11 @@ var Adjustment = React.createClass({
   },
   render: function () {
     return (
-        <tr>
-        <td>{this.state.statusMsg}</td>
-        <td>{this.adjustmentAction()}</td>
-        </tr>
+        <div>
+        {this.state.statusMsg}
+        &nbsp;
+        {this.adjustmentAction()}
+        </div>
         );
   },
 
@@ -36,6 +37,7 @@ var Adjustment = React.createClass({
   },
 
   handleClick: function () {
+    console.log("Submitting for adjustment")
     jQuery.ajax({
       method: 'POST',
       url: '/adjustments/',
