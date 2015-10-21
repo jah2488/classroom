@@ -5,7 +5,12 @@ RSpec.describe AdjustmentsController do
   let(:instructor_user) { create :instructor_user }
   it "adjusts" do
     sign_in instructor_user
-    patch :adjust, id: adjustment.id
+    put :adjust, adjustment_id: adjustment.id
+    expect(response).to have_http_status(:success)
+  end
+  it "closes" do
+    sign_in instructor_user
+    put :close, adjustment_id: adjustment.id
     expect(response).to have_http_status(:success)
   end
 end

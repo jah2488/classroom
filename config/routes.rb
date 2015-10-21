@@ -18,11 +18,9 @@ Rails.application.routes.draw do
   end
   resources :ratings, only: [:create, :update]
 
-  resources :adjustments, only: :create do
-    member do
-      patch :adjust
-      patch :close
-    end
+  resources :adjustments do
+    put :adjust
+    put :close
   end
 
   resources :assignments do
