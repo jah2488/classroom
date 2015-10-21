@@ -28,6 +28,8 @@
       = f.label :info
   .row
     = f.submit "Save", class: "btn"
+    - if assignment.id
+      = link_to "Delete", staff_cohort_assignment_path(assignment.cohort, assignment), method: :delete, class: "btn red"
 
 javascript:
   $('#assignment_info').trigger('autoresize');

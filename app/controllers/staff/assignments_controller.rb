@@ -33,6 +33,15 @@ class Staff::AssignmentsController < Staff::ApplicationController
     }
   end
 
+  def destroy
+    assignment = Assignment.find(params[:id])
+    if assignment.destroy
+      redirect_to staff_cohort_assignments_path(assignment.cohort), notice: "Assignment deleted"
+    else
+      render :edit, alert: "Could not delete assignment"
+    end
+  end
+
   def create
     cohort = Cohort.find(params[:cohort_id])
     assignment = Assignment.new(assignment_params cohort)
