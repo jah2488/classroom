@@ -3,8 +3,8 @@ var AdjustmentReview = React.createClass({
         getInitialState: function () {
                 return { adjustment: {}, checkin: {}, student: {} };
         },
-        componentDidMount: function() {
-                $.ajax({
+        componentWillMount: function() {
+                jQuery.ajax({
                         url: "/adjustments/"+this.props.id,
                         dataType: 'json',
                         success: function(response) {

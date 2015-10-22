@@ -47,16 +47,4 @@ module ApplicationHelper
     end
     links.map { |l| "<li>" + l + "</li>"}.join('').html_safe
   end
-
-  def icon_definitions
-    @icon_definitions ||= [
-      [:announcement, 'Instructor or TA has left feedback on this submission.'],
-      [:chat_bubble_outline, 'No feedback has been left on this assignment.'],
-      [:done, 'This assignment is completed. Good job!'],
-      [:code, 'This assignment is currently in code review.'],
-      [:not_interested, 'This assignment was marked as incomplete.'],
-      [:report_problem, 'This assignment has no submissions and is now late.'],
-      [:assignment, 'This is an assignment. You probably have several of these.'],
-    ]
-  end
 end
