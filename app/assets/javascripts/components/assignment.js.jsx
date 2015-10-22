@@ -5,12 +5,14 @@ var Assignment = React.createClass({
         getInitialState: function() {
                 return { assignment: this.props.assignment, submissions: []}
         },
-        componentWillMount: function() {
+        componentDidMount: function() {
                 jQuery.ajax({
                         url: "/assignments/"+this.props.id,
                         dataType: 'json',
                         success: function(response) {
-                                this.parse(response);
+                                if(this.isMounted()) {
+                                        this.parse(response);
+                                }
                         }.bind(this),
                         error: function(xhr, status, err) {
                                 console.error(this.props.id, status, err.toString());
@@ -35,7 +37,7 @@ var Assignment = React.createClass({
                 </li>);
         },
         renderSubmissions: function() {
-                if(true) {
+                if(this.state.submissions) {
                         return (<ul className="collection">
                                 {this.state.submissions.map(function (submission) {
                                         let submissionPath = "/submissions/"+submission.id

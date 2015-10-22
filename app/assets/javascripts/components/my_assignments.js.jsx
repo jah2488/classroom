@@ -2,12 +2,14 @@ var MyAssignments = React.createClass({
         getInitialState: function () {
                 return { assignments: [] }
         },
-        componentWillMount: function() {
+        componentDidMount: function() {
                 jQuery.ajax({
                         url: "/assignments",
                         dataType: 'json',
                         success: function(response) {
-                                this.parse(response);
+                                if(this.isMounted()) {
+                                        this.parse(response);
+                                }
                         }.bind(this),
                         error: function(xhr, status, err) {
                                 console.error(status, err.toString());
