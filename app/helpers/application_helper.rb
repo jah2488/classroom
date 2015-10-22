@@ -1,11 +1,11 @@
 module ApplicationHelper
 
-  def react_time(time, opts = {})
-    react_component('TimeField', { time: time, hoverable: true }.merge(opts), tag: 'span')
+  def react_time(time)
+    react_component('TimeField', { time: time, hoverable: true }, {tag: 'span', prerender: true})
   end
 
   def react_md(text, props = {}, opts = {})
-    react_component('Markdown', { text: text }.merge(props), opts)
+    react_component('Markdown', { text: text }.merge(props), {prerender: true}.merge(opts))
   end
 
   def form_errors_for(object=nil)

@@ -1,4 +1,4 @@
 - if cohort.current_day
-  = react_component('Attendance', { initialTardies: current_student.tardies, initialAbsences: current_student.absences, checkin: cohort.current_day.checkin_for(current_student) })
+  = react_component('Attendance', { initialTardies: current_student.tardies, initialAbsences: current_student.absences, checkin: cohort.current_day.checkin_for(current_student) }, prerender: true)
 - else
-  = react_component('Attendance', { initialTardies: current_student.tardies, initialAbsences: current_student.absences, notToday: true})
+  = react_component('Attendance', { initialTardies: current_student.tardies, initialAbsences: current_student.absences, notToday: true}, prerender: true)

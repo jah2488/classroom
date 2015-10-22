@@ -14,4 +14,4 @@
                 p = student.info
   .card-action
     - if policy(Student).create?
-      = react_component('StudentEnroll', enrollURL: enroll_url)
+      = react_component('StudentEnroll', {enrollURL: enroll_url}, prerender: true)
