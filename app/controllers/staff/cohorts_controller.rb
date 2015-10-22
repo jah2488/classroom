@@ -11,14 +11,13 @@ class Staff::CohortsController < Staff::ApplicationController
     return find_cohort unless params[:id]
     @cohort      = Cohort.find(params[:id]).decorate
     authorize @cohort
-    students    = @cohort.students.includes(:adjustments)
+    students    = @cohort.students
     assignments = @cohort.assignments.order('due_date DESC')
-    adjustments = students.flat_map(&:adjustments)
     session[:cohort_id] = @cohort.id
     render locals: {
       cohort: @cohort.decorate,
       assignments: assignments.decorate,
-      adjustments: adjustments
+      adjustments: students.flat_map(&:adjustment_ids)
     }
   end
 

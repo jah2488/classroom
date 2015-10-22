@@ -1,4 +1,10 @@
 class AdjustmentsController < ApplicationController
+  def show
+    adjustment = Adjustment.find(params[:id])
+    authorize adjustment
+    render json: adjustment, include: 'checkin.student'
+  end
+
   def create
     adjustment = Adjustment.new(adjustment_params)
     authorize adjustment
@@ -10,7 +16,7 @@ class AdjustmentsController < ApplicationController
   end
 
   def adjust
-    adjustment = Adjustment.find(params[:id])
+    adjustment = Adjustment.find(params[:adjustment_id])
     authorize adjustment
     checkin    = adjustment.checkin
 
@@ -23,7 +29,7 @@ class AdjustmentsController < ApplicationController
   end
 
   def close
-    adjustment = Adjustment.find(params[:id])
+    adjustment = Adjustment.find(params[:adjustment_id])
     authorize adjustment
     adjustment.state = Adjustment::CLOSED
     adjustment.save

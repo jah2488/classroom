@@ -6,6 +6,7 @@ gem 'rails', '4.2.0'
 
 gem 'airbrake'
 gem 'active_link_to'
+gem 'active_model_serializers', '~> 0.10.0.rc3'
 gem 'concise_logging'
 gem 'clipboard-rails'
 gem 'devise'
