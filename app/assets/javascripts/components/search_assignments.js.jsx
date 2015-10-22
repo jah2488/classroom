@@ -11,13 +11,13 @@ var SearchAssignments = React.createClass({
 
         render: function () {
                 return (<div>
-                                <form>
+                        <form>
                                 <div className="input-field">
-                                <input id="search" onKeyUp={this.handleChange} type='search' placeholder="search" required/>
+                                        <input id="search" onKeyUp={this.handleChange} type='search' placeholder="search" required/>
                                 </div>
-                                </form>
-                                {this.results()}
-                                </div>
+                        </form>
+                        {this.results()}
+                </div>
                        );
         },
 
@@ -70,13 +70,13 @@ var SearchAssignments = React.createClass({
                 var records = this.state.records;
                 var query = this.state.query;
                 if(records.length > 0) {
-                return (
+                        return (
                                 <div className="collection">
-                                {records.map(function (row, index) {
-                                                                           return <Result key={index} id={row.id} active={this.isActive(index)} query={query} title={row.title} />;
-                                                                   }.bind(this))}
+                                        {records.map(function (row, index) {
+                                                return <Result key={index} id={row.id} active={this.isActive(index)} query={query} title={row.title} />;
+                                        }.bind(this))}
                                 </div>
-                       );
+                        );
                 }
         },
 
@@ -90,9 +90,9 @@ var SearchAssignments = React.createClass({
 var Result = React.createClass({
         render: function () {
                 return (
-                                <a className={this.props.active + ' collection-item'} href={'/assignments/' + this.props.id}>
+                        <a className={this.props.active + ' collection-item'} href={'/assignments/' + this.props.id}>
                                 <p>{this.text()}</p>
-                                </a>);
+                        </a>);
         },
 
         text: function () {

@@ -28,15 +28,15 @@ var RatingCard = React.createClass({
         },
         render: function() {
                 return(
-                                <div className="card grey lighten-5">
+                        <div className="card grey lighten-5">
                                 <div className="card-content">
-                                <span className="card-title black-text">Feedback from <TimeField time={this.props.rating.created_at}/></span>
-                                {this.ratingBody()}
+                                        <span className="card-title black-text">Feedback from <TimeField time={this.props.rating.created_at}/></span>
+                                        {this.ratingBody()}
                                 </div>
                                 {this.renderActions()}
-                                </div>
+                        </div>
 
-                      )
+                )
         },
         renderActions: function () {
                 if (!this.props.canGrade) {
@@ -46,21 +46,21 @@ var RatingCard = React.createClass({
                                 <div className="card-action">
                                         <a onClick={this.setEditing.bind(this, false)}>Cancel</a>
                                         <a onClick={this.update}>Save</a>
-                                        </div>
-                               );
+                                </div>
+                        );
                 } else {
                         return (
                                 <div className="card-action">
                                         <a onClick={this.setEditing.bind(this, true)}>Edit</a>
-                                        </div>);
+                                </div>);
                 }
         },
         ratingBody: function() {
                 if (this.state.editing) {
                         return (<div className='input-field row'>
-                                        <textarea ref='notes' name="notes" className="materialize-textarea" value={this.state.rating.notes} onChange={this.handleNotesChange} />
-                                        <label htmlFor="notes">Notes</label>
-                                        </div>);
+                                <textarea ref='notes' name="notes" className="materialize-textarea" value={this.state.rating.notes} onChange={this.handleNotesChange} />
+                                <label htmlFor="notes">Notes</label>
+                        </div>);
                 } else {
                         return (<Markdown text={this.state.rating.notes} />)
                 }

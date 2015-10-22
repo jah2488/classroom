@@ -6,27 +6,27 @@ var CohortLookup = React.createClass({
         render: function() {
                 if(this.state.cohort) {
                         return (
-                                        <div className="row">
-                                          {this.state.cohort.name}
-                                                <button className="btn-flat right" onClick={this.clearCohort}>Clear
-                                                  <i className="material-icons right">close</i>
-                                                </button>
-                                        </div>
-                               )
+                                <div className="row">
+                                        {this.state.cohort.name}
+                                        <button className="btn-flat right" onClick={this.clearCohort}>Clear
+                                                <i className="material-icons right">close</i>
+                                        </button>
+                                </div>
+                        )
                 } else {
                         return (
-                                        <div>
+                                <div>
                                         <div className='input-field'>
-                                        <input type='text' name='query' onChange={this.onChange} />
-                                        <label htmlFor='query'>Cohort</label>
+                                                <input type='text' name='query' onChange={this.onChange} />
+                                                <label htmlFor='query'>Cohort</label>
                                         </div>
                                         <div className="collection">
-                                        {this.state.cohorts.map(function(cohort, i) {
-                                                                                            return <a key={cohort.id} className="collection-item"><Cohort onClick={this.selectCohort.bind(this, i)} data={cohort} /></a>;
-                                                                                    }, this)}
+                                                {this.state.cohorts.map(function(cohort, i) {
+                                                        return <a key={cohort.id} className="collection-item"><Cohort onClick={this.selectCohort.bind(this, i)} data={cohort} /></a>;
+                                                }, this)}
                                         </div>
-                                        </div>
-                               );
+                                </div>
+                        );
                 }
         },
 

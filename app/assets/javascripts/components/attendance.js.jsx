@@ -28,34 +28,34 @@ var Attendance = React.createClass({
                 let today;
 
                 return (
-                                <div className="card grey darken-2">
+                        <div className="card grey darken-2">
                                 <div className="card-content white-text">
-                                <span className="card-title">Attendance</span>
-                                <p>
-                                <strong>Tardies:</strong> {this.state.tardies}
-                                &nbsp;
-                                <strong>Absences:</strong> {this.state.absences}
-                                </p>
-                                {this.renderToday()}
+                                        <span className="card-title">Attendance</span>
+                                        <p>
+                                                <strong>Tardies:</strong> {this.state.tardies}
+                                                &nbsp;
+                                                <strong>Absences:</strong> {this.state.absences}
+                                        </p>
+                                        {this.renderToday()}
                                 </div>
                                 {this.renderActions()}
-                                </div>
-                       );
+                        </div>
+                );
         },
 
         renderActions: function() {
                 if(!this.props.notToday && this.state.checkinTime == null) {
                         return (
-                                        <Checkin onCheckin={this.onCheckin} checkinTime={this.state.checkinTime}/>
-                               );
+                                <Checkin onCheckin={this.onCheckin} checkinTime={this.state.checkinTime}/>
+                        );
                 }
         },
 
         renderToday: function() {
                 if(this.state.checkinTime != null) {
                         return (
-                                        <p>Checked in <TimeField time={this.state.checkinTime} hoverable/></p>
-                               );
+                                <p>Checked in <TimeField time={this.state.checkinTime} hoverable/></p>
+                        );
                 }
         }
 });

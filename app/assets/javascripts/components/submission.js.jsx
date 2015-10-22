@@ -37,15 +37,15 @@ var Submission = React.createClass({
 
         render: function () {
                 return (
-                                <div className="card grey lighten-5">
+                        <div className="card grey lighten-5">
                                 <div className="card-content black-text">
-                                <span className="card-title black-text">Submission</span>
-                                <p>{this.submissionLink()}</p>
-                                {this.submissionNotes()}
+                                        <span className="card-title black-text">Submission</span>
+                                        <p>{this.submissionLink()}</p>
+                                        {this.submissionNotes()}
                                 </div>
                                 {this.renderActions()}
-                                </div>
-                       );
+                        </div>
+                );
         },
 
         renderActions: function () {
@@ -53,24 +53,24 @@ var Submission = React.createClass({
                         return (<div/>)
                 } else if (this.state.editing) {
                         return (
-                                        <div className="card-action">
+                                <div className="card-action">
                                         <a onClick={this.setEditing.bind(this, false)}>Cancel</a>
                                         <a onClick={this.update}>Save</a>
-                                        </div>
-                               );
+                                </div>
+                        );
                 } else {
                         return (
-                                        <div className="card-action">
+                                <div className="card-action">
                                         <a onClick={this.setEditing.bind(this, true)}>Edit</a>
-                                        </div>);
+                                </div>);
                 }
         },
         submissionLink: function () {
                 if (this.state.editing) {
                         return (<div className='input-field row'>
-                                        <Input ref='link' name="link" value={this.state.submission.link} />
-                                        <label htmlFor="link">Link</label>
-                                        </div>);
+                                <Input ref='link' name="link" value={this.state.submission.link} />
+                                <label htmlFor="link">Link</label>
+                        </div>);
                 } else {
                         return (<a href={this.state.submission.link}>{this.state.submission.link}</a>);
                 }
@@ -78,9 +78,9 @@ var Submission = React.createClass({
         submissionNotes: function () {
                 if (this.state.editing) {
                         return (<div className='input-field row'>
-                                        <textarea ref='notes' name="notes" id="submission_notes" className="materialize-textarea" value={this.state.submission.notes} onChange={this.handleNotesChange} />
-                                        <label htmlFor="notes">Notes</label>
-                                        </div>);
+                                <textarea ref='notes' name="notes" id="submission_notes" className="materialize-textarea" value={this.state.submission.notes} onChange={this.handleNotesChange} />
+                                <label htmlFor="notes">Notes</label>
+                        </div>);
                 } else {
                         return (<Markdown text={this.state.submission.notes} />);
                 }

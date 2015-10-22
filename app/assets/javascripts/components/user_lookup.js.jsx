@@ -6,27 +6,27 @@ var UserLookup = React.createClass({
         render: function() {
                 if(this.state.user) {
                         return (
-                                        <div className="row">
+                                <div className="row">
                                         {this.state.user.email}
                                         <button className="btn-flat right" onClick={this.clearUser}>Clear
-                                          <i className="material-icons right">close</i>
+                                                <i className="material-icons right">close</i>
                                         </button>
-                                        </div>
-                               )
+                                </div>
+                        )
                 } else {
                         return (
-                                        <div>
+                                <div>
                                         <div className='input-field'>
-                                        <input type='text' name='query' onChange={this.onChange} />
-                                        <label htmlFor='query'>User</label>
+                                                <input type='text' name='query' onChange={this.onChange} />
+                                                <label htmlFor='query'>User</label>
                                         </div>
                                         <div className="collection">
-                                        {this.state.users.map(function(user, i) {
-                                                                                        return <a key={user.id} className="collection-item"><User onClick={this.selectUser.bind(this, i)} data={user} /></a>;
-                                                                                }, this)}
+                                                {this.state.users.map(function(user, i) {
+                                                        return <a key={user.id} className="collection-item"><User onClick={this.selectUser.bind(this, i)} data={user} /></a>;
+                                                }, this)}
                                         </div>
-                                        </div>
-                               );
+                                </div>
+                        );
                 }
         },
 

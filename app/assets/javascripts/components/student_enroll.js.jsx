@@ -5,20 +5,20 @@ var StudentEnroll = React.createClass({
 
         render: function() {
                 return (
-                                <div>
+                        <div>
                                 <a href="#" onClick={this.openModal}>Enroll</a>
                                 <a className="clippy" href="#" data-clipboard-text={this.props.enrollURL}>Copy Enrollment URL</a>
                                 <div id="enroll-modal" className="modal bottom-sheet">
-                                <div className="modal-content">
-                                <CohortLookup onSelect={this.cohortSelected}/>
-                                <UserLookup onSelect={this.userSelected}/>
-                                <div className="modal-footer">
-                                <a className='modal-action modal-close waves-effect waves-green btn-flat' onClick={this.enroll}>Enroll</a>
+                                        <div className="modal-content">
+                                                <CohortLookup onSelect={this.cohortSelected}/>
+                                                <UserLookup onSelect={this.userSelected}/>
+                                                <div className="modal-footer">
+                                                        <a className='modal-action modal-close waves-effect waves-green btn-flat' onClick={this.enroll}>Enroll</a>
+                                                </div>
+                                        </div>
                                 </div>
-                                </div>
-                                </div>
-                                </div>
-                       );
+                        </div>
+                );
         },
 
         userSelected: function(user) {

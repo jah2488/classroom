@@ -17,15 +17,15 @@ var AdjustmentReview = React.createClass({
         },
         render: function () {
                 return (
-                                <tr>
+                        <tr>
                                 <td className={this.align()}>{this.state.adjustment.state}</td>
                                 <td className={this.align()}>{this.state.checkin.status}</td>
                                 <td className={this.align()}>{this.state.student.pretty_name}</td>
                                 <td className='actions'>
-                                {this.actions()}
+                                        {this.actions()}
                                 </td>
-                                </tr>
-                       );
+                        </tr>
+                );
         },
 
         parse: function(response) {
@@ -34,8 +34,8 @@ var AdjustmentReview = React.createClass({
                         let checkin = response.included[0].attributes;
                         this.setState({checkin})
                         if(response.included[1]) {
-                          let student = response.included[1].attributes;
-                          this.setState({student})
+                                let student = response.included[1].attributes;
+                                this.setState({student})
                         }
                 }
         },
@@ -49,9 +49,9 @@ var AdjustmentReview = React.createClass({
         actions: function () {
                 if (this.state.adjustment.state === 'OPENED') {
                         return (<span>
-                                        <a className='btn waves-effect waves-light green' onClick={this.handleClick.bind(this, 'adjust')}><i className="material-icons">done</i></a>
-                                        <a className='btn waves-effect waves-light red' onClick={this.handleClick.bind(this, 'close')}><i className="material-icons">not_interested</i></a>
-                                        </span>);
+                                <a className='btn waves-effect waves-light green' onClick={this.handleClick.bind(this, 'adjust')}><i className="material-icons">done</i></a>
+                                <a className='btn waves-effect waves-light red' onClick={this.handleClick.bind(this, 'close')}><i className="material-icons">not_interested</i></a>
+                        </span>);
                 } else {
                         return (<span/>);
                 }
