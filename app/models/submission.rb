@@ -42,6 +42,10 @@ class Submission < ActiveRecord::Base
     end
   end
 
+  def has_feedback
+
+  end
+
   def on_time
     late ? 'Late' : 'On Time'
   end

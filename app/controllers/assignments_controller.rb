@@ -6,7 +6,7 @@ class AssignmentsController < ApplicationController
     authorize assignment
     respond_to do |format|
       format.html { render locals: { assignment: assignment } }
-      format.json { render json: assignment }
+      format.json { render json: assignment, include: 'submissions' }
     end
   end
 

@@ -8,12 +8,14 @@ var MyAssignments = React.createClass({
                         dataType: 'json',
                         success: function(response) {
                                 this.parse(response);
-                                jQuery(this.refs.assignments).collapsible();
                         }.bind(this),
                         error: function(xhr, status, err) {
                                 console.error(status, err.toString());
                         }.bind(this)
                 });
+        },
+        componentDidUpdate: function() {
+                jQuery(this.refs.assignments).collapsible();
         },
         parse: function(response) {
                 this.setState({assignments: response.data});
@@ -21,7 +23,6 @@ var MyAssignments = React.createClass({
         render: function() {
                 return (
                         <div>
-                                <SearchAssignments />
                                 <ul className="collapsible black-text popout" ref="assignments">
                                         <li className="full-width">
                                                 <div className="collapsible-header">
@@ -36,7 +37,7 @@ var MyAssignments = React.createClass({
                                         </li>
                                         {this.state.assignments.map(function(assignment) {
                                                 return (
-                                                        <Assignment key={assignment.id} id={assignment.id} />
+                                                        <Assignment key={assignment.id} id={assignment.id} assignment={assignment.attributes} />
                                                         )
                                         })
                                         }

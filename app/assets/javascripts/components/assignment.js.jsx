@@ -1,6 +1,9 @@
 var Assignment = React.createClass({
+        getDefaultProps: function() {
+                return { assignment: {} }
+        },
         getInitialState: function() {
-                return { assignment: {}, submissions: []}
+                return { assignment: this.props.assignment, submissions: []}
         },
         componentWillMount: function() {
                 jQuery.ajax({
@@ -32,14 +35,14 @@ var Assignment = React.createClass({
                 </li>);
         },
         renderSubmissions: function() {
-                if(this.state.submissions) {
+                if(true) {
                         return (<ul className="collection">
                                 {this.state.submissions.map(function (submission) {
                                         let submissionPath = "/submissions/"+submission.id
-                                        let submissionIcon = submission.hasFeedback ? "announcement" : "chat_bubble_outline"
-                                        let submissionTime = "Submitted " + submission.on_time + " at " + submissions.created
+                                        let submissionIcon = submission.attributes.graded ? "announcement" : "chat_bubble_outline"
+                                        let submissionTime = "Submitted at " + moment(submission.attributes.created_at).format('llll') + " - " + submission.attributes.on_time
                                         return (
-                                                <li className="collection-item">
+                                                <li key={submission.id} className="collection-item">
                                                         <a href={submissionPath}>
                                                                 <i className="material-icons left">{submissionIcon}</i>
                                                         </a>
@@ -85,5 +88,6 @@ var Assignment = React.createClass({
         },
         parse: function(response) {
                 this.setState({assignment: response.data.attributes})
+                this.setState({submissions: response.included})
         }
 });
