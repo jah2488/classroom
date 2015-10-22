@@ -1,6 +1,6 @@
 var MyAssignments = React.createClass({
         getInitialState: function () {
-                return { assignments: [] }
+                return { assignments: [], query: "" }
         },
         componentDidMount: function() {
                 jQuery.ajax({
@@ -25,6 +25,12 @@ var MyAssignments = React.createClass({
         render: function() {
                 return (
                         <div>
+                                <form>
+                                        <div className="input-field">
+                                                <input ref="search" className="field" id="search" onKeyUp={this.queryUpdated} type='search' placeholder="Search" required/>
+                                                <i className="mdi-navigation-close close" onClick={this.clearQuery}></i>
+                                        </div>
+                                </form>
                                 <ul className="collapsible black-text popout" ref="assignments">
                                         <li className="full-width">
                                                 <div className="collapsible-header">
@@ -37,7 +43,7 @@ var MyAssignments = React.createClass({
                                                         </ul>
                                                 </div>
                                         </li>
-                                        {this.state.assignments.map(function(assignment) {
+                                        {this.state.assignments.filter(a => a.attributes.title.toLowerCase().includes(this.state.query) ).map(function(assignment) {
                                                 return (
                                                         <Assignment key={assignment.id} id={assignment.id} assignment={assignment.attributes} />
                                                         )
@@ -60,5 +66,12 @@ var MyAssignments = React.createClass({
                                         {icon[1]}
                                 </li>);
                         })
+        },
+        queryUpdated: function() {
+                this.setState({query: this.refs.search.value.trim().toLowerCase()})
+        },
+        clearQuery: function(event) {
+                this.refs.search.value = ""
+                this.setState({query: ""})
         }
 });
