@@ -18,7 +18,7 @@ class ReportsController < ApplicationController
     @report = @report.decorate
     respond_to do |format|
       format.html
-      format.pdf { render pdf: "#{@report.student_name} Report", show_as_html: false}
+      format.pdf { render pdf: "report_#{@report.student_name}-#{@report.day}".parameterize, show_as_html: false}
     end
   end
 end
