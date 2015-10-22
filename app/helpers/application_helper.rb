@@ -1,10 +1,11 @@
 module ApplicationHelper
 
-  def react_time(time)
-    react_component('TimeField', { time: time, hoverable: true }, {tag: 'span', prerender: true})
+  def react_time(time, props = {})
+    react_component('TimeField', { time: time, hoverable: true }.merge(props), {tag: 'span', prerender: true})
   end
 
   def react_md(text, props = {}, opts = {})
+    return unless text
     react_component('Markdown', { text: text }.merge(props), {prerender: true}.merge(opts))
   end
 

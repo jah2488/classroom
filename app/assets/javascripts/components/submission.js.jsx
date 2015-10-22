@@ -81,7 +81,7 @@ var Submission = React.createClass({
                                 <textarea ref='notes' name="notes" id="submission_notes" className="materialize-textarea" value={this.state.submission.notes} onChange={this.handleNotesChange} />
                                 <label htmlFor="notes">Notes</label>
                         </div>);
-                } else {
+                } else if(this.state.submission.notes) {
                         return (<Markdown text={this.state.submission.notes} />);
                 }
         }
