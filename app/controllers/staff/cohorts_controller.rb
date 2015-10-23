@@ -38,8 +38,9 @@ class Staff::CohortsController < Staff::ApplicationController
       render :show
     end
   end
+
   def index
-    @cohorts = CohortDecorator.decorate_collection(Cohort.all.order(:created_at))
+    @cohorts = CohortDecorator.decorate_collection(Cohort.unarchived.order(:created_at))
   end
 
   def create

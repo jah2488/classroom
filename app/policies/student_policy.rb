@@ -20,7 +20,7 @@ class StudentPolicy < ApplicationPolicy
   end
 
   def become?
-    user.staff? && user.has_student?(record)
+    !user.student? && staff_or_self
   end
 
   def create?
@@ -28,7 +28,7 @@ class StudentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.staff? && user.has_student?(record)
+    !user.student? && staff_or_self
   end
 
   def staff_or_self

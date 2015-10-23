@@ -30,9 +30,16 @@ describe StudentPolicy do
     end
   end
 
-  permissions :create?, :new?, :destroy? do
+  permissions :create?, :new? do
     it "allows instructors to create students" do
       expect(subject).to permit(instructor_user, Student.new)
+    end
+  end
+
+  permissions :destroy? do
+    it 'allows instructors to delete own student' do
+      expect(instructor).to receive(:has_student?).with(student).and_return true
+      expect(subject).to permit(instructor_user, student)
     end
   end
 

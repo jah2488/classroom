@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :cohort do
     name { Faker::App.name }
+    archived false
     campus
     start_date { Faker::Time.forward(30).to_datetime }
     transient do
