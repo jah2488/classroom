@@ -21,6 +21,15 @@ class Staff::CohortsController < Staff::ApplicationController
     }
   end
 
+  def staff
+    cohort = Cohort.find(params[:cohort_id])
+    render locals: {
+      cohort: cohort.decorate,
+      instructors: cohort.instructors.decorate,
+      operations: []
+    }
+  end
+
   def archive
     cohort = Cohort.find(params[:cohort_id])
     if cohort.update(archived: true)

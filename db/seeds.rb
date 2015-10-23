@@ -17,6 +17,7 @@ instructor = Instructor.create!({
   phone: '555 555 5555',
   office_hours_start: "March 22, 2015 12:00PM",
   office_hours_end: "March 22, 2015 5:00PM",
+  title: "Instructor",
   user: user
 })
 
@@ -24,6 +25,7 @@ Instructor.create!({
   phone: '555 555 5555',
   office_hours_start: "March 22, 2015 12:00PM",
   office_hours_end: "March 22, 2015 5:00PM",
+  title: "Assistant Instructor",
   user: new_instructor = User.create!({
     email: 'new-instructor@example.com',
     password: 'password',

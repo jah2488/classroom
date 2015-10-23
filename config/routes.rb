@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     root to: 'cohorts#show'
     resources :cohorts do
       put :archive
+      get :staff
       resources :days
       resources :assignments
       resources :reports
