@@ -74,6 +74,7 @@ GEM
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
     cd (1.0.1)
+    choice (0.2.0)
     clipboard (1.0.6)
     clipboard-rails (1.4.2)
     code (0.9.0)
@@ -293,6 +294,11 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
+    rails-erd (1.4.4)
+      activerecord (>= 3.2)
+      activesupport (>= 3.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
     rails_12factor (0.0.3)
@@ -355,6 +361,7 @@ GEM
       rspec-mocks (~> 3.3.0)
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
+    ruby-graphviz (1.2.2)
     ruby_engine (1.0.1)
     ruby_info (1.0.1)
     ruby_version (1.0.1)
@@ -478,6 +485,7 @@ DEPENDENCIES
   rails-assets-marked!
   rails-assets-moment!
   rails-assets-react!
+  rails-erd
   rails_12factor
   react-rails (~> 1.0)
   refile (~> 0.6.1)

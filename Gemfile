@@ -48,6 +48,7 @@ gem 'wicked_pdf'
 group :development do
   gem 'foreman'
   gem 'wkhtmltopdf-binary'
+  gem 'rails-erd'
 end
 
 group :production do

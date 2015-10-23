@@ -15,7 +15,12 @@ To setup your machine for development run `script/setup`.
 `script/server` starts a dev server.
 Follows the [Github Scripts](https://github.com/github/scripts-to-rule-them-all) pattern.
 
-To login as the seed instructor, visit `/instructors/sign_in` and use `instructor@example.com` with `password`
+To login as the seed instructor, use `instructor@example.com` with `password`.
+To login as a seed student, use `student@example.com` with `password`.
+
+## Domain Model
+Run `rake generate_erd` to regenerate (must have graphvis).
+![](/erd.png)
 
 #### Philosophy
 Any instructor who comes to use this app is going to have questions about the functionality and any instructor who tries to develop in this app is going to have even more questions. I think it is worth going over some of the driving philosophical ideas behind this app during its development process. This will probably not answer any of those questions, but maybe some of the decisions will make more sense. Most of these points are not taken to be truths or best practice, but this app was ultimately a way for me to explore new way of developing a rails application from my new context as an instructor an educator.
