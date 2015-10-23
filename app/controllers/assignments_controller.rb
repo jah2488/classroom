@@ -4,9 +4,10 @@ class AssignmentsController < ApplicationController
   def show
     assignment = Assignment.find(params[:id])
     authorize assignment
-    render locals: {
-      assignment: assignment
-    }
+    respond_to do |format|
+      format.html { render locals: { assignment: assignment } }
+      format.json { render json: assignment, include: 'submissions' }
+    end
   end
 
   def current
@@ -20,7 +21,11 @@ class AssignmentsController < ApplicationController
   end
 
   def index
-    render json: Assignment.search(params[:q])
+    if params[:q]
+      render json: Assignment.search(current_user, params[:q])
+    else
+      render json: policy_scope(Assignment).order(:due_date)
+    end
   end
 
   def edit

@@ -78,7 +78,6 @@ group :test, :development do
 end
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-react'
   gem 'rails-assets-datetimepicker'
   gem 'rails-assets-marked'
   gem 'rails-assets-moment'

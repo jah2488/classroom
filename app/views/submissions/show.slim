@@ -20,6 +20,6 @@
       .chip Late
 .row
   .col.m6.s12
-    = react_component('Submission', submission: submission, canEdit: policy(submission).edit?)
+    = react_component('Submission', {submission: submission, canEdit: policy(submission).edit?}, prerender: true)
   .col.m6.s12
-    = react_component('SubmissionFeedback', submission: submission, ratings: submission.ratings.reverse, canGrade: policy(submission).complete?)
+    = react_component('SubmissionFeedback', {submission: submission, ratings: submission.ratings.reverse, canGrade: policy(submission).complete?}, prerender: true)

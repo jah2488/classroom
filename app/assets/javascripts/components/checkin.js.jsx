@@ -2,15 +2,15 @@
 
 var TooFar = React.createClass({
         getInitialState: function() {
+            return {distance: 0.0}
+        },
+        componentDidMount: function() {
                 if (Location.distance === undefined || Location.distance === 0) {
                         Location.getCurrentPosition(function (loc) {
                                 Location.getCurrentDistanceFromCohort(loc.coords.latitude, loc.coords.longitude);
                                 this.setState({ distance: Math.round(Location.toMiles(Location.distance) * 1000) / 1000 });
                         }.bind(this));
                 }
-                return {
-                        distance: 0.0// Location.distance // Disabling distance :(
-                };
         },
         handleChange: function(event) {
                 this.setState({override_code: event.target.value.substr(0, 140)});

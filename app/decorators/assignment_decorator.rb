@@ -23,4 +23,13 @@ class AssignmentDecorator < Draper::Decorator
       "Starts in #{words}"
     end
   end
+
+  def status(student)
+    case
+    when object.completed_by?(student)            then 'completed'
+    when object.incomplete_by?(student)           then 'incomplete'
+    when object.submissions_for(student).present? then 'pending'
+    when object.late?                             then 'late'
+    end
+  end
 end

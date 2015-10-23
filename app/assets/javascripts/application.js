@@ -6,12 +6,9 @@
 //= require turbolinks
 //
 //= require refile
-//= require marked
-//= require moment
 //= require datetimepicker
 //= require clipboard
 //
-//= require location
 //= require react
 //= require react_ujs
 //= require components

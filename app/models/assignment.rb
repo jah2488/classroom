@@ -10,8 +10,15 @@ class Assignment < ActiveRecord::Base
     records.group_by { |assignment| assignment.due_date.beginning_of_week.to_date }
   end
 
-  def self.search(query)
-    where(arel_table[:title].matches("%#{query}%"))
+  def self.search(user, query)
+    if user && user.instructor?
+      where(arel_table[:title].matches("%#{query}%"))
+    elsif user && user.student?
+      cohort_id = user.student.cohort_id
+      where(arel_table[:title].matches("%#{query}%"), arel_table[:cohort_id].matches(cohort_id))
+    else
+      []
+    end
   end
 
   def self.for(student)

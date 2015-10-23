@@ -19,13 +19,16 @@ RSpec.describe Assignment, type: :model do
   end
 
   describe 'search' do
+    context "instructor" do
+      let(:user) { build_stubbed(:instructor_user) }
     it 'retuns all assignments with title matching query' do
       foo  = create :assignment, title: "foobar"
       fizz = create :assignment, title: 'fizzbuzz'
 
-      expect(Assignment.search('f')).to  eq([foo, fizz])
-      expect(Assignment.search('fo')).to eq([foo])
-      expect(Assignment.search('fi')).to eq([fizz])
+      expect(Assignment.search(user, 'f')).to  eq([foo, fizz])
+      expect(Assignment.search(user, 'fo')).to eq([foo])
+      expect(Assignment.search(user, 'fi')).to eq([fizz])
+    end
     end
   end
 

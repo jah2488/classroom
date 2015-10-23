@@ -28,4 +28,14 @@ class SubmissionPolicy < ApplicationPolicy
   def unfinish?
     complete?
   end
+
+  class Scope < Scope
+    def resolve
+      if user.instructor?
+        scope.where(student_id: user.instructor.students)
+      elsif user.student?
+        scope.where(student_id: user.student.id)
+      end
+    end
+  end
 end

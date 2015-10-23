@@ -4,11 +4,13 @@ var AdjustmentReview = React.createClass({
                 return { adjustment: {}, checkin: {}, student: {} };
         },
         componentDidMount: function() {
-                $.ajax({
+                jQuery.ajax({
                         url: "/adjustments/"+this.props.id,
                         dataType: 'json',
                         success: function(response) {
-                                this.parse(response);
+                                if(this.isMounted()){
+                                        this.parse(response);
+                                }
                         }.bind(this),
                         error: function(xhr, status, err) {
                                 console.error(this.props.url, status, err.toString());

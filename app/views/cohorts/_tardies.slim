@@ -4,4 +4,4 @@
       span.card-title Tardies
       ul
         - current_student.marked_checkins.each do |checkin|
-          li = react_component('Adjustment', { adjustment: checkin.adjustment, checkin: checkin, day: checkin.day})
+          li = react_component('Adjustment', { adjustment: checkin.adjustment, checkin: checkin, day: checkin.day}, prerender: true)
