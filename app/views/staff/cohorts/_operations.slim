@@ -6,11 +6,10 @@
     - else
       ul.collection.black-text
         - operations.each do |operator|
-          = link_to user_path(operator.user) do
-            li.collection-item.avatar
-              = image_tag(operator.avatar_url(32), class: "circle")
-              span.title = operator.name
-              p = operator.title
+          li.collection-item.avatar
+            = image_tag(operator.avatar_url(32), class: "circle")
+            span.title = operator.name
+            p = operator.title
   .card-action
     a.activator Add Operations
   .card-reveal

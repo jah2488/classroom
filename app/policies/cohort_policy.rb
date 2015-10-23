@@ -1,22 +1,22 @@
 class CohortPolicy < ApplicationPolicy
   def new?
-    user.instructor?
+    user.staff?
   end
 
   def create?
-    user.instructor?
+    user.staff?
   end
 
   def show?
-    user.instructor? || (user.student? && user.in_cohort?(record))
+    user.staff? || (user.student? && user.in_cohort?(record))
   end
 
   def update?
-    user.instructor? && user.in_cohort?(record)
+    user.staff? && user.in_cohort?(record)
   end
 
   def destroy?
-    user.instructor? && user.in_cohort?(record)
+    update?
   end
 
   class Scope < Scope

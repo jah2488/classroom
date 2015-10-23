@@ -26,7 +26,7 @@ class Staff::CohortsController < Staff::ApplicationController
     render locals: {
       cohort: cohort.decorate,
       instructors: cohort.instructors.decorate,
-      operations: []
+      operations: cohort.operators.decorate
     }
   end
 
@@ -60,9 +60,9 @@ class Staff::CohortsController < Staff::ApplicationController
   end
 
   def find_cohort
-    if current_user && current_user.instructor? && session[:cohort_id]
+    if current_user && current_user.staff? && session[:cohort_id]
       redirect_to staff_cohort_path(session[:cohort_id])
-    elsif current_user && current_user.instructor?
+    elsif current_user && current_user.staff?
       redirect_to staff_cohorts_path
     end
   end

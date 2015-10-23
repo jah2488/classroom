@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151023205517) do
+ActiveRecord::Schema.define(version: 20151023211706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,11 @@ ActiveRecord::Schema.define(version: 20151023205517) do
     t.string "time_zone", default: "Central Time (US & Canada)"
   end
 
+  create_table "campuses_operators", force: :cascade do |t|
+    t.integer "campus_id"
+    t.integer "operator_id"
+  end
+
   create_table "checkins", force: :cascade do |t|
     t.integer  "student_id"
     t.datetime "created_at", null: false
@@ -108,6 +113,13 @@ ActiveRecord::Schema.define(version: 20151023205517) do
     t.datetime "updated_at",         null: false
     t.integer  "user_id"
     t.string   "title"
+  end
+
+  create_table "operators", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ratings", force: :cascade do |t|

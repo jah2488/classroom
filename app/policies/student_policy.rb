@@ -1,6 +1,6 @@
 class StudentPolicy < ApplicationPolicy
   def show?
-    instructor_or_self || (user.student? && same_cohort(user.student, record))
+    staff_or_self || (user.student? && same_cohort(user.student, record))
   end
 
   def edit?
@@ -8,11 +8,11 @@ class StudentPolicy < ApplicationPolicy
   end
 
   def update?
-    instructor_or_self
+    staff_or_self
   end
 
   def grades?
-    instructor_or_self
+    staff_or_self
   end
 
   def new?
@@ -20,20 +20,22 @@ class StudentPolicy < ApplicationPolicy
   end
 
   def become?
-    user.instructor? && user.instructor.has_student?(record)
+    user.staff? && user.has_student?(record)
   end
 
   def create?
-    user.instructor?
+    user.staff?
   end
 
   def destroy?
-    user.instructor?
+    user.staff? && user.has_student?(record)
   end
 
-  def instructor_or_self
+  def staff_or_self
     if user.instructor?
       user.instructor.has_student? record
+    elsif user.operator?
+      user.operator.has_student? record
     elsif user.student?
       record.id == user.student.id
     end
@@ -47,6 +49,8 @@ class StudentPolicy < ApplicationPolicy
     def resolve
       if user.instructor?
         scope.where(id: user.instructor.students.map(&:id))
+      elsif user.operator?
+        scope.where(id: user.operator.students.map(&:id))
       elsif user.student? && user.student.cohort
         scope.where(id: user.student.cohort.student_ids)
       else

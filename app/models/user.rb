@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_one :instructor
   has_one :student
+  has_one :operator
   has_gravatar
 
   def self.search(current_user, query)
@@ -37,9 +38,25 @@ class User < ActiveRecord::Base
     !student.nil?
   end
 
+  def operator?
+    !operator.nil?
+  end
+
+  def staff?
+    instructor? || operator?
+  end
+
   def in_cohort? cohort
     return true if self.instructor? && self.instructor.cohorts.include?(cohort)
+    return true if self.operator? && self.operator.campuses.include?(cohort.campus)
     return true if self.student? && self.student.cohort == cohort
+    false
+  end
+
+  def has_student? stuent
+    return true if self.instructor? && self.instructor.has_student?(student)
+    return true if self.operator? && self.operator.has_student?(student)
+    return true if self.student? && self.student == student
     false
   end
 

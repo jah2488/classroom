@@ -54,6 +54,10 @@ class Cohort < ActiveRecord::Base
     self.start_time.in_time_zone(tz).to_date if self.start_time
   end
 
+  def operators
+    campus.operators
+  end
+
   private
 
   def tz_offset

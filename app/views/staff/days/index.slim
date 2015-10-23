@@ -10,8 +10,7 @@
       - if cohort.instructors.empty?
          TBD
       - else
-        - cohort.instructors.each do |instructor|
-          = link_to instructor.name, instructor
+        == cohort.instructors.map {|instructor| link_to instructor.name, instructor}.join(', ')
   .col.m4.s12
     p= link_to "Archive", staff_cohort_archive_path(cohort), method: :put, class: "btn-flat red-text"
 .row
