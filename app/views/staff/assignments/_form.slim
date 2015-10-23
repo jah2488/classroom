@@ -19,12 +19,12 @@
       = f.label :due_date
     .input-field.col.m3.s6
       i.material-icons.prefix schedule
-      = f.text_field :start_at, class: 'datetimepicker', value: Time.now, required: true
+      = f.text_field :start_at, class: 'datetimepicker', value: assignment.start_at || Time.now, required: true
       = f.label :start_at
   .row
     .input-field.col.s12
       i.material-icons.prefix mode_edit
-      = f.text_area :info, hint: 'put markdown in me', required: true, class: "materialize-textarea"
+      = f.text_area :info, hint: 'put markdown in me', required: true, class: "materialize-textarea", rows: 50
       = f.label :info
   .row
     = f.submit "Save", class: "btn"
