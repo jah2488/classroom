@@ -21,7 +21,7 @@ var CohortLookup = React.createClass({
                                                 <label htmlFor='query'>Cohort</label>
                                         </div>
                                         <div className="collection">
-                                                {this.state.cohorts.map(function(cohort, i) {
+                                                {this.state.cohorts.data.map(function(cohort, i) {
                                                         return <a key={cohort.id} className="collection-item"><Cohort onClick={this.selectCohort.bind(this, i)} data={cohort} /></a>;
                                                 }, this)}
                                         </div>
@@ -31,7 +31,7 @@ var CohortLookup = React.createClass({
         },
 
         selectCohort: function(i) {
-                let cohort = this.state.cohorts[i];
+                let cohort = this.state.cohorts.data[i];
                 this.setState({cohort: cohort});
                 if(this.props.onSelect){
                         this.props.onSelect(cohort);
