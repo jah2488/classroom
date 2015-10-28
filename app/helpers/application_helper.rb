@@ -33,7 +33,7 @@ module ApplicationHelper
       if user.student?
         links << active_link_to('My Cohort', root_path)
         links << active_link_to('Profile', student_path(user.student))
-      elsif current_user.instructor?
+      elsif current_user.instructor? || current_user.operator?
         links << active_link_to('Dashboard', staff_root_path)
         links << active_link_to("Cohorts", staff_cohorts_path)
         links << active_link_to("Campuses", staff_campuses_path)

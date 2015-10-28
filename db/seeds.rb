@@ -8,7 +8,7 @@
 user = User.create!({
   email: 'instructor@example.com',
   password: 'password',
-  name: "Great Instructor"
+  name: "Will"
 })
 user.confirm
 user.save!
@@ -17,21 +17,23 @@ instructor = Instructor.create!({
   phone: '555 555 5555',
   office_hours_start: "March 22, 2015 12:00PM",
   office_hours_end: "March 22, 2015 5:00PM",
+  title: "Instructor",
   user: user
 })
 
-Instructor.create!({
+assist = Instructor.create!({
   phone: '555 555 5555',
   office_hours_start: "March 22, 2015 12:00PM",
   office_hours_end: "March 22, 2015 5:00PM",
-  user: new_instructor = User.create!({
+  title: "Assistant Instructor",
+  user: assist_user = User.create!({
     email: 'new-instructor@example.com',
     password: 'password',
-    name: "Okay Instructor"
+    name: "Jess"
   })
 })
-new_instructor.confirm
-new_instructor.save!
+assist_user.confirm
+assist_user.save!
 
 user2 = User.create!({
   email: 'student@example.com',
@@ -39,23 +41,39 @@ user2 = User.create!({
 })
 user2.confirm
 
+josh = Operator.create!({
+  title: "Lead Campus Director",
+  user: cd_user = User.create!({
+    email: "cd@example.com",
+    password: 'password',
+    name: "Josh"
+  })
+})
+cd_user.confirm
+cd_user.save!
+
+bethany = Operator.create!({
+  title: "Campus Operations Manager"
+})
+
 campus = Campus.create!({
   name: "Nashville, TN",
   latitude: 36.1316327,
-  longitude: -86.7495919
+  longitude: -86.7495919,
+  operators: [josh, bethany]
 })
 
 cohort = Cohort.create!({
-  name: 'Ruby on Rails',
+  name: 'Frontend Fall 2015',
   campus_id: campus.id,
   start_time: DateTime.now,
-  instructors: [instructor]
+  instructors: [instructor, assist]
 })
 
 user2.create_student!(cohort: cohort)
 
 FactoryGirl.create(:cohort, name: "Mobile")
-FactoryGirl.create(:cohort, name: "Front End JS")
+FactoryGirl.create(:cohort, name: "Backend Fall 2015")
 
 assignments = []
 students    = []

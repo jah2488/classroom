@@ -1,0 +1,4 @@
+= render partial: 'nav', locals: { cohort: cohort }
+.row
+  .col.s12.m6 = render partial: 'instructors', locals: { instructors: instructors }
+  .col.s12.m6 = render partial: 'operations', locals: { operations: operations }

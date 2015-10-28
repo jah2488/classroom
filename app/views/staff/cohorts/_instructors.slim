@@ -1,0 +1,20 @@
+.card.grey.darken-2
+  .card-content.white-text
+    span.card-title = t('.instructors')
+    - if instructors.empty?
+      p No instructors
+    - else
+      ul.collection.black-text
+        - instructors.each do |instructor|
+          = link_to instructor_path(instructor) do
+            li.collection-item.avatar
+              = image_tag(instructor.avatar_url(32), class: "circle")
+              span.title = instructor.name
+              p = instructor.title
+  .card-action
+    a.activator Add Instructor
+  .card-reveal
+    span.card-title.grey-text.text-darken-4
+      | Add Instructor
+      i.material-icons.right close
+    p not implemented

@@ -11,8 +11,8 @@ css:
   }
 
 .row
-  .col.l1.s1 = image_tag cohort.logo_url, height: 100
-  h2.col.l11
+  .col.l1.s12 = image_tag cohort.logo_url, height: 100
+  h2.col.l9.m12
     = cohort.name.titleize
     small.muted = cohort.campus.name.titleize
 nav.themed
@@ -22,3 +22,4 @@ nav.themed
       li = active_link_to t('.reports'), staff_cohort_reports_path(cohort)
       li = active_link_to t('.assignments'), staff_cohort_assignments_path(cohort)
       li = active_link_to t('.days'), staff_cohort_days_path(cohort)
+      li = active_link_to "Staff", staff_cohort_staff_path(cohort)

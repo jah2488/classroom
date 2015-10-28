@@ -5,7 +5,7 @@ h2 Student Assessment Form
       = f.collection_select :student_id, @cohort.students, :id, :to_s
       = f.label :student_id
     .input-field.col.s12.m6
-      = f.collection_select :day_id, @cohort.days, :id, :to_s, selected: @cohort.days.last.id
+      = f.collection_select :day_id, @cohort.days, :id, :to_s, selected: @cohort.days.last ? @cohort.days.last.id : nil
       = f.label :day_id
   - %i(participation effort skill overall).each do |metric|
     .row

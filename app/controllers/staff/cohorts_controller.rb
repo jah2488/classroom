@@ -21,6 +21,15 @@ class Staff::CohortsController < Staff::ApplicationController
     }
   end
 
+  def staff
+    cohort = Cohort.find(params[:cohort_id])
+    render locals: {
+      cohort: cohort.decorate,
+      instructors: cohort.instructors.decorate,
+      operations: cohort.operators.decorate
+    }
+  end
+
   def archive
     cohort = Cohort.find(params[:cohort_id])
     if cohort.update(archived: true)
@@ -29,8 +38,9 @@ class Staff::CohortsController < Staff::ApplicationController
       render :show
     end
   end
+
   def index
-    @cohorts = CohortDecorator.decorate_collection(Cohort.all.order(:created_at))
+    @cohorts = CohortDecorator.decorate_collection(Cohort.unarchived.order(:created_at))
   end
 
   def create
@@ -51,9 +61,9 @@ class Staff::CohortsController < Staff::ApplicationController
   end
 
   def find_cohort
-    if current_user && current_user.instructor? && session[:cohort_id]
+    if current_user && current_user.staff? && session[:cohort_id]
       redirect_to staff_cohort_path(session[:cohort_id])
-    elsif current_user && current_user.instructor?
+    elsif current_user && current_user.staff?
       redirect_to staff_cohorts_path
     end
   end

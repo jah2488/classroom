@@ -5,10 +5,14 @@ class Cohort < ActiveRecord::Base
   has_many :days, dependent: :destroy
   has_and_belongs_to_many :instructors
   validates :start_date, :name, :campus_id, presence: true
-  default_scope { where(archived: false) }
+
+  def self.unarchived
+    all.where(archived: false)
+  end
+
   def self.search(current_user, query)
     if current_user.instructor?
-      Cohort.where("name ILIKE (?)", "%#{query}%")
+      Cohort.unarchived.where("name ILIKE (?)", "%#{query}%")
     else
       []
     end
@@ -48,6 +52,10 @@ class Cohort < ActiveRecord::Base
 
   def start_date
     self.start_time.in_time_zone(tz).to_date if self.start_time
+  end
+
+  def operators
+    campus.operators
   end
 
   private
