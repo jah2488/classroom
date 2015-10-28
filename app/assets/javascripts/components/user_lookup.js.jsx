@@ -7,7 +7,7 @@ var UserLookup = React.createClass({
                 if(this.state.user) {
                         return (
                                 <div className="row">
-                                        {this.state.user.email}
+                                        {this.state.user.attributes.email}
                                         <button className="btn-flat right" onClick={this.clearUser}>Clear
                                                 <i className="material-icons right">close</i>
                                         </button>
@@ -22,7 +22,7 @@ var UserLookup = React.createClass({
                                         </div>
                                         <div className="collection">
                                                 {this.state.users.map(function(user, i) {
-                                                        return <a key={user.id} className="collection-item"><User onClick={this.selectUser.bind(this, i)} data={user} /></a>;
+                                                        return <a key={user.id} className="collection-item"><User onClick={this.selectUser.bind(this, i)} user={user} /></a>;
                                                 }, this)}
                                         </div>
                                 </div>
@@ -57,7 +57,7 @@ var UserLookup = React.createClass({
                 }).done(function (response) {
                         if (this.isMounted()) {
                                 this.setState({
-                                        users: response
+                                        users: response.data
                                 });
                         }
                 }.bind(this));

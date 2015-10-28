@@ -7,7 +7,7 @@ var CohortLookup = React.createClass({
                 if(this.state.cohort) {
                         return (
                                 <div className="row">
-                                        {this.state.cohort.name}
+                                        {this.state.cohort.attributes.name}
                                         <button className="btn-flat right" onClick={this.clearCohort}>Clear
                                                 <i className="material-icons right">close</i>
                                         </button>
@@ -21,7 +21,7 @@ var CohortLookup = React.createClass({
                                                 <label htmlFor='query'>Cohort</label>
                                         </div>
                                         <div className="collection">
-                                                {this.state.cohorts.data.map(function(cohort, i) {
+                                                {this.state.cohorts.map(function(cohort, i) {
                                                         return <a key={cohort.id} className="collection-item"><Cohort onClick={this.selectCohort.bind(this, i)} data={cohort} /></a>;
                                                 }, this)}
                                         </div>
@@ -31,7 +31,7 @@ var CohortLookup = React.createClass({
         },
 
         selectCohort: function(i) {
-                let cohort = this.state.cohorts.data[i];
+                let cohort = this.state.cohorts[i];
                 this.setState({cohort: cohort});
                 if(this.props.onSelect){
                         this.props.onSelect(cohort);
@@ -57,7 +57,7 @@ var CohortLookup = React.createClass({
                 }).done(function (response) {
                         if (this.isMounted()) {
                                 this.setState({
-                                        cohorts: response
+                                        cohorts: response.data
                                 });
                         }
                 }.bind(this));
