@@ -26,6 +26,7 @@ gem 'kramdown'
 gem 'mandrill_dm'
 gem 'materialize-sass'
 gem 'material_icons'
+gem 'omniauth-oauth2', '~> 1.3.1' # needed until https://github.com/intridea/omniauth-oauth2/issues/81 fixed
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'pg'
