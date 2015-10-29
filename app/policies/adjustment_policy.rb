@@ -1,6 +1,6 @@
 class AdjustmentPolicy < ApplicationPolicy
   def show?
-    user.instructor? || (user.student? && record.checkin.student_id == user.student_id)
+    user.instructor? || (user.student? && record.checkin.student_id == user.student.id)
   end
 
   def adjust?
