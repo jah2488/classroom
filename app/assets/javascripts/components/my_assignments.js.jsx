@@ -43,7 +43,7 @@ var MyAssignments = React.createClass({
                                                         </ul>
                                                 </div>
                                         </li>
-                                        {this.state.assignments.filter(a => a.attributes.title.toLowerCase().includes(this.state.query) ).map(function(assignment) {
+                                        {this.state.assignments.filter(a => a.attributes.title.toLowerCase().indexOf(this.state.query) != -1 ).map(function(assignment) {
                                                 return (
                                                         <Assignment key={assignment.id} id={assignment.id} assignment={assignment.attributes} />
                                                         )
