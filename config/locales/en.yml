@@ -10,6 +10,7 @@ en:
       new-cohort: 'New Cohort'
   report: "Report"
   campus: "Campus"
+  day: "Day"
   cohorts:
     new:
       title: 'New Cohort'
