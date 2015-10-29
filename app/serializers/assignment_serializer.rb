@@ -11,7 +11,7 @@ class AssignmentSerializer < ActiveModel::Serializer
   end
 
   def has_feedback
-    object.submissions_for(current_user.student).any? { |s| s.graded? }
+    object.submissions_for(current_user.student).any? { |s| s.has_feedback? }
   end
 
   def status
