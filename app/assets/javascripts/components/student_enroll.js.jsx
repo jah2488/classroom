@@ -10,7 +10,6 @@ var StudentEnroll = React.createClass({
                                 <a className="clippy" href="#" data-clipboard-text={this.props.enrollURL}>Copy Enrollment URL</a>
                                 <div id="enroll-modal" className="modal bottom-sheet">
                                         <div className="modal-content">
-                                                <CohortLookup onSelect={this.cohortSelected}/>
                                                 <UserLookup onSelect={this.userSelected}/>
                                                 <div className="modal-footer">
                                                         <a className='modal-action modal-close waves-effect waves-green btn-flat' onClick={this.enroll}>Enroll</a>
@@ -33,7 +32,7 @@ var StudentEnroll = React.createClass({
                 $.ajax({
                         method: 'POST',
                         url: '/students',
-                        data: { student: { user_id: this.state.user.id, cohort_id: this.state.cohort.id } }
+                        data: { student: { user_id: this.state.user.id, cohort_id: this.props.cohort_id } }
                 }).success(function (response) {
                         jQuery("#enroll-modal").closeModal();
                         location.reload();

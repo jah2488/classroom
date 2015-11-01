@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
   has_gravatar
 
   def self.search(current_user, query)
-    if current_user.instructor?
-      User.where("email || ' ' || name ILIKE (?)", "%#{query}%")
+    if current_user.staff?
+      User.where("email ILIKE (?) OR name ILIKE (?)", "%#{query}%", "%#{query}%")
     else
       [current_user]
     end

@@ -3,7 +3,7 @@
   .col.s12.l6.m6 = render partial: 'ungraded_assignments', locals: { cohort: cohort }
   .col.s12.l6.m6 = render partial: 'attendance',  locals: { cohort: cohort }
 .row
-  .col.s12.l6.m12 = render partial: 'students', locals: { students: cohort.students.decorate, enroll_url: cohort.sign_up_url }
+  .col.s12.l6.m12 = render partial: 'students', locals: { students: cohort.students.decorate, cohort_id: cohort.id, enroll_url: cohort.sign_up_url }
   .col.s12.l6.m12
     .card.grey.darken-2
       .card-content.white-text
