@@ -20,7 +20,8 @@ var MyAssignments = React.createClass({
                 jQuery(this.refs.assignments).collapsible();
         },
         parse: function(response) {
-                this.setState({assignments: response.data});
+                let sorted = response.data.sort((a, b) => Date.parse(a.attributes.due_date) - Date.parse(b.attributes.due_date))
+                this.setState({assignments: sorted});
         },
         render: function() {
                 return (
@@ -43,7 +44,7 @@ var MyAssignments = React.createClass({
                                                         </ul>
                                                 </div>
                                         </li>
-                                        {this.state.assignments.filter(a => a.attributes.title.toLowerCase().includes(this.state.query) ).map(function(assignment) {
+                                        {this.state.assignments.filter(a => a.attributes.title.toLowerCase().indexOf(this.state.query) != -1 ).map(function(assignment) {
                                                 return (
                                                         <Assignment key={assignment.id} id={assignment.id} assignment={assignment.attributes} />
                                                         )

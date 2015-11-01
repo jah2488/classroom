@@ -71,7 +71,7 @@ var Assignment = React.createClass({
                                 icon = "code"
                                 break
                         case "incomplete":
-                                icon = "incomplete"
+                                icon = "not_interested"
                                 break
                         case "late":
                                 icon = "report_problem"

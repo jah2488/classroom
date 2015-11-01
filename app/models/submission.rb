@@ -34,6 +34,10 @@ class Submission < ActiveRecord::Base
     !completed && graded?
   end
 
+  def has_feedback?
+    @has_feedback ||= ratings.any? {|r| r.has_feedback?}
+  end
+
   def label
     if graded?
       completed ? 'Completed' : 'Incomplete'

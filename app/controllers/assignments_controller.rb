@@ -22,10 +22,11 @@ class AssignmentsController < ApplicationController
 
   def index
     if params[:q]
-      render json: Assignment.search(current_user, params[:q])
+      assignments = Assignment.search(current_user, params[:q])
     else
-      render json: policy_scope(Assignment).order(:due_date)
+      assignments = policy_scope(Assignment)
     end
+    render json: assignments.order(:due_date)
   end
 
   def edit
