@@ -26,7 +26,11 @@ class AssignmentsController < ApplicationController
     else
       assignments = policy_scope(Assignment)
     end
-    render json: assignments.order(:due_date)
+    assignments = assignments.order(:due_date)
+    respond_to do |format|
+      format.json { render json: assignments }
+      format.html { render locals: { assignments: assignments } }
+    end
   end
 
   def edit

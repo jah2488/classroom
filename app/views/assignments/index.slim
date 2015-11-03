@@ -1,0 +1,10 @@
+.row
+  - assignments.each do |assignment|
+    .col.l4.m6.s12
+      .card.grey.darken-1
+        .card-content.white-text
+          span.card-title = assignment.title
+          p = assignment.decorate.due_date_in_words
+          p = assignment.decorate.start_in_words
+        .card-action
+          = link_to "View", assignment_path(assignment)

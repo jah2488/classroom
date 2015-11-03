@@ -83,7 +83,7 @@ students    = []
     assignments << Assignment.create({
       cohort_id: cohort.id,
       title: "Week #{i}, Day #{n}",
-      info: 'do the thing blah blah blah',
+      info: Faker::Lorem.paragraph,
       due_date: Date.today + (i + 2) + n
     })
   end
