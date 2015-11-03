@@ -24,7 +24,7 @@ class AssignmentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.instructor?
+    user.instructor? && user.instructor.cohort_ids.include?(record.cohort_id)
   end
 
   def same_cohort a, b
