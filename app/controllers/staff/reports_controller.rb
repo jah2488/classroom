@@ -38,6 +38,17 @@ class Staff::ReportsController < Staff::ApplicationController
     end
   end
 
+  def update
+    @report = Report.find(params[:id])
+    authorize @report
+    if @report.update report_params
+      redirect_to staff_cohort_report_path(@cohort, @report), notice: I18n.t('.updated', resource: I18n.t('.report'))
+    else
+      flash[:alert] = "Report couldn't be updated because #{@report.errors.full_messages.join(', ')}"
+      render :edit
+    end
+  end
+
   private
   def set_cohort
     @cohort = Cohort.find(params[:cohort_id]).decorate
