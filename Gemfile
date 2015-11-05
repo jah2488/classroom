@@ -50,6 +50,8 @@ group :development do
   gem 'foreman'
   gem 'wkhtmltopdf-binary'
   gem 'rails-erd'
+  gem 'spring', '~> 1.3.6'
+  gem 'spring-commands-rspec'
 end
 
 group :production do
@@ -73,7 +75,6 @@ group :test, :development do
   gem 'rspec-mocks'
   gem 'timecop'
   gem 'simplecov'
-  gem 'spring', '~> 1.3.6'
   gem 'web-console', '~> 2.0'
   gem 'zonebie'
 end
