@@ -29,9 +29,12 @@ RSpec.feature "Cohort instructor view", type: :feature do
     click_link("Archive")
     expect(page).to_not have_content(cohort.name)
   end
+
   scenario 'creating a cohort' do
     create :campus, name: 'Moon'
     sign_in(instructor)
     visit(new_staff_cohort_path)
+    fill_in 'Name', with: Faker::Name.name
+    click_button "Create"
   end
 end

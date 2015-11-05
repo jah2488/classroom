@@ -6,8 +6,9 @@ class AssignmentDecorator < Draper::Decorator
   end
 
   def due_date_in_words
-    words = h.time_ago_in_words(self.due_date)
-    if self.due_date.past?
+    return unless object.due_date
+    words = h.time_ago_in_words(object.due_date)
+    if object.due_date.past?
       "Due #{words} ago"
     else
       "Due in #{words}"
@@ -15,9 +16,9 @@ class AssignmentDecorator < Draper::Decorator
   end
 
   def start_in_words
-    return unless self.start_at
-    words = h.time_ago_in_words(self.start_at)
-    if self.start_at.past?
+    return unless object.start_at
+    words = h.time_ago_in_words(object.start_at)
+    if object.start_at.past?
       "Started #{words} ago"
     else
       "Starts in #{words}"
