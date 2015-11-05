@@ -48,10 +48,12 @@ gem 'wicked_pdf'
 
 group :development do
   gem 'foreman'
-  gem 'wkhtmltopdf-binary'
+  gem 'guard-rspec', require: false
+  gem 'ruby_gntp'
   gem 'rails-erd'
   gem 'spring', '~> 1.3.6'
   gem 'spring-commands-rspec'
+  gem 'wkhtmltopdf-binary'
 end
 
 group :production do
@@ -64,8 +66,6 @@ group :test, :development do
   gem 'byebug'
   gem 'codeclimate-test-reporter', require: nil
   gem 'database_cleaner'
-  gem 'guard'
-  gem 'guard-rspec', require: false
   gem 'irbtools', require: 'irbtools/binding'
   gem 'pry'
   gem 'quiet_assets'

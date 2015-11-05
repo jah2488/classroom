@@ -362,6 +362,7 @@ GEM
     rspec-support (3.3.0)
     ruby-graphviz (1.2.2)
     ruby_engine (1.0.1)
+    ruby_gntp (0.3.4)
     ruby_info (1.0.1)
     ruby_version (1.0.1)
     sass (3.4.19)
@@ -462,7 +463,6 @@ DEPENDENCIES
   foreman
   geocoder
   gravtastic
-  guard
   guard-rspec
   hirb
   irbtools
@@ -494,6 +494,7 @@ DEPENDENCIES
   rspec
   rspec-mocks
   rspec-rails
+  ruby_gntp
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simple_form
