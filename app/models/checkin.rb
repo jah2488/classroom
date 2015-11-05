@@ -4,6 +4,24 @@ class Checkin < ActiveRecord::Base
   has_one :adjustment
   validates :day, :student, presence: true
 
+  def self.perform(student, distance, provided_code)
+    return [:forbidden, "Not a student"] unless student
+    checkin = Checkin.new
+    checkin.student = student
+    checkin.day = student.cohort.current_day
+    return [:bad_request, "No class today"] if !checkin.day
+    return [:bad_request, "Already checked in"] if checkin.day.has_checkin_for?(student)
+    return [:forbidden, "Invalid override code"] if distance.to_i > 1.0 && provided_code != checkin.day.override_code
+    checkin.save!
+    checkin = checkin.decorate
+    json = [
+      checkin.created,
+      checkin,
+      checkin.stats
+    ]
+    [:created, json]
+  end
+
   def on_time?
     created_at < day.late_time
   end

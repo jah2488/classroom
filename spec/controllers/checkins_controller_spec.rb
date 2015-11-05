@@ -21,6 +21,11 @@ RSpec.describe CheckinsController do
         create :day, cohort: cohort, start: time
         post :create, distance: 0
         expect(response).to have_http_status(:success)
+        json = JSON.parse(response.body)
+        expect(json[0]).to_not be_blank
+        expect(json[1]).to_not be_blank
+        expect(json[2]["tardies"]).to eq 0
+        expect(json[2]["absences"]).to eq 0
       end
     end
 
@@ -42,7 +47,7 @@ RSpec.describe CheckinsController do
         create :day, cohort: cohort, start: time
         post :create, distance: 5
       end
-      expect(response).to have_http_status(:unauthorized)
+      expect(response).to have_http_status(:forbidden)
     end
   end
 end
