@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   use_doorkeeper
   devise_for :users, controllers: { registrations: 'users/registrations', omniauth_callbacks: "users/omniauth_callbacks", }
+  get '/me' => 'users#me'
 
   resources :reports, only: [:show, :index]
   resources :instructors
