@@ -102,6 +102,9 @@ en:
           expired: "The access token expired"
           unknown: "The access token is invalid"
 
+    scopes:
+      public: "Access your enrollment status"
+      email: "Access your email address"
     flash:
       applications:
         create:
