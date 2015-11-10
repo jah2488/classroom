@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   include Pundit
   protect_from_forgery with: :exception
-  before_filter :authenticate_user!
+  alias_method :devise_current_user, :current_user
+  alias_method :devise_authenticate_user, :authenticate_user!
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :record_student_activity
@@ -39,7 +40,22 @@ class ApplicationController < ActionController::Base
     redirect_to(ENV["HTTP_REFERER"] || root_url)
   end
 
-  def current_resource_owner
-    User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+  def current_user
+    if devise_current_user
+      devise_current_user
+    elsif doorkeeper_token
+      User.find(doorkeeper_token.resource_owner_id)
+    else
+      nil
+    end
   end
+
+  def authenticate_user!
+    if doorkeeper_token
+      doorkeeper_authorize!
+    else
+      authenticate_user!
+    end
+  end
+
 end
