@@ -3,6 +3,8 @@ class Checkin < ActiveRecord::Base
   belongs_to :day
   has_one :adjustment
   validates :day, :student, presence: true
+  validates :student, uniqueness: { scope: :day,
+                                     message: "should happen once per day" }
 
   def self.perform(student, distance, provided_code)
     return [:forbidden, "Not a student"] unless student
