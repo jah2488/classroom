@@ -17,7 +17,7 @@ class Staff::CohortsController < Staff::ApplicationController
     render locals: {
       cohort: @cohort.decorate,
       assignments: assignments.decorate,
-      adjustments: students.flat_map(&:adjustment_ids)
+      adjustments: students.flat_map(&:adjustments).select{|a| a.state == "OPENED"}
     }
   end
 

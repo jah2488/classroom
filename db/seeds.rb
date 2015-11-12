@@ -66,17 +66,16 @@ campus = Campus.create!({
 cohort = Cohort.create!({
   name: 'Frontend Fall 2015',
   campus_id: campus.id,
-  start_time: DateTime.now,
+  start_time: DateTime.now - 1.month,
   instructors: [instructor, assist]
 })
 
-user2.create_student!(cohort: cohort)
 
 FactoryGirl.create(:cohort, name: "Mobile")
 FactoryGirl.create(:cohort, name: "Backend Fall 2015")
 
 assignments = []
-students    = []
+students = [user2.create_student!(cohort: cohort)]
 
 10.times.each_slice(4).with_index do |nums, index|
   nums.each_with_index do |n, i|
@@ -84,7 +83,7 @@ students    = []
       cohort_id: cohort.id,
       title: "Week #{i}, Day #{n}",
       info: Faker::Lorem.paragraph,
-      due_date: Date.today + (i + 2) + n
+      due_date: cohort.start_time + (i + 2) + n
     })
   end
 end
@@ -95,11 +94,32 @@ end
 end
 
 15.times do |n|
-  Submission.create({
+  Submission.create!({
     link: 'http://github.com/',
     notes: 'This was hard',
     late: [true, false].sample,
     student_id: students.sample.id,
     assignment_id: assignments.sample.id
   })
+end
+
+10.times.each.with_index do |i|
+  day = Day.create!({
+    cohort: cohort,
+    start: cohort.start_time + i.days
+  })
+  students.each do |s|
+    if [true, true, false].sample
+      checkin = Checkin.create!({
+        student_id: s.id,
+        day: day,
+        created_at: day.start + (0..30).to_a.sample.minutes
+      })
+      if checkin.late? && [true, false].sample
+        Adjustment.create!({
+          checkin: checkin
+        })
+      end
+    end
+  end
 end

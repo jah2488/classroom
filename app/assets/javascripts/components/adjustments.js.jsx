@@ -7,15 +7,15 @@ var Adjustments = React.createClass({
                                 <table>
                                         <thead>
                                                 <tr>
-                                                        <th>State</th>
+                                                        <th>Day</th>
                                                         <th>Checkin</th>
                                                         <th>Student</th>
                                                         <th>Actions</th>
                                                 </tr>
                                         </thead>
                                         <tbody>
-                                                {this.props.adjustments.map(function(adjustment_id) {
-                                                        return <AdjustmentReview key={adjustment_id} id={adjustment_id}/>;
+                                                {this.props.adjustments.filter(a => a.state != "ADJUSTED").sort((a, b) => Date.parse(a.created_at) - Date.parse(b.created_at)).map(function(adjustment) {
+                                                        return <AdjustmentReview key={adjustment.id} id={adjustment.id}/>;
                                                 })}
                                         </tbody>
                                 </table>

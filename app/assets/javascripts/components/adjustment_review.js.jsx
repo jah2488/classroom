@@ -1,7 +1,7 @@
-/* globals React, jQuery */
+/* globals React, jQuery, moment */
 var AdjustmentReview = React.createClass({
         getInitialState: function () {
-                return { adjustment: {}, checkin: {}, student: {} };
+                return { adjustment: {}, checkin: {}, student: {}, day: {} };
         },
         componentDidMount: function() {
                 jQuery.ajax({
@@ -20,7 +20,7 @@ var AdjustmentReview = React.createClass({
         render: function () {
                 return (
                         <tr>
-                                <td className={this.align()}>{this.state.adjustment.state}</td>
+                                <td className={this.align()}>{this.startTime()}</td>
                                 <td className={this.align()}>{this.state.checkin.status}</td>
                                 <td className={this.align()}>{this.state.student.pretty_name}</td>
                                 <td className='actions'>
@@ -28,6 +28,11 @@ var AdjustmentReview = React.createClass({
                                 </td>
                         </tr>
                 );
+        },
+
+        startTime: function(time) {
+                let momentTime = moment(this.state.day.start)
+                return momentTime.format('ll')
         },
 
         parse: function(response) {
@@ -38,6 +43,10 @@ var AdjustmentReview = React.createClass({
                         if(response.included[1]) {
                                 let student = response.included[1].attributes;
                                 this.setState({student})
+                        }
+                        if(response.included[2]) {
+                                let day = response.included[2].attributes
+                                this.setState({day})
                         }
                 }
         },
