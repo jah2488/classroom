@@ -12,6 +12,7 @@ $btn-border-radius-base: 0;
 
 @import "materialize/components/color";
 $primary-color: $tiy-brand !default;
+@import "highlightjs/railscasts";
 @import "materialize";
 @import 'datetimepicker';
 @import 'dashboard';

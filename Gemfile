@@ -84,4 +84,5 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-datetimepicker'
   gem 'rails-assets-marked'
   gem 'rails-assets-moment'
+  gem 'rails-assets-highlightjs'
 end

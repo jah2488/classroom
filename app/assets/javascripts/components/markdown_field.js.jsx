@@ -1,20 +1,21 @@
-/* global React, jQuery */
+class MarkdownField extends React.Component {
+        constructor(props) {
+                super(props)
+                this.state = {
+                        text: ""
+                }
+                this.handleChange = this.handleChange.bind(this)
+        }
 
-var MarkdownField = React.createClass({
-        getInitialState: function () {
-                return {
-                        text: ''
-                };
-        },
+        componentDidMount() {
+                jQuery(".materialize-textarea").trigger("autoresize")
+        }
 
-        componentDidMount: function () {
-                jQuery('.materialize-textarea').trigger('autoresize')
-        },
-
-        handleChange: function (event) {
+        handleChange(event) {
                 this.setState({ text: event.target.value });
-        },
-        render: function () {
+        }
+
+        render() {
                 return (
                         <div className='row'>
                                 <div className='col s12 l6'>
@@ -28,4 +29,4 @@ var MarkdownField = React.createClass({
                         </div>
                 );
         }
-});
+}
