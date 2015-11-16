@@ -1,9 +1,11 @@
-var UserLookup = React.createClass({
-        getInitialState: function() {
-                return {query: '', users: [], user: null};
-        },
+class UserLookup extends React.Component {
+        constructor(props) {
+                super(props)
+                this.state = {query: "", users: [], user: null}
+                this.onChange = this.onChange.bind(this)
+        }
 
-        render: function() {
+        render() {
                 if(this.state.user) {
                         return (
                                 <div className="row">
@@ -28,38 +30,34 @@ var UserLookup = React.createClass({
                                 </div>
                         );
                 }
-        },
+        }
 
-        selectUser: function(i) {
+        selectUser(i) {
                 let user = this.state.users[i];
                 this.setState({user: user});
                 if(this.props.onSelect) {
                         this.props.onSelect(user);
                 }
-        },
+        }
 
-        clearUser: function() {
+        clearUser() {
                 this.setState({user: null});
-        },
+        }
 
-        onChange: function(e) {
+        onChange(e) {
                 this.setState({query: e.target.value});
                 if(e.target.value.length > 2) {
                         this.performLookup();
                 }
-        },
-
-        performLookup: function() {
-                $.ajax({
-                        method: 'GET',
-                        url: '/users',
-                        data: {q: this.state.query}
-                }).done(function (response) {
-                        if (this.isMounted()) {
-                                this.setState({
-                                        users: response.data
-                                });
-                        }
-                }.bind(this));
         }
-});
+
+        performLookup() {
+                $.ajax({
+                        method: "GET",
+                        url: "/users",
+                        data: {q: this.state.query}
+                }).then( response => {
+                        this.setState({ users: response.data })
+                });
+        }
+}

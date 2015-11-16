@@ -18,14 +18,14 @@ var Adjustment = React.createClass({
 
         checkinStatus: function() {
                 if(this.props.day.start < this.props.checkin.created_at) {
-                        return moment(this.props.checkin.created_at).format('llll');
+                        return moment(this.props.checkin.created_at).format("llll");
                 }
                 return null;
         },
 
         adjustmentAction: function () {
                 if (this.state.adjustment) {
-                        return (<span>{this.state.adjustment.state}</span>);
+                        return <span>{this.state.adjustment.state}</span>;
                 } else {
                         return (
                                 <a className='waves-effect waves-light green btn' onClick={this.handleClick}>
@@ -39,11 +39,11 @@ var Adjustment = React.createClass({
         handleClick: function () {
                 console.log("Submitting for adjustment")
                 jQuery.ajax({
-                        method: 'POST',
-                        url: '/adjustments/',
-                        data: { adjustment: { checkin_id: this.props.checkin.id } }
-                }).done(function (response) {
+                        method: "POST",
+                        url: "/adjustments/",
+                        data: { adjustment: { "checkin_id": this.props.checkin.id } }
+                }).then( response => {
                         this.setState({ adjustment: response });
-                }.bind(this));
+                });
         }
 });

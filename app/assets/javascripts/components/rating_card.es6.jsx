@@ -7,16 +7,16 @@ var RatingCard = React.createClass({
         },
         update: function () {
                 jQuery.ajax({
-                        method: 'PATCH',
-                        url: '/ratings/' + this.state.rating.id,
+                        method: "PATCH",
+                        url: "/ratings/" + this.state.rating.id,
                         data: {
                                 rating: {
                                         notes: this.state.rating.notes
                                 }
                         }
-                }).success(function (response) {
+                }).then( response => {
                         this.setState({ rating: response, editing: false });
-                }.bind(this));
+                });
         },
         handleNotesChange: function(event) {
                 let rating = this.state.rating;
