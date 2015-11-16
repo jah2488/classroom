@@ -7,8 +7,7 @@ class TimeField extends React.Component {
         }
 
         componentDidMount() {
-                let fiftySeconds = 50000;
-                this.ticker = setInterval(this.update, fiftySeconds);
+                this.ticker = setInterval(this.update.bind(this), this.FIFTY_SECONDS);
         }
 
         componentWillUnmount() {
@@ -47,3 +46,5 @@ class TimeField extends React.Component {
                 this.setState({ hover: false});
         }
 }
+
+TimeField.FIFTY_SECONDS = 50000
