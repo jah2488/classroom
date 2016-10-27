@@ -50,7 +50,7 @@
         "image": "heroku/ruby",
         "addons":[
                 "papertrail:choklad",
-                "airbrake:free_heroku",
+                "airbrake:free-hrku",
                 "heroku-postgresql"
         ],
         "buildpacks": [
